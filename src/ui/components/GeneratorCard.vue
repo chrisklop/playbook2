@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { state, buyGenerator, click } from '../state';
+import { computed, ref, watch } from 'vue';
+import { state, buyGenerator, click, recommendedGenId } from '../state';
 import { computeCost } from '../../game/era-layer';
 import type { GeneratorTier } from '../../content/schema';
 
 const props = defineProps<{ gen: GeneratorTier }>();
+
+const flashing = ref(false);
+const milestonePopText = ref<string | null>(null);
 
 const owned = computed(() => state.ownedByGenerator[props.gen.id] ?? 0);
 const cost = computed(() => computeCost(props.gen.base_cost, props.gen.cost_growth, owned.value));
@@ -47,6 +50,22 @@ const milestoneProgress = computed<number>(() => {
   return span > 0 ? Math.min(1, Math.max(0, into / span)) : 0;
 });
 
+const isRecommended = computed(() => recommendedGenId.value === props.gen.id);
+
+// Watch owned for milestone crossings — fire the inline flash + +×N label.
+watch(owned, (newVal, oldVal) => {
+  for (const m of props.gen.milestones) {
+    if (oldVal < m && newVal >= m) {
+      // Crossed milestone m. currentMilestoneMult already reflects newVal.
+      flashing.value = true;
+      milestonePopText.value = `+×${currentMilestoneMult.value}`;
+      setTimeout(() => { flashing.value = false; }, 400);
+      setTimeout(() => { milestonePopText.value = null; }, 800);
+      break; // single animation even if N>1 milestones crossed in one buy
+    }
+  }
+});
+
 function tap() {
   if (props.gen.is_click_driven) {
     click();
@@ -67,14 +86,27 @@ function formatCost(n: number): string {
 </script>
 
 <template>
-  <button class="card" :class="{ disabled: !gen.is_click_driven && !canAfford }" @click="tap">
+  <button
+    class="card"
+    :class="{ disabled: !gen.is_click_driven && !canAfford, flashing, recommended: isRecommended }"
+    @click="tap"
+  >
+    <div v-if="isRecommended" class="recommend-pill">RECOMMENDED</div>
     <div class="head">
       <div class="title">{{ gen.display_name }}</div>
       <div class="cost" v-if="gen.is_click_driven">
         <span class="cost-tap">+1</span>
         <span class="cost-next">{{ formatCost(cost) }}</span>
+        <Transition name="mile-pop">
+          <span v-if="milestonePopText" :key="milestonePopText" class="mile-pop-label">{{ milestonePopText }}</span>
+        </Transition>
       </div>
-      <div class="cost" v-else>{{ formatCost(cost) }}</div>
+      <div class="cost" v-else>
+        {{ formatCost(cost) }}
+        <Transition name="mile-pop">
+          <span v-if="milestonePopText" :key="milestonePopText" class="mile-pop-label">{{ milestonePopText }}</span>
+        </Transition>
+      </div>
     </div>
     <div class="desc">{{ gen.description }}</div>
     <div v-if="nextMilestone !== null" class="mile-bar">
@@ -92,6 +124,7 @@ function formatCost(n: number): string {
 
 <style scoped>
 .card {
+  position: relative;
   display: block;
   width: 100%;
   margin: 0 0 8px 0;
@@ -107,6 +140,52 @@ function formatCost(n: number): string {
 }
 .card:active { transform: scale(0.985); }
 .card.disabled { opacity: 0.45; cursor: not-allowed; }
+.card.recommended {
+  border-color: var(--theme-accent, #2a2218);
+  box-shadow: 0 0 0 1px var(--theme-accent, #2a2218);
+}
+.recommend-pill {
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  background: var(--theme-accent, #2a2218);
+  color: var(--theme-background, #f2ecd9);
+  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
+  font-size: 7px;
+  font-weight: 900;
+  padding: 2px 6px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.card.flashing {
+  animation: mile-flash 400ms ease-out;
+}
+@keyframes mile-flash {
+  0%   { background: var(--theme-surface, #ebe2c4); }
+  50%  { background: #fff5d4; }
+  100% { background: var(--theme-surface, #ebe2c4); }
+}
+.mile-pop-label {
+  margin-left: 6px;
+  color: var(--theme-accent, #2a2218);
+  font-weight: 900;
+  font-size: 13px;
+  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
+  display: inline-block;
+}
+.mile-pop-enter-active {
+  transition: all 800ms ease-out;
+}
+.mile-pop-enter-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+.mile-pop-enter-to {
+  opacity: 0;
+  transform: translateY(-16px);
+}
+.mile-pop-leave-active { transition: opacity 200ms; }
+.mile-pop-leave-to { opacity: 0; }
 .head {
   display: flex;
   justify-content: space-between;
