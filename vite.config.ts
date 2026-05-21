@@ -5,8 +5,12 @@ import { VitePWA } from "vite-plugin-pwa";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
+// Base path is "/playbook2/" when building for GitHub Pages (set via env var by
+// the deploy workflow). Local dev / preview use "./".
+const isPagesBuild = process.env.GITHUB_PAGES === "true";
+
 export default defineConfig({
-    base: "./",
+    base: isPagesBuild ? "/playbook2/" : "./",
     build: {
         rollupOptions: {
             output: {
