@@ -1,0 +1,12 @@
+{
+  "quotes": [
+    { "id": "moon-hoax", "text": "The 1835 Great Moon Hoax sold out the New York Sun every day for a week.", "codex_link": "great-moon-hoax" },
+    { "id": "maine", "text": "Hearst and Pulitzer manufactured a war over the USS Maine in 1898.", "codex_link": "hearst-pulitzer-maine" },
+    { "id": "lost-cause", "text": "The United Daughters of the Confederacy vetted Southern history textbooks for decades.", "codex_link": "lost-cause" },
+    { "id": "wilmington", "text": "In 1898, newspapers engineered the only successful coup d'état on US soil.", "codex_link": "wilmington-coup" },
+    { "id": "dreyfus", "text": "Zola's 'J'accuse…!' sold 200,000 copies in Paris in a single day.", "codex_link": "dreyfus-affair" },
+    { "id": "protocols", "text": "The Protocols of the Elders of Zion was forged by the Tsarist secret police in 1903.", "codex_link": "protocols-elders-of-zion" }
+  ],
+  "interval_ms": 8000,
+  "no_repeat_within": 3
+}

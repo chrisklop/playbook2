@@ -1,0 +1,18 @@
+{
+  "id": "penny-press-victorian",
+  "era_id": "penny-press",
+  "fonts": {
+    "masthead": "'Playfair Display', 'Old Standard TT', 'Times New Roman', serif",
+    "body": "'Old Standard TT', Georgia, serif",
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Old+Standard+TT:wght@400;700&family=Rye&display=swap"
+  },
+  "palette": {
+    "background": "#f4f1ea",
+    "surface": "#ebe6db",
+    "text": "#1a1a1a",
+    "muted": "#5a5a5a",
+    "accent": "#c8141c",
+    "border": "#1a1a1a"
+  },
+  "card_style": "broadsheet"
+}
