@@ -1,0 +1,18 @@
+{
+  "id": "antiquity-cinzel",
+  "era_id": "antiquity",
+  "fonts": {
+    "masthead": "'Cinzel', 'EB Garamond', Georgia, serif",
+    "body": "'EB Garamond', Georgia, serif",
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap"
+  },
+  "palette": {
+    "background": "#f2ecd9",
+    "surface": "#ebe2c4",
+    "text": "#2a2218",
+    "muted": "#6b5a3d",
+    "accent": "#2a2218",
+    "border": "#2a2218"
+  },
+  "card_style": "flat-paper"
+}
