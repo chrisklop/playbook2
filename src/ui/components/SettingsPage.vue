@@ -1,27 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { writeLocalSave, serializeSave, deserializeSave, type SaveState } from '../../game/save';
-import { state } from '../state';
+import { writeLocalSave, serializeSave, deserializeSave } from '../../game/save';
+import { snapshotSave } from '../state';
 
 const exportText = ref('');
 const importText = ref('');
 const message = ref('');
 
-function buildState(): SaveState {
-  return {
-    version: 1,
-    current_era: 'antiquity',
-    rumor: state.rumor,
-    lifetime_rumor: state.lifetimeRumor,
-    memetic_inheritance: state.memeticInheritance,
-    owned_by_generator: { ...state.ownedByGenerator },
-    unlocked_codex: [], // Future: derive from codex-state
-    saved_at_ms: Date.now(),
-  };
-}
-
 function doExport() {
-  exportText.value = serializeSave(buildState());
+  exportText.value = serializeSave(snapshotSave());
   message.value = 'Exported. Copy the string above to back up your save.';
 }
 

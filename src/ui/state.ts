@@ -1,7 +1,16 @@
 import { reactive, computed } from 'vue';
 import { getEra, registry } from '../content/registry';
-import { computeCost, generatorProduction } from '../game/era-layer';
+import {
+  computeCost,
+  generatorProduction,
+  pickOptimalGenerator,
+} from '../game/era-layer';
 import { computeMemeticInheritance, carryoverMultiplier } from '../game/prestige';
+import {
+  readLocalSave,
+  type SaveState,
+  type BulkBuyMultiplier,
+} from '../game/save';
 import { applyTheme } from './theme';
 
 type EraId = 'antiquity' | 'printing-press' | 'penny-press';
@@ -12,6 +21,11 @@ export const state = reactive({
   lifetimeRumor: 0,
   memeticInheritance: 0,
   ownedByGenerator: {} as Record<string, number>,
+  // v2 additions
+  prestigeCount: 0,
+  seenToastEvents: new Set<string>(),
+  bulkBuyMultiplier: 1 as BulkBuyMultiplier,
+  showBestBuyHint: true,
 });
 
 export const currentBundle = computed(() => getEra(state.currentEraId));
@@ -55,10 +69,29 @@ export const visibleGenerators = computed(() =>
   currentEra.value.generators.filter(g => state.lifetimeRumor >= g.reveal_at_lifetime)
 );
 
+/**
+ * Generator id currently identified as the optimal next purchase by the
+ * Pecorella overtake heuristic. Null when:
+ *   - The "best-buy hint" setting is off
+ *   - No visible generators
+ *   - The heuristic can't decide
+ */
+export const recommendedGenId = computed<string | null>(() => {
+  if (!state.showBestBuyHint) return null;
+  const visible = visibleGenerators.value;
+  if (visible.length === 0) return null;
+  return pickOptimalGenerator(
+    visible,
+    { rumor: state.rumor, ownedByGenerator: state.ownedByGenerator },
+    carryoverMultiplier(state.memeticInheritance),
+  );
+});
+
 /** Prestige into the next era. Carryover MI persists; rumor/owned reset; theme swaps. */
 export function performPrestige(): void {
   const newMI = projectedMI.value;
   state.memeticInheritance += newMI;
+  state.prestigeCount += 1;
   state.rumor = 0;
   state.lifetimeRumor = 0;
   state.ownedByGenerator = {};
@@ -75,6 +108,43 @@ export function performPrestige(): void {
   if (typeof document !== 'undefined') {
     applyTheme(currentTheme.value);
   }
+}
+
+/** Apply a loaded SaveState to live reactive state. Called once at boot. */
+export function applyLoadedSave(save: SaveState): void {
+  state.currentEraId = save.current_era as EraId;
+  state.rumor = save.rumor;
+  state.lifetimeRumor = save.lifetime_rumor;
+  state.memeticInheritance = save.memetic_inheritance;
+  state.ownedByGenerator = { ...save.owned_by_generator };
+  state.prestigeCount = save.prestige_count;
+  state.seenToastEvents = new Set(save.seen_toast_events);
+  state.bulkBuyMultiplier = save.bulk_buy_multiplier;
+  state.showBestBuyHint = save.show_best_buy_hint;
+}
+
+/** Snapshot live state into a SaveState. Used by autosave + export. */
+export function snapshotSave(): SaveState {
+  return {
+    version: 2,
+    current_era: state.currentEraId,
+    rumor: state.rumor,
+    lifetime_rumor: state.lifetimeRumor,
+    memetic_inheritance: state.memeticInheritance,
+    owned_by_generator: { ...state.ownedByGenerator },
+    unlocked_codex: [],
+    saved_at_ms: Date.now(),
+    prestige_count: state.prestigeCount,
+    seen_toast_events: Array.from(state.seenToastEvents),
+    bulk_buy_multiplier: state.bulkBuyMultiplier,
+    show_best_buy_hint: state.showBestBuyHint,
+  };
+}
+
+// Boot-time save load — only when running in a browser
+if (typeof window !== 'undefined') {
+  const loaded = readLocalSave();
+  if (loaded) applyLoadedSave(loaded);
 }
 
 // Initial theme application at boot.
