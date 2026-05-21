@@ -1,6 +1,9 @@
 {
-  "name": "profectus",
-  "version": "0.7.0",
+  "name": "playbook",
+  "version": "0.1.0",
+  "description": "A history-of-disinformation incremental game. Built on Profectus.",
+  "author": "Chris Klopfenstein",
+  "license": "MIT",
   "private": true,
   "type": "module",
   "scripts": {
@@ -60,6 +63,6 @@
     "@rollup/rollup-linux-x64-gnu": "^4.24.0"
   },
   "engines": {
-    "node": "21.x"
+    "node": ">=21"
   }
 }
