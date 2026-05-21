@@ -30,6 +30,7 @@
     "@pixi/ticker": "~6.5.10",
     "@vitejs/plugin-vue": "^5.1.4",
     "@vitejs/plugin-vue-jsx": "^4.0.1",
+    "gray-matter": "^4.0.3",
     "is-plain-object": "^5.0.0",
     "lz-string": "^1.5.0",
     "nanoevents": "^9.0.0",
