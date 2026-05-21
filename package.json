@@ -35,14 +35,14 @@
     "nanoevents": "^9.0.0",
     "unofficial-galaxy-sdk": "git+https://code.incremental.social/thepaperpilot/unofficial-galaxy-sdk.git#1.0.1",
     "vite": "^5.1.8",
-    "vite-plugin-pwa": "^0.20.5",
     "vite-tsconfig-paths": "^4.3.0",
     "vue": "^3.5.13",
     "vue-next-select": "^2.10.5",
     "vue-panzoom": "https://github.com/thepaperpilot/vue-panzoom.git",
     "vue-textarea-autosize": "^1.1.1",
     "vue-toastification": "^2.0.0-rc.5",
-    "vuedraggable": "^4.1.0"
+    "vuedraggable": "^4.1.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@ivanv/vue-collapse-transition": "^1.0.2",
@@ -56,6 +56,7 @@
     "jsdom": "^24.0.0",
     "prettier": "^3.2.5",
     "typescript": "~5.5.4",
+    "vite-plugin-pwa": "^0.20.5",
     "vitest": "^1.4.0",
     "vue-tsc": "^2.0.6"
   },
