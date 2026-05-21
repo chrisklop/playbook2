@@ -7,16 +7,14 @@ import {
   showRevealPlaceholder,
   currentCopy,
 } from '../state';
+import { formatResource } from '../format';
 
 const placeholderText = computed(
   () => currentCopy.value.reveal_placeholder_text ?? 'A new playbook tool stirs.',
 );
 
-function formatN(n: number): string {
-  if (n < 1000) return n.toFixed(0);
-  if (n < 1e6) return (n / 1000).toFixed(1) + 'K';
-  return (n / 1e6).toFixed(1) + 'M';
-}
+// Lifetime rumor display rounds DOWN; threshold (target) is an exact integer so format raw.
+const formatN = formatResource;
 </script>
 
 <template>

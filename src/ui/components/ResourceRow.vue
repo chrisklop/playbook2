@@ -1,17 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { state, currentCopy, productionPerSecond } from '../state';
+import { formatResource, formatRate } from '../format';
 
-const formatted = computed(() => formatNumber(state.rumor));
-const perSec = computed(() => formatNumber(productionPerSecond.value));
-
-function formatNumber(n: number): string {
-  if (n < 1000) return n.toFixed(0);
-  if (n < 1e6) return (n / 1000).toFixed(2) + 'K';
-  if (n < 1e9) return (n / 1e6).toFixed(2) + 'M';
-  if (n < 1e12) return (n / 1e9).toFixed(2) + 'B';
-  return n.toExponential(2);
-}
+const formatted = computed(() => formatResource(state.rumor));
+const perSec = computed(() => formatRate(productionPerSecond.value));
 </script>
 
 <template>

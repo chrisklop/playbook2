@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue';
 import { state, buyGenerator, click, recommendedGenId } from '../state';
 import { computeCost, computeBulkCost, maxAffordableBulk } from '../../game/era-layer';
 import type { GeneratorTier } from '../../content/schema';
+import { formatCost } from '../format';
 
 const props = defineProps<{ gen: GeneratorTier }>();
 
@@ -94,12 +95,7 @@ function tap() {
   }
 }
 
-function formatCost(n: number): string {
-  if (n < 1000) return n.toFixed(0);
-  if (n < 1e6) return (n / 1000).toFixed(1) + 'K';
-  if (n < 1e9) return (n / 1e6).toFixed(1) + 'M';
-  return n.toExponential(1);
-}
+// Use the honest-rounded formatter from ui/format.ts — never display affordable when it isn't.
 </script>
 
 <template>

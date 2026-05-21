@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue';
 import { writeLocalSave, serializeSave, deserializeSave } from '../../game/save';
 import { snapshotSave, state, currentEra } from '../state';
+import { formatResource } from '../format';
 
 const exportText = ref('');
 const importText = ref('');
@@ -10,15 +11,7 @@ const message = ref('');
 const totalPrestiges = computed(() => state.prestigeCount);
 const memeticInheritance = computed(() => state.memeticInheritance.toFixed(2));
 const eraName = computed(() => currentEra.value.display_name);
-const lifetimeRumorDisplay = computed(() => formatN(state.lifetimeRumor));
-
-function formatN(n: number): string {
-  if (n < 1000) return n.toFixed(0);
-  if (n < 1e6) return (n / 1000).toFixed(2) + 'K';
-  if (n < 1e9) return (n / 1e6).toFixed(2) + 'M';
-  if (n < 1e12) return (n / 1e9).toFixed(2) + 'B';
-  return n.toExponential(2);
-}
+const lifetimeRumorDisplay = computed(() => formatResource(state.lifetimeRumor));
 
 function doExport() {
   exportText.value = serializeSave(snapshotSave());
