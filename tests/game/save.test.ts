@@ -1,0 +1,31 @@
+import { describe, it, expect } from 'vitest';
+import { serializeSave, deserializeSave, type SaveState } from '../../src/game/save';
+
+const SAMPLE: SaveState = {
+  version: 1,
+  current_era: 'antiquity',
+  rumor: 12345.678,
+  lifetime_rumor: 999999.99,
+  memetic_inheritance: 0,
+  owned_by_generator: { 'spread-rumor': 10, 'forge-naru-tablet': 3 },
+  unlocked_codex: ['octavian-vs-antony'],
+  saved_at_ms: 1700000000000,
+};
+
+describe('save round-trip', () => {
+  it('serialize then deserialize returns the original', () => {
+    const str = serializeSave(SAMPLE);
+    const back = deserializeSave(str);
+    expect(back).toEqual(SAMPLE);
+  });
+
+  it('compressed save is smaller than JSON.stringify', () => {
+    const compressed = serializeSave(SAMPLE);
+    const raw = JSON.stringify(SAMPLE);
+    expect(compressed.length).toBeLessThan(raw.length);
+  });
+
+  it('throws on corrupted input', () => {
+    expect(() => deserializeSave('totally-not-a-save')).toThrow();
+  });
+});
