@@ -1,20 +1,20 @@
 {
 	"$schema": "./projInfo-schema.json",
 
-	"title": "Profectus",
-	"description": "A project made in Profectus",
-	"id": "",
-	"author": "",
+	"title": "Playbook",
+	"description": "A history-of-disinformation incremental game.",
+	"id": "playbook-disinfo-2026",
+	"author": "Chris Klopfenstein",
 	"discordName": "",
 	"discordLink": "",
 
-	"versionNumber": "0.0",
-	"versionTitle": "Initial Commit",
+	"versionNumber": "0.1.0",
+	"versionTitle": "Phase 1 MVP",
 
 	"allowGoBack": true,
 	"defaultShowSmall": false,
 	"defaultDecimalsShown": 2,
-	"useHeader": true,
+	"useHeader": false,
 	"banner": null,
 	"logo": "",
 	"initialTabs": [ "main" ],
@@ -23,5 +23,5 @@
 	"offlineLimit": 1,
 	"enablePausing": true,
 	"exportEncoding": "base64",
-	"disableHealthWarning": false
+	"disableHealthWarning": true
 }

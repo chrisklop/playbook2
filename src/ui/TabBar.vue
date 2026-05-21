@@ -27,10 +27,14 @@ const tabs = [
 <style scoped>
 .tabbar {
   display: flex;
+  width: 100%;
   height: 60px;
+  margin: 0;
+  padding: 0;
   padding-bottom: var(--safe-bottom);
   background: var(--theme-surface, #1a1a1a);
   border-top: 1px solid var(--theme-border, #2f2f2f);
+  box-sizing: border-box;
 }
 .tab {
   flex: 1;

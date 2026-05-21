@@ -25,12 +25,18 @@ const activeTab = ref<'play' | 'tree' | 'codex' | 'more'>('play');
 .app-shell {
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: 100dvh;
+  margin: 0;
   padding-top: var(--safe-top);
   background: var(--theme-background, #000);
+  /* Reset Profectus global child-margin */
+  box-sizing: border-box;
 }
 .content {
   flex: 1;
+  width: 100%;
+  margin: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
