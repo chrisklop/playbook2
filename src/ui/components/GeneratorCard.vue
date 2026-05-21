@@ -12,7 +12,14 @@ const canAfford = computed(() => state.rumor >= cost.value);
 
 function tap() {
   if (props.gen.is_click_driven) {
+    // Click-driven Tier 1: always +1 Rumor, AND auto-buy if affordable.
+    // This is the AdVenture-Capitalist "tap the lemonade stand" pattern —
+    // every tap progresses you either way: free Rumor when below cost, or
+    // free Rumor PLUS a new Sycophant when you can afford one.
     click();
+    if (state.rumor >= cost.value) {
+      buyGenerator(props.gen.id);
+    }
   } else {
     buyGenerator(props.gen.id);
   }
@@ -30,13 +37,16 @@ function formatCost(n: number): string {
   <button class="card" :class="{ disabled: !gen.is_click_driven && !canAfford }" @click="tap">
     <div class="head">
       <div class="title">{{ gen.display_name }}</div>
-      <div class="cost" v-if="!gen.is_click_driven">{{ formatCost(cost) }}</div>
-      <div class="cost" v-else>+1</div>
+      <div class="cost" v-if="gen.is_click_driven">
+        <span class="cost-tap">+1</span>
+        <span class="cost-next" :class="{ ready: canAfford }">{{ formatCost(cost) }}</span>
+      </div>
+      <div class="cost" v-else>{{ formatCost(cost) }}</div>
     </div>
     <div class="desc">{{ gen.description }}</div>
     <div class="meta">
       <span class="tag">{{ gen.technique_tag }}</span>
-      <span class="owned" v-if="!gen.is_click_driven">×{{ owned }}</span>
+      <span class="owned">×{{ owned }}</span>
     </div>
   </button>
 </template>
@@ -77,6 +87,20 @@ function formatCost(n: number): string {
   font-size: 14px;
   color: var(--theme-accent, #2a2218);
   flex-shrink: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.cost-tap {
+  font-size: 12px;
+  opacity: 0.55;
+}
+.cost-next {
+  font-size: 14px;
+}
+.cost-next.ready {
+  color: var(--theme-accent, #2a2218);
+  text-shadow: 0 0 1px currentColor;
 }
 .desc {
   font-size: 11px;
