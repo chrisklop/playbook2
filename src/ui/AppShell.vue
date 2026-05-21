@@ -5,12 +5,14 @@ import PlayTab from './tabs/PlayTab.vue';
 import TreeTab from './tabs/TreeTab.vue';
 import CodexTab from './tabs/CodexTab.vue';
 import MoreTab from './tabs/MoreTab.vue';
+import ToastStack from './components/ToastStack.vue';
 
 const activeTab = ref<'play' | 'tree' | 'codex' | 'more'>('play');
 </script>
 
 <template>
   <div class="app-shell">
+    <ToastStack />
     <main class="content">
       <PlayTab v-if="activeTab === 'play'" />
       <TreeTab v-else-if="activeTab === 'tree'" />
