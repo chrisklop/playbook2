@@ -1,0 +1,46 @@
+{
+  "quotes": [
+    {
+      "id": "octavian-will",
+      "text": "Octavian read Antony's seized will aloud in 32 BCE.",
+      "codex_link": "octavian-vs-antony"
+    },
+    {
+      "id": "kadesh",
+      "text": "Ramesses II's victory inscriptions at Kadesh were contradicted by Hittite archives 3,000 years later.",
+      "codex_link": "battle-of-kadesh"
+    },
+    {
+      "id": "behistun",
+      "text": "Darius I carved his official story into a cliff in three languages — Old Persian, Elamite, Akkadian.",
+      "codex_link": "behistun-inscription"
+    },
+    {
+      "id": "mandate",
+      "text": "The Zhou justified overthrowing the Shang by inventing the doctrine that Heaven had withdrawn its mandate.",
+      "codex_link": "mandate-of-heaven"
+    },
+    {
+      "id": "themistocles-ostraka",
+      "text": "A cache of 190 ostraka voting against Themistocles was written by only 14 different hands.",
+      "codex_link": "themistocles-ostracism"
+    },
+    {
+      "id": "nero-christians",
+      "text": "Facing rumors he started the Great Fire, Nero blamed an obscure Jewish sect — the Christians.",
+      "codex_link": "nero-great-fire"
+    },
+    {
+      "id": "augustus-coinage",
+      "text": "Every Augustan denarius read CAESAR DIVI F — son of the deified one.",
+      "codex_link": "augustan-coinage"
+    },
+    {
+      "id": "sykophants",
+      "text": "Athenian sykophants filed frivolous lawsuits to extort settlements — the original trolls.",
+      "codex_link": "athenian-sykophants"
+    }
+  ],
+  "interval_ms": 8000,
+  "no_repeat_within": 3
+}
