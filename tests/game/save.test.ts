@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { serializeSave, deserializeSave, type SaveState } from '../../src/game/save';
 
 const SAMPLE: SaveState = {
-  version: 1,
+  version: 2,
   current_era: 'antiquity',
   rumor: 12345.678,
   lifetime_rumor: 999999.99,
@@ -10,6 +10,10 @@ const SAMPLE: SaveState = {
   owned_by_generator: { 'spread-rumor': 10, 'forge-naru-tablet': 3 },
   unlocked_codex: ['octavian-vs-antony'],
   saved_at_ms: 1700000000000,
+  prestige_count: 0,
+  seen_toast_events: [],
+  bulk_buy_multiplier: 1,
+  show_best_buy_hint: true,
 };
 
 describe('save round-trip', () => {
