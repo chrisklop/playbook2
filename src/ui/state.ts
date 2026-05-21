@@ -1,28 +1,24 @@
 import { reactive, computed } from 'vue';
-import { getEra } from '../content/registry';
+import { getEra, registry } from '../content/registry';
 import { computeCost, generatorProduction } from '../game/era-layer';
 import { computeMemeticInheritance, carryoverMultiplier } from '../game/prestige';
 import { applyTheme } from './theme';
 
-// Phase 1 ships with Era 1 only; multi-era prestige comes in Phase 6 (Task 28).
-const bundle = getEra('antiquity');
-
-export const currentEra = bundle.era;
-export const currentTheme = bundle.theme;
-export const currentTicker = bundle.ticker;
-export const currentCopy = bundle.copy;
-
-// Guard against SSR/test environments without document
-if (typeof document !== 'undefined') {
-  applyTheme(currentTheme);
-}
+type EraId = 'antiquity' | 'printing-press' | 'penny-press';
 
 export const state = reactive({
+  currentEraId: 'antiquity' as EraId,
   rumor: 0,
   lifetimeRumor: 0,
   memeticInheritance: 0,
   ownedByGenerator: {} as Record<string, number>,
 });
+
+export const currentBundle = computed(() => getEra(state.currentEraId));
+export const currentEra = computed(() => currentBundle.value.era);
+export const currentTheme = computed(() => currentBundle.value.theme);
+export const currentTicker = computed(() => currentBundle.value.ticker);
+export const currentCopy = computed(() => currentBundle.value.copy);
 
 export function click(): void {
   state.rumor += 1;
@@ -30,7 +26,7 @@ export function click(): void {
 }
 
 export function buyGenerator(genId: string): boolean {
-  const gen = currentEra.generators.find(g => g.id === genId);
+  const gen = currentEra.value.generators.find(g => g.id === genId);
   if (!gen) return false;
   const owned = state.ownedByGenerator[genId] ?? 0;
   const cost = computeCost(gen.base_cost, gen.cost_growth, owned);
@@ -43,7 +39,7 @@ export function buyGenerator(genId: string): boolean {
 export const productionPerSecond = computed(() => {
   const globalMult = carryoverMultiplier(state.memeticInheritance);
   let total = 0;
-  for (const gen of currentEra.generators) {
+  for (const gen of currentEra.value.generators) {
     const owned = state.ownedByGenerator[gen.id] ?? 0;
     total += generatorProduction(gen, owned, globalMult);
   }
@@ -51,13 +47,40 @@ export const productionPerSecond = computed(() => {
 });
 
 export const projectedMI = computed(() => computeMemeticInheritance(state.lifetimeRumor));
+export const canPrestige = computed(() => projectedMI.value >= 1);
 
-/** Progressive-reveal filter — AdCap pattern. Hide generators whose lifetime threshold hasn't been met. */
 export const visibleGenerators = computed(() =>
-  currentEra.generators.filter(g => state.lifetimeRumor >= g.reveal_at_lifetime)
+  currentEra.value.generators.filter(g => state.lifetimeRumor >= g.reveal_at_lifetime)
 );
 
-// Tick loop — temporary self-contained interval. Phase 2 polish will bridge into Profectus's tick system.
+/** Prestige into the next era. Carryover MI persists; rumor/owned reset; theme swaps. */
+export function performPrestige(): void {
+  const newMI = projectedMI.value;
+  state.memeticInheritance += newMI;
+  state.rumor = 0;
+  state.lifetimeRumor = 0;
+  state.ownedByGenerator = {};
+
+  const nextEraId = currentEra.value.prestige_into;
+  if (nextEraId === null) {
+    // Final era — stay put (Phase 1 has only 3 eras; penny-press is terminal).
+    return;
+  }
+  if (!registry.eraIds.includes(nextEraId)) {
+    throw new Error(`Cannot prestige into unknown era: '${nextEraId}'`);
+  }
+  state.currentEraId = nextEraId as EraId;
+  if (typeof document !== 'undefined') {
+    applyTheme(currentTheme.value);
+  }
+}
+
+// Initial theme application at boot.
+if (typeof document !== 'undefined') {
+  applyTheme(currentTheme.value);
+}
+
+// Tick loop — temporary self-contained interval.
 const TICK_MS = 100;
 if (typeof window !== 'undefined') {
   setInterval(() => {

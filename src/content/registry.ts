@@ -8,6 +8,16 @@ import antiquityThemeRaw from './eras/01-antiquity/theme.json';
 import antiquityTickerRaw from './eras/01-antiquity/ticker.json';
 import antiquityCopyRaw from './eras/01-antiquity/copy.json';
 
+import printingPressEraRaw from './eras/02-printing-press/era.json';
+import printingPressThemeRaw from './eras/02-printing-press/theme.json';
+import printingPressTickerRaw from './eras/02-printing-press/ticker.json';
+import printingPressCopyRaw from './eras/02-printing-press/copy.json';
+
+import pennyPressEraRaw from './eras/03-penny-press/era.json';
+import pennyPressThemeRaw from './eras/03-penny-press/theme.json';
+import pennyPressTickerRaw from './eras/03-penny-press/ticker.json';
+import pennyPressCopyRaw from './eras/03-penny-press/copy.json';
+
 const TickerSchema = z.object({
   quotes: z.array(z.object({
     id: z.string().min(1),
@@ -62,6 +72,24 @@ const BUNDLES: Record<string, EraBundle> = {
       copy: antiquityCopyRaw,
     },
     'antiquity',
+  ),
+  'printing-press': loadBundle(
+    {
+      era: printingPressEraRaw,
+      theme: printingPressThemeRaw,
+      ticker: printingPressTickerRaw,
+      copy: printingPressCopyRaw,
+    },
+    'printing-press',
+  ),
+  'penny-press': loadBundle(
+    {
+      era: pennyPressEraRaw,
+      theme: pennyPressThemeRaw,
+      ticker: pennyPressTickerRaw,
+      copy: pennyPressCopyRaw,
+    },
+    'penny-press',
   ),
 };
 

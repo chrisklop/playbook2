@@ -6,11 +6,11 @@ const currentIndex = ref(0);
 let interval: number | undefined;
 
 const pickNext = () => {
-  currentIndex.value = (currentIndex.value + 1) % currentTicker.quotes.length;
+  currentIndex.value = (currentIndex.value + 1) % currentTicker.value.quotes.length;
 };
 
 onMounted(() => {
-  interval = window.setInterval(pickNext, currentTicker.interval_ms);
+  interval = window.setInterval(pickNext, currentTicker.value.interval_ms);
 });
 onUnmounted(() => {
   if (interval !== undefined) clearInterval(interval);

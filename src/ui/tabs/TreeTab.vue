@@ -10,7 +10,7 @@ const generatorsByTechnique = computed(() => {
     impersonation: [], emotion: [], polarization: [],
     conspiracy: [], discrediting: [], trolling: [],
   };
-  for (const gen of currentEra.generators) {
+  for (const gen of currentEra.value.generators) {
     map[gen.technique_tag].push(gen);
   }
   return map;
