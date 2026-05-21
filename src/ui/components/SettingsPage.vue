@@ -1,11 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { writeLocalSave, serializeSave, deserializeSave } from '../../game/save';
-import { snapshotSave } from '../state';
+import { snapshotSave, state, currentEra } from '../state';
 
 const exportText = ref('');
 const importText = ref('');
 const message = ref('');
+
+const totalPrestiges = computed(() => state.prestigeCount);
+const memeticInheritance = computed(() => state.memeticInheritance.toFixed(2));
+const eraName = computed(() => currentEra.value.display_name);
+const lifetimeRumorDisplay = computed(() => formatN(state.lifetimeRumor));
+
+function formatN(n: number): string {
+  if (n < 1000) return n.toFixed(0);
+  if (n < 1e6) return (n / 1000).toFixed(2) + 'K';
+  if (n < 1e9) return (n / 1e6).toFixed(2) + 'M';
+  if (n < 1e12) return (n / 1e9).toFixed(2) + 'B';
+  return n.toExponential(2);
+}
 
 function doExport() {
   exportText.value = serializeSave(snapshotSave());
@@ -33,6 +46,24 @@ function hardReset() {
 <template>
   <article class="page">
     <h2>Settings</h2>
+
+    <section class="settings-section">
+      <h3>Hints</h3>
+      <label class="toggle-row">
+        <input type="checkbox" v-model="state.showBestBuyHint">
+        <span>Show best-buy recommendation</span>
+      </label>
+    </section>
+
+    <section class="settings-section">
+      <h3>Stats</h3>
+      <dl class="stats">
+        <dt>Total prestiges</dt><dd>{{ totalPrestiges }}</dd>
+        <dt>Memetic Inheritance</dt><dd>{{ memeticInheritance }}</dd>
+        <dt>Current era</dt><dd>{{ eraName }}</dd>
+        <dt>Lifetime Rumor (era)</dt><dd>{{ lifetimeRumorDisplay }}</dd>
+      </dl>
+    </section>
 
     <section class="settings-section">
       <h3>Export save</h3>
@@ -131,4 +162,27 @@ textarea {
   opacity: 0.7;
   margin-top: 16px;
 }
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--theme-font-body, -apple-system, sans-serif);
+  font-size: 13px;
+  cursor: pointer;
+}
+.toggle-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+.stats {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 12px;
+  margin: 0;
+  font-family: var(--theme-font-body, -apple-system, sans-serif);
+  font-size: 13px;
+}
+.stats dt { font-style: italic; opacity: 0.7; }
+.stats dd { margin: 0; font-family: var(--theme-font-masthead, -apple-system, sans-serif); font-weight: 700; }
 </style>
