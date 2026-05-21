@@ -46,7 +46,9 @@ export const productionPerSecond = computed(() => {
   return total;
 });
 
-export const projectedMI = computed(() => computeMemeticInheritance(state.lifetimeRumor));
+export const projectedMI = computed(() =>
+  computeMemeticInheritance(state.lifetimeRumor, currentEra.value.prestige_pivot)
+);
 export const canPrestige = computed(() => projectedMI.value >= 1);
 
 export const visibleGenerators = computed(() =>

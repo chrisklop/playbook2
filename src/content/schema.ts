@@ -44,6 +44,13 @@ export const EraDefinitionSchema = z.object({
   generators: z.array(GeneratorTierSchema).min(2),
   prestige_into: z.string().nullable(),
   prestige_bridge_copy: z.string().min(1),
+  /**
+   * Per-era pivot for the prestige formula `MI = 150 × sqrt(lifetime / pivot)`.
+   * Calibrated against the economy simulator so first prestige lands in 30–60 min.
+   * Default 1e12 is Era-1-class; later eras need orders of magnitude higher pivots
+   * because their production scale is correspondingly larger.
+   */
+  prestige_pivot: z.number().positive().default(1e12),
 });
 export type EraDefinition = z.infer<typeof EraDefinitionSchema>;
 

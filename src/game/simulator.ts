@@ -202,7 +202,7 @@ export function simulateEra(
     }
 
     // 9. Prestige check.
-    const projMI = computeMemeticInheritance(state.lifetimeRumor);
+    const projMI = computeMemeticInheritance(state.lifetimeRumor, era.prestige_pivot);
     if (!prestigeRecorded && projMI >= 1) {
       events.push({ t_sec: t, type: 'prestige_available', projected_mi: projMI });
       firstPrestige = t;
@@ -234,7 +234,7 @@ export function simulateEra(
       time_to_each_generator_purchase_sec: purchaseTimes,
       time_to_first_prestige_sec: firstPrestige,
       lifetime_rumor_at_horizon: state.lifetimeRumor,
-      projected_mi_at_horizon: computeMemeticInheritance(state.lifetimeRumor),
+      projected_mi_at_horizon: computeMemeticInheritance(state.lifetimeRumor, era.prestige_pivot),
       times_each_gen_was_best_buy: bestBuyCounts,
     };
   }

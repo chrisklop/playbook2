@@ -10,12 +10,12 @@
       "id": "set-headline",
       "tier": 1,
       "display_name": "Set a Headline",
-      "description": "Pick the most lurid noun. Tap to gain 1 Rumor.",
+      "description": "Pick the most lurid noun. Tap to gain 1 Rumor. At 10 owned, a Copy Boy takes over.",
       "technique_tag": "emotion",
       "resource": "rumor",
-      "base_cost": 0,
+      "base_cost": 4,
       "cost_growth": 1.07,
-      "base_production": 0,
+      "base_production": 1,
       "is_click_driven": true,
       "auto_unlock_at": 10,
       "auto_operative_name": "Copy Boy",
@@ -110,5 +110,6 @@
     }
   ],
   "prestige_into": null,
+  "prestige_pivot": 2e15,
   "prestige_bridge_copy": "End of Phase 1. The 20th century — radio, film, total propaganda states — waits in Phase 2."
 }

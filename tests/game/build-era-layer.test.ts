@@ -47,10 +47,11 @@ describe('buildEraLayer — Antiquity', () => {
     expect(() => layer.onTick(s, 1)).not.toThrow();
   });
 
-  it('performPrestige returns MI based on lifetime', () => {
+  it('performPrestige returns MI based on lifetime and the era pivot', () => {
     const layer = buildEraLayer(antiquity, 0);
     const s = freshState();
-    s.lifetimeRumor = 1e15;
+    // When lifetime == pivot, MI should equal the coefficient (150).
+    s.lifetimeRumor = antiquity.prestige_pivot;
     const mi = layer.performPrestige(s);
     expect(mi).toBeCloseTo(150, 4);
   });

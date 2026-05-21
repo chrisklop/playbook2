@@ -18,12 +18,19 @@ export function milestoneMultiplier(owned: number, milestones: readonly number[]
   return mult;
 }
 
-/** Per-tick production for one generator (linear in owned × multipliers). */
+/**
+ * Per-tick production for one generator (linear in owned × multipliers).
+ *
+ * For click-driven Tier-1 generators, idle production is 0 until the player has
+ * purchased `auto_unlock_at` of them — that's the "manager hired" moment.
+ * Once unlocked, Tier-1 produces idle just like any other generator.
+ */
 export function generatorProduction(
   gen: GeneratorTier,
   owned: number,
   globalMultiplier: number,
 ): number {
-  if (gen.is_click_driven) return 0;
+  if (owned <= 0) return 0;
+  if (gen.is_click_driven && owned < gen.auto_unlock_at) return 0;
   return gen.base_production * owned * milestoneMultiplier(owned, gen.milestones) * globalMultiplier;
 }

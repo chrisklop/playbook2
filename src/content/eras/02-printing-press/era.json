@@ -10,12 +10,12 @@
       "id": "compose-broadside",
       "tier": 1,
       "display_name": "Compose Broadside",
-      "description": "Set type by hand. Tap to gain 1 Rumor.",
+      "description": "Set type by hand. Tap to gain 1 Rumor. At 10 owned, an Apprentice Printer takes over.",
       "technique_tag": "polarization",
       "resource": "rumor",
-      "base_cost": 0,
+      "base_cost": 4,
       "cost_growth": 1.07,
-      "base_production": 0,
+      "base_production": 1,
       "is_click_driven": true,
       "auto_unlock_at": 10,
       "auto_operative_name": "Apprentice Printer",
@@ -110,5 +110,6 @@
     }
   ],
   "prestige_into": "penny-press",
+  "prestige_pivot": 5e14,
   "prestige_bridge_copy": "Steam arrives. Paper grows cheap. The pamphlet becomes the newspaper, and the newspaper becomes the front page."
 }

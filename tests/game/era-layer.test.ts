@@ -59,7 +59,16 @@ describe('generatorProduction', () => {
   it('global multiplier compounds', () => {
     expect(generatorProduction(gen, 50, 2.5)).toBe(7 * 50 * 4 * 2.5);
   });
-  it('click-driven generator produces 0 idle', () => {
-    expect(generatorProduction({ ...gen, is_click_driven: true }, 100, 1)).toBe(0);
+  it('click-driven generator produces 0 BEFORE reaching auto_unlock_at', () => {
+    const clickGen = { ...gen, is_click_driven: true, auto_unlock_at: 10, base_production: 1 };
+    expect(generatorProduction(clickGen, 9, 1)).toBe(0);
+  });
+  it('click-driven generator produces idle AFTER reaching auto_unlock_at ("Sycophant hired" moment)', () => {
+    const clickGen = { ...gen, is_click_driven: true, auto_unlock_at: 10, base_production: 1 };
+    expect(generatorProduction(clickGen, 10, 1)).toBe(10); // 1 × 10 × milestone(10)=1 × 1
+  });
+  it('click-driven generator with 25 owned applies milestone bonus too', () => {
+    const clickGen = { ...gen, is_click_driven: true, auto_unlock_at: 10, base_production: 1 };
+    expect(generatorProduction(clickGen, 25, 1)).toBe(50); // 1 × 25 × milestone(25)=2 × 1
   });
 });

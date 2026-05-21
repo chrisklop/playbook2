@@ -42,7 +42,7 @@ export function buildEraLayer(era: EraDefinition, mi: number) {
   };
 
   const performPrestige = (state: EraLayerState): number => {
-    return computeMemeticInheritance(state.lifetimeRumor);
+    return computeMemeticInheritance(state.lifetimeRumor, era.prestige_pivot);
   };
 
   return {
