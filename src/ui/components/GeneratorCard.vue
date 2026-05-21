@@ -10,12 +10,45 @@ const owned = computed(() => state.ownedByGenerator[props.gen.id] ?? 0);
 const cost = computed(() => computeCost(props.gen.base_cost, props.gen.cost_growth, owned.value));
 const canAfford = computed(() => state.rumor >= cost.value);
 
+/** The next-milestone owned threshold, or null if past the final milestone. */
+const nextMilestone = computed<number | null>(() => {
+  for (const m of props.gen.milestones) {
+    if (owned.value < m) return m;
+  }
+  return null;
+});
+
+/** The previous milestone passed (0 if none). */
+const prevMilestone = computed<number>(() => {
+  let prev = 0;
+  for (const m of props.gen.milestones) {
+    if (owned.value >= m) prev = m;
+    else break;
+  }
+  return prev;
+});
+
+/** Current accumulated milestone multiplier (×2 per crossed milestone). */
+const currentMilestoneMult = computed<number>(() => {
+  let mult = 1;
+  for (const m of props.gen.milestones) {
+    if (owned.value >= m) mult *= 2;
+  }
+  return mult;
+});
+
+const nextMilestoneMult = computed<number>(() => currentMilestoneMult.value * 2);
+
+/** Progress from previous milestone to next, 0..1. */
+const milestoneProgress = computed<number>(() => {
+  if (nextMilestone.value === null) return 1;
+  const span = nextMilestone.value - prevMilestone.value;
+  const into = owned.value - prevMilestone.value;
+  return span > 0 ? Math.min(1, Math.max(0, into / span)) : 0;
+});
+
 function tap() {
   if (props.gen.is_click_driven) {
-    // Click-driven Tier 1: always +1 Rumor, AND auto-buy if affordable.
-    // This is the AdVenture-Capitalist "tap the lemonade stand" pattern —
-    // every tap progresses you either way: free Rumor when below cost, or
-    // free Rumor PLUS a new Sycophant when you can afford one.
     click();
     if (state.rumor >= cost.value) {
       buyGenerator(props.gen.id);
@@ -39,14 +72,20 @@ function formatCost(n: number): string {
       <div class="title">{{ gen.display_name }}</div>
       <div class="cost" v-if="gen.is_click_driven">
         <span class="cost-tap">+1</span>
-        <span class="cost-next" :class="{ ready: canAfford }">{{ formatCost(cost) }}</span>
+        <span class="cost-next">{{ formatCost(cost) }}</span>
       </div>
       <div class="cost" v-else>{{ formatCost(cost) }}</div>
     </div>
     <div class="desc">{{ gen.description }}</div>
+    <div v-if="nextMilestone !== null" class="mile-bar">
+      <div class="mile-fill" :style="{ width: (milestoneProgress * 100) + '%' }"></div>
+    </div>
+    <div v-if="nextMilestone !== null" class="mile-hint">
+      ×{{ currentMilestoneMult }} / next ×{{ nextMilestoneMult }} at {{ nextMilestone }}
+    </div>
     <div class="meta">
       <span class="tag">{{ gen.technique_tag }}</span>
-      <span class="owned">×{{ owned }}</span>
+      <span class="owned">×{{ owned }} owned</span>
     </div>
   </button>
 </template>
@@ -106,6 +145,26 @@ function formatCost(n: number): string {
   margin-top: 4px;
   font-style: italic;
   font-family: var(--theme-font-body, -apple-system, sans-serif);
+}
+.mile-bar {
+  margin: 6px 0 2px;
+  width: 100%;
+  height: 3px;
+  background: rgba(42, 34, 24, 0.15);
+  border: 1px solid var(--theme-border, #2a2218);
+  box-sizing: border-box;
+}
+.mile-fill {
+  height: 100%;
+  background: var(--theme-accent, #2a2218);
+  transition: width 200ms ease-out;
+}
+.mile-hint {
+  font-size: 9px;
+  opacity: 0.55;
+  margin-top: 2px;
+  font-family: var(--theme-font-body, -apple-system, sans-serif);
+  font-style: italic;
 }
 .meta {
   display: flex;
