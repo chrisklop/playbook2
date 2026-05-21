@@ -1,4 +1,4 @@
-import { reactive, computed } from 'vue';
+import { reactive, computed, watch } from 'vue';
 import { getEra, registry } from '../content/registry';
 import {
   computeCost,
@@ -162,4 +162,99 @@ if (typeof window !== 'undefined') {
       state.lifetimeRumor += gained;
     }
   }, TICK_MS);
+}
+
+// Toast triggers — fire once per condition per era, deduped via seenToastEvents.
+if (typeof window !== 'undefined') {
+  // Lazy import to avoid circular: toast-state imports state, state imports toast-state.
+  // The dynamic import resolves at module load.
+  import('./toast-state').then(({ fireToast }) => {
+    // Trigger 1: First Sycophant auto-unlock (per era + per click-driven generator).
+    watch(
+      () => {
+        const tier1 = currentEra.value.generators.find(g => g.is_click_driven);
+        if (!tier1) return null;
+        const owned = state.ownedByGenerator[tier1.id] ?? 0;
+        return owned >= tier1.auto_unlock_at ? tier1.id : null;
+      },
+      (nowUnlocked, before) => {
+        if (nowUnlocked && !before) {
+          const tier1 = currentEra.value.generators.find(g => g.id === nowUnlocked);
+          if (tier1) {
+            fireToast({
+              id: `auto-unlock:${currentEra.value.id}:${tier1.id}`,
+              message: `${tier1.auto_operative_name} hired — idle Rumor flowing.`,
+              era_id: currentEra.value.id,
+            });
+          }
+        }
+      },
+    );
+
+    // Trigger 2: A non-click-driven generator first becomes revealed.
+    let lastRevealedSet = new Set<string>();
+    watch(
+      () =>
+        currentEra.value.generators
+          .filter(g => state.lifetimeRumor >= g.reveal_at_lifetime)
+          .map(g => g.id),
+      newlyRevealed => {
+        for (const id of newlyRevealed) {
+          if (!lastRevealedSet.has(id)) {
+            lastRevealedSet.add(id);
+            const gen = currentEra.value.generators.find(g => g.id === id);
+            // Skip click-driven Tier 1 — it's always visible from session start; reveal toast would be silly.
+            if (gen && !gen.is_click_driven) {
+              fireToast({
+                id: `reveal:${currentEra.value.id}:${id}`,
+                message: `${gen.display_name} appears.`,
+                era_id: currentEra.value.id,
+              });
+            }
+          }
+        }
+      },
+      { immediate: true },
+    );
+
+    // Reset the revealed-set tracker on era change so a new era's reveal toasts fire fresh.
+    watch(
+      () => state.currentEraId,
+      () => {
+        lastRevealedSet = new Set();
+      },
+    );
+
+    // Trigger 3: Prestige threshold reached.
+    watch(
+      () => canPrestige.value,
+      (now, before) => {
+        if (now && !before) {
+          fireToast({
+            id: `prestige-ready:${currentEra.value.id}`,
+            message:
+              currentCopy.value.prestige_ready_toast ??
+              "The threshold calls. Ascend whenever you're ready.",
+            era_id: currentEra.value.id,
+          });
+        }
+      },
+    );
+
+    // Trigger 4: Bulk-buy tier unlocks (×10 at 1+ prestige, ×100 at 5+, max at 25+).
+    watch(
+      () => state.prestigeCount,
+      count => {
+        if (count >= 1) {
+          fireToast({ id: 'bulk-unlock:10', message: '×10 buy unlocked.', era_id: currentEra.value.id });
+        }
+        if (count >= 5) {
+          fireToast({ id: 'bulk-unlock:100', message: '×100 buy unlocked.', era_id: currentEra.value.id });
+        }
+        if (count >= 25) {
+          fireToast({ id: 'bulk-unlock:max', message: 'Max buy unlocked.', era_id: currentEra.value.id });
+        }
+      },
+    );
+  });
 }
