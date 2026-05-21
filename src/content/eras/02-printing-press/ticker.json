@@ -1,0 +1,12 @@
+{
+  "quotes": [
+    { "id": "luther", "text": "Luther's pamphlets sold over 7,000 editions in five years.", "codex_link": "luther-pamphlet-war" },
+    { "id": "donation", "text": "Lorenzo Valla proved the Donation of Constantine was a forgery — using grammar.", "codex_link": "donation-of-constantine" },
+    { "id": "malleus", "text": "Heinrich Kramer forged co-authorship and a fake Cologne endorsement for his witch-hunt manual.", "codex_link": "malleus-maleficarum" },
+    { "id": "popish-plot", "text": "Titus Oates fabricated a Catholic plot to murder the king. 22 innocent men hanged.", "codex_link": "popish-plot" },
+    { "id": "franklin", "text": "Benjamin Franklin forged an entire fake newspaper to seed atrocity stories into the British press.", "codex_link": "franklin-fake-newspaper" },
+    { "id": "boston-massacre", "text": "Paul Revere altered Henry Pelham's engraving of the Boston Massacre to taint the jury pool.", "codex_link": "boston-massacre" }
+  ],
+  "interval_ms": 8000,
+  "no_repeat_within": 3
+}

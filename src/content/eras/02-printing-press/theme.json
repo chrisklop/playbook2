@@ -1,0 +1,18 @@
+{
+  "id": "printing-press-blackletter",
+  "era_id": "printing-press",
+  "fonts": {
+    "masthead": "'UnifrakturMaguntia', 'EB Garamond', Georgia, serif",
+    "body": "'EB Garamond', Georgia, serif",
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=EB+Garamond:ital,wght@0,400;0,700;1,400&display=swap"
+  },
+  "palette": {
+    "background": "#ece4d2",
+    "surface": "#e3d8be",
+    "text": "#1a1410",
+    "muted": "#6b5a40",
+    "accent": "#1a1410",
+    "border": "#1a1410"
+  },
+  "card_style": "flat-paper"
+}
