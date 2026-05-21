@@ -3,6 +3,7 @@ import Masthead from '../components/Masthead.vue';
 import Ticker from '../components/Ticker.vue';
 import EraBanner from '../components/EraBanner.vue';
 import ResourceRow from '../components/ResourceRow.vue';
+import BulkBuyBar from '../components/BulkBuyBar.vue';
 import GeneratorCard from '../components/GeneratorCard.vue';
 import PrestigeTransition from '../components/PrestigeTransition.vue';
 import { visibleGenerators } from '../state';
@@ -14,6 +15,7 @@ import { visibleGenerators } from '../state';
     <Ticker />
     <EraBanner />
     <ResourceRow />
+    <BulkBuyBar />
     <div class="cards">
       <GeneratorCard v-for="gen in visibleGenerators" :key="gen.id" :gen="gen" />
     </div>
