@@ -71,3 +71,58 @@ export function maxAffordableBulk(
   }
   return n;
 }
+
+/**
+ * Pecorella overtake heuristic — picks the generator with the lowest
+ *   cost / nps + cost / (nps + delta_rate_from_buying_one)
+ * score. Lower score = faster total-time to afford this purchase AND the next
+ * opportunity it unlocks.
+ *
+ * Click-driven generators below their auto_unlock_at contribute 0 delta, so
+ * they only become attractive once close to unlock.
+ *
+ * When nps is 0 (bootstrap phase), rank by cost-per-rate-gained instead — a
+ * zero-delta buy (e.g. click-driven below threshold) is Infinity and won't win.
+ */
+export function pickOptimalGenerator(
+  candidates: readonly GeneratorTier[],
+  state: { rumor: number; ownedByGenerator: Record<string, number> },
+  globalMultiplier: number,
+): string | null {
+  if (candidates.length === 0) return null;
+
+  let nps = 0;
+  for (const g of candidates) {
+    const owned = state.ownedByGenerator[g.id] ?? 0;
+    nps += generatorProduction(g, owned, globalMultiplier);
+  }
+
+  let bestId: string | null = null;
+  let bestScore = Infinity;
+
+  for (const g of candidates) {
+    const owned = state.ownedByGenerator[g.id] ?? 0;
+    const cost = computeCost(g.base_cost, g.cost_growth, owned);
+    const before = generatorProduction(g, owned, globalMultiplier);
+    const after = generatorProduction(g, owned + 1, globalMultiplier);
+    const delta = Math.max(0, after - before);
+
+    let score: number;
+    if (nps <= 0) {
+      // Bootstrap: rank by cost-per-delta. Zero-delta buys (click-driven below
+      // threshold) score Infinity, never optimal.
+      score = delta > 0 ? cost / delta : Number.POSITIVE_INFINITY;
+    } else {
+      const denom2 = nps + delta;
+      const term2 = denom2 > 0 ? cost / denom2 : Number.POSITIVE_INFINITY;
+      score = cost / nps + term2;
+    }
+
+    if (score < bestScore) {
+      bestScore = score;
+      bestId = g.id;
+    }
+  }
+
+  return bestId;
+}

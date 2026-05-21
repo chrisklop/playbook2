@@ -105,6 +105,7 @@ export function simulateEra(
     }
 
     // 3. Score each candidate via overtake metric.
+    // Keep the heuristic here in sync with src/game/era-layer.ts: pickOptimalGenerator
     let best: { gen: GeneratorTier; cost: number; metric: number } | null = null;
     for (const gen of visible) {
       const owned = state.ownedByGenerator[gen.id] ?? 0;
