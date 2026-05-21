@@ -2,6 +2,7 @@ import { reactive, computed } from 'vue';
 import { getEra } from '../content/registry';
 import { computeCost, generatorProduction } from '../game/era-layer';
 import { computeMemeticInheritance, carryoverMultiplier } from '../game/prestige';
+import { applyTheme } from './theme';
 
 // Phase 1 ships with Era 1 only; multi-era prestige comes in Phase 6 (Task 28).
 const bundle = getEra('antiquity');
@@ -10,6 +11,11 @@ export const currentEra = bundle.era;
 export const currentTheme = bundle.theme;
 export const currentTicker = bundle.ticker;
 export const currentCopy = bundle.copy;
+
+// Guard against SSR/test environments without document
+if (typeof document !== 'undefined') {
+  applyTheme(currentTheme);
+}
 
 export const state = reactive({
   rumor: 0,
