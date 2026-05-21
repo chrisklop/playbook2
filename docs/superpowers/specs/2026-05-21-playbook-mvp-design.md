@@ -258,6 +258,7 @@ A plain-language page covering:
 - **AI content generation pipeline** → future infrastructure project
 - **Email list / push alerts** → post-MVP, deferred until a content cadence justifies subscribers
 - **Native iOS via Capacitor** → post-MVP, deferred until PWA install signals demand for native
+- **Study Mode** → post-MVP. A separate mode (toggle or dedicated tab) that turns the codex into a deeper pedagogical experience: interactive era timelines, technique-spotting exercises, "did this really happen?" matching, cross-era pattern discovery, optional quiz/test mode. Reuses all existing codex content + the same six-techniques taxonomy; adds an exam/exploration UI layer. Natural extension of the inoculation premise — once the player has seen the playbook, Study Mode lets them practice spotting it. Estimated as its own future spec.
 
 ## 17. Success criteria for Phase 1 (v0.1 ship)
 
