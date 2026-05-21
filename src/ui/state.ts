@@ -92,6 +92,28 @@ export const visibleGenerators = computed(() =>
   currentEra.value.generators.filter(g => state.lifetimeRumor >= g.reveal_at_lifetime)
 );
 
+/** Lowest-threshold currently-locked generator, or null when all are revealed. */
+export const nextHiddenGenerator = computed(() => {
+  const hidden = currentEra.value.generators
+    .filter(g => state.lifetimeRumor < g.reveal_at_lifetime)
+    .sort((a, b) => a.reveal_at_lifetime - b.reveal_at_lifetime);
+  return hidden[0] ?? null;
+});
+
+/** True when the next hidden gen is at least 80% of its threshold. */
+export const showRevealPlaceholder = computed(() => {
+  const g = nextHiddenGenerator.value;
+  if (!g) return false;
+  return state.lifetimeRumor >= g.reveal_at_lifetime * 0.8;
+});
+
+/** Progress 0..1 toward the next hidden generator's reveal. */
+export const nextRevealProgress = computed(() => {
+  const g = nextHiddenGenerator.value;
+  if (!g) return 0;
+  return Math.min(1, state.lifetimeRumor / g.reveal_at_lifetime);
+});
+
 /**
  * Generator id currently identified as the optimal next purchase by the
  * Pecorella overtake heuristic. Null when:

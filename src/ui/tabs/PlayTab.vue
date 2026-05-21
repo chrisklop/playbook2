@@ -5,6 +5,8 @@ import EraBanner from '../components/EraBanner.vue';
 import ResourceRow from '../components/ResourceRow.vue';
 import BulkBuyBar from '../components/BulkBuyBar.vue';
 import GeneratorCard from '../components/GeneratorCard.vue';
+import RevealPlaceholder from '../components/RevealPlaceholder.vue';
+import PrestigeStrip from '../components/PrestigeStrip.vue';
 import PrestigeTransition from '../components/PrestigeTransition.vue';
 import { visibleGenerators } from '../state';
 </script>
@@ -18,7 +20,9 @@ import { visibleGenerators } from '../state';
     <BulkBuyBar />
     <div class="cards">
       <GeneratorCard v-for="gen in visibleGenerators" :key="gen.id" :gen="gen" />
+      <RevealPlaceholder />
     </div>
+    <PrestigeStrip />
     <PrestigeTransition />
   </div>
 </template>
