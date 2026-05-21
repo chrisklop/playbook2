@@ -150,12 +150,21 @@ Each technique acts as a tag on generators; the Tree view groups generators by t
 
 Four generator tiers, sized per Pecorella's ratios. Numbers tunable in playtesting.
 
-| Tier | Generator | Technique | Base cost (Rumor) | Cost growth | Base prod /s | Notes |
-|---|---|---|---|---|---|---|
-| 1 | **Spread Rumor** (click) | Impersonation | — (clicker) | — | 1 / click | Auto-operative ("Sycophant") unlocks at 10 owned → auto-spreads |
-| 2 | **Forge Naru Tablet** | Impersonation | 250 | 1.07 | ~7 | Codex link: Sargon's naru tradition |
-| 3 | **Smear Rival** | Discrediting | 1,250 | 1.10 | ~70 | Codex link: Octavian vs. Antony |
-| 4 | **Bronze Coin Mint** | Impersonation | 6,250 | 1.12 | ~700 | Codex link: Augustan coinage; era-end tier |
+| Tier | Generator | Technique | Base cost (Rumor) | Cost growth | Base prod /s | Reveal at lifetime | Notes |
+|---|---|---|---|---|---|---|---|
+| 1 | **Spread Rumor** (click) | Impersonation | — (clicker) | — | 1 / click | 0 (always) | Auto-operative ("Sycophant") unlocks at 10 owned → auto-spreads |
+| 2 | **Forge Naru Tablet** | Impersonation | 250 | 1.07 | ~7 | 50 | Codex link: Sargon's naru tradition |
+| 3 | **Smear Rival** | Discrediting | 1,250 | 1.10 | ~70 | 500 | Codex link: Octavian vs. Antony |
+| 3 | **Hire Sykophant** | Trolling | 2,000 | 1.10 | ~90 | 750 | Codex link: Athenian sykophants |
+| 4 | **Bronze Coin Mint** | Impersonation | 6,250 | 1.12 | ~700 | 5,000 | Codex link: Augustan coinage; era-end tier |
+
+### Progressive reveal (AdVenture Capitalist pattern)
+
+Each generator's card is hidden until the player has earned at least `reveal_at_lifetime` of the corresponding resource in lifetime total. Tier 1 is always visible (= 0). Subsequent tiers reveal in a faded/locked state once the threshold is crossed; they become buyable when the player can actually afford the current cost. This keeps the next building as a *discoverable carrot* instead of dumping all options on the player at session start — the core moment-to-moment dopamine of idle games.
+
+**Bulk-buy buttons** (x1 / x10 / x100 / Max): x1 always present; x10, x100, Max reveal at later prestige tiers. Out of scope for v0.1 (ship with x1 only); add in v0.2 polish pass.
+
+**Prestige UI**: hidden entirely until `MI >= 1` (already specified in the Memetic Inheritance section).
 
 Trolling-tagged generator (e.g. "Hire Sykophant Litigator") appears in Era 1 at Tier 3+ as a side-branch; design TBD during implementation but the tag exists in the schema.
 

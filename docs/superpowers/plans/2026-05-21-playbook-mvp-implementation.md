@@ -753,7 +753,8 @@ Create `src/content/eras/01-antiquity/era.json`:
       "auto_unlock_at": 10,
       "auto_operative_name": "Sycophant",
       "milestones": [25, 50, 100, 200, 300, 400],
-      "codex_link": null
+      "codex_link": null,
+      "reveal_at_lifetime": 0
     },
     {
       "id": "forge-naru-tablet",
@@ -769,7 +770,8 @@ Create `src/content/eras/01-antiquity/era.json`:
       "auto_unlock_at": 0,
       "auto_operative_name": "Scribe",
       "milestones": [25, 50, 100, 200, 300, 400],
-      "codex_link": "sargon-naru-tradition"
+      "codex_link": "sargon-naru-tradition",
+      "reveal_at_lifetime": 50
     },
     {
       "id": "smear-rival",
@@ -785,7 +787,8 @@ Create `src/content/eras/01-antiquity/era.json`:
       "auto_unlock_at": 0,
       "auto_operative_name": "Pamphleteer",
       "milestones": [25, 50, 100, 200, 300, 400],
-      "codex_link": "octavian-vs-antony"
+      "codex_link": "octavian-vs-antony",
+      "reveal_at_lifetime": 500
     },
     {
       "id": "hire-sykophant",
@@ -801,7 +804,8 @@ Create `src/content/eras/01-antiquity/era.json`:
       "auto_unlock_at": 0,
       "auto_operative_name": "Sykophant",
       "milestones": [25, 50, 100, 200, 300, 400],
-      "codex_link": "athenian-sykophants"
+      "codex_link": "athenian-sykophants",
+      "reveal_at_lifetime": 750
     },
     {
       "id": "bronze-coin-mint",
@@ -817,7 +821,8 @@ Create `src/content/eras/01-antiquity/era.json`:
       "auto_unlock_at": 0,
       "auto_operative_name": "Mint Master",
       "milestones": [25, 50, 100, 200, 300, 400],
-      "codex_link": "augustan-coinage"
+      "codex_link": "augustan-coinage",
+      "reveal_at_lifetime": 5000
     }
   ],
   "prestige_into": "printing-press",
@@ -2237,18 +2242,23 @@ function tap() {
 </style>
 ```
 
-- [ ] **Step 7: Assemble PlayTab**
+- [ ] **Step 7: Assemble PlayTab with progressive reveal**
 
-Edit `src/ui/tabs/PlayTab.vue`:
+Edit `src/ui/tabs/PlayTab.vue`. The PlayTab filters the generator list by `reveal_at_lifetime` — only generators whose lifetime threshold has been met appear. This is the AdVenture Capitalist "discoverable next tier" mechanic.
 
 ```vue
 <script setup lang="ts">
+import { computed } from 'vue';
 import Masthead from '../components/Masthead.vue';
 import Ticker from '../components/Ticker.vue';
 import EraBanner from '../components/EraBanner.vue';
 import ResourceRow from '../components/ResourceRow.vue';
 import GeneratorCard from '../components/GeneratorCard.vue';
-import { currentEra } from '../state';
+import { currentEra, state } from '../state';
+
+const visibleGenerators = computed(() =>
+  currentEra.generators.filter(gen => state.lifetimeRumor >= gen.reveal_at_lifetime)
+);
 </script>
 
 <template>
@@ -2258,7 +2268,7 @@ import { currentEra } from '../state';
     <EraBanner />
     <ResourceRow />
     <div class="cards">
-      <GeneratorCard v-for="gen in currentEra.generators" :key="gen.id" :gen="gen" />
+      <GeneratorCard v-for="gen in visibleGenerators" :key="gen.id" :gen="gen" />
     </div>
   </div>
 </template>
@@ -2268,6 +2278,10 @@ import { currentEra } from '../state';
 .cards { padding: 10px 14px; }
 </style>
 ```
+
+**Important:** at session start, `state.lifetimeRumor === 0`, so only `spread-rumor` (Tier 1, `reveal_at_lifetime: 0`) is visible. After ~50 clicks the Forge Naru Tablet card slides in. This is the dopamine loop — see [Spec §8](../specs/2026-05-21-playbook-mvp-design.md#8-era-1-economy-antiquity--reference-implementation) for the full reveal table.
+
+**Optional polish (defer to v0.2):** when a new generator first appears, animate it in (slide-up + fade) rather than popping. A simple `<TransitionGroup>` wrap works.
 
 - [ ] **Step 8: Verify in browser**
 

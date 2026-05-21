@@ -24,6 +24,13 @@ export const GeneratorTierSchema = z.object({
   auto_operative_name: z.string().min(1),
   milestones: z.array(z.number().int().positive()).default([25, 50, 100, 200, 300, 400]),
   codex_link: z.string().nullable().default(null),
+  /**
+   * Progressive reveal: the generator's card is hidden until lifetime resource of
+   * the matching `resource` type reaches this value. 0 = always visible (Tier 1).
+   * AdVenture Capitalist pattern — keeps the next tier as a "discoverable" carrot
+   * rather than dumping all options on the player at start.
+   */
+  reveal_at_lifetime: z.number().nonnegative().default(0),
 });
 export type GeneratorTier = z.infer<typeof GeneratorTierSchema>;
 
