@@ -3,7 +3,6 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 import tsconfigPaths from "vite-tsconfig-paths";
-import projInfo from "./src/data/projInfo.json";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -31,31 +30,47 @@ export default defineConfig({
         }),
         tsconfigPaths(),
         VitePWA({
-            registerType: 'autoUpdate',
-            workbox: {
-              globPatterns: ['**/*.{js,css,html,ico,png,svg}']
-            },
+            registerType: "autoUpdate",
+            includeAssets: ["favicon.svg", "icons/*.svg"],
             manifest: {
-                name: projInfo.title,
-                short_name: projInfo.title,
-                description: projInfo.description,
-                theme_color: "#2E3440",
+                name: "Playbook: A History of Disinformation",
+                short_name: "Playbook",
+                description: "An incremental game about the history of disinformation.",
+                theme_color: "#212121",
+                background_color: "#000000",
+                display: "standalone",
+                orientation: "portrait",
+                scope: "./",
+                start_url: "./",
                 icons: [
+                    { src: "icons/icon-192.svg", sizes: "192x192", type: "image/svg+xml" },
+                    { src: "icons/icon-512.svg", sizes: "512x512", type: "image/svg+xml" },
                     {
-                        src: "pwa-192x192.png",
-                        sizes: "192x192",
-                        type: "image/png"
+                        src: "icons/icon-maskable-512.svg",
+                        sizes: "512x512",
+                        type: "image/svg+xml",
+                        purpose: "maskable"
+                    }
+                ]
+            },
+            workbox: {
+                globPatterns: ["**/*.{js,css,html,svg,png,woff2,json,md}"],
+                runtimeCaching: [
+                    {
+                        urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+                        handler: "CacheFirst",
+                        options: {
+                            cacheName: "google-fonts-stylesheets",
+                            expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 }
+                        }
                     },
                     {
-                        src: "pwa-512x512.png",
-                        sizes: "512x512",
-                        type: "image/png"
-                    },
-                    {
-                        src: "pwa-512x512.png",
-                        sizes: "512x512",
-                        type: "image/png",
-                        purpose: "any maskable"
+                        urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
+                        handler: "CacheFirst",
+                        options: {
+                            cacheName: "google-fonts-webfonts",
+                            expiration: { maxEntries: 30, maxAgeSeconds: 60 * 60 * 24 * 365 }
+                        }
                     }
                 ]
             }
