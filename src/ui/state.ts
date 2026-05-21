@@ -2,7 +2,9 @@ import { reactive, computed, watch } from 'vue';
 import { getEra, registry } from '../content/registry';
 import {
   computeCost,
+  computeBulkCost,
   generatorProduction,
+  maxAffordableBulk,
   pickOptimalGenerator,
 } from '../game/era-layer';
 import { computeMemeticInheritance, carryoverMultiplier } from '../game/prestige';
@@ -39,15 +41,36 @@ export function click(): void {
   state.lifetimeRumor += 1;
 }
 
-export function buyGenerator(genId: string): boolean {
+/**
+ * Buy N units of a generator. Returns the number actually purchased
+ * (may be less than `n` for a partial-affordable buy).
+ *
+ * When `n === 'max'`, buys the maximum the player can afford via
+ * maxAffordableBulk. When `n` is a number, attempts to buy that many;
+ * falls back to a partial buy if the full bulk cost can't be covered.
+ */
+export function buyGenerator(genId: string, n: number | 'max' = 1): number {
   const gen = currentEra.value.generators.find(g => g.id === genId);
-  if (!gen) return false;
+  if (!gen) return 0;
   const owned = state.ownedByGenerator[genId] ?? 0;
-  const cost = computeCost(gen.base_cost, gen.cost_growth, owned);
-  if (state.rumor < cost) return false;
-  state.rumor -= cost;
-  state.ownedByGenerator[genId] = owned + 1;
-  return true;
+
+  let buyN: number;
+  if (n === 'max') {
+    buyN = maxAffordableBulk(gen.base_cost, gen.cost_growth, owned, state.rumor);
+  } else {
+    const fullCost = computeBulkCost(gen.base_cost, gen.cost_growth, owned, n);
+    if (state.rumor >= fullCost) {
+      buyN = n;
+    } else {
+      buyN = maxAffordableBulk(gen.base_cost, gen.cost_growth, owned, state.rumor);
+    }
+  }
+
+  if (buyN <= 0) return 0;
+  const totalCost = computeBulkCost(gen.base_cost, gen.cost_growth, owned, buyN);
+  state.rumor -= totalCost;
+  state.ownedByGenerator[genId] = owned + buyN;
+  return buyN;
 }
 
 export const productionPerSecond = computed(() => {

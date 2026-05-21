@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import { state, buyGenerator, click, recommendedGenId } from '../state';
-import { computeCost } from '../../game/era-layer';
+import { computeCost, computeBulkCost, maxAffordableBulk } from '../../game/era-layer';
 import type { GeneratorTier } from '../../content/schema';
 
 const props = defineProps<{ gen: GeneratorTier }>();
@@ -10,7 +10,24 @@ const flashing = ref(false);
 const milestonePopText = ref<string | null>(null);
 
 const owned = computed(() => state.ownedByGenerator[props.gen.id] ?? 0);
-const cost = computed(() => computeCost(props.gen.base_cost, props.gen.cost_growth, owned.value));
+
+// Bulk multiplier — click-driven cards always buy singles. Non-click cards use the global setting.
+const bulkN = computed<number>(() => {
+  if (props.gen.is_click_driven) return 1;
+  const m = state.bulkBuyMultiplier;
+  if (m === 'max') {
+    return maxAffordableBulk(props.gen.base_cost, props.gen.cost_growth, owned.value, state.rumor) || 1;
+  }
+  return m;
+});
+
+const cost = computed(() => {
+  if (props.gen.is_click_driven) {
+    return computeCost(props.gen.base_cost, props.gen.cost_growth, owned.value);
+  }
+  return computeBulkCost(props.gen.base_cost, props.gen.cost_growth, owned.value, bulkN.value);
+});
+
 const canAfford = computed(() => state.rumor >= cost.value);
 
 /** The next-milestone owned threshold, or null if past the final milestone. */
@@ -70,10 +87,10 @@ function tap() {
   if (props.gen.is_click_driven) {
     click();
     if (state.rumor >= cost.value) {
-      buyGenerator(props.gen.id);
+      buyGenerator(props.gen.id, 1);
     }
   } else {
-    buyGenerator(props.gen.id);
+    buyGenerator(props.gen.id, state.bulkBuyMultiplier);
   }
 }
 
@@ -103,6 +120,7 @@ function formatCost(n: number): string {
       </div>
       <div class="cost" v-else>
         {{ formatCost(cost) }}
+        <span v-if="bulkN > 1" class="bulk-hint">×{{ bulkN }}</span>
         <Transition name="mile-pop">
           <span v-if="milestonePopText" :key="milestonePopText" class="mile-pop-label">{{ milestonePopText }}</span>
         </Transition>
@@ -164,6 +182,12 @@ function formatCost(n: number): string {
   0%   { background: var(--theme-surface, #ebe2c4); }
   50%  { background: #fff5d4; }
   100% { background: var(--theme-surface, #ebe2c4); }
+}
+.bulk-hint {
+  font-size: 9px;
+  margin-left: 4px;
+  opacity: 0.6;
+  font-weight: 400;
 }
 .mile-pop-label {
   margin-left: 6px;
