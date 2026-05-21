@@ -4,8 +4,10 @@ title: "Athenian Sykophants — The Original Trolls (5th–4th c. BCE)"
 era: antiquity
 techniques: [trolling, discrediting]
 sources:
-  - url: https://www.stoa.org/demos/article_sycophancy@page=all&greekEncoding=UnicodeC.html
-    label: "Stoa: Sycophancy and Attitudes to Litigation"
+  - url: https://en.wikipedia.org/wiki/Sycophancy
+    label: "Wikipedia: Sycophancy (Athenian legal term)"
+  - url: https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0151
+    label: "Perseus: Demosthenes, Against Aristogeiton (Speech 25)"
 unlock_trigger:
   type: generator_owned
   generator: hire-sykophant
