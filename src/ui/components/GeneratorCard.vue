@@ -94,13 +94,11 @@ function formatCost(n: number): string {
 .cost-tap {
   font-size: 12px;
   opacity: 0.55;
+  font-weight: 700;
 }
 .cost-next {
   font-size: 14px;
-}
-.cost-next.ready {
-  color: var(--theme-accent, #2a2218);
-  text-shadow: 0 0 1px currentColor;
+  font-weight: 700;
 }
 .desc {
   font-size: 11px;
