@@ -10,6 +10,7 @@ import {
 import { computeMemeticInheritance, carryoverMultiplier } from '../game/prestige';
 import {
   readLocalSave,
+  writeLocalSave,
   type SaveState,
   type BulkBuyMultiplier,
 } from '../game/save';
@@ -207,6 +208,19 @@ if (typeof window !== 'undefined') {
       state.lifetimeRumor += gained;
     }
   }, TICK_MS);
+
+  // Autosave every 10 seconds and on visibility change (tab hidden = save now).
+  const autosave = () => {
+    try {
+      writeLocalSave(snapshotSave());
+    } catch (err) {
+      console.error('Autosave failed:', err);
+    }
+  };
+  window.setInterval(autosave, 10_000);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') autosave();
+  });
 }
 
 // Toast triggers — fire once per condition per era, deduped via seenToastEvents.
