@@ -8,5 +8,7 @@
   },
   "prestige_button_label": "Ascend to the Press",
   "prestige_confirm_title": "Cross the Threshold?",
-  "prestige_confirm_body": "Your tablets will crumble. Your operatives forget. The Memetic Inheritance you carry forward will accelerate every future age."
+  "prestige_confirm_body": "Your tablets will crumble. Your operatives forget. The Memetic Inheritance you carry forward will accelerate every future age.",
+  "reveal_placeholder_text": "Another whisper takes root.",
+  "prestige_ready_toast": "The Press calls. Ascend whenever you're ready."
 }

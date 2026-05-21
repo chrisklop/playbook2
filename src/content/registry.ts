@@ -36,6 +36,12 @@ const CopySchema = z.object({
   prestige_button_label: z.string().min(1),
   prestige_confirm_title: z.string().min(1),
   prestige_confirm_body: z.string().min(1),
+  // v0.2 additions — optional, defaults supplied at consumer site
+  reveal_placeholder_text: z.string().min(1).default('A new playbook tool stirs.'),
+  prestige_ready_toast: z
+    .string()
+    .min(1)
+    .default("The threshold calls. Ascend whenever you're ready."),
 });
 export type Copy = z.infer<typeof CopySchema>;
 
