@@ -1,12 +1,35 @@
+<script setup lang="ts">
+import Masthead from '../components/Masthead.vue';
+import Ticker from '../components/Ticker.vue';
+import EraBanner from '../components/EraBanner.vue';
+import ResourceRow from '../components/ResourceRow.vue';
+import GeneratorCard from '../components/GeneratorCard.vue';
+import { visibleGenerators } from '../state';
+</script>
+
 <template>
-  <div class="stub">
-    <h2>Play</h2>
-    <p>Era 1 — Antiquity — coming in Task 20</p>
+  <div class="play">
+    <Masthead />
+    <Ticker />
+    <EraBanner />
+    <ResourceRow />
+    <div class="cards">
+      <GeneratorCard v-for="gen in visibleGenerators" :key="gen.id" :gen="gen" />
+    </div>
   </div>
 </template>
 
 <style scoped>
-.stub { padding: 24px; color: #fff; }
-.stub h2 { margin: 0 0 8px; }
-.stub p { margin: 0; opacity: 0.6; font-size: 14px; }
+.play {
+  margin: 0;
+  padding: 0 0 80px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+.cards {
+  margin: 0;
+  padding: 10px 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
 </style>
