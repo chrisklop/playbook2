@@ -156,21 +156,36 @@ watch(lastPayout, newPayout => {
   setTimeout(() => { payoutPopText.value = null; }, 800);
 });
 
-// Single unified tap handler — the entire tile is the button.
-// Priority: click-driven +1 rumor → buy at bulk multiplier if affordable →
-// otherwise kick the cycle (cheap fallback action, no-op if irrelevant).
+// Body tap = "do the work" on this tile. Purchasing is a SEPARATE action
+// via the inline BUY pill below — body tap never auto-buys an owned tile.
+//
+// Behavior matrix:
+//   owned == 0  : body tap buys one (only sensible gesture — you can't
+//                 kick a cycle on a tile you don't own yet).
+//   click-driven, owned >= 1: body tap = +1 rumor (the manual work).
+//   non-click-driven, owned >= 1, no manager: body tap = kick cycle.
+//   non-click-driven, owned >= 1, manager hired: body tap is a no-op
+//                 (the cycle already auto-runs).
 function tapBody() {
-  if (props.gen.is_click_driven) {
-    click();
-  }
-  if (canAffordBuy.value) {
-    buyGenerator(props.gen.id, state.bulkBuyMultiplier);
+  const ownedNow = state.ownedByGenerator[props.gen.id] ?? 0;
+  if (ownedNow === 0) {
+    if (canAffordBuy.value) buyGenerator(props.gen.id, state.bulkBuyMultiplier);
     return;
   }
-  const ownedNow = state.ownedByGenerator[props.gen.id] ?? 0;
-  if (ownedNow > 0 && !managerHired.value && !props.gen.is_click_driven) {
+  if (props.gen.is_click_driven) {
+    click();
+    return;
+  }
+  if (!managerHired.value) {
     tapCycle(props.gen.id);
   }
+}
+
+// Explicit purchase action — invoked by the inline BUY pill in the cost row.
+function tapBuy(e: Event) {
+  e.stopPropagation();
+  if (!canAffordBuy.value) return;
+  buyGenerator(props.gen.id, state.bulkBuyMultiplier);
 }
 
 function tapHireManager(e: Event) {
@@ -210,15 +225,19 @@ function tapBuyUpgrade(e: Event) {
             <span class="owned" v-if="owned > 0">×{{ owned }}</span>
           </div>
           <div class="cost-line">
-            <span class="cost-label">COST</span>
-            <span class="cost-num" :class="{ short: !canAffordBuy }">{{ formatCost(buyCost) }}</span>
-            <span class="cost-mult" v-if="bulkN > 1">×{{ bulkN }}</span>
+            <button
+              type="button"
+              class="btn-riso btn-riso-sm buy-pill"
+              :class="{ disabled: !canAffordBuy }"
+              :disabled="!canAffordBuy"
+              @click="tapBuy"
+            >
+              <span class="buy-label">BUY<span v-if="bulkN > 1">×{{ bulkN }}</span></span>
+              <span class="buy-cost">{{ formatCost(buyCost) }}</span>
+            </button>
             <span v-if="!canAffordBuy" class="cost-short">need +{{ formatCost(shortfall) }}</span>
             <template v-else>
-              <span class="earn-sep-dot">·</span>
-              <span class="earn-label">EARN</span>
-              <span class="earn-num">+{{ formatResource(incomePerCycle) }}</span>
-              <span class="earn-time">/ {{ cycleSecondsLabel }}</span>
+              <span class="earn-label">+{{ formatResource(incomePerCycle) }} / {{ cycleSecondsLabel }}</span>
             </template>
           </div>
         </div>
@@ -418,57 +437,44 @@ function tapBuyUpgrade(e: Event) {
 }
 .cost-line {
   display: flex;
-  align-items: baseline;
-  gap: 5px;
+  align-items: center;
+  gap: 8px;
   font-family: var(--theme-font-masthead, -apple-system, sans-serif);
   flex-wrap: wrap;
-  row-gap: 0;
+  row-gap: 4px;
+  margin-top: 3px;
 }
-.cost-label, .earn-label {
+/* Inline BUY pill — riso style, compact, holds label + cost stacked. */
+.buy-pill {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 6px;
+  padding: 4px 10px 5px;
+  --riso-shadow-offset: 3px;
+}
+.buy-pill .buy-label {
   font-size: 9px;
   font-weight: 700;
-  opacity: 0.55;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-.cost-num {
-  font-size: 16px;
-  font-weight: 900;
-  color: var(--theme-accent, #2a2218);
-  line-height: 1;
-}
-.cost-num.short {
-  color: #b3261e;
-}
-.cost-mult {
-  font-size: 9px;
-  font-weight: 700;
-  opacity: 0.6;
-  text-transform: uppercase;
   letter-spacing: 1px;
+  opacity: 0.85;
+}
+.buy-pill .buy-cost {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.3px;
 }
 .cost-short {
   font-size: 10px;
   font-weight: 700;
   color: #b3261e;
-  opacity: 0.85;
-  margin-left: 4px;
+  opacity: 0.9;
 }
-.earn-sep-dot {
-  font-size: 12px;
-  opacity: 0.4;
-  padding: 0 2px;
-}
-.earn-num {
-  font-size: 12px;
+.earn-label {
+  font-size: 11px;
   font-weight: 700;
   color: #2a6b35;
   letter-spacing: 0.3px;
-}
-.earn-time {
-  font-size: 10px;
-  font-weight: 600;
-  opacity: 0.65;
 }
 
 .icon-slot {
