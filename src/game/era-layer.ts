@@ -21,9 +21,11 @@ export function milestoneMultiplier(owned: number, milestones: readonly number[]
 /**
  * Per-tick production for one generator (linear in owned × multipliers).
  *
- * For click-driven Tier-1 generators, idle production is 0 until the player has
- * purchased `auto_unlock_at` of them — that's the "manager hired" moment.
- * Once unlocked, Tier-1 produces idle just like any other generator.
+ * Passive production is gated by whether the engine treats this generator as
+ * "producing" (manager hired or a cycle in flight) — see the willProduce check
+ * in productionPerSecond and the tick loop. There is no extra owned-count gate
+ * for click-driven generators: hiring the manager is what starts the income.
+ * `auto_unlock_at` only describes when the Hire pill appears on the tile.
  */
 export function generatorProduction(
   gen: GeneratorTier,
@@ -31,7 +33,6 @@ export function generatorProduction(
   globalMultiplier: number,
 ): number {
   if (owned <= 0) return 0;
-  if (gen.is_click_driven && owned < gen.auto_unlock_at) return 0;
   return gen.base_production * owned * milestoneMultiplier(owned, gen.milestones) * globalMultiplier;
 }
 

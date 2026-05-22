@@ -302,7 +302,7 @@ function tapBuyUpgrade(e: Event) {
 
         <div class="mgr">
           <button
-            v-if="owned > 0 && !managerHired"
+            v-if="owned >= gen.auto_unlock_at && !managerHired"
             type="button"
             class="btn-riso btn-riso-sm btn-riso-secondary"
             :class="{ disabled: !canAffordManager }"
@@ -312,6 +312,10 @@ function tapBuyUpgrade(e: Event) {
             <span class="hire-action">Hire {{ gen.manager_name }}</span>
             <span class="hire-cost">{{ formatCost(managerCost) }} {{ resourceName }}</span>
           </button>
+          <span
+            v-else-if="owned > 0 && !managerHired"
+            class="mgr-pending"
+          >Hire available at {{ gen.auto_unlock_at }} owned</span>
           <button
             v-else-if="managerHired && nextUpgrade"
             type="button"
@@ -641,6 +645,16 @@ function tapBuyUpgrade(e: Event) {
   font-style: italic;
   font-size: 10px;
   opacity: 0.65;
+}
+/* Shown when the player owns at least one but hasn't crossed the
+   auto_unlock_at threshold yet — tells them when Hire will appear so
+   they don't sit there wondering why there's no manager button. */
+.mgr-pending {
+  font-family: var(--theme-font-body, -apple-system, sans-serif);
+  font-style: italic;
+  font-size: 10px;
+  opacity: 0.6;
+  white-space: nowrap;
 }
 
 /* Popper animations — anchored above the icon. */
