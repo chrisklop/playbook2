@@ -18,9 +18,10 @@ export interface SaveState {
   seen_toast_events: string[];
   bulk_buy_multiplier: BulkBuyMultiplier;
   show_best_buy_hint: boolean;
-  // v3 additions (cycles + managers)
+  // v3 additions (cycles + managers + upgrades)
   cycle_progress: Record<string, number>;
   managers_hired: string[];
+  upgrades_purchased: string[];
 }
 
 const V2_DEFAULTS = {
@@ -33,6 +34,7 @@ const V2_DEFAULTS = {
 const V3_DEFAULTS = {
   cycle_progress: {} as Record<string, number>,
   managers_hired: [] as string[],
+  upgrades_purchased: [] as string[],
 };
 
 /**
@@ -61,6 +63,7 @@ export function migrateSave(raw: unknown): SaveState {
       ...s,
       cycle_progress: (s.cycle_progress as Record<string, number> | undefined) ?? V3_DEFAULTS.cycle_progress,
       managers_hired: (s.managers_hired as string[] | undefined) ?? V3_DEFAULTS.managers_hired,
+      upgrades_purchased: (s.upgrades_purchased as string[] | undefined) ?? V3_DEFAULTS.upgrades_purchased,
       version: 3,
     };
   }

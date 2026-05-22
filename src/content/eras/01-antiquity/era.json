@@ -4,7 +4,11 @@
   "date_range": "~3000 BCE – 500 CE",
   "display_name": "Antiquity",
   "theme_id": "antiquity-cinzel",
-  "techniques_unlocked": ["impersonation", "discrediting", "trolling"],
+  "techniques_unlocked": [
+    "impersonation",
+    "discrediting",
+    "trolling"
+  ],
   "generators": [
     {
       "id": "spread-rumor",
@@ -19,13 +23,46 @@
       "is_click_driven": true,
       "auto_unlock_at": 10,
       "auto_operative_name": "Sycophant",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": null,
       "reveal_at_lifetime": 0,
-      "cycle_seconds": 1.0,
+      "cycle_seconds": 1,
       "manager_cost": 100,
       "manager_name": "Sycophant",
-      "icon": "🗣️"
+      "icon": "🗣️",
+      "upgrades": [
+        {
+          "id": "spread-rumor-up1",
+          "name": "Pre-Forum Whispers",
+          "description": "Sycophants speak earlier in the day.",
+          "unlock_at_owned": 25,
+          "multiplier": 3,
+          "cost": 10000
+        },
+        {
+          "id": "spread-rumor-up2",
+          "name": "Senate Earshot",
+          "description": "Rumors travel further across the forum.",
+          "unlock_at_owned": 100,
+          "multiplier": 3,
+          "cost": 250000
+        },
+        {
+          "id": "spread-rumor-up3",
+          "name": "Imperial Whisper Net",
+          "description": "Sycophants carry word across the provinces.",
+          "unlock_at_owned": 200,
+          "multiplier": 5,
+          "cost": 5000000
+        }
+      ]
     },
     {
       "id": "forge-naru-tablet",
@@ -40,13 +77,46 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Scribe",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "sargon-naru-tradition",
       "reveal_at_lifetime": 50,
-      "cycle_seconds": 3.0,
+      "cycle_seconds": 3,
       "manager_cost": 5000,
       "manager_name": "Scribe",
-      "icon": "📜"
+      "icon": "📜",
+      "upgrades": [
+        {
+          "id": "forge-naru-up1",
+          "name": "Better Clay",
+          "description": "Tablets bake harder, legends stick longer.",
+          "unlock_at_owned": 25,
+          "multiplier": 3,
+          "cost": 50000
+        },
+        {
+          "id": "forge-naru-up2",
+          "name": "Scribe Workshop",
+          "description": "Multiple scribes work in parallel.",
+          "unlock_at_owned": 100,
+          "multiplier": 3,
+          "cost": 1000000
+        },
+        {
+          "id": "forge-naru-up3",
+          "name": "Royal Backdating",
+          "description": "Court-sponsored history reaches further back.",
+          "unlock_at_owned": 200,
+          "multiplier": 5,
+          "cost": 20000000
+        }
+      ]
     },
     {
       "id": "smear-rival",
@@ -56,18 +126,51 @@
       "technique_tag": "discrediting",
       "resource": "rumor",
       "base_cost": 1250,
-      "cost_growth": 1.10,
+      "cost_growth": 1.1,
       "base_production": 70,
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Pamphleteer",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "octavian-vs-antony",
       "reveal_at_lifetime": 500,
-      "cycle_seconds": 6.0,
+      "cycle_seconds": 6,
       "manager_cost": 50000,
       "manager_name": "Pamphleteer",
-      "icon": "⚔️"
+      "icon": "⚔️",
+      "upgrades": [
+        {
+          "id": "smear-rival-up1",
+          "name": "Sealed Leaks",
+          "description": "Leaked documents look more official.",
+          "unlock_at_owned": 25,
+          "multiplier": 3,
+          "cost": 100000
+        },
+        {
+          "id": "smear-rival-up2",
+          "name": "Senate Whisper Network",
+          "description": "Pamphleteers reach the right ears.",
+          "unlock_at_owned": 100,
+          "multiplier": 3,
+          "cost": 2500000
+        },
+        {
+          "id": "smear-rival-up3",
+          "name": "Triumvirate Backing",
+          "description": "A faction stands behind every smear.",
+          "unlock_at_owned": 200,
+          "multiplier": 5,
+          "cost": 50000000
+        }
+      ]
     },
     {
       "id": "hire-sykophant",
@@ -77,18 +180,51 @@
       "technique_tag": "trolling",
       "resource": "rumor",
       "base_cost": 2000,
-      "cost_growth": 1.10,
+      "cost_growth": 1.1,
       "base_production": 90,
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Sykophant",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "athenian-sykophants",
       "reveal_at_lifetime": 750,
-      "cycle_seconds": 8.0,
+      "cycle_seconds": 8,
       "manager_cost": 100000,
       "manager_name": "Sykophant Boss",
-      "icon": "⚖️"
+      "icon": "⚖️",
+      "upgrades": [
+        {
+          "id": "hire-sykophant-up1",
+          "name": "Bigger Dockets",
+          "description": "Sykophants file twice the suits each session.",
+          "unlock_at_owned": 25,
+          "multiplier": 3,
+          "cost": 150000
+        },
+        {
+          "id": "hire-sykophant-up2",
+          "name": "Bribed Magistrates",
+          "description": "Frivolous suits stick longer.",
+          "unlock_at_owned": 100,
+          "multiplier": 3,
+          "cost": 3000000
+        },
+        {
+          "id": "hire-sykophant-up3",
+          "name": "Athenian Council Faction",
+          "description": "Mass-report apparatus in place.",
+          "unlock_at_owned": 200,
+          "multiplier": 5,
+          "cost": 60000000
+        }
+      ]
     },
     {
       "id": "bronze-coin-mint",
@@ -103,16 +239,49 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Mint Master",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "augustan-coinage",
       "reveal_at_lifetime": 5000,
-      "cycle_seconds": 15.0,
+      "cycle_seconds": 15,
       "manager_cost": 2000000,
       "manager_name": "Mint Master",
-      "icon": "🪙"
+      "icon": "🪙",
+      "upgrades": [
+        {
+          "id": "bronze-coin-mint-up1",
+          "name": "Heavier Strike",
+          "description": "Coins ring with imperial weight.",
+          "unlock_at_owned": 25,
+          "multiplier": 3,
+          "cost": 4000000
+        },
+        {
+          "id": "bronze-coin-mint-up2",
+          "name": "Provincial Mints",
+          "description": "Branches mint from Hispania to Syria.",
+          "unlock_at_owned": 100,
+          "multiplier": 3,
+          "cost": 100000000
+        },
+        {
+          "id": "bronze-coin-mint-up3",
+          "name": "Divi Filius Stamp",
+          "description": "Every coin proclaims your divine descent.",
+          "unlock_at_owned": 200,
+          "multiplier": 5,
+          "cost": 2000000000
+        }
+      ]
     }
   ],
   "prestige_into": "printing-press",
-  "prestige_pivot": 8e12,
+  "prestige_pivot": 8000000000000,
   "prestige_bridge_copy": "The tablets crumble. The temples weather. The playbook does not. A new technology arrives — the press — and with it, the same human appetite for the convenient lie."
 }

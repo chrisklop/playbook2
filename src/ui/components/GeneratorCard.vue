@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import { state, buyGenerator, click, hireManager, tapCycle, isManagerHired } from '../state';
+import {
+  state,
+  buyGenerator,
+  click,
+  hireManager,
+  tapCycle,
+  isManagerHired,
+  nextUpgradeFor,
+  buyUpgrade,
+} from '../state';
 import { computeCost, computeBulkCost, maxAffordableBulk } from '../../game/era-layer';
 import type { GeneratorTier } from '../../content/schema';
 import { formatCost, formatResource } from '../format';
@@ -33,6 +42,13 @@ const canAffordBuy = computed(() => state.rumor >= buyCost.value);
 const managerHired = computed(() => isManagerHired(props.gen.id));
 const managerCost = computed(() => props.gen.manager_cost);
 const canAffordManager = computed(() => state.rumor >= managerCost.value);
+
+// Next upgrade to surface inline (null if none unlocked-and-unpurchased)
+const nextUpgrade = computed(() => nextUpgradeFor(props.gen.id));
+const canAffordUpgrade = computed(() => {
+  const u = nextUpgrade.value;
+  return u !== null && state.rumor >= u.cost;
+});
 
 const cycleProgress = computed(() => state.cycleProgress[props.gen.id] ?? 0);
 const cycleInFlight = computed(() => cycleProgress.value > 0 || managerHired.value);
@@ -106,6 +122,13 @@ function tapHireManager(e: Event) {
   if (!canAffordManager.value) return;
   hireManager(props.gen.id);
 }
+
+function tapBuyUpgrade(e: Event) {
+  e.stopPropagation();
+  const u = nextUpgrade.value;
+  if (!u || !canAffordUpgrade.value) return;
+  buyUpgrade(u.id);
+}
 </script>
 
 <template>
@@ -158,6 +181,7 @@ function tapHireManager(e: Event) {
           </template>
         </div>
         <div class="mgr">
+          <!-- Manager hire takes precedence; once hired, show next upgrade if available. -->
           <button
             v-if="owned > 0 && !managerHired"
             class="hire"
@@ -166,6 +190,16 @@ function tapHireManager(e: Event) {
             :disabled="!canAffordManager"
           >
             HIRE {{ gen.manager_name.toUpperCase() }} {{ formatCost(managerCost) }}
+          </button>
+          <button
+            v-else-if="managerHired && nextUpgrade"
+            class="hire upgrade-btn"
+            :class="{ disabled: !canAffordUpgrade }"
+            @click="tapBuyUpgrade"
+            :disabled="!canAffordUpgrade"
+            :title="nextUpgrade.description"
+          >
+            ★ ×{{ nextUpgrade.multiplier }} {{ formatCost(nextUpgrade.cost) }}
           </button>
           <span v-else-if="managerHired" class="mgr-on">✓ {{ gen.manager_name }}</span>
         </div>
@@ -341,6 +375,13 @@ function tapHireManager(e: Event) {
   text-transform: uppercase;
 }
 .hire.disabled, .hire:disabled { opacity: 0.4; cursor: not-allowed; }
+.upgrade-btn {
+  background: rgba(240, 160, 96, 0.18);
+  border-color: var(--theme-accent, #2a2218);
+}
+.upgrade-btn:not(.disabled):hover {
+  background: rgba(240, 160, 96, 0.32);
+}
 .mgr-on {
   font-family: var(--theme-font-body, -apple-system, sans-serif);
   font-style: italic;

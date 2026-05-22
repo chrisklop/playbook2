@@ -49,6 +49,19 @@ export const GeneratorTierSchema = z.object({
   manager_name: z.string().default('Manager'),
   /** Emoji or single-character icon for the card's icon block. */
   icon: z.string().default('●'),
+  /**
+   * AdCap-style one-time upgrades for this generator. Each upgrade unlocks at a
+   * given owned threshold and applies a permanent multiplier to this generator's
+   * payout when purchased. Stacks multiplicatively.
+   */
+  upgrades: z.array(z.object({
+    id: z.string().min(1),
+    name: z.string().min(1),
+    description: z.string().min(1).default(''),
+    unlock_at_owned: z.number().int().positive(),
+    multiplier: z.number().positive(),
+    cost: z.number().positive(),
+  })).default([]),
 });
 export type GeneratorTier = z.infer<typeof GeneratorTierSchema>;
 

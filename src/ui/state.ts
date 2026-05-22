@@ -35,10 +35,10 @@ export const state = reactive({
   seenToastEvents: new Set<string>(),
   bulkBuyMultiplier: 1 as BulkBuyMultiplier,
   showBestBuyHint: true,
-  // v3 additions — cycles + managers
+  // v3 additions — cycles + managers + upgrades
   cycleProgress: {} as Record<string, number>, // gen.id → 0..1
   managersHired: new Set<string>(),
-  upgradeMultByGenerator: {} as Record<string, number>, // Phase 2 prep; defaults to 1.0
+  upgradesPurchased: new Set<string>(), // upgrade.id set
   lastPayout: {} as Record<string, LastPayout>, // ephemeral, drives popper animations
 });
 
@@ -51,6 +51,52 @@ export const currentCopy = computed(() => currentBundle.value.copy);
 /** Convenience: is the player's manager hired for this generator? */
 export function isManagerHired(genId: string): boolean {
   return state.managersHired.has(genId);
+}
+
+/**
+ * Derived multiplier for a generator — product of all purchased upgrades' multipliers.
+ * Defaults to 1.0 (no purchased upgrades).
+ */
+export function upgradeMultFor(genId: string): number {
+  const gen = currentEra.value.generators.find(g => g.id === genId);
+  if (!gen) return 1;
+  let mult = 1;
+  for (const up of gen.upgrades) {
+    if (state.upgradesPurchased.has(up.id)) mult *= up.multiplier;
+  }
+  return mult;
+}
+
+/**
+ * Next-available upgrade for a generator — the lowest-unlock-at upgrade that is
+ * (a) not yet purchased AND (b) has owned >= unlock_at_owned. Returns null if
+ * all are purchased or none are unlocked yet.
+ */
+export function nextUpgradeFor(genId: string) {
+  const gen = currentEra.value.generators.find(g => g.id === genId);
+  if (!gen) return null;
+  const owned = state.ownedByGenerator[genId] ?? 0;
+  const available = gen.upgrades
+    .filter(u => owned >= u.unlock_at_owned && !state.upgradesPurchased.has(u.id))
+    .sort((a, b) => a.unlock_at_owned - b.unlock_at_owned);
+  return available[0] ?? null;
+}
+
+/** Spend Rumor to purchase an upgrade. Returns true on success. */
+export function buyUpgrade(upgradeId: string): boolean {
+  const gen = currentEra.value.generators.find(g =>
+    g.upgrades.some(u => u.id === upgradeId),
+  );
+  if (!gen) return false;
+  const up = gen.upgrades.find(u => u.id === upgradeId);
+  if (!up) return false;
+  if (state.upgradesPurchased.has(upgradeId)) return false;
+  const owned = state.ownedByGenerator[gen.id] ?? 0;
+  if (owned < up.unlock_at_owned) return false;
+  if (state.rumor < up.cost) return false;
+  state.rumor -= up.cost;
+  state.upgradesPurchased.add(upgradeId);
+  return true;
 }
 
 /** Click on Tier-1 click-driven card: +1 Rumor, kick its cycle, auto-buy if affordable. */
@@ -133,7 +179,7 @@ export const productionPerSecond = computed(() => {
     const willProduce =
       state.managersHired.has(gen.id) || (state.cycleProgress[gen.id] ?? 0) > 0;
     if (!willProduce) continue;
-    const upgradeMult = state.upgradeMultByGenerator[gen.id] ?? 1;
+    const upgradeMult = upgradeMultFor(gen.id);
     // Steady-state rate = payout / cycle_seconds = base × owned × milestone × global × upgrade
     total += generatorProduction(gen, owned, globalMult) * upgradeMult;
   }
@@ -189,7 +235,7 @@ export function performPrestige(): void {
   state.ownedByGenerator = {};
   state.cycleProgress = {};
   state.managersHired = new Set();
-  state.upgradeMultByGenerator = {};
+  state.upgradesPurchased = new Set();
   state.lastPayout = {};
 
   const nextEraId = currentEra.value.prestige_into;
@@ -216,6 +262,7 @@ export function applyLoadedSave(save: SaveState): void {
   state.showBestBuyHint = save.show_best_buy_hint;
   state.cycleProgress = { ...save.cycle_progress };
   state.managersHired = new Set(save.managers_hired);
+  state.upgradesPurchased = new Set(save.upgrades_purchased ?? []);
 
   // Backward compatibility: pre-v3 players who reached auto_unlock_at on a
   // click-driven generator deserve the manager free (we changed the mechanic).
@@ -252,6 +299,7 @@ export function snapshotSave(): SaveState {
     show_best_buy_hint: state.showBestBuyHint,
     cycle_progress: { ...state.cycleProgress },
     managers_hired: Array.from(state.managersHired),
+    upgrades_purchased: Array.from(state.upgradesPurchased),
   };
 }
 
@@ -287,7 +335,7 @@ if (typeof window !== 'undefined') {
 
       // May fire multiple payouts per tick if cycle_seconds is very short and tick is slow.
       while (newProgress >= 1) {
-        const upgradeMult = state.upgradeMultByGenerator[gen.id] ?? 1;
+        const upgradeMult = upgradeMultFor(gen.id);
         const payout = payoutPerCycle(gen, owned, globalMult, upgradeMult);
         state.rumor += payout;
         state.lifetimeRumor += payout;
@@ -398,6 +446,36 @@ if (typeof window !== 'undefined') {
           });
         }
       },
+    );
+
+    // Trigger: Upgrade purchased — fires when state.upgradesPurchased grows.
+    let lastUpgrades = new Set<string>();
+    watch(
+      () => Array.from(state.upgradesPurchased).sort().join(','),
+      () => {
+        const era = currentEra.value;
+        for (const upgradeId of state.upgradesPurchased) {
+          if (!lastUpgrades.has(upgradeId)) {
+            const gen = era.generators.find(g =>
+              g.upgrades.some(u => u.id === upgradeId),
+            );
+            const up = gen?.upgrades.find(u => u.id === upgradeId);
+            if (gen && up) {
+              fireToast({
+                id: `upgrade:${era.id}:${upgradeId}`,
+                message: `${up.name} — ${gen.display_name} ×${up.multiplier}.`,
+                era_id: era.id,
+              });
+            }
+          }
+        }
+        lastUpgrades = new Set(state.upgradesPurchased);
+      },
+      { immediate: true },
+    );
+    watch(
+      () => state.currentEraId,
+      () => { lastUpgrades = new Set(); },
     );
 
     // Trigger: Bulk-buy tier unlocks.

@@ -35,6 +35,7 @@ describe('save migration v1 -> v3', () => {
     // v3 defaults
     expect(migrated.cycle_progress).toEqual({});
     expect(migrated.managers_hired).toEqual([]);
+    expect(migrated.upgrades_purchased).toEqual([]);
   });
 
   it('migrateSave preserves all v1 fields verbatim', () => {
@@ -61,6 +62,7 @@ describe('save migration v1 -> v3', () => {
     expect(restored.prestige_count).toBe(0);
     expect(restored.cycle_progress).toEqual({});
     expect(restored.managers_hired).toEqual([]);
+    expect(restored.upgrades_purchased).toEqual([]);
     expect(restored.rumor).toBe(1234.5);
   });
 
@@ -80,6 +82,7 @@ describe('save migration v1 -> v3', () => {
       show_best_buy_hint: false,
       cycle_progress: { 'compose-broadside': 0.7, 'print-pamphlet': 0.2 },
       managers_hired: ['compose-broadside'],
+      upgrades_purchased: ['compose-broadside-up1', 'print-pamphlet-up1'],
     };
     const back = deserializeSave(serializeSave(v3));
     expect(back).toEqual(v3);
@@ -102,5 +105,6 @@ describe('save migration v1 -> v3', () => {
     // v3 defaults added
     expect(migrated.cycle_progress).toEqual({});
     expect(migrated.managers_hired).toEqual([]);
+    expect(migrated.upgrades_purchased).toEqual([]);
   });
 });

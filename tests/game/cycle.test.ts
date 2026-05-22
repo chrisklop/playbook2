@@ -28,6 +28,7 @@ const baseGen = (overrides: Partial<GeneratorTier> = {}): GeneratorTier => ({
   manager_cost: 5000,
   manager_name: 'M',
   icon: '●',
+  upgrades: [],
   ...overrides,
 });
 

@@ -16,6 +16,7 @@ const SAMPLE: SaveState = {
   show_best_buy_hint: true,
   cycle_progress: {},
   managers_hired: [],
+  upgrades_purchased: [],
 };
 
 describe('save round-trip', () => {
