@@ -2,8 +2,20 @@
 import { computed } from 'vue';
 import { marked } from 'marked';
 import { selectedEntry, codexState } from '../codex-state';
+import { state, claimCodexMastery } from '../state';
+import { PER_LEVEL_BONUS } from '../../game/mastery';
 
 const html = computed(() => selectedEntry.value ? marked.parse(selectedEntry.value.body) as string : '');
+
+const entryId = computed(() => selectedEntry.value?.frontmatter.id ?? '');
+const techniques = computed<string[]>(() => selectedEntry.value?.frontmatter.techniques ?? []);
+const alreadyMastered = computed(() => state.codexMastered.has(entryId.value));
+
+const bonusPctPerTechnique = Math.round(PER_LEVEL_BONUS * 100);
+
+function master() {
+  claimCodexMastery(entryId.value, techniques.value);
+}
 </script>
 
 <template>
@@ -17,6 +29,32 @@ const html = computed(() => selectedEntry.value ? marked.parse(selectedEntry.val
         <a :href="s.url" target="_blank" rel="noopener">{{ s.label }}</a>
       </li>
     </ul>
+
+    <!-- Master This — one-time reward for reading the entry. Each technique
+         tag levels up by 1; permanent +5% production multiplier per level. -->
+    <div v-if="techniques.length > 0" class="mastery-block">
+      <h3>Mastery</h3>
+      <p class="mastery-explain">
+        This entry teaches:
+        <span v-for="(t, i) in techniques" :key="t">
+          <strong>{{ t }}</strong><span v-if="i < techniques.length - 1">, </span>
+        </span>.
+        Mastering it grants <strong>+{{ bonusPctPerTechnique }}% permanent production</strong>
+        to every generator in every era that uses
+        {{ techniques.length === 1 ? 'this technique' : 'any of these techniques' }}.
+        Persists across prestige.
+      </p>
+      <button
+        type="button"
+        class="btn-riso master-btn"
+        :class="{ disabled: alreadyMastered }"
+        :disabled="alreadyMastered"
+        @click="master"
+      >
+        <template v-if="alreadyMastered">✓ MASTERED</template>
+        <template v-else>MASTER THIS</template>
+      </button>
+    </div>
   </article>
 </template>
 
@@ -75,5 +113,29 @@ h3 {
 .sources a {
   color: var(--theme-accent, #2a2218);
   text-decoration: underline;
+}
+.mastery-block {
+  margin-top: 26px;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--theme-border, #2a2218);
+}
+.mastery-explain {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 12px;
+  padding: 0;
+  font-style: italic;
+  opacity: 0.9;
+}
+.mastery-explain strong {
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.master-btn {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 13px;
+  letter-spacing: 2px;
 }
 </style>

@@ -20,13 +20,13 @@ const v1Sample = {
 };
 
 describe('save migration v1 -> v3', () => {
-  it('CURRENT_SAVE_VERSION is 4', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(4);
+  it('CURRENT_SAVE_VERSION is 5', () => {
+    expect(CURRENT_SAVE_VERSION).toBe(5);
   });
 
   it('migrateSave from v1 adds v2, v3 AND v4 defaults', () => {
     const migrated = migrateSave(v1Sample);
-    expect(migrated.version).toBe(4);
+    expect(migrated.version).toBe(5);
     // v2 defaults
     expect(migrated.prestige_count).toBe(0);
     expect(migrated.seen_toast_events).toEqual([]);
@@ -58,7 +58,7 @@ describe('save migration v1 -> v3', () => {
     const v1String = LZString.compressToUTF16(json);
 
     const restored = deserializeSave(v1String);
-    expect(restored.version).toBe(4);
+    expect(restored.version).toBe(5);
     expect(restored.prestige_count).toBe(0);
     expect(restored.cycle_progress).toEqual({});
     expect(restored.managers_hired).toEqual([]);
@@ -69,9 +69,9 @@ describe('save migration v1 -> v3', () => {
     expect(restored.rumor).toBe(1234.5);
   });
 
-  it('round-trip serialize/deserialize on a v4 payload preserves everything', () => {
-    const v4: SaveState = {
-      version: 4,
+  it('round-trip serialize/deserialize on a v5 payload preserves everything', () => {
+    const v5: SaveState = {
+      version: 5,
       current_era: 'printing-press',
       rumor: 50,
       lifetime_rumor: 1e8,
@@ -89,9 +89,28 @@ describe('save migration v1 -> v3', () => {
       active_offer: null,
       active_bonus: null,
       next_event_spawn_at: 0,
+      technique_mastery: { trolling: 2, emotion: 1 },
+      codex_mastered: ['athenian-sykophants', 'bryce-report'],
     };
-    const back = deserializeSave(serializeSave(v4));
-    expect(back).toEqual(v4);
+    const back = deserializeSave(serializeSave(v5));
+    expect(back).toEqual(v5);
+  });
+
+  it('migrating from v4 adds only v5 defaults', () => {
+    const v4Sample = {
+      ...v1Sample,
+      version: 4,
+      cycle_progress: {},
+      managers_hired: [],
+      upgrades_purchased: [],
+      active_offer: null,
+      active_bonus: null,
+      next_event_spawn_at: 0,
+    };
+    const migrated = migrateSave(v4Sample);
+    expect(migrated.version).toBe(5);
+    expect(migrated.technique_mastery).toEqual({});
+    expect(migrated.codex_mastered).toEqual([]);
   });
 
   it('migrating from v2 directly adds v3 + v4 defaults', () => {
@@ -104,7 +123,7 @@ describe('save migration v1 -> v3', () => {
       show_best_buy_hint: false,
     };
     const migrated = migrateSave(v2Sample);
-    expect(migrated.version).toBe(4);
+    expect(migrated.version).toBe(5);
     expect(migrated.prestige_count).toBe(5);
     expect(migrated.bulk_buy_multiplier).toBe(10);
     expect(migrated.cycle_progress).toEqual({});
@@ -125,7 +144,7 @@ describe('save migration v1 -> v3', () => {
       upgrades_purchased: ['y'],
     };
     const migrated = migrateSave(v3Sample);
-    expect(migrated.version).toBe(4);
+    expect(migrated.version).toBe(5);
     expect(migrated.cycle_progress).toEqual({ x: 0.5 });
     expect(migrated.managers_hired).toEqual(['x']);
     expect(migrated.active_offer).toBe(null);

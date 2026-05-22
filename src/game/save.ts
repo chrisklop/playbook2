@@ -1,6 +1,6 @@
 import LZString from 'lz-string';
 
-export const CURRENT_SAVE_VERSION = 4;
+export const CURRENT_SAVE_VERSION = 5;
 
 export type BulkBuyMultiplier = 1 | 10 | 100 | 'max';
 
@@ -42,6 +42,9 @@ export interface SaveState {
     expires_at_ms: number;
   } | null;
   next_event_spawn_at?: number;
+  // v5 additions (Technique Mastery — persists across prestige)
+  technique_mastery?: Record<string, number>;
+  codex_mastered?: string[];
 }
 
 const V2_DEFAULTS = {
@@ -96,6 +99,16 @@ export function migrateSave(raw: unknown): SaveState {
       active_bonus: null,
       next_event_spawn_at: 0,
       version: 4,
+    };
+  }
+
+  // v4 → v5: Technique Mastery starts empty (zero mastery in every technique).
+  if (((s.version as number | undefined) ?? 1) < 5) {
+    s = {
+      ...s,
+      technique_mastery: {},
+      codex_mastered: [],
+      version: 5,
     };
   }
 

@@ -33,3 +33,20 @@ export const visibleEntries = computed(() => {
 export const selectedEntry = computed(() =>
   entries.find(e => e.frontmatter.id === codexState.selectedId) ?? null
 );
+
+/** Every codex entry in the project, across all eras. Used by the Mastery tab
+ *  to show "you've mastered N of M entries for technique X". */
+export const allCodexEntries = entries;
+
+/** Group codex IDs by which technique tag(s) they cover. One entry can appear
+ *  under multiple techniques if its frontmatter lists more than one. */
+export function codexIdsByTechnique(): Record<string, string[]> {
+  const out: Record<string, string[]> = {};
+  for (const e of entries) {
+    for (const t of e.frontmatter.techniques) {
+      if (!out[t]) out[t] = [];
+      out[t].push(e.frontmatter.id);
+    }
+  }
+  return out;
+}

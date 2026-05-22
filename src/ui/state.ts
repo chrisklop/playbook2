@@ -9,6 +9,8 @@ import {
   pickOptimalGenerator,
 } from '../game/era-layer';
 import { computeMemeticInheritance, carryoverMultiplier } from '../game/prestige';
+import { multiplierForTechnique } from '../game/mastery';
+import type { TechniqueId } from '../content/types';
 import {
   pickRandomEvent,
   pickNextSpawnAt,
@@ -64,7 +66,26 @@ export const state = reactive({
   activeBonus: null as ActiveBonus | null,
   nextEventSpawnAt: 0, // ms epoch; 0 means "schedule on first tick"
   nowMs: Date.now(), // bumped each tick so countdown UIs stay reactive
+  // v5 — Technique Mastery (persists across prestige)
+  techniqueMastery: {} as Record<string, number>,
+  codexMastered: new Set<string>(),
 });
+
+/**
+ * Player "claims" a codex entry once they've read it — bumps mastery by
+ * +1 for each technique tag in the entry's frontmatter, marks the entry
+ * as mastered (one-time), and chimes. Returns true on success.
+ */
+export function claimCodexMastery(codexId: string, techniqueTags: string[]): boolean {
+  if (state.codexMastered.has(codexId)) return false;
+  if (techniqueTags.length === 0) return false;
+  state.codexMastered.add(codexId);
+  for (const tag of techniqueTags) {
+    state.techniqueMastery[tag] = (state.techniqueMastery[tag] ?? 0) + 1;
+  }
+  playUpgrade();
+  return true;
+}
 
 // Keep the audio module's local mute flag in sync with reactive state.
 watch(
@@ -218,10 +239,22 @@ export const productionPerSecond = computed(() => {
       state.managersHired.has(gen.id) || (state.cycleProgress[gen.id] ?? 0) > 0;
     if (!willProduce) continue;
     const upgradeMult = upgradeMultFor(gen.id);
-    total += generatorProduction(gen, owned, globalMult) * upgradeMult * eventMult;
+    const masteryMult = multiplierForTechnique(
+      state.techniqueMastery,
+      gen.technique_tag as TechniqueId,
+    );
+    total += generatorProduction(gen, owned, globalMult) * upgradeMult * eventMult * masteryMult;
   }
   return total;
 });
+
+/** Mastery multiplier for one generator — used by tile UIs that need to
+ *  preview the bonus alongside upgrades/milestones. */
+export function masteryMultFor(genId: string): number {
+  const gen = currentEra.value.generators.find(g => g.id === genId);
+  if (!gen) return 1;
+  return multiplierForTechnique(state.techniqueMastery, gen.technique_tag as TechniqueId);
+}
 
 /** Claim the currently-displayed offer. Replaces any active bonus. */
 export function claimActiveOffer(): boolean {
@@ -324,6 +357,8 @@ export function applyLoadedSave(save: SaveState): void {
   state.activeBonus = save.active_bonus ?? null;
   state.nextEventSpawnAt = save.next_event_spawn_at ?? 0;
   state.nowMs = Date.now();
+  state.techniqueMastery = { ...(save.technique_mastery ?? {}) };
+  state.codexMastered = new Set(save.codex_mastered ?? []);
 
   // Backward compatibility: pre-v3 players who reached auto_unlock_at on a
   // click-driven generator deserve the manager free (we changed the mechanic).
@@ -346,7 +381,7 @@ export function applyLoadedSave(save: SaveState): void {
 
 export function snapshotSave(): SaveState {
   return {
-    version: 4,
+    version: 5,
     current_era: state.currentEraId,
     rumor: state.rumor,
     lifetime_rumor: state.lifetimeRumor,
@@ -365,6 +400,8 @@ export function snapshotSave(): SaveState {
     active_offer: state.activeOffer,
     active_bonus: state.activeBonus,
     next_event_spawn_at: state.nextEventSpawnAt,
+    technique_mastery: { ...state.techniqueMastery },
+    codex_mastered: Array.from(state.codexMastered),
   };
 }
 
@@ -428,7 +465,11 @@ if (typeof window !== 'undefined') {
 
       while (newProgress >= 1) {
         const upgradeMult = upgradeMultFor(gen.id);
-        const payout = payoutPerCycle(gen, owned, globalMult, upgradeMult) * eventMult;
+        const masteryMult = multiplierForTechnique(
+          state.techniqueMastery,
+          gen.technique_tag as TechniqueId,
+        );
+        const payout = payoutPerCycle(gen, owned, globalMult, upgradeMult) * eventMult * masteryMult;
         state.rumor += payout;
         state.lifetimeRumor += payout;
         state.lastPayout[gen.id] = { amount: payout, ts: now };
