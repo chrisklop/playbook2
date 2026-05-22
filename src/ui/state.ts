@@ -80,6 +80,21 @@ export const state = reactive({
   codexMastered: new Set<string>(),
   // v6 — Loops completed (each time prestige carries you back to an earlier era)
   loopsCompleted: 0,
+  // v7 — Cinematic era transition state. Non-null only while the prestige
+  // overlay is on screen; ephemeral (not saved). Drives EraTransitionOverlay.
+  //   phase 'leaving'  → showing outgoing era's bridge copy
+  //   phase 'arriving' → showing incoming era's masthead reveal
+  eraTransition: null as null | {
+    phase: 'leaving' | 'arriving';
+    outgoingName: string;
+    outgoingDateRange: string;
+    bridgeCopy: string;
+    incomingName: string;
+    incomingDateRange: string;
+    incomingMasthead: string;
+    miGained: number;
+    isLoopBack: boolean;
+  },
 });
 
 /**
@@ -423,6 +438,56 @@ export const recommendedGenId = computed<string | null>(() => {
 });
 
 /** Prestige into the next era. Carryover MI persists; rumor/owned/cycles reset; managers reset. */
+/**
+ * Cinematic wrapper around performPrestige. Drives the EraTransitionOverlay
+ * by capturing outgoing-era data, scheduling the actual era swap mid-overlay,
+ * and tearing down the overlay state when the prestige cue ends.
+ *
+ * Timing (matches the ~10s prestige music cue):
+ *   t=0     overlay opens with outgoing era's bridge copy, prestige cue fires
+ *   t=4.0s  performPrestige() runs (theme + era swap behind the overlay),
+ *           overlay flips to phase 'arriving' showing the destination era
+ *   t=8.0s  overlay tears down, revealing the new era's tiles
+ *
+ * No-op if there's no destination era (shouldn't happen — schema guarantees
+ * a prestige_into target — but defensive).
+ */
+export function startEraTransition(): void {
+  const era = currentEra.value;
+  const nextEraId = era.prestige_into;
+  if (!nextEraId) {
+    // Defensive: fall back to a plain swap with no overlay.
+    performPrestige();
+    return;
+  }
+  const incoming = getEra(nextEraId as EraId).era;
+  const incomingCopy = getEra(nextEraId as EraId).copy;
+  const newMI = projectedMI.value;
+
+  state.eraTransition = {
+    phase: 'leaving',
+    outgoingName: era.display_name,
+    outgoingDateRange: era.date_range,
+    bridgeCopy: era.prestige_bridge_copy,
+    incomingName: incoming.display_name,
+    incomingDateRange: incoming.date_range,
+    incomingMasthead: incomingCopy.masthead_title,
+    miGained: newMI,
+    isLoopBack: incoming.ordinal < era.ordinal,
+  };
+
+  // Step 2: do the actual prestige + era swap behind the overlay.
+  window.setTimeout(() => {
+    performPrestige();
+    if (state.eraTransition) state.eraTransition.phase = 'arriving';
+  }, 4000);
+
+  // Step 3: tear down the overlay, revealing the new era's tiles.
+  window.setTimeout(() => {
+    state.eraTransition = null;
+  }, 8000);
+}
+
 export function performPrestige(): void {
   const newMI = projectedMI.value;
   playPrestige();

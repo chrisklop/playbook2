@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { currentEra, currentCopy, projectedMI, performPrestige, canPrestige } from '../state';
+import { currentEra, currentCopy, projectedMI, startEraTransition, canPrestige } from '../state';
 import { playCue, stopCue } from '../audio';
 
 const confirming = ref(false);
@@ -17,10 +17,10 @@ function cancel() {
 }
 function confirm() {
   confirming.value = false;
-  // Don't stopCue() here — performPrestige fires the prestige cue, which
-  // cancels the bridge cue cleanly via playCue's own swap logic. Stopping
-  // here would briefly restore the loop in the gap between cues.
-  performPrestige();
+  // Don't stopCue() here — startEraTransition kicks the prestige cue
+  // (inside its scheduled performPrestige), which cancels the bridge cue
+  // cleanly via playCue's swap logic. The overlay handles the rest.
+  startEraTransition();
 }
 </script>
 

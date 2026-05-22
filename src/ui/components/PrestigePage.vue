@@ -6,7 +6,7 @@ import {
   currentCopy,
   projectedMI,
   canPrestige,
-  performPrestige,
+  startEraTransition,
 } from '../state';
 import { carryoverMultiplier } from '../../game/prestige';
 import { formatResource } from '../format';
@@ -38,7 +38,7 @@ const unmasteredVisibleCount = computed(() =>
 function tryPrestige() {
   if (!canPrestige.value) return;
   if (!confirm(`Cross into the next era? You'll gain ${projectedRounded.value} Memetic Inheritance (a permanent bonus to every future run). Your current era's Rumor, tiles, managers, and upgrades will reset. Memetic Inheritance, codex mastery, and prestige count carry forward.`)) return;
-  performPrestige();
+  startEraTransition();
 }
 </script>
 

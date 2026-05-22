@@ -27,6 +27,25 @@ const props = defineProps<{ gen: GeneratorTier }>();
 const flashing = ref(false);
 const milestonePopText = ref<string | null>(null);
 const payoutPopText = ref<string | null>(null);
+const bursting = ref(false);
+
+// Eight outgoing vectors for the confetti burst — pre-computed so each
+// particle has its own (angle, distance, rotation, color) signature. The
+// random spread reads more lively than perfect symmetry.
+const burstParticles = Array.from({ length: 8 }).map((_, i) => {
+  const angle = (i * Math.PI * 2) / 8 + (Math.random() - 0.5) * 0.35;
+  const distance = 38 + Math.random() * 22;
+  const rotation = (Math.random() - 0.5) * 540;
+  // Riso-ish accent palette so the squares feel like the rest of the game.
+  const palette = ['#e88e38', '#b3261e', '#f4d000', '#4a90b0', '#2a6b35'];
+  return {
+    dx: Math.cos(angle) * distance,
+    dy: Math.sin(angle) * distance,
+    rotation,
+    color: palette[i % palette.length],
+    delayMs: i * 12,
+  };
+});
 
 const owned = computed(() => state.ownedByGenerator[props.gen.id] ?? 0);
 
@@ -181,9 +200,11 @@ watch(owned, (newVal, oldVal) => {
     if (oldVal < m && newVal >= m) {
       flashing.value = true;
       milestonePopText.value = `+×${currentMilestoneMult.value}`;
+      bursting.value = true;
       playMilestone();
       setTimeout(() => { flashing.value = false; }, 400);
       setTimeout(() => { milestonePopText.value = null; }, 800);
+      setTimeout(() => { bursting.value = false; }, 900);
       break;
     }
   }
@@ -283,6 +304,21 @@ function tapBuyUpgrade(e: Event) {
           <Transition name="payout-pop">
             <span v-if="payoutPopText" :key="payoutPopText" class="pop-payout">{{ payoutPopText }}</span>
           </Transition>
+          <!-- Confetti burst — fires alongside the milestone pop+flash. -->
+          <div v-if="bursting" class="confetti" aria-hidden="true">
+            <span
+              v-for="(p, i) in burstParticles"
+              :key="i"
+              class="confetti-piece"
+              :style="{
+                '--dx': p.dx + 'px',
+                '--dy': p.dy + 'px',
+                '--rot': p.rotation + 'deg',
+                'background': p.color,
+                'animation-delay': p.delayMs + 'ms',
+              }"
+            />
+          </div>
         </div>
       </div>
 
@@ -669,6 +705,33 @@ function tapBuyUpgrade(e: Event) {
   pointer-events: none;
   white-space: nowrap;
 }
+/* Milestone confetti — eight small riso-tinted squares fan outward from
+   the icon and fade. Per-piece animation-delay creates a slight stagger
+   so the burst doesn't pop as one flat group. */
+.confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.confetti-piece {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: confetti-fly 800ms cubic-bezier(0.18, 0.8, 0.32, 1) both;
+}
+@keyframes confetti-fly {
+  0%   { opacity: 0;   transform: translate(-50%, -50%) scale(0.6) rotate(0); }
+  15%  { opacity: 1; }
+  100% { opacity: 0;
+         transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
+                    scale(1) rotate(var(--rot)); }
+}
+
 .mile-pop-enter-active, .payout-pop-enter-active { transition: all 800ms ease-out; }
 .mile-pop-enter-from, .payout-pop-enter-from { opacity: 1; transform: translateY(0); }
 .mile-pop-enter-to, .payout-pop-enter-to { opacity: 0; transform: translateY(-22px); }

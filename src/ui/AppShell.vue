@@ -7,6 +7,7 @@ import CodexTab from './tabs/CodexTab.vue';
 import MoreTab from './tabs/MoreTab.vue';
 import ToastStack from './components/ToastStack.vue';
 import AudioControls from './components/AudioControls.vue';
+import EraTransitionOverlay from './components/EraTransitionOverlay.vue';
 
 const activeTab = ref<'play' | 'tree' | 'codex' | 'more'>('play');
 </script>
@@ -22,6 +23,9 @@ const activeTab = ref<'play' | 'tree' | 'codex' | 'more'>('play');
       <MoreTab v-else-if="activeTab === 'more'" />
     </main>
     <TabBar :active-tab="activeTab" @navigate="activeTab = $event" />
+    <!-- Cinematic prestige overlay — fixed-position above everything,
+         driven by state.eraTransition. Inert when no transition is active. -->
+    <EraTransitionOverlay />
   </div>
 </template>
 
