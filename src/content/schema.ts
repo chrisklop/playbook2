@@ -65,6 +65,31 @@ export const GeneratorTierSchema = z.object({
 });
 export type GeneratorTier = z.infer<typeof GeneratorTierSchema>;
 
+/**
+ * Random ticker events — auto-spawn during play, the player has a brief window
+ * to tap the headline and "spread" it for a temporary production bonus.
+ * Templatable: each era ships its own events.json with era-appropriate flavor.
+ * Engine reads + fires + applies the bonus uniformly across all eras.
+ */
+export const EventEffectSchema = z.object({
+  type: z.enum(['rumor_mult']),
+  value: z.number().positive(),
+  duration_s: z.number().positive(),
+});
+export const EventDefinitionSchema = z.object({
+  id: z.string().min(1),
+  headline: z.string().min(1),
+  /** Verb on the claim button — "TAP TO SPREAD", "PRINT IT", etc. Per era flavor. */
+  claim_verb: z.string().min(1).default('TAP TO SPREAD'),
+  /** Seconds the claim button is on screen before scrolling away. */
+  claim_window_s: z.number().positive().default(20),
+  effect: EventEffectSchema,
+  /** Relative spawn weight. Defaults to 1; rarer events get smaller values. */
+  weight: z.number().positive().default(1),
+});
+export type EventDefinition = z.infer<typeof EventDefinitionSchema>;
+export type EventEffect = z.infer<typeof EventEffectSchema>;
+
 export const EraDefinitionSchema = z.object({
   id: z.string().min(1),
   ordinal: z.number().int().min(1).max(12),

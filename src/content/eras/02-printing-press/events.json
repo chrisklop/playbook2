@@ -1,0 +1,42 @@
+[
+  {
+    "id": "indulgence-scandal",
+    "headline": "🔥 INDULGENCE PAMPHLET SELLS OUT AT THE FAIR",
+    "claim_verb": "REPRINT IT",
+    "claim_window_s": 20,
+    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
+    "weight": 2
+  },
+  {
+    "id": "cologne-riot",
+    "headline": "🔥 PRESS RIOT IN COLOGNE — RIVAL SHOP TORCHED",
+    "claim_verb": "REPORT IT",
+    "claim_window_s": 18,
+    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
+    "weight": 2
+  },
+  {
+    "id": "bishop-letter",
+    "headline": "🔥 BISHOP'S LETTER LEAKED TO RIVAL PRINTER",
+    "claim_verb": "PUBLISH IT",
+    "claim_window_s": 20,
+    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
+    "weight": 3
+  },
+  {
+    "id": "blood-libel",
+    "headline": "🔥 PHYSICIAN ACCUSED OF POISONING THE WELLS",
+    "claim_verb": "PRINT IT",
+    "claim_window_s": 22,
+    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
+    "weight": 3
+  },
+  {
+    "id": "papal-bull-forgery",
+    "headline": "🔥 PAPAL BULL EXPOSED AS FORGERY",
+    "claim_verb": "BROADCAST IT",
+    "claim_window_s": 15,
+    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
+    "weight": 1
+  }
+]

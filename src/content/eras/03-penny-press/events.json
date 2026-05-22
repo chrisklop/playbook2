@@ -1,0 +1,42 @@
+[
+  {
+    "id": "tenement-fire",
+    "headline": "🔥 TENEMENT FIRE — 12 DEAD, BLAME UNCLEAR",
+    "claim_verb": "PRINT IT",
+    "claim_window_s": 20,
+    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
+    "weight": 2
+  },
+  {
+    "id": "mayor-mistress",
+    "headline": "🔥 MAYOR SEEN LEAVING ACTRESS'S BROWNSTONE",
+    "claim_verb": "RUN THE STORY",
+    "claim_window_s": 18,
+    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
+    "weight": 2
+  },
+  {
+    "id": "rival-paper-typo",
+    "headline": "🔥 RIVAL PAPER MISSPELLS PRESIDENT'S NAME",
+    "claim_verb": "MOCK IT",
+    "claim_window_s": 20,
+    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
+    "weight": 3
+  },
+  {
+    "id": "ship-disaster",
+    "headline": "🔥 STEAMER LOST OFF MONTAUK — NAMES INSIDE",
+    "claim_verb": "PUBLISH NAMES",
+    "claim_window_s": 22,
+    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
+    "weight": 3
+  },
+  {
+    "id": "yellow-extra",
+    "headline": "🔥 EXTRA! WAR DECLARED — DETAILS TO FOLLOW",
+    "claim_verb": "PRINT EXTRA",
+    "claim_window_s": 15,
+    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
+    "weight": 1
+  }
+]

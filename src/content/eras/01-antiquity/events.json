@@ -1,0 +1,42 @@
+[
+  {
+    "id": "plague-rumor",
+    "headline": "🔥 PLAGUE-RUMOR CATCHES FIRE IN THE FORUM",
+    "claim_verb": "SPREAD IT",
+    "claim_window_s": 20,
+    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
+    "weight": 2
+  },
+  {
+    "id": "senators-mistress",
+    "headline": "🔥 SENATOR'S MISTRESS NAMED IN ANONYMOUS SCROLL",
+    "claim_verb": "WHISPER IT",
+    "claim_window_s": 18,
+    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
+    "weight": 2
+  },
+  {
+    "id": "rival-omen",
+    "headline": "🔥 AUGUR REPORTS DARK OMEN OVER RIVAL'S HOUSE",
+    "claim_verb": "AMPLIFY",
+    "claim_window_s": 20,
+    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
+    "weight": 3
+  },
+  {
+    "id": "tax-revolt",
+    "headline": "🔥 GRAIN MERCHANTS WHISPER OF NEW TAX",
+    "claim_verb": "CARRY THE WORD",
+    "claim_window_s": 22,
+    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
+    "weight": 3
+  },
+  {
+    "id": "lightning-strike",
+    "headline": "🔥 LIGHTNING STRUCK THE TEMPLE — GODS DISPLEASED?",
+    "claim_verb": "INVOKE IT",
+    "claim_window_s": 15,
+    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
+    "weight": 1
+  }
+]

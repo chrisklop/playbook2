@@ -10,6 +10,15 @@ import {
 } from '../game/era-layer';
 import { computeMemeticInheritance, carryoverMultiplier } from '../game/prestige';
 import {
+  pickRandomEvent,
+  pickNextSpawnAt,
+  spawnOffer,
+  claimOffer,
+  bonusMultiplier,
+  type ActiveOffer,
+  type ActiveBonus,
+} from '../game/ticker-events';
+import {
   readLocalSave,
   writeLocalSave,
   type SaveState,
@@ -50,6 +59,11 @@ export const state = reactive({
   upgradesPurchased: new Set<string>(), // upgrade.id set
   audioMuted: false,
   lastPayout: {} as Record<string, LastPayout>, // ephemeral, drives popper animations
+  // v4 — ticker events
+  activeOffer: null as ActiveOffer | null,
+  activeBonus: null as ActiveBonus | null,
+  nextEventSpawnAt: 0, // ms epoch; 0 means "schedule on first tick"
+  nowMs: Date.now(), // bumped each tick so countdown UIs stay reactive
 });
 
 // Keep the audio module's local mute flag in sync with reactive state.
@@ -190,9 +204,12 @@ export function hireManager(genId: string): boolean {
  * Steady-state equivalent to summing cycleRatePerSecond across owned generators.
  * Note: only counts generators that will actually be producing (manager hired,
  * or cycle currently in flight). Idle untapped generators contribute 0.
+ *
+ * Multiplies in the active ticker-event bonus (1.0 when no claim is active).
  */
 export const productionPerSecond = computed(() => {
   const globalMult = carryoverMultiplier(state.memeticInheritance);
+  const eventMult = bonusMultiplier(state.activeBonus, state.nowMs);
   let total = 0;
   for (const gen of currentEra.value.generators) {
     const owned = state.ownedByGenerator[gen.id] ?? 0;
@@ -201,11 +218,25 @@ export const productionPerSecond = computed(() => {
       state.managersHired.has(gen.id) || (state.cycleProgress[gen.id] ?? 0) > 0;
     if (!willProduce) continue;
     const upgradeMult = upgradeMultFor(gen.id);
-    // Steady-state rate = payout / cycle_seconds = base × owned × milestone × global × upgrade
-    total += generatorProduction(gen, owned, globalMult) * upgradeMult;
+    total += generatorProduction(gen, owned, globalMult) * upgradeMult * eventMult;
   }
   return total;
 });
+
+/** Claim the currently-displayed offer. Replaces any active bonus. */
+export function claimActiveOffer(): boolean {
+  const offer = state.activeOffer;
+  if (!offer) return false;
+  if (Date.now() >= offer.expires_at_ms) {
+    state.activeOffer = null;
+    return false;
+  }
+  state.activeBonus = claimOffer(offer, Date.now());
+  state.activeOffer = null;
+  state.nextEventSpawnAt = pickNextSpawnAt(Date.now() + state.activeBonus.duration_s * 1000);
+  playUpgrade(); // re-use the upgrade chime for now — distinct + celebratory
+  return true;
+}
 
 export const projectedMI = computed(() =>
   computeMemeticInheritance(state.lifetimeRumor, currentEra.value.prestige_pivot)
@@ -259,6 +290,9 @@ export function performPrestige(): void {
   state.managersHired = new Set();
   state.upgradesPurchased = new Set();
   state.lastPayout = {};
+  state.activeOffer = null;
+  state.activeBonus = null;
+  state.nextEventSpawnAt = 0;
 
   const nextEraId = currentEra.value.prestige_into;
   if (nextEraId === null) return;
@@ -286,6 +320,10 @@ export function applyLoadedSave(save: SaveState): void {
   state.managersHired = new Set(save.managers_hired);
   state.upgradesPurchased = new Set(save.upgrades_purchased ?? []);
   state.audioMuted = save.audio_muted ?? false;
+  state.activeOffer = save.active_offer ?? null;
+  state.activeBonus = save.active_bonus ?? null;
+  state.nextEventSpawnAt = save.next_event_spawn_at ?? 0;
+  state.nowMs = Date.now();
 
   // Backward compatibility: pre-v3 players who reached auto_unlock_at on a
   // click-driven generator deserve the manager free (we changed the mechanic).
@@ -308,7 +346,7 @@ export function applyLoadedSave(save: SaveState): void {
 
 export function snapshotSave(): SaveState {
   return {
-    version: 3,
+    version: 4,
     current_era: state.currentEraId,
     rumor: state.rumor,
     lifetime_rumor: state.lifetimeRumor,
@@ -324,6 +362,9 @@ export function snapshotSave(): SaveState {
     managers_hired: Array.from(state.managersHired),
     upgrades_purchased: Array.from(state.upgradesPurchased),
     audio_muted: state.audioMuted,
+    active_offer: state.activeOffer,
+    active_bonus: state.activeBonus,
+    next_event_spawn_at: state.nextEventSpawnAt,
   };
 }
 
@@ -341,9 +382,38 @@ const TICK_MS = 100;
 if (typeof window !== 'undefined') {
   setInterval(() => {
     const dt = TICK_MS / 1000;
+    const now = Date.now();
+    state.nowMs = now;
     const globalMult = carryoverMultiplier(state.memeticInheritance);
+    const eventMult = bonusMultiplier(state.activeBonus, now);
     const era = currentEra.value;
 
+    // --- Ticker events lifecycle ---
+    // Expire stale active bonus.
+    if (state.activeBonus && now >= state.activeBonus.expires_at_ms) {
+      state.activeBonus = null;
+    }
+    // Expire stale unclaimed offer.
+    if (state.activeOffer && now >= state.activeOffer.expires_at_ms) {
+      state.activeOffer = null;
+      state.nextEventSpawnAt = pickNextSpawnAt(now);
+    }
+    // Initialise first spawn time (post-load or first boot).
+    if (state.nextEventSpawnAt === 0) {
+      state.nextEventSpawnAt = pickNextSpawnAt(now);
+    }
+    // Spawn a new offer when due and no offer/bonus is currently in flight.
+    if (
+      !state.activeOffer &&
+      !state.activeBonus &&
+      now >= state.nextEventSpawnAt
+    ) {
+      const pool = currentBundle.value.events;
+      const pick = pickRandomEvent(pool);
+      if (pick) state.activeOffer = spawnOffer(pick, now);
+    }
+
+    // --- Generator payouts (with event multiplier baked in) ---
     for (const gen of era.generators) {
       const owned = state.ownedByGenerator[gen.id] ?? 0;
       if (owned <= 0) continue;
@@ -351,22 +421,19 @@ if (typeof window !== 'undefined') {
       const managerHired = state.managersHired.has(gen.id);
       const cycleInFlight = (state.cycleProgress[gen.id] ?? 0) > 0;
 
-      // Cycle advances only when manager hired OR a tap has kicked it off.
       if (!managerHired && !cycleInFlight) continue;
 
       const oldProgress = state.cycleProgress[gen.id] ?? 0;
       let newProgress = oldProgress + dt / gen.cycle_seconds;
 
-      // May fire multiple payouts per tick if cycle_seconds is very short and tick is slow.
       while (newProgress >= 1) {
         const upgradeMult = upgradeMultFor(gen.id);
-        const payout = payoutPerCycle(gen, owned, globalMult, upgradeMult);
+        const payout = payoutPerCycle(gen, owned, globalMult, upgradeMult) * eventMult;
         state.rumor += payout;
         state.lifetimeRumor += payout;
-        state.lastPayout[gen.id] = { amount: payout, ts: Date.now() };
+        state.lastPayout[gen.id] = { amount: payout, ts: now };
         newProgress -= 1;
         if (!managerHired) {
-          // Without manager, cycle stops after one payout — player must tap to start next.
           newProgress = 0;
           break;
         }

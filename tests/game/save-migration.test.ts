@@ -20,13 +20,13 @@ const v1Sample = {
 };
 
 describe('save migration v1 -> v3', () => {
-  it('CURRENT_SAVE_VERSION is 3', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(3);
+  it('CURRENT_SAVE_VERSION is 4', () => {
+    expect(CURRENT_SAVE_VERSION).toBe(4);
   });
 
-  it('migrateSave from v1 adds v2 AND v3 defaults', () => {
+  it('migrateSave from v1 adds v2, v3 AND v4 defaults', () => {
     const migrated = migrateSave(v1Sample);
-    expect(migrated.version).toBe(3);
+    expect(migrated.version).toBe(4);
     // v2 defaults
     expect(migrated.prestige_count).toBe(0);
     expect(migrated.seen_toast_events).toEqual([]);
@@ -58,17 +58,20 @@ describe('save migration v1 -> v3', () => {
     const v1String = LZString.compressToUTF16(json);
 
     const restored = deserializeSave(v1String);
-    expect(restored.version).toBe(3);
+    expect(restored.version).toBe(4);
     expect(restored.prestige_count).toBe(0);
     expect(restored.cycle_progress).toEqual({});
     expect(restored.managers_hired).toEqual([]);
     expect(restored.upgrades_purchased).toEqual([]);
+    expect(restored.active_offer).toBe(null);
+    expect(restored.active_bonus).toBe(null);
+    expect(restored.next_event_spawn_at).toBe(0);
     expect(restored.rumor).toBe(1234.5);
   });
 
-  it('round-trip serialize/deserialize on a v3 payload preserves everything', () => {
-    const v3: SaveState = {
-      version: 3,
+  it('round-trip serialize/deserialize on a v4 payload preserves everything', () => {
+    const v4: SaveState = {
+      version: 4,
       current_era: 'printing-press',
       rumor: 50,
       lifetime_rumor: 1e8,
@@ -83,12 +86,15 @@ describe('save migration v1 -> v3', () => {
       cycle_progress: { 'compose-broadside': 0.7, 'print-pamphlet': 0.2 },
       managers_hired: ['compose-broadside'],
       upgrades_purchased: ['compose-broadside-up1', 'print-pamphlet-up1'],
+      active_offer: null,
+      active_bonus: null,
+      next_event_spawn_at: 0,
     };
-    const back = deserializeSave(serializeSave(v3));
-    expect(back).toEqual(v3);
+    const back = deserializeSave(serializeSave(v4));
+    expect(back).toEqual(v4);
   });
 
-  it('migrating from v2 directly adds only v3 defaults', () => {
+  it('migrating from v2 directly adds v3 + v4 defaults', () => {
     const v2Sample = {
       ...v1Sample,
       version: 2,
@@ -98,13 +104,32 @@ describe('save migration v1 -> v3', () => {
       show_best_buy_hint: false,
     };
     const migrated = migrateSave(v2Sample);
-    expect(migrated.version).toBe(3);
-    // v2 fields preserved
+    expect(migrated.version).toBe(4);
     expect(migrated.prestige_count).toBe(5);
     expect(migrated.bulk_buy_multiplier).toBe(10);
-    // v3 defaults added
     expect(migrated.cycle_progress).toEqual({});
     expect(migrated.managers_hired).toEqual([]);
     expect(migrated.upgrades_purchased).toEqual([]);
+    expect(migrated.active_offer).toBe(null);
+    expect(migrated.active_bonus).toBe(null);
+    expect(migrated.next_event_spawn_at).toBe(0);
+  });
+
+  it('migrating from v3 adds only v4 defaults', () => {
+    const v3Sample = {
+      ...v1Sample,
+      version: 3,
+      prestige_count: 1,
+      cycle_progress: { x: 0.5 },
+      managers_hired: ['x'],
+      upgrades_purchased: ['y'],
+    };
+    const migrated = migrateSave(v3Sample);
+    expect(migrated.version).toBe(4);
+    expect(migrated.cycle_progress).toEqual({ x: 0.5 });
+    expect(migrated.managers_hired).toEqual(['x']);
+    expect(migrated.active_offer).toBe(null);
+    expect(migrated.active_bonus).toBe(null);
+    expect(migrated.next_event_spawn_at).toBe(0);
   });
 });

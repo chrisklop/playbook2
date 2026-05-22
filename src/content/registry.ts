@@ -1,5 +1,11 @@
 import { loadEra } from './loader';
-import { ThemeSchema, type EraDefinition, type Theme } from './schema';
+import {
+  ThemeSchema,
+  EventDefinitionSchema,
+  type EraDefinition,
+  type Theme,
+  type EventDefinition,
+} from './schema';
 import { z } from 'zod';
 
 // Vite supports JSON imports natively
@@ -7,16 +13,19 @@ import antiquityEraRaw from './eras/01-antiquity/era.json';
 import antiquityThemeRaw from './eras/01-antiquity/theme.json';
 import antiquityTickerRaw from './eras/01-antiquity/ticker.json';
 import antiquityCopyRaw from './eras/01-antiquity/copy.json';
+import antiquityEventsRaw from './eras/01-antiquity/events.json';
 
 import printingPressEraRaw from './eras/02-printing-press/era.json';
 import printingPressThemeRaw from './eras/02-printing-press/theme.json';
 import printingPressTickerRaw from './eras/02-printing-press/ticker.json';
 import printingPressCopyRaw from './eras/02-printing-press/copy.json';
+import printingPressEventsRaw from './eras/02-printing-press/events.json';
 
 import pennyPressEraRaw from './eras/03-penny-press/era.json';
 import pennyPressThemeRaw from './eras/03-penny-press/theme.json';
 import pennyPressTickerRaw from './eras/03-penny-press/ticker.json';
 import pennyPressCopyRaw from './eras/03-penny-press/copy.json';
+import pennyPressEventsRaw from './eras/03-penny-press/events.json';
 
 const TickerSchema = z.object({
   quotes: z.array(z.object({
@@ -45,15 +54,18 @@ const CopySchema = z.object({
 });
 export type Copy = z.infer<typeof CopySchema>;
 
+const EventsArraySchema = z.array(EventDefinitionSchema);
+
 export interface EraBundle {
   era: EraDefinition;
   theme: Theme;
   ticker: Ticker;
   copy: Copy;
+  events: EventDefinition[];
 }
 
 function loadBundle(
-  raw: { era: unknown; theme: unknown; ticker: unknown; copy: unknown },
+  raw: { era: unknown; theme: unknown; ticker: unknown; copy: unknown; events: unknown },
   eraIdHint: string,
 ): EraBundle {
   try {
@@ -62,6 +74,7 @@ function loadBundle(
       theme: ThemeSchema.parse(raw.theme),
       ticker: TickerSchema.parse(raw.ticker),
       copy: CopySchema.parse(raw.copy),
+      events: EventsArraySchema.parse(raw.events),
     };
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
@@ -76,6 +89,7 @@ const BUNDLES: Record<string, EraBundle> = {
       theme: antiquityThemeRaw,
       ticker: antiquityTickerRaw,
       copy: antiquityCopyRaw,
+      events: antiquityEventsRaw,
     },
     'antiquity',
   ),
@@ -85,6 +99,7 @@ const BUNDLES: Record<string, EraBundle> = {
       theme: printingPressThemeRaw,
       ticker: printingPressTickerRaw,
       copy: printingPressCopyRaw,
+      events: printingPressEventsRaw,
     },
     'printing-press',
   ),
@@ -94,6 +109,7 @@ const BUNDLES: Record<string, EraBundle> = {
       theme: pennyPressThemeRaw,
       ticker: pennyPressTickerRaw,
       copy: pennyPressCopyRaw,
+      events: pennyPressEventsRaw,
     },
     'penny-press',
   ),

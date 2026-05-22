@@ -4,6 +4,7 @@ import Ticker from '../components/Ticker.vue';
 import EraBanner from '../components/EraBanner.vue';
 import ResourceRow from '../components/ResourceRow.vue';
 import BulkBuyBar from '../components/BulkBuyBar.vue';
+import EventClaim from '../components/EventClaim.vue';
 import GeneratorCard from '../components/GeneratorCard.vue';
 import RevealPlaceholder from '../components/RevealPlaceholder.vue';
 import PrestigeStrip from '../components/PrestigeStrip.vue';
@@ -19,6 +20,7 @@ import { visibleGenerators } from '../state';
       <Ticker />
       <EraBanner />
       <ResourceRow />
+      <EventClaim />
       <BulkBuyBar />
     </div>
     <div class="cards">
