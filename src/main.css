@@ -33,6 +33,14 @@ button {
 	color: black;
 }
 
+button,
+a,
+.button,
+.link {
+	touch-action: manipulation;
+	-webkit-tap-highlight-color: transparent;
+}
+
 a,
 .button,
 .link {
