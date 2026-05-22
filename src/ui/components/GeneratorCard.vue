@@ -286,7 +286,7 @@ function tapBuyUpgrade(e: Event) {
   flex: 1;
 }
 .icon {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1;
   flex-shrink: 0;
 }
