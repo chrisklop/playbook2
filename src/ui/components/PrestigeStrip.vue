@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { state, currentEra, currentCopy, projectedMI, canPrestige } from '../state';
+import { state, currentEra, projectedMI, canPrestige } from '../state';
+import { getEra, registry } from '../../content/registry';
 
 const visible = computed(() => {
   return currentEra.value.prestige_into !== null || state.lifetimeRumor > 0;
@@ -8,6 +9,20 @@ const visible = computed(() => {
 const progress = computed(() => Math.min(1, projectedMI.value));
 const pct = computed(() => Math.round(progress.value * 100));
 const projectedRounded = computed(() => Math.floor(projectedMI.value));
+
+// Destination era name for the "Progress toward ___" line. Reads cleanly
+// regardless of how the era's prestige_button_label is phrased (which can
+// be an action verb like "Onward to..." or "Begin Again", neither of which
+// composes grammatically with "Progress toward").
+const destinationLabel = computed(() => {
+  const nextId = currentEra.value.prestige_into;
+  if (!nextId || !registry.eraIds.includes(nextId)) return 'next era';
+  const next = getEra(nextId).era;
+  // Loop-back (Era 4 → Era 1) reads better as "loop's end" than as a
+  // bare era name, since landing back in Antiquity is the achievement.
+  if (next.ordinal < currentEra.value.ordinal) return `the next loop`;
+  return next.display_name;
+});
 </script>
 
 <template>
@@ -15,7 +30,7 @@ const projectedRounded = computed(() => Math.floor(projectedMI.value));
     <div class="header">
       <span class="title">
         <template v-if="canPrestige">⚡ READY TO ASCEND</template>
-        <template v-else>Progress toward {{ currentCopy.prestige_button_label }}</template>
+        <template v-else>Progress toward {{ destinationLabel }}</template>
       </span>
       <span class="amount">
         <template v-if="canPrestige">+{{ projectedRounded }} Inheritance</template>
