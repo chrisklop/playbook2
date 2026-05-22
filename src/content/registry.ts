@@ -33,6 +33,12 @@ import propagandaStateTickerRaw from './eras/04-propaganda-state/ticker.json';
 import propagandaStateCopyRaw from './eras/04-propaganda-state/copy.json';
 import propagandaStateEventsRaw from './eras/04-propaganda-state/events.json';
 
+import talkRadioEraRaw from './eras/05-talk-radio/era.json';
+import talkRadioThemeRaw from './eras/05-talk-radio/theme.json';
+import talkRadioTickerRaw from './eras/05-talk-radio/ticker.json';
+import talkRadioCopyRaw from './eras/05-talk-radio/copy.json';
+import talkRadioEventsRaw from './eras/05-talk-radio/events.json';
+
 const TickerSchema = z.object({
   quotes: z.array(z.object({
     id: z.string().min(1),
@@ -128,6 +134,16 @@ const BUNDLES: Record<string, EraBundle> = {
       events: propagandaStateEventsRaw,
     },
     'propaganda-state',
+  ),
+  'talk-radio': loadBundle(
+    {
+      era: talkRadioEraRaw,
+      theme: talkRadioThemeRaw,
+      ticker: talkRadioTickerRaw,
+      copy: talkRadioCopyRaw,
+      events: talkRadioEventsRaw,
+    },
+    'talk-radio',
   ),
 };
 

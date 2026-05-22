@@ -10,19 +10,28 @@ export type TechniqueId =
   | 'conspiracy'
   | 'discrediting'
   | 'trolling'
-  // Era 4+ additions (Propaganda State 1914-1945 and beyond)
+  // Era 4 — Propaganda State 1914-1945
   | 'big-lie'
   | 'atrocity-calibration'
   | 'monumental-aesthetic'
   | 'black-propaganda'
   | 'photographic-falsification'
-  | 'manufactured-event';
+  | 'manufactured-event'
+  // Era 5 — Talk Radio & Cable 1987-1999
+  | 'talk-radio-outrage'
+  | 'drudge-drop'
+  | 'false-balance'
+  | 'evangelical-alliance'
+  | 'victim-grievance'
+  | 'cable-news-panel';
 
 export const ALL_TECHNIQUES: readonly TechniqueId[] = [
   'impersonation', 'emotion', 'polarization',
   'conspiracy', 'discrediting', 'trolling',
   'big-lie', 'atrocity-calibration', 'monumental-aesthetic',
   'black-propaganda', 'photographic-falsification', 'manufactured-event',
+  'talk-radio-outrage', 'drudge-drop', 'false-balance',
+  'evangelical-alliance', 'victim-grievance', 'cable-news-panel',
 ] as const;
 
 export type ResourceId = 'rumor' | 'reach' | 'cred' | 'memetic_inheritance';

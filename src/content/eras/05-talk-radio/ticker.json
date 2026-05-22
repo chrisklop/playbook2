@@ -1,0 +1,15 @@
+{
+  "quotes": [
+    { "id": "fairness-doctrine-vote",  "text": "The FCC repealed the Fairness Doctrine 4–0 on Aug 4, 1987, ending 38 years of mandated on-air rebuttal.", "codex_link": "fairness-doctrine-repeal" },
+    { "id": "limbaugh-syndication",    "text": "By 1993 the Rush Limbaugh Show ran on 650+ stations and drew 20 million listeners a week.", "codex_link": "limbaugh-debut" },
+    { "id": "gopac-language-list",     "text": "Newt Gingrich's 1990 GOPAC memo gave candidates 64 words to use about Democrats: 'sick,' 'pathetic,' 'traitors,' 'destroy.'", "codex_link": "gopac-memo" },
+    { "id": "drudge-lewinsky-time",    "text": "Drudge posted Newsweek's killed Lewinsky story at 11:32 PM on Jan 17, 1998. Cable picked it up by sunrise.", "codex_link": "drudge-blue-dress" },
+    { "id": "fox-launch-date",         "text": "Fox News Channel launched October 7, 1996, in 17 million homes — by 2002 it was the top-rated cable news network.", "codex_link": "fox-news-launch" },
+    { "id": "christian-coalition-voters", "text": "The Christian Coalition distributed 33 million voter guides in churches on the Sunday before the 1992 election.", "codex_link": "christian-coalition-1989" },
+    { "id": "ailes-nixon-memo",        "text": "Roger Ailes drafted a memo to Nixon in 1970 proposing a 'GOP TV news' network. He waited 26 years and built it.", "codex_link": "fox-news-launch" },
+    { "id": "robertson-700-club",      "text": "Pat Robertson's '700 Club' reached 7 million households by 1988 — and ran the largest direct-mail political list in America.", "codex_link": "christian-coalition-1989" },
+    { "id": "dittohead-coined",        "text": "Limbaugh callers signed off with 'dittos' instead of agreeing in detail. The chorus identified itself by refusing to argue.", "codex_link": "ditto-as-identity" }
+  ],
+  "interval_ms": 8000,
+  "no_repeat_within": 3
+}

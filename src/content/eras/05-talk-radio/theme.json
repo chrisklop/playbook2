@@ -1,0 +1,32 @@
+{
+  "id": "talk-radio-am-dial",
+  "era_id": "talk-radio",
+  "fonts": {
+    "masthead": "'Anton', 'Bebas Neue', Impact, sans-serif",
+    "body": "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif",
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans:wght@400;500;700&display=swap"
+  },
+  "palette": {
+    "background": "#f3efe5",
+    "surface": "#e6dfcd",
+    "text": "#171717",
+    "muted": "#5a544a",
+    "accent": "#cc1f1f",
+    "border": "#171717"
+  },
+  "riso": {
+    "primary_bg": "#cc1f1f",
+    "primary_shadow": "#1a1a1a",
+    "primary_text": "#ffffff",
+    "secondary_bg": "#e6dfcd",
+    "secondary_shadow": "#cc1f1f",
+    "secondary_text": "#171717",
+    "upgrade_bg": "#1a1a1a",
+    "upgrade_shadow": "#cc1f1f",
+    "upgrade_text": "#ffffff",
+    "bulk_on_bg": "#cc1f1f",
+    "bulk_on_shadow": "#1a1a1a",
+    "bulk_on_text": "#ffffff"
+  },
+  "card_style": "broadsheet"
+}

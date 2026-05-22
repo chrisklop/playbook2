@@ -61,11 +61,16 @@ describe('generatorProduction', () => {
   it('global multiplier compounds', () => {
     expect(generatorProduction(gen, 50, 2.5)).toBe(7 * 50 * 4 * 2.5);
   });
-  it('click-driven generator produces 0 BEFORE reaching auto_unlock_at', () => {
+  // Note: the old behavior gated click-driven production at owned < auto_unlock_at.
+  // That gate was removed (see 954218d) — Hire-pill visibility is the new gate,
+  // and once a manager is hired the cycle runs immediately. generatorProduction
+  // now returns owned × base × milestones regardless of auto_unlock_at; the
+  // willProduce check in productionPerSecond keeps unhired tiles at 0/sec.
+  it('click-driven generator produces idle owned×base × milestones even before auto_unlock_at threshold', () => {
     const clickGen = { ...gen, is_click_driven: true, auto_unlock_at: 10, base_production: 1 };
-    expect(generatorProduction(clickGen, 9, 1)).toBe(0);
+    expect(generatorProduction(clickGen, 9, 1)).toBe(9); // 1 × 9 × milestone(9)=1 × 1
   });
-  it('click-driven generator produces idle AFTER reaching auto_unlock_at ("Sycophant hired" moment)', () => {
+  it('click-driven generator produces idle once manager is hired ("Sycophant hired" moment)', () => {
     const clickGen = { ...gen, is_click_driven: true, auto_unlock_at: 10, base_production: 1 };
     expect(generatorProduction(clickGen, 10, 1)).toBe(10); // 1 × 10 × milestone(10)=1 × 1
   });

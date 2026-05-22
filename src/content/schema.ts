@@ -4,9 +4,12 @@ export const TechniqueIdSchema = z.enum([
   // Era 1-3 baseline
   'impersonation', 'emotion', 'polarization',
   'conspiracy', 'discrediting', 'trolling',
-  // Era 4+ additions
+  // Era 4 — Propaganda State 1914-1945
   'big-lie', 'atrocity-calibration', 'monumental-aesthetic',
   'black-propaganda', 'photographic-falsification', 'manufactured-event',
+  // Era 5 — Talk Radio & Cable 1987-1999
+  'talk-radio-outrage', 'drudge-drop', 'false-balance',
+  'evangelical-alliance', 'victim-grievance', 'cable-news-panel',
 ]);
 
 export const ResourceIdSchema = z.enum([

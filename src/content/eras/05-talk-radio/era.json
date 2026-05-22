@@ -1,0 +1,302 @@
+{
+  "id": "talk-radio",
+  "ordinal": 5,
+  "date_range": "1987 – 1999",
+  "display_name": "Talk Radio & Cable",
+  "theme_id": "talk-radio-am-dial",
+  "techniques_unlocked": [
+    "talk-radio-outrage",
+    "drudge-drop",
+    "false-balance",
+    "evangelical-alliance",
+    "victim-grievance",
+    "cable-news-panel"
+  ],
+  "generators": [
+    {
+      "id": "place-talk-radio-caller",
+      "tier": 1,
+      "display_name": "Place a Talk-Radio Caller",
+      "description": "Three hours a day, one host, one frame. Tap to gain 1 Rumor. At 10 owned, a Caller Screener takes over.",
+      "technique_tag": "talk-radio-outrage",
+      "resource": "rumor",
+      "base_cost": 4,
+      "cost_growth": 1.07,
+      "base_production": 1,
+      "is_click_driven": true,
+      "auto_unlock_at": 10,
+      "auto_operative_name": "Caller Screener",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "limbaugh-debut",
+      "reveal_at_lifetime": 0,
+      "cycle_seconds": 1,
+      "manager_cost": 200,
+      "manager_name": "Screener",
+      "icon": "📞",
+      "upgrades": [
+        {
+          "id": "place-talk-radio-caller-dittohead-rollcall",
+          "name": "Dittohead Roll-Call",
+          "description": "The opener identifies the chorus. The chorus identifies itself.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 12000
+        },
+        {
+          "id": "place-talk-radio-caller-three-hour-block",
+          "name": "Three-Hour Format Block",
+          "description": "Same time, every day. Never breaks character. Never apologizes.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 300000
+        },
+        {
+          "id": "place-talk-radio-caller-eib-network",
+          "name": "EIB Affiliate Network",
+          "description": "650 stations. One signal. From Sacramento to Bangor.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 6000000
+        }
+      ]
+    },
+    {
+      "id": "run-drudge-splash",
+      "tier": 2,
+      "display_name": "Run a Drudge Splash",
+      "description": "A single red headline. The morning shows now have their topic.",
+      "technique_tag": "drudge-drop",
+      "resource": "rumor",
+      "base_cost": 5000,
+      "cost_growth": 1.07,
+      "base_production": 35,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Tip Editor",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "drudge-blue-dress",
+      "reveal_at_lifetime": 250,
+      "cycle_seconds": 3,
+      "manager_cost": 8000,
+      "manager_name": "Editor",
+      "icon": "🟥",
+      "upgrades": [
+        {
+          "id": "run-drudge-splash-flashing-light",
+          "name": "Flashing Police-Light GIF",
+          "description": "The visual code for emergency. The story does not need to be one.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 60000
+        },
+        {
+          "id": "run-drudge-splash-cable-handoff",
+          "name": "Cable-News Handoff Pipeline",
+          "description": "Drudge by 7 AM, Hannity's producer by 8, cable chyrons by noon.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 1500000
+        },
+        {
+          "id": "run-drudge-splash-killed-stories",
+          "name": "Killed-Story Salvage Desk",
+          "description": "Newsweek shelves a piece. Drudge runs it before the editor gets home.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 30000000
+        }
+      ]
+    },
+    {
+      "id": "book-sunday-panel",
+      "tier": 2,
+      "display_name": "Book a Sunday-Show Panel",
+      "description": "One climate scientist, one think-tank fellow. The viewer concludes both 'sides' are equally credentialed.",
+      "technique_tag": "false-balance",
+      "resource": "rumor",
+      "base_cost": 25000,
+      "cost_growth": 1.1,
+      "base_production": 250,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Network Booker",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": null,
+      "reveal_at_lifetime": 1500,
+      "cycle_seconds": 5,
+      "manager_cost": 50000,
+      "manager_name": "Booker",
+      "icon": "🎙️",
+      "upgrades": [
+        {
+          "id": "book-sunday-panel-balance-doctrine",
+          "name": "Strict 'Both-Sides' Doctrine",
+          "description": "The split-screen format itself does the framing. Nobody has to argue the lie.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 200000
+        },
+        {
+          "id": "book-sunday-panel-pundit-rolodex",
+          "name": "Pundit Rolodex",
+          "description": "Twelve operatives, fifty-two Sundays, four networks. Always available.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 5000000
+        },
+        {
+          "id": "book-sunday-panel-villager-circuit",
+          "name": "Beltway Villager Circuit",
+          "description": "Same Georgetown dinner parties. Same off-record briefings. Same conventional wisdom by Monday.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 100000000
+        }
+      ]
+    },
+    {
+      "id": "convene-christian-coalition",
+      "tier": 3,
+      "display_name": "Convene the Christian Coalition",
+      "description": "Voter guides in the pews on the Sunday before Tuesday. Pat Robertson smiles for the camera; Ralph Reed counts.",
+      "technique_tag": "evangelical-alliance",
+      "resource": "rumor",
+      "base_cost": 150000,
+      "cost_growth": 1.1,
+      "base_production": 2500,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Field Director",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "christian-coalition-1989",
+      "reveal_at_lifetime": 7500,
+      "cycle_seconds": 8,
+      "manager_cost": 500000,
+      "manager_name": "Director",
+      "icon": "⛪",
+      "upgrades": [
+        {
+          "id": "convene-christian-coalition-voter-guides",
+          "name": "Tax-Exempt Voter Guides",
+          "description": "Not endorsements. Just side-by-side comparisons that always print the same way.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 1500000
+        },
+        {
+          "id": "convene-christian-coalition-rolodex-of-pastors",
+          "name": "National Pastor Rolodex",
+          "description": "60,000 churches. One Tuesday morning, every congregation hears the same call.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 40000000
+        },
+        {
+          "id": "convene-christian-coalition-televangelist-circuit",
+          "name": "Televangelist Circuit",
+          "description": "Falwell, Robertson, Bakker. The pulpit becomes the studio.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 800000000
+        }
+      ]
+    },
+    {
+      "id": "boost-senate-hopeful",
+      "tier": 3,
+      "display_name": "Boost a Senate Hopeful",
+      "description": "Gingrich's GOPAC mails the words. The candidate reads them on local TV. The frame travels.",
+      "technique_tag": "victim-grievance",
+      "resource": "rumor",
+      "base_cost": 1000000,
+      "cost_growth": 1.1,
+      "base_production": 25000,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Campaign Strategist",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "gopac-memo",
+      "reveal_at_lifetime": 30000,
+      "cycle_seconds": 12,
+      "manager_cost": 3000000,
+      "manager_name": "Strategist",
+      "icon": "🏛️",
+      "upgrades": [
+        {
+          "id": "boost-senate-hopeful-language-memo",
+          "name": "Language: A Key Mechanism of Control",
+          "description": "Use these words about your opponent: decay, sick, pathetic, traitor. Use these about us: family, courage, dream.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 12000000
+        },
+        {
+          "id": "boost-senate-hopeful-attack-ad-shop",
+          "name": "Attack-Ad Shop",
+          "description": "Twenty-second spots. Slow-motion mugshot. The opponent looks guilty even when standing still.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 300000000
+        },
+        {
+          "id": "boost-senate-hopeful-talk-radio-host-call",
+          "name": "Pre-Booked Talk-Radio Hits",
+          "description": "Three friendly shows on launch week. The candidate's lines become the audience's lines.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 6000000000
+        }
+      ]
+    },
+    {
+      "id": "launch-cable-channel",
+      "tier": 4,
+      "display_name": "Launch a Cable News Channel",
+      "description": "Roger Ailes had the memo since Nixon. Now he has the funding. 'Fair and Balanced' goes to air October 7, 1996.",
+      "technique_tag": "cable-news-panel",
+      "resource": "rumor",
+      "base_cost": 5000000,
+      "cost_growth": 1.12,
+      "base_production": 250000,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Network Founder",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "fox-news-launch",
+      "reveal_at_lifetime": 100000,
+      "cycle_seconds": 25,
+      "manager_cost": 30000000,
+      "manager_name": "Ailes",
+      "icon": "📺",
+      "upgrades": [
+        {
+          "id": "launch-cable-channel-chyron-desk",
+          "name": "24-Hour Chyron Desk",
+          "description": "The lower-third writes the story the anchor isn't saying.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 60000000
+        },
+        {
+          "id": "launch-cable-channel-talent-stable",
+          "name": "Talent Stable",
+          "description": "O'Reilly. Hannity. Six former campaign operatives in anchor chairs.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 1500000000
+        },
+        {
+          "id": "launch-cable-channel-carriage-fees",
+          "name": "Carriage-Fee Lock-In",
+          "description": "Every cable subscriber pays you whether they tune in or not.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 30000000000
+        }
+      ]
+    }
+  ],
+  "prestige_into": "antiquity",
+  "prestige_pivot": 12500000000000000,
+  "prestige_bridge_copy": "1999 — the dial-up modem screams; the towers still stand. The cable channels do not stop, the talk-radio hosts do not stop, the Coalition does not stop. The playbook crosses with you. You begin again — older eras, younger hands."
+}

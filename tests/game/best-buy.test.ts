@@ -54,12 +54,20 @@ describe('pickOptimalGenerator — Pecorella overtake heuristic', () => {
     expect(pickOptimalGenerator([a, b], state(10000), 1)).toBe('b');
   });
 
-  it('avoids click-driven generators that have not auto-unlocked', () => {
-    // Tier-1 click-driven under threshold contributes 0 delta. Idle generator wins.
+  it('considers click-driven generators below auto_unlock_at as buyable', () => {
+    // Old behavior gated click-driven production at owned < auto_unlock_at,
+    // so the picker would always skip them — but the gate was removed when
+    // we moved the manager threshold to Hire-pill visibility. Buying toward
+    // auto_unlock_at is now a legitimate strategy (you're working toward
+    // a hireable manager), so the picker can recommend a click-driven tile
+    // when its cost/payoff beats the alternative.
     const click = baseGen({
       id: 'click', is_click_driven: true, auto_unlock_at: 10, base_cost: 10, base_production: 1,
     });
     const idle = baseGen({ id: 'idle', base_cost: 100, base_production: 5 });
-    expect(pickOptimalGenerator([click, idle], state(1000, { click: 5 }), 1)).toBe('idle');
+    // With 5 click owned already producing (5 × 1 = 5/cycle), buying one more
+    // click for ~14 is cheaper per unit of new throughput than buying the
+    // first idle for 100. Picker correctly recommends the click tile.
+    expect(pickOptimalGenerator([click, idle], state(1000, { click: 5 }), 1)).toBe('click');
   });
 });
