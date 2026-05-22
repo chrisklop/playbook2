@@ -1,10 +1,19 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { state, currentCopy, productionPerSecond } from '../state';
+import { carryoverMultiplier } from '../../game/prestige';
 import { formatResource, formatRate } from '../format';
 
 const formatted = computed(() => formatResource(state.rumor));
 const perSec = computed(() => formatRate(productionPerSecond.value));
+
+// Permanent multiplier from Memetic Inheritance (carries across prestiges).
+// Show it as "+X%" so the player can see the prestige reward at all times.
+const miBonusPct = computed(() => {
+  const mult = carryoverMultiplier(state.memeticInheritance);
+  return Math.round((mult - 1) * 100);
+});
+const showMiCell = computed(() => state.memeticInheritance > 0 || state.prestigeCount > 0);
 </script>
 
 <template>
@@ -16,6 +25,10 @@ const perSec = computed(() => formatRate(productionPerSecond.value));
     <div class="cell">
       <div class="val">{{ perSec }}/s</div>
       <div class="lbl">Rate</div>
+    </div>
+    <div v-if="showMiCell" class="cell mi-cell">
+      <div class="val">+{{ miBonusPct }}%</div>
+      <div class="lbl">Inheritance</div>
     </div>
   </div>
 </template>
@@ -43,4 +56,5 @@ const perSec = computed(() => formatRate(productionPerSecond.value));
 .cell:last-child { border-right: 0; }
 .val { font-weight: 700; font-size: 14px; }
 .lbl { font-size: 8px; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+.mi-cell .val { color: var(--theme-accent, #2a2218); }
 </style>
