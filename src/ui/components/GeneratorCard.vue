@@ -16,6 +16,11 @@ import { carryoverMultiplier } from '../../game/prestige';
 import type { GeneratorTier } from '../../content/schema';
 import { formatCost, formatResource } from '../format';
 import { playMilestone } from '../audio';
+import { currentCopy } from '../state';
+
+// Resource name pulled from the era's copy.json so labels stay era-appropriate
+// (Era 1 says "Rumor", Era 2 says "Rumour", Era 4 says "Rumor", etc.).
+const resourceName = computed(() => currentCopy.value.resource_labels.rumor ?? 'Rumor');
 
 const props = defineProps<{ gen: GeneratorTier }>();
 
@@ -59,6 +64,11 @@ const cycleSecondsLabel = computed<string>(() => {
   if (s >= 1) return s.toFixed(1) + 's';
   return (s * 1000).toFixed(0) + 'ms';
 });
+// Per-second rate, normalised across tiles regardless of cycle length.
+// "Earns 12.5 Rumor / sec" reads more naturally than per-cycle math.
+const incomePerSecond = computed<number>(() =>
+  incomePerCycle.value / props.gen.cycle_seconds
+);
 
 const managerHired = computed(() => isManagerHired(props.gen.id));
 const managerCost = computed(() => props.gen.manager_cost);
@@ -218,27 +228,17 @@ function tapBuyUpgrade(e: Event) {
 
     <div class="content">
       <!-- Left side (~75%): title, owned, cost. Right side (~25%): big icon. -->
+      <!-- Top: name + how many you own + the big era-themed icon. -->
       <div class="row top">
         <div class="info">
           <div class="title-line">
             <span class="title">{{ gen.display_name }}</span>
-            <span class="owned" v-if="owned > 0">×{{ owned }}</span>
+            <span class="owned-pill" v-if="owned > 0">Owned: {{ owned }}</span>
           </div>
-          <div class="cost-line">
-            <button
-              type="button"
-              class="btn-riso btn-riso-sm buy-pill"
-              :class="{ disabled: !canAffordBuy }"
-              :disabled="!canAffordBuy"
-              @click="tapBuy"
-            >
-              <span class="buy-label">BUY<span v-if="bulkN > 1">×{{ bulkN }}</span></span>
-              <span class="buy-cost">{{ formatCost(buyCost) }}</span>
-            </button>
-            <span v-if="!canAffordBuy" class="cost-short">need +{{ formatCost(shortfall) }}</span>
-            <template v-else>
-              <span class="earn-label">+{{ formatResource(incomePerCycle) }} / {{ cycleSecondsLabel }}</span>
-            </template>
+          <div class="rate-line">
+            <span class="rate-verb">Earns</span>
+            <span class="rate-num">{{ formatResource(incomePerSecond) }}</span>
+            <span class="rate-unit">{{ resourceName }} / sec</span>
           </div>
         </div>
         <div class="icon-slot">
@@ -252,15 +252,20 @@ function tapBuyUpgrade(e: Event) {
         </div>
       </div>
 
-      <div class="row bottom" v-if="owned > 0 || managerCost > 0">
-        <div class="mile-hint">
-          <template v-if="nextMilestone !== null">
-            ×{{ currentMilestoneMult }} → ×{{ nextMilestoneMult }} at {{ nextMilestone }}
-          </template>
-          <template v-else>
-            <em>{{ gen.technique_tag }}</em>
-          </template>
-        </div>
+      <!-- Action row: buy more + (hire manager OR upgrade OR managed-status). -->
+      <div class="row actions">
+        <button
+          type="button"
+          class="btn-riso btn-riso-sm buy-pill"
+          :class="{ disabled: !canAffordBuy }"
+          :disabled="!canAffordBuy"
+          @click="tapBuy"
+        >
+          <span class="buy-action">Buy <template v-if="bulkN > 1">{{ bulkN }}</template></span>
+          <span class="buy-cost">{{ formatCost(buyCost) }} {{ resourceName }}</span>
+        </button>
+        <span v-if="!canAffordBuy" class="cost-short">need {{ formatCost(shortfall) }} more</span>
+
         <div class="mgr">
           <button
             v-if="owned > 0 && !managerHired"
@@ -270,7 +275,8 @@ function tapBuyUpgrade(e: Event) {
             @click="tapHireManager"
             :disabled="!canAffordManager"
           >
-            HIRE {{ gen.manager_name.toUpperCase() }} · {{ formatCost(managerCost) }}
+            <span class="hire-action">Hire {{ gen.manager_name }}</span>
+            <span class="hire-cost">{{ formatCost(managerCost) }} {{ resourceName }}</span>
           </button>
           <button
             v-else-if="managerHired && nextUpgrade"
@@ -281,14 +287,26 @@ function tapBuyUpgrade(e: Event) {
             :disabled="!canAffordUpgrade"
             :title="nextUpgrade.description"
           >
-            ★ ×{{ nextUpgrade.multiplier }} · {{ formatCost(nextUpgrade.cost) }}
+            <span class="hire-action">★ Boost ×{{ nextUpgrade.multiplier }}</span>
+            <span class="hire-cost">{{ formatCost(nextUpgrade.cost) }} {{ resourceName }}</span>
           </button>
-          <span v-else-if="managerHired" class="mgr-on">✓ {{ gen.manager_name }}</span>
+          <span v-else-if="managerHired" class="mgr-on">✓ {{ gen.manager_name }} running</span>
         </div>
       </div>
 
-      <div v-if="owned === 0 && managerCost === 0" class="row bottom">
-        <div class="mile-hint"><em>{{ gen.technique_tag }}</em></div>
+      <!-- Boost-ladder hint row — only meaningful once you own at least one. -->
+      <div class="row hint" v-if="owned > 0">
+        <span class="hint-text">
+          <template v-if="nextMilestone !== null">
+            Production boost ×{{ currentMilestoneMult }} now → ×{{ nextMilestoneMult }} at {{ nextMilestone }} owned
+          </template>
+          <template v-else>
+            Production boost ×{{ currentMilestoneMult }} — max boosts reached
+          </template>
+        </span>
+      </div>
+      <div v-else class="row hint">
+        <span class="hint-text"><em>Technique: {{ gen.technique_tag }}</em></span>
       </div>
     </div>
 
@@ -346,11 +364,9 @@ function tapBuyUpgrade(e: Event) {
     inset 0 2px 4px rgba(0, 0, 0, 0.22),
     0 0 0 rgba(0, 0, 0, 0);
 }
-.card.unaffordable {
-  filter: grayscale(0.45) brightness(0.92);
-  opacity: 0.78;
-}
-.card.unaffordable:hover { filter: grayscale(0.4) brightness(0.95); }
+/* Note: the whole tile no longer grays when "unaffordable" -- the BUY pill
+   carries its own disabled state. Body-tap = do work, which is always
+   available; greying the whole card would misrepresent that. */
 .card.flashing { animation: mile-flash 400ms ease-out; }
 @keyframes mile-flash {
   0%   { background: var(--theme-surface, #ebe2c4); }
@@ -428,41 +444,112 @@ function tapBuyUpgrade(e: Event) {
   flex-shrink: 1;
   min-width: 0;
 }
-.owned {
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
+/* "Owned: N" pill -- explicit label, not the ambiguous "xN" shorthand. */
+.owned-pill {
+  font-family: var(--riso-font, monospace);
   font-weight: 700;
-  font-size: 12px;
-  opacity: 0.7;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  padding: 1px 6px;
+  background: rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.18);
+  border-radius: 2px;
   flex-shrink: 0;
 }
-.cost-line {
+/* "Earns N Rumor / sec" line — every number labeled. */
+.rate-line {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  align-items: baseline;
+  gap: 4px;
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+.rate-verb {
+  font-size: 10px;
+  font-weight: 600;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.rate-num {
   font-family: var(--theme-font-masthead, -apple-system, sans-serif);
+  font-size: 14px;
+  font-weight: 900;
+  color: #2a6b35;
+  letter-spacing: 0.3px;
+}
+.rate-unit {
+  font-size: 10px;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+/* Action row — Buy + Hire/Upgrade buttons side by side. */
+.actions {
+  margin-top: 5px;
   flex-wrap: wrap;
   row-gap: 4px;
-  margin-top: 3px;
 }
-/* Inline BUY pill — riso style, compact, holds label + cost stacked. */
 .buy-pill {
   display: inline-flex;
-  flex-direction: row;
-  align-items: baseline;
-  gap: 6px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  line-height: 1.15;
   padding: 4px 10px 5px;
   --riso-shadow-offset: 3px;
 }
-.buy-pill .buy-label {
-  font-size: 9px;
+.buy-pill .buy-action {
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 1px;
-  opacity: 0.85;
+  letter-spacing: 0.8px;
 }
 .buy-pill .buy-cost {
-  font-size: 13px;
-  font-weight: 900;
+  font-size: 10px;
+  font-weight: 600;
+  opacity: 0.85;
   letter-spacing: 0.3px;
+}
+.mgr .btn-riso {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  line-height: 1.15;
+  padding: 4px 10px 5px;
+}
+.hire-action {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+.hire-cost {
+  font-size: 10px;
+  font-weight: 600;
+  opacity: 0.85;
+  letter-spacing: 0.3px;
+}
+
+/* Boost-ladder hint row — explains what the milestone meter at the
+   bottom edge represents in plain English. */
+.hint {
+  margin-top: 3px;
+  min-height: 14px;
+}
+.hint-text {
+  font-family: var(--theme-font-body, -apple-system, sans-serif);
+  font-size: 10px;
+  font-style: italic;
+  opacity: 0.78;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hint-text em {
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.75;
 }
 .cost-short {
   font-size: 10px;
@@ -470,13 +557,6 @@ function tapBuyUpgrade(e: Event) {
   color: #b3261e;
   opacity: 0.9;
 }
-.earn-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: #2a6b35;
-  letter-spacing: 0.3px;
-}
-
 .icon-slot {
   position: relative;
   width: 25%;
@@ -495,31 +575,7 @@ function tapBuyUpgrade(e: Event) {
 }
 .card:active .icon-big { transform: scale(0.92); }
 
-.bottom {
-  position: relative;
-  font-size: 9px;
-  letter-spacing: 0.5px;
-  opacity: 0.9;
-}
-.mile-hint, .mgr { position: relative; z-index: 1; }
-.mile-hint {
-  font-family: var(--theme-font-body, -apple-system, sans-serif);
-  font-size: 11px;
-  font-style: italic;
-  font-weight: 600;
-  opacity: 0.92;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  flex-shrink: 1;
-  min-width: 0;
-}
-.mile-hint em {
-  font-style: normal;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.mgr { flex-shrink: 0; }
+.mgr { flex-shrink: 0; position: relative; z-index: 1; }
 .mgr-on {
   font-family: var(--theme-font-body, -apple-system, sans-serif);
   font-style: italic;
