@@ -631,7 +631,11 @@ function tapBuyUpgrade(e: Event) {
 }
 .card:active .icon-big { transform: scale(0.92); }
 
-.mgr { flex-shrink: 0; position: relative; z-index: 1; }
+/* margin-left: auto pins the Hire/Boost slot to the right edge even when
+   the actions row wraps to a second line — without it, a wrapped .mgr
+   ends up justified left and visibly "pops" position when the row
+   overflows or the "need X more" span appears. */
+.mgr { flex-shrink: 0; position: relative; z-index: 1; margin-left: auto; }
 .mgr-on {
   font-family: var(--theme-font-body, -apple-system, sans-serif);
   font-style: italic;
