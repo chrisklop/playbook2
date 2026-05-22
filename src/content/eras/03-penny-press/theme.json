@@ -7,12 +7,25 @@
     "google_fonts_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Old+Standard+TT:wght@400;700&family=Rye&display=swap"
   },
   "palette": {
-    "background": "#f4f1ea",
-    "surface": "#ebe6db",
-    "text": "#1a1a1a",
-    "muted": "#5a5a5a",
-    "accent": "#c8141c",
-    "border": "#1a1a1a"
+    "background": "#f0e7cf",
+    "surface": "#e8dec0",
+    "text": "#1a1410",
+    "muted": "#6b5230",
+    "accent": "#6b1a1a",
+    "border": "#1a1410"
+  },
+  "riso": {
+    "primary_bg": "#6b1a1a",
+    "primary_shadow": "#c8a050",
+    "primary_text": "#f0e7cf",
+    "secondary_bg": "#d4b870",
+    "secondary_shadow": "#6b1a1a",
+    "secondary_text": "#1a1410",
+    "upgrade_bg": "#2a1810",
+    "upgrade_shadow": "#c8a050",
+    "upgrade_text": "#f0e7cf",
+    "bulk_on_bg": "#6b1a1a",
+    "bulk_on_shadow": "#c8a050"
   },
   "card_style": "broadsheet"
 }
