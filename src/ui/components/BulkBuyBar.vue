@@ -1,15 +1,44 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { state, anyNextMilestoneAffordable } from '../state';
 
 type Tier = 1 | 10 | 100 | 'max' | 'next';
 
-// Bulk options are available from the start. The "watch the cost tick down
-// and tap MAX at exactly the right moment" pattern is core gameplay.
-// NEXT (AdCap-style) buys exactly enough to cross the next milestone on
-// whatever tile you tap. It lights up only when at least one visible tile
-// has an affordable next-milestone purchase.
-const visibleTiers = computed<Tier[]>(() => [1, 10, 100, 'max', 'next']);
+// Progressive unlock — new players learn one bulk concept at a time.
+// First prestige flips everything on permanently so returning runs keep
+// the full bulk toolbox.
+//   ×1   always
+//   ×10  once any manager has been hired (or prestigeCount > 0)
+//   ×100 once any generator has reached 10 owned (or prestigeCount > 0)
+//   MAX  + NEXT  after the first prestige
+// Derived from existing state so no save-format migration is needed.
+const x10Unlocked = computed(() =>
+  state.prestigeCount > 0 || state.managersHired.size > 0,
+);
+const x100Unlocked = computed(() =>
+  state.prestigeCount > 0 ||
+  Object.values(state.ownedByGenerator).some(v => v >= 10),
+);
+const maxUnlocked = computed(() => state.prestigeCount > 0);
+const nextUnlocked = computed(() => state.prestigeCount > 0);
+
+const visibleTiers = computed<Tier[]>(() => {
+  const tiers: Tier[] = [1];
+  if (x10Unlocked.value) tiers.push(10);
+  if (x100Unlocked.value) tiers.push(100);
+  if (maxUnlocked.value) tiers.push('max');
+  if (nextUnlocked.value) tiers.push('next');
+  return tiers;
+});
+
+// If the saved/active multiplier becomes locked (e.g. legacy save loaded
+// in the new gated UI), snap back to ×1 so the bulk bar's selection
+// always matches what's actually clickable.
+watch(visibleTiers, tiers => {
+  if (!tiers.includes(state.bulkBuyMultiplier as Tier)) {
+    state.bulkBuyMultiplier = 1;
+  }
+}, { immediate: true });
 
 function select(t: Tier) {
   state.bulkBuyMultiplier = t;
