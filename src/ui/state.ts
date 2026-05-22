@@ -168,10 +168,27 @@ watch(
 // path. The file lives in public/music/ (see README of that folder).
 if (typeof window !== 'undefined') {
   const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '/');
-  loadMusic(base + 'music/playbook-loop.mp3');
+  // Per-era loop tracks. Falls back to the default loop for any era not
+  // listed here, so adding a new era's music is just dropping the file
+  // into public/music/ and adding a key below.
+  const eraMusicMap: Record<string, string> = {
+    'penny-press': base + 'music/playbook-era-penny-press.mp3',
+  };
+  const defaultLoop = base + 'music/playbook-loop.mp3';
+  loadMusic(eraMusicMap[state.currentEraId] ?? defaultLoop);
   loadCue('frenzy', base + 'music/playbook-frenzy.mp3');
   loadCue('prestige', base + 'music/playbook-prestige.mp3');
   loadCue('bridge', base + 'music/playbook-bridge.mp3');
+
+  // Swap the loop when the era changes — fires on prestige transitions.
+  // Guarded by the same musicMuted flag inside loadMusic so it respects
+  // user audio settings; and loadMusic skips startMusic while a cue is
+  // active, so the prestige cue keeps playing uninterrupted during the
+  // hand-off.
+  watch(
+    () => state.currentEraId,
+    eraId => loadMusic(eraMusicMap[eraId] ?? defaultLoop),
+  );
   // Browsers block autoplay until first user gesture — re-attempt on the
   // first interaction so playback starts as soon as the player taps.
   const kickstart = () => {

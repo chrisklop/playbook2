@@ -57,16 +57,25 @@ export function setMusicMuted(v: boolean): void {
  * @param url Public-folder URL (e.g. import.meta.env.BASE_URL + 'music/playbook-loop.mp3').
  */
 export function loadMusic(url: string): void {
-  if (musicLoaded && musicEl?.src.endsWith(url)) return;
   if (typeof Audio === 'undefined') return;
-  musicEl = new Audio(url);
-  musicEl.loop = true;
-  musicEl.volume = musicVolume;
-  musicEl.preload = 'auto';
+  if (!musicEl) {
+    musicEl = new Audio(url);
+    musicEl.loop = true;
+    musicEl.volume = musicVolume;
+    musicEl.preload = 'auto';
+  } else if (!musicEl.src.endsWith(url)) {
+    // Swap track (e.g. era change). Keep the same element so we don't
+    // orphan a still-playing instance and so the volume/mute state carries
+    // over without re-wiring.
+    musicEl.pause();
+    musicEl.src = url;
+    musicEl.load();
+  }
   musicLoaded = true;
-  // Don't auto-start — startMusic() will be called when the player
-  // interacts (and unmuted). Autoplay would be blocked anyway.
-  if (!musicMutedFlag) startMusic();
+  // Don't auto-start when a cue is currently playing — playCue manages the
+  // restore. Otherwise resume immediately (still no-ops when muted or before
+  // first user gesture).
+  if (!musicMutedFlag && !activeCueKey) startMusic();
 }
 
 export function startMusic(): void {
