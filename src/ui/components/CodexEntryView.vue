@@ -8,7 +8,7 @@ const html = computed(() => selectedEntry.value ? marked.parse(selectedEntry.val
 
 <template>
   <article v-if="selectedEntry" class="entry">
-    <button class="back" @click="codexState.selectedId = null">← Back</button>
+    <button class="btn-riso btn-riso-sm btn-riso-secondary back" @click="codexState.selectedId = null">← Back</button>
     <h2>{{ selectedEntry.frontmatter.title }}</h2>
     <div class="body" v-html="html"></div>
     <h3>Sources</h3>

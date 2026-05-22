@@ -15,7 +15,7 @@ const ITEMS = [
 
 <template>
   <div class="more">
-    <button v-if="page" class="back" @click="page = null">← Back</button>
+    <button v-if="page" class="btn-riso btn-riso-sm btn-riso-secondary back" @click="page = null">← Back</button>
     <TransparencyPage v-if="page === 'transparency'" />
     <AboutPage v-else-if="page === 'about'" />
     <SettingsPage v-else-if="page === 'settings'" />

@@ -246,23 +246,23 @@ function tapBuyUpgrade(e: Event) {
           <button
             v-if="owned > 0 && !managerHired"
             type="button"
-            class="hire"
+            class="btn-riso btn-riso-sm btn-riso-secondary"
             :class="{ disabled: !canAffordManager }"
             @click="tapHireManager"
             :disabled="!canAffordManager"
           >
-            HIRE {{ gen.manager_name.toUpperCase() }} {{ formatCost(managerCost) }}
+            HIRE {{ gen.manager_name.toUpperCase() }} · {{ formatCost(managerCost) }}
           </button>
           <button
             v-else-if="managerHired && nextUpgrade"
             type="button"
-            class="hire upgrade-btn"
+            class="btn-riso btn-riso-sm btn-riso-upgrade"
             :class="{ disabled: !canAffordUpgrade }"
             @click="tapBuyUpgrade"
             :disabled="!canAffordUpgrade"
             :title="nextUpgrade.description"
           >
-            ★ ×{{ nextUpgrade.multiplier }} {{ formatCost(nextUpgrade.cost) }}
+            ★ ×{{ nextUpgrade.multiplier }} · {{ formatCost(nextUpgrade.cost) }}
           </button>
           <span v-else-if="managerHired" class="mgr-on">✓ {{ gen.manager_name }}</span>
         </div>
@@ -514,29 +514,6 @@ function tapBuyUpgrade(e: Event) {
   letter-spacing: 1px;
 }
 .mgr { flex-shrink: 0; }
-.hire {
-  margin: 0;
-  padding: 4px 10px;
-  border: 1px solid var(--theme-border, #2a2218);
-  background: rgba(255, 255, 255, 0.25);
-  color: var(--theme-text, #2a2218);
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
-  font-weight: 700;
-  font-size: 9px;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  text-transform: uppercase;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-}
-.hire:active { transform: translateY(1px); box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2); }
-.hire.disabled, .hire:disabled { opacity: 0.4; cursor: not-allowed; }
-.upgrade-btn {
-  background: rgba(240, 160, 96, 0.32);
-  border-color: var(--theme-accent, #2a2218);
-}
-.upgrade-btn:not(.disabled):hover {
-  background: rgba(240, 160, 96, 0.45);
-}
 .mgr-on {
   font-family: var(--theme-font-body, -apple-system, sans-serif);
   font-style: italic;

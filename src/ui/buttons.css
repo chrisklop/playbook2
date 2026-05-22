@@ -1,0 +1,149 @@
+/* Risograph button language — applies app-wide.
+ *
+ * Vintage zine / offset-print aesthetic: flat colored blocks, hard
+ * borders, and a misaligned solid-color shadow in a contrasting hue
+ * that compresses on press. Press feels physical because the click
+ * actually translates the button INTO its shadow.
+ *
+ * Templatable: every color is exposed as a CSS custom property with
+ * a sensible default. A per-era theme can override any of these via
+ * the existing theme.json palette pipeline by writing the variable
+ * to :root (e.g. --riso-primary-bg: #4a8fbc).
+ *
+ * Color roles:
+ *   primary   — strongest call-to-action (BUY, prestige)
+ *   secondary — supporting action       (HIRE manager)
+ *   upgrade   — accent purchase         (★ upgrade)
+ *   bulk      — segmented toggle row    (×1 / ×10 / ×100 / MAX)
+ *   disabled  — unaffordable / inert
+ */
+:root {
+  --riso-ink:            #1a1410;
+  --riso-paper:          #f4ecd6;
+
+  --riso-primary-bg:     #f0a050;
+  --riso-primary-shadow: #4a90b0;
+  --riso-primary-text:   #1a1410;
+
+  --riso-secondary-bg:     #c0d8a0;
+  --riso-secondary-shadow: #b06030;
+  --riso-secondary-text:   #1a1410;
+
+  --riso-upgrade-bg:     #d04030;
+  --riso-upgrade-shadow: #2a6b35;
+  --riso-upgrade-text:   #fff5e0;
+
+  --riso-disabled-bg:     #d0c8b0;
+  --riso-disabled-shadow: #888888;
+  --riso-disabled-text:   #6a6055;
+
+  --riso-bulk-off-bg:    #ffffff;
+  --riso-bulk-on-bg:     #f0a050;
+  --riso-bulk-on-shadow: #4a90b0;
+
+  --riso-shadow-offset: 4px;
+  --riso-border:        1.5px solid var(--riso-ink);
+  --riso-font:          'IBM Plex Mono', 'Roboto Mono', ui-monospace, monospace;
+}
+
+.btn-riso {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 14px;
+  margin: 0;
+  border: var(--riso-border);
+  background: var(--riso-primary-bg);
+  color: var(--riso-primary-text);
+  font-family: var(--riso-font);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+  text-decoration: none;
+  box-shadow: var(--riso-shadow-offset) var(--riso-shadow-offset) 0 0 var(--riso-primary-shadow);
+  transition: transform 60ms ease-out, box-shadow 60ms ease-out, filter 80ms;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-riso:hover:not(:disabled):not(.disabled) {
+  filter: brightness(1.05);
+}
+
+.btn-riso:active:not(:disabled):not(.disabled) {
+  transform: translate(var(--riso-shadow-offset), var(--riso-shadow-offset));
+  box-shadow: 0 0 0 0 var(--riso-primary-shadow);
+}
+
+.btn-riso.btn-riso-secondary {
+  background: var(--riso-secondary-bg);
+  color: var(--riso-secondary-text);
+  box-shadow: var(--riso-shadow-offset) var(--riso-shadow-offset) 0 0 var(--riso-secondary-shadow);
+}
+.btn-riso.btn-riso-secondary:active:not(:disabled):not(.disabled) {
+  box-shadow: 0 0 0 0 var(--riso-secondary-shadow);
+}
+
+.btn-riso.btn-riso-upgrade {
+  background: var(--riso-upgrade-bg);
+  color: var(--riso-upgrade-text);
+  box-shadow: var(--riso-shadow-offset) var(--riso-shadow-offset) 0 0 var(--riso-upgrade-shadow);
+}
+.btn-riso.btn-riso-upgrade:active:not(:disabled):not(.disabled) {
+  box-shadow: 0 0 0 0 var(--riso-upgrade-shadow);
+}
+
+.btn-riso:disabled,
+.btn-riso.disabled {
+  background: var(--riso-disabled-bg);
+  color: var(--riso-disabled-text);
+  box-shadow: var(--riso-shadow-offset) var(--riso-shadow-offset) 0 0 var(--riso-disabled-shadow);
+  cursor: not-allowed;
+}
+
+/* Compact variant for inline tile actions where space is tight. */
+.btn-riso.btn-riso-sm {
+  padding: 4px 9px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  --riso-shadow-offset: 3px;
+}
+
+/* Bulk picker — segmented row of riso pads sharing a single shadow group.
+ * Each segment is its own button so individual presses still get the
+ * compress-on-click animation. */
+.bulk-riso {
+  display: flex;
+  gap: 5px;
+  padding: 0;
+}
+.bulk-riso .bulk-seg {
+  flex: 1;
+  border: var(--riso-border);
+  background: var(--riso-bulk-off-bg);
+  color: var(--riso-ink);
+  font-family: var(--riso-font);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 7px 6px;
+  margin: 0;
+  cursor: pointer;
+  border-radius: 0;
+  box-shadow: 3px 3px 0 0 var(--riso-ink);
+  transition: transform 60ms ease-out, box-shadow 60ms ease-out;
+  text-transform: uppercase;
+}
+.bulk-riso .bulk-seg:hover:not(.on) { filter: brightness(0.97); }
+.bulk-riso .bulk-seg:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 0 var(--riso-ink);
+}
+.bulk-riso .bulk-seg.on {
+  background: var(--riso-bulk-on-bg);
+  box-shadow: 3px 3px 0 0 var(--riso-bulk-on-shadow);
+}

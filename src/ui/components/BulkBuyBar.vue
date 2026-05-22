@@ -22,13 +22,13 @@ function label(t: Tier): string {
 </script>
 
 <template>
-  <div v-if="visibleTiers.length > 1" class="bulk-bar" role="radiogroup" aria-label="Buy multiplier">
+  <div v-if="visibleTiers.length > 1" class="bulk-bar bulk-riso" role="radiogroup" aria-label="Buy multiplier">
     <button
       v-for="t in visibleTiers"
       :key="String(t)"
       type="button"
-      class="bulk-btn"
-      :class="{ active: state.bulkBuyMultiplier === t }"
+      class="bulk-seg"
+      :class="{ on: state.bulkBuyMultiplier === t }"
       :aria-pressed="state.bulkBuyMultiplier === t"
       @click="select(t)"
     >
@@ -39,31 +39,11 @@ function label(t: Tier): string {
 
 <style scoped>
 .bulk-bar {
-  display: flex;
   margin: 0;
-  padding: 6px 14px;
+  padding: 8px 12px 10px;
   width: 100%;
   background: var(--theme-surface, #ebe2c4);
   border-bottom: 1px solid var(--theme-border, #2a2218);
-  gap: 4px;
   box-sizing: border-box;
-}
-.bulk-btn {
-  flex: 1;
-  margin: 0;
-  padding: 8px 4px;
-  border: 1px solid var(--theme-border, #2a2218);
-  background: transparent;
-  color: var(--theme-text, #2a2218);
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 1px;
-  cursor: pointer;
-  box-sizing: border-box;
-}
-.bulk-btn.active {
-  background: var(--theme-accent, #2a2218);
-  color: var(--theme-background, #f2ecd9);
 }
 </style>

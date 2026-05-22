@@ -13,7 +13,7 @@ function confirm() {
 
 <template>
   <div v-if="canPrestige" class="prestige">
-    <button v-if="!confirming" class="btn" @click="start">
+    <button v-if="!confirming" class="btn btn-riso btn-riso-upgrade" @click="start">
       {{ currentCopy.prestige_button_label }} <span class="mi">(+{{ Math.floor(projectedMI) }} MI)</span>
     </button>
     <div v-else class="modal-backdrop" @click.self="cancel">
@@ -23,8 +23,8 @@ function confirm() {
         <p class="emphasis">{{ currentCopy.prestige_confirm_body }}</p>
         <p class="gain">You will gain <strong>{{ Math.floor(projectedMI) }}</strong> Memetic Inheritance.</p>
         <div class="row">
-          <button class="cancel" @click="cancel">Stay</button>
-          <button class="go" @click="confirm">Cross the Threshold</button>
+          <button class="btn-riso btn-riso-secondary" @click="cancel">Stay</button>
+          <button class="btn-riso btn-riso-upgrade" @click="confirm">Cross the Threshold</button>
         </div>
       </div>
     </div>
@@ -43,15 +43,7 @@ function confirm() {
   width: 100%;
   margin: 0;
   padding: 14px;
-  background: var(--theme-accent, #2a2218);
-  color: var(--theme-background, #f2ecd9);
-  border: 0;
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  cursor: pointer;
+  font-size: 13px;
   box-sizing: border-box;
 }
 .mi {
@@ -101,21 +93,7 @@ function confirm() {
 }
 .row button {
   flex: 1;
-  padding: 12px;
-  font-family: inherit;
-  font-size: 13px;
-  cursor: pointer;
-  border: 1px solid var(--theme-border, #2a2218);
+  font-size: 12px;
   box-sizing: border-box;
-}
-.cancel {
-  background: var(--theme-surface, #ebe2c4);
-  color: var(--theme-text, #2a2218);
-}
-.go {
-  background: var(--theme-accent, #2a2218);
-  color: var(--theme-background, #f2ecd9);
-  border: 0;
-  font-weight: 700;
 }
 </style>

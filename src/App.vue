@@ -18,6 +18,7 @@ import AppShell from "./ui/AppShell.vue";
 import themes from "./data/themes";
 import settings from "./game/settings";
 import "./main.css";
+import "./ui/buttons.css";
 
 const theme = computed(() => themes[settings.theme].variables as CSSProperties);
 const appErrors = toRef(state, "errors");

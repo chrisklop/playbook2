@@ -69,7 +69,7 @@ function hardReset() {
     <section class="settings-section">
       <h3>Export save</h3>
       <p>Copy this string to back up your progress externally.</p>
-      <button @click="doExport">Generate export string</button>
+      <button class="btn-riso btn-riso-sm btn-riso-secondary" @click="doExport">Generate export string</button>
       <textarea v-if="exportText" readonly :value="exportText" rows="4"></textarea>
     </section>
 
@@ -77,13 +77,13 @@ function hardReset() {
       <h3>Import save</h3>
       <p>Paste an exported string to restore.</p>
       <textarea v-model="importText" rows="4" placeholder="paste save string here…"></textarea>
-      <button :disabled="!importText.trim()" @click="doImport">Import</button>
+      <button class="btn-riso btn-riso-sm" :disabled="!importText.trim()" @click="doImport">Import</button>
     </section>
 
     <section class="settings-section">
       <h3>Hard reset</h3>
       <p>Erase all progress. Two confirmations required.</p>
-      <button class="danger" @click="hardReset">Hard reset</button>
+      <button class="btn-riso btn-riso-sm btn-riso-upgrade" @click="hardReset">Hard reset</button>
     </section>
 
     <p v-if="message" class="message">{{ message }}</p>
@@ -126,25 +126,7 @@ function hardReset() {
   margin: 0 0 8px;
   padding: 0;
 }
-button {
-  margin-top: 8px;
-  padding: 10px 16px;
-  background: var(--theme-accent, #2a2218);
-  color: var(--theme-background, #f2ecd9);
-  border: 0;
-  font-family: inherit;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-}
-button.danger {
-  background: #c8141c;
-  color: #fff;
-}
-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
+button { margin-top: 8px; }
 textarea {
   display: block;
   width: 100%;
