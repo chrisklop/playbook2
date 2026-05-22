@@ -15,32 +15,58 @@
  * actual buy is guaranteed to succeed.
  */
 
+/**
+ * Short-scale suffix ladder. Each entry is [10^n, suffix]. We keep going
+ * to decillion (1e33) so the player almost never sees the ugly scientific
+ * notation 4.7e+13 in normal play. Beyond decillion the named suffixes
+ * become esoteric (there's no widely-agreed two-letter shorthand past
+ * "Dc"), so we fall through to exponential.
+ */
+const SUFFIX_LADDER: readonly [number, string][] = [
+  [1e3,  'K'],   // thousand
+  [1e6,  'M'],   // million
+  [1e9,  'B'],   // billion
+  [1e12, 'T'],   // trillion
+  [1e15, 'Qa'],  // quadrillion
+  [1e18, 'Qi'],  // quintillion
+  [1e21, 'Sx'],  // sextillion
+  [1e24, 'Sp'],  // septillion
+  [1e27, 'Oc'],  // octillion
+  [1e30, 'No'],  // nonillion
+  [1e33, 'Dc'],  // decillion
+];
+
+/** Pick the suffix-ladder rung for `n` and format with `rounder` (Math.floor / Math.ceil). */
+function formatWithLadder(n: number, rounder: (x: number) => number): string {
+  if (n < 1000) return rounder(n).toString();
+  for (let i = 0; i < SUFFIX_LADDER.length; i++) {
+    const [threshold, suffix] = SUFFIX_LADDER[i];
+    const next = i + 1 < SUFFIX_LADDER.length ? SUFFIX_LADDER[i + 1][0] : 1e36;
+    if (n < next) {
+      // One decimal place at this rung: floor/ceil at scale/10 then divide by 10.
+      const scaled = rounder(n / (threshold / 10)) / 10;
+      return scaled.toFixed(1) + suffix;
+    }
+  }
+  // Past the ladder — fall back to scientific so unbounded growth still renders.
+  return n.toExponential(1);
+}
+
 /** Format a cost. Always rounds UP so the displayed number is never less than actual. */
 export function formatCost(n: number): string {
-  if (n < 1000) return Math.ceil(n).toString();
-  if (n < 1e6) return (Math.ceil(n / 100) / 10).toFixed(1) + 'K';
-  if (n < 1e9) return (Math.ceil(n / 1e5) / 10).toFixed(1) + 'M';
-  if (n < 1e12) return (Math.ceil(n / 1e8) / 10).toFixed(1) + 'B';
-  return n.toExponential(1);
+  return formatWithLadder(n, Math.ceil);
 }
 
 /** Format an owned resource (rumor, etc). Rounds DOWN so display never overstates. */
 export function formatResource(n: number): string {
-  if (n < 1000) return Math.floor(n).toString();
-  if (n < 1e6) return (Math.floor(n / 100) / 10).toFixed(1) + 'K';
-  if (n < 1e9) return (Math.floor(n / 1e5) / 10).toFixed(1) + 'M';
-  if (n < 1e12) return (Math.floor(n / 1e8) / 10).toFixed(1) + 'B';
-  return n.toExponential(1);
+  return formatWithLadder(n, Math.floor);
 }
 
-/** Format a per-second rate. Shows 1 decimal when small, K/M/B suffix otherwise. */
+/** Format a per-second rate. Shows 2 decimals when sub-1, 1 decimal when sub-10,
+ *  then runs the same suffix ladder as resources/costs. */
 export function formatRate(n: number): string {
   if (n === 0) return '0';
   if (n < 1) return n.toFixed(2);
   if (n < 10) return n.toFixed(1);
-  if (n < 1000) return Math.round(n).toString();
-  if (n < 1e6) return (n / 1000).toFixed(1) + 'K';
-  if (n < 1e9) return (n / 1e6).toFixed(1) + 'M';
-  if (n < 1e12) return (n / 1e9).toFixed(1) + 'B';
-  return n.toExponential(1);
+  return formatWithLadder(n, Math.round);
 }

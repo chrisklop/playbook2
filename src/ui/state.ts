@@ -27,6 +27,7 @@ import {
   type BulkBuyMultiplier,
 } from '../game/save';
 import { applyTheme } from './theme';
+import { formatResource } from './format';
 import {
   playClick,
   playBuy,
@@ -103,6 +104,22 @@ watch(
   v => setMuted(v),
   { immediate: true },
 );
+
+// Live page title. The OS task switcher / browser tab shows this whenever
+// Playbook isn't focused — letting the count peek at the player keeps the
+// game on their mental radar without being intrusive. Cookie-Clicker move.
+if (typeof document !== 'undefined') {
+  watch(
+    () => ({ rumor: state.rumor, era: currentEra.value.display_name }),
+    ({ rumor, era }) => {
+      const fmt = formatResource(rumor);
+      document.title = rumor > 0
+        ? `${fmt} Rumor · Playbook · ${era}`
+        : `Playbook · ${era}`;
+    },
+    { immediate: true },
+  );
+}
 
 // Frenzy music swap — fire the cue the moment an is_frenzy bonus goes active,
 // not on every state.activeBonus mutation (otherwise the watcher would also
@@ -214,6 +231,12 @@ export function click(): void {
   state.rumor += 1;
   state.lifetimeRumor += 1;
   playClick();
+  // Light haptic on mobile — turns "tap a button" into a felt action. PWA
+  // honors navigator.vibrate when installed on Android/iPhone. Silent no-op
+  // on platforms without support (desktop browsers, some iOS contexts).
+  if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+    navigator.vibrate(8);
+  }
   // Also kick the Tier 1 cycle if it isn't already in flight or manager-hired.
   const tier1 = currentEra.value.generators.find(g => g.is_click_driven);
   if (tier1) tapCycle(tier1.id);
