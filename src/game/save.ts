@@ -2,7 +2,7 @@ import LZString from 'lz-string';
 
 export const CURRENT_SAVE_VERSION = 5;
 
-export type BulkBuyMultiplier = 1 | 10 | 100 | 'max';
+export type BulkBuyMultiplier = 1 | 10 | 100 | 'max' | 'next';
 
 export interface SaveState {
   version: number;

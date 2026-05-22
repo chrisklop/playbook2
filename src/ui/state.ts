@@ -325,6 +325,26 @@ export const nextRevealProgress = computed(() => {
   return Math.min(1, state.lifetimeRumor / g.reveal_at_lifetime);
 });
 
+/**
+ * True iff at least one visible generator has a next-milestone buy that the
+ * player can currently afford. Drives the NEXT button's affordable-state on
+ * the bulk bar. AdCap-style "buy exactly to reach the next x2/x4/x8 etc."
+ */
+export const anyNextMilestoneAffordable = computed<boolean>(() => {
+  for (const gen of visibleGenerators.value) {
+    const owned = state.ownedByGenerator[gen.id] ?? 0;
+    let target: number | null = null;
+    for (const ms of gen.milestones) {
+      if (owned < ms) { target = ms; break; }
+    }
+    if (target === null) continue; // past all milestones for this tier
+    const need = Math.max(1, target - owned);
+    const cost = computeBulkCost(gen.base_cost, gen.cost_growth, owned, need);
+    if (state.rumor >= cost) return true;
+  }
+  return false;
+});
+
 export const recommendedGenId = computed<string | null>(() => {
   if (!state.showBestBuyHint) return null;
   const visible = visibleGenerators.value;

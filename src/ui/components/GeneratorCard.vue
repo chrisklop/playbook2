@@ -32,10 +32,25 @@ const owned = computed(() => state.ownedByGenerator[props.gen.id] ?? 0);
 
 // Bulk multiplier applies uniformly to every generator (click-driven or not).
 // The bulk bar's visibility rules already gate when bulk is even on screen.
+//
+// Resolves the user-selected bulk mode to a concrete integer N for THIS tile:
+//   'max'  -> as many as the player can currently afford
+//   'next' -> exactly enough to cross this tile's next milestone (AdCap-style).
+//             If no remaining milestone, falls back to 1.
+//   1/10/100 -> the literal value
 const bulkN = computed<number>(() => {
   const m = state.bulkBuyMultiplier;
   if (m === 'max') {
     return maxAffordableBulk(props.gen.base_cost, props.gen.cost_growth, owned.value, state.rumor) || 1;
+  }
+  if (m === 'next') {
+    // First milestone past current owned; null if past all of them.
+    let target: number | null = null;
+    for (const ms of props.gen.milestones) {
+      if (owned.value < ms) { target = ms; break; }
+    }
+    if (target === null) return 1;
+    return Math.max(1, target - owned.value);
   }
   return m;
 });
@@ -187,7 +202,7 @@ function tapBody() {
   }
   const ownedNow = state.ownedByGenerator[props.gen.id] ?? 0;
   if (ownedNow === 0) {
-    if (canAffordBuy.value) buyGenerator(props.gen.id, state.bulkBuyMultiplier);
+    if (canAffordBuy.value) buyGenerator(props.gen.id, bulkN.value);
     return;
   }
   if (!managerHired.value) {
@@ -199,7 +214,7 @@ function tapBody() {
 function tapBuy(e: Event) {
   e.stopPropagation();
   if (!canAffordBuy.value) return;
-  buyGenerator(props.gen.id, state.bulkBuyMultiplier);
+  buyGenerator(props.gen.id, bulkN.value);
 }
 
 function tapHireManager(e: Event) {

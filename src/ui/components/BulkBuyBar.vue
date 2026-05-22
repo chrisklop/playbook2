@@ -1,21 +1,30 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { state } from '../state';
+import { state, anyNextMilestoneAffordable } from '../state';
 
-type Tier = 1 | 10 | 100 | 'max';
+type Tier = 1 | 10 | 100 | 'max' | 'next';
 
-// Bulk options are available from the start now. The "watch the cost tick
-// down and tap MAX at exactly the right moment" pattern is core gameplay,
-// not a late-game reward -- previously these were gated behind 1/5/25
-// prestiges, which buried MAX entirely. Templatable: any era inherits this.
-const visibleTiers = computed<Tier[]>(() => [1, 10, 100, 'max']);
+// Bulk options are available from the start. The "watch the cost tick down
+// and tap MAX at exactly the right moment" pattern is core gameplay.
+// NEXT (AdCap-style) buys exactly enough to cross the next milestone on
+// whatever tile you tap. It lights up only when at least one visible tile
+// has an affordable next-milestone purchase.
+const visibleTiers = computed<Tier[]>(() => [1, 10, 100, 'max', 'next']);
 
 function select(t: Tier) {
   state.bulkBuyMultiplier = t;
 }
 
 function label(t: Tier): string {
-  return t === 'max' ? 'MAX' : `×${t}`;
+  if (t === 'max') return 'MAX';
+  if (t === 'next') return 'NEXT';
+  return `×${t}`;
+}
+
+// NEXT is disabled (dimmed) when no tile has an affordable next-milestone buy.
+function isDisabled(t: Tier): boolean {
+  if (t === 'next') return !anyNextMilestoneAffordable.value;
+  return false;
 }
 </script>
 
@@ -26,8 +35,14 @@ function label(t: Tier): string {
       :key="String(t)"
       type="button"
       class="bulk-seg"
-      :class="{ on: state.bulkBuyMultiplier === t }"
+      :class="{
+        on: state.bulkBuyMultiplier === t,
+        'next-ready': t === 'next' && !isDisabled(t),
+        'bulk-disabled': isDisabled(t),
+      }"
       :aria-pressed="state.bulkBuyMultiplier === t"
+      :disabled="isDisabled(t)"
+      :title="t === 'next' ? 'Buy exactly enough to reach the next milestone' : undefined"
       @click="select(t)"
     >
       {{ label(t) }}
@@ -43,5 +58,19 @@ function label(t: Tier): string {
   background: var(--theme-surface, #ebe2c4);
   border-bottom: 1px solid var(--theme-border, #2a2218);
   box-sizing: border-box;
+}
+/* When NEXT has an affordable target on the field, give it a soft pulse so
+   the eye finds the "you can hit a milestone right now" signal. */
+.bulk-seg.next-ready:not(.on) {
+  animation: next-pulse 1.4s ease-in-out infinite;
+}
+@keyframes next-pulse {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.18); }
+}
+.bulk-seg.bulk-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  animation: none;
 }
 </style>
