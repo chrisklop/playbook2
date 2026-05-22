@@ -21,10 +21,11 @@ function label(t: Tier): string {
   return `×${t}`;
 }
 
-// NEXT is disabled (dimmed) when no tile has an affordable next-milestone buy.
-function isDisabled(t: Tier): boolean {
-  if (t === 'next') return !anyNextMilestoneAffordable.value;
-  return false;
+// NEXT is always selectable -- the player can park on it and just tap a
+// tile when its BUY pill becomes affordable. The button pulses to flag
+// when a target is reachable so the eye can find the moment.
+function isNextReady(t: Tier): boolean {
+  return t === 'next' && anyNextMilestoneAffordable.value;
 }
 </script>
 
@@ -37,11 +38,9 @@ function isDisabled(t: Tier): boolean {
       class="bulk-seg"
       :class="{
         on: state.bulkBuyMultiplier === t,
-        'next-ready': t === 'next' && !isDisabled(t),
-        'bulk-disabled': isDisabled(t),
+        'next-ready': isNextReady(t),
       }"
       :aria-pressed="state.bulkBuyMultiplier === t"
-      :disabled="isDisabled(t)"
       :title="t === 'next' ? 'Buy exactly enough to reach the next milestone' : undefined"
       @click="select(t)"
     >
@@ -67,10 +66,5 @@ function isDisabled(t: Tier): boolean {
 @keyframes next-pulse {
   0%, 100% { filter: brightness(1); }
   50%      { filter: brightness(1.18); }
-}
-.bulk-seg.bulk-disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  animation: none;
 }
 </style>

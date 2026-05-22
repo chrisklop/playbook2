@@ -40,7 +40,7 @@ export function isMuted(): boolean {
 // next call to startMusic() succeeds.
 
 let musicEl: HTMLAudioElement | null = null;
-let musicVolume = 0.35; // background level — quieter than effects
+let musicVolume = 0.20; // background level — well under the SFX chimes
 let musicLoaded = false;
 
 export function setMusicMuted(v: boolean): void {
