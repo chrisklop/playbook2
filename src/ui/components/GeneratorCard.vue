@@ -211,11 +211,9 @@ function tapBuyUpgrade(e: Event) {
           <div class="cost-line">
             <span class="cost-num">{{ formatCost(buyCost) }}</span>
             <span class="cost-mult" v-if="bulkN > 1">×{{ bulkN }}</span>
-          </div>
-          <div class="earn-line">
+            <span class="earn-sep-dot">·</span>
             <span class="earn-num">+{{ formatResource(incomePerCycle) }}</span>
-            <span class="earn-sep">/</span>
-            <span class="earn-time">{{ cycleSecondsLabel }}</span>
+            <span class="earn-time">/ {{ cycleSecondsLabel }}</span>
           </div>
         </div>
         <div class="icon-slot">
@@ -296,7 +294,7 @@ function tapBuyUpgrade(e: Event) {
   position: relative;
   display: block;
   width: 100%;
-  margin: 0 0 6px 0;
+  margin: 0 0 4px 0;
   padding: 0;
   background: var(--theme-surface, #ebe2c4);
   border: 1px solid var(--theme-border, #2a2218);
@@ -305,7 +303,7 @@ function tapBuyUpgrade(e: Event) {
   cursor: pointer;
   box-sizing: border-box;
   overflow: hidden;
-  min-height: 64px;
+  min-height: 56px;
   text-align: left;
   /* Soft beveled look — a touch of depth without being skeuomorphic. */
   box-shadow:
@@ -363,8 +361,8 @@ function tapBuyUpgrade(e: Event) {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  padding: 10px 12px 15px;
-  gap: 4px;
+  padding: 6px 12px 11px;
+  gap: 2px;
   box-sizing: border-box;
 }
 
@@ -373,7 +371,7 @@ function tapBuyUpgrade(e: Event) {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  min-height: 22px;
+  min-height: 18px;
 }
 
 .top {
@@ -431,20 +429,18 @@ function tapBuyUpgrade(e: Event) {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-.earn-line {
-  display: flex;
-  align-items: baseline;
-  gap: 3px;
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
-  margin-top: 1px;
+.earn-sep-dot {
+  font-size: 12px;
+  opacity: 0.4;
+  padding: 0 2px;
 }
 .earn-num {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: #2a6b35;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
-.earn-sep, .earn-time {
+.earn-time {
   font-size: 10px;
   font-weight: 600;
   opacity: 0.65;
@@ -461,7 +457,7 @@ function tapBuyUpgrade(e: Event) {
   flex-shrink: 0;
 }
 .icon-big {
-  font-size: 40px;
+  font-size: 34px;
   line-height: 1;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
   transition: transform 80ms ease-out;
@@ -549,7 +545,7 @@ function tapBuyUpgrade(e: Event) {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 9px;
+  height: 7px;
   display: flex;
   background: rgba(42, 34, 24, 0.22);
   z-index: 3;
