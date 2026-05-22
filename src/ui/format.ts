@@ -36,6 +36,7 @@ export function formatResource(n: number): string {
 /** Format a per-second rate. Shows 1 decimal when small, K/M/B suffix otherwise. */
 export function formatRate(n: number): string {
   if (n === 0) return '0';
+  if (n < 1) return n.toFixed(2);
   if (n < 10) return n.toFixed(1);
   if (n < 1000) return Math.round(n).toString();
   if (n < 1e6) return (n / 1000).toFixed(1) + 'K';

@@ -270,9 +270,6 @@ export const productionPerSecond = computed(() => {
   for (const gen of currentEra.value.generators) {
     const owned = state.ownedByGenerator[gen.id] ?? 0;
     if (owned <= 0) continue;
-    const willProduce =
-      state.managersHired.has(gen.id) || (state.cycleProgress[gen.id] ?? 0) > 0;
-    if (!willProduce) continue;
     const upgradeMult = upgradeMultFor(gen.id);
     const masteryMult = multiplierForTechnique(
       state.techniqueMastery,
