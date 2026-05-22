@@ -83,6 +83,37 @@ const milestoneProgress = computed<number>(() => {
   return Math.max(0, Math.min(1, (owned.value - prevMilestone.value) / span));
 });
 
+// Segmented "fuel gauge" across the bottom edge of the tile — one slice per
+// milestone, scaled to the size of its span. Crossed slices fill solid, the
+// current slice fills proportionally, future slices stay dim. Lets the player
+// see the whole milestone ladder at a glance, not just the next rung.
+type MilestoneSegment = {
+  idx: number;
+  widthPct: number;
+  filled: boolean;
+  current: boolean;
+  progress: number;
+  threshold: number;
+};
+const milestoneSegments = computed<MilestoneSegment[]>(() => {
+  const ms = props.gen.milestones;
+  if (ms.length === 0) return [];
+  const last = ms[ms.length - 1];
+  const segs: MilestoneSegment[] = [];
+  let prev = 0;
+  for (let i = 0; i < ms.length; i++) {
+    const m = ms[i];
+    const span = m - prev;
+    const widthPct = (span / last) * 100;
+    const crossed = owned.value >= m;
+    const inSeg = owned.value >= prev && owned.value < m;
+    const progress = inSeg && span > 0 ? (owned.value - prev) / span : 0;
+    segs.push({ idx: i, widthPct, filled: crossed, current: inSeg, progress, threshold: m });
+    prev = m;
+  }
+  return segs;
+});
+
 watch(owned, (newVal, oldVal) => {
   for (const m of props.gen.milestones) {
     if (oldVal < m && newVal >= m) {
@@ -218,6 +249,26 @@ function tapBuyUpgrade(e: Event) {
         <div class="mile-hint"><em>{{ gen.technique_tag }}</em></div>
       </div>
     </div>
+
+    <!-- Segmented milestone meter pinned to the bottom edge.
+         One slice per milestone, sized by its span. Crossed = solid,
+         current = partial fill, future = dim. Tooltip shows threshold. -->
+    <div v-if="milestoneSegments.length" class="ms-meter">
+      <div
+        v-for="seg in milestoneSegments"
+        :key="seg.idx"
+        class="ms-seg"
+        :class="{ filled: seg.filled, current: seg.current }"
+        :style="{ width: seg.widthPct + '%' }"
+        :title="'milestone at ' + seg.threshold"
+      >
+        <div
+          v-if="seg.current"
+          class="ms-fill"
+          :style="{ width: seg.progress * 100 + '%' }"
+        ></div>
+      </div>
+    </div>
   </button>
 </template>
 
@@ -284,7 +335,7 @@ function tapBuyUpgrade(e: Event) {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  padding: 8px 12px;
+  padding: 8px 12px 11px;
   gap: 4px;
   box-sizing: border-box;
 }
@@ -382,8 +433,8 @@ function tapBuyUpgrade(e: Event) {
   top: -2px;
   bottom: -2px;
   left: -6px;
-  background: linear-gradient(90deg, rgba(240, 160, 96, 0.05) 0%, rgba(240, 160, 96, 0.18) 100%);
-  border-right: 1px dashed rgba(42, 34, 24, 0.35);
+  background: linear-gradient(90deg, rgba(240, 160, 96, 0.22) 0%, rgba(240, 160, 96, 0.42) 100%);
+  border-right: 2px solid rgba(214, 120, 48, 0.85);
   transition: width 250ms ease-out;
   z-index: 0;
   pointer-events: none;
@@ -453,4 +504,51 @@ function tapBuyUpgrade(e: Event) {
 .mile-pop-enter-to, .payout-pop-enter-to { opacity: 0; transform: translateY(-22px); }
 .mile-pop-leave-active, .payout-pop-leave-active { transition: opacity 200ms; }
 .mile-pop-leave-to, .payout-pop-leave-to { opacity: 0; }
+
+/* Segmented milestone "fuel gauge" along the bottom edge of the tile.
+   Sits above the cycle-bg/content layers so it's always visible. */
+.ms-meter {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  display: flex;
+  background: rgba(42, 34, 24, 0.08);
+  z-index: 2;
+  pointer-events: none;
+  border-top: 1px solid rgba(42, 34, 24, 0.15);
+}
+.ms-seg {
+  position: relative;
+  height: 100%;
+  border-right: 1px solid rgba(42, 34, 24, 0.45);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.ms-seg:last-child { border-right: 0; }
+.ms-seg.filled {
+  background: linear-gradient(180deg, rgba(214, 120, 48, 0.92), rgba(170, 80, 30, 0.95));
+  box-shadow: inset 0 1px 0 rgba(255, 220, 180, 0.5);
+}
+.ms-fill {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  background: linear-gradient(180deg, rgba(240, 170, 90, 0.95), rgba(214, 120, 48, 0.95));
+  transition: width 200ms ease-out;
+  box-shadow: inset 0 1px 0 rgba(255, 220, 180, 0.55);
+}
+/* Pulse the current segment subtly so the eye finds the "next rung". */
+.ms-seg.current::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(240, 170, 90, 0.18);
+  animation: ms-pulse 1.6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes ms-pulse {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
+}
 </style>
