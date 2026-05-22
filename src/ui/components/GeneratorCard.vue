@@ -44,6 +44,10 @@ const bulkN = computed<number>(() => {
     return maxAffordableBulk(props.gen.base_cost, props.gen.cost_growth, owned.value, state.rumor) || 1;
   }
   if (m === 'next') {
+    // Owned 0: NEXT means "seed purchase" — just buy 1 so the player can
+    // start the cycle without having to switch back to x1. Milestones only
+    // start mattering once you own at least one of the generator.
+    if (owned.value === 0) return 1;
     // First milestone past current owned; null if past all of them.
     let target: number | null = null;
     for (const ms of props.gen.milestones) {

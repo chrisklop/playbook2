@@ -335,13 +335,20 @@ export const nextRevealProgress = computed(() => {
 });
 
 /**
- * True iff at least one visible generator has a next-milestone buy that the
- * player can currently afford. Drives the NEXT button's affordable-state on
- * the bulk bar. AdCap-style "buy exactly to reach the next x2/x4/x8 etc."
+ * True iff at least one visible generator has a *genuine* next-milestone buy
+ * that the player can currently afford. Drives the NEXT button's pulse on
+ * the bulk bar — AdCap-style "buy exactly to reach the next x2/x4/x8 etc."
+ *
+ * Only owned >= 1 tiles count here. Unowned tiles in NEXT mode resolve to
+ * "buy 1" as a seed purchase (see GeneratorCard's bulkN computed), which
+ * shouldn't trigger the pulse -- otherwise the bar would fire any time the
+ * cheapest unlocked tile was within budget, diluting the "you can hit a
+ * real milestone right now" signal.
  */
 export const anyNextMilestoneAffordable = computed<boolean>(() => {
   for (const gen of visibleGenerators.value) {
     const owned = state.ownedByGenerator[gen.id] ?? 0;
+    if (owned < 1) continue; // unowned tiles aren't milestone targets
     let target: number | null = null;
     for (const ms of gen.milestones) {
       if (owned < ms) { target = ms; break; }
