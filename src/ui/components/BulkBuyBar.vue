@@ -4,13 +4,11 @@ import { state } from '../state';
 
 type Tier = 1 | 10 | 100 | 'max';
 
-const visibleTiers = computed<Tier[]>(() => {
-  const tiers: Tier[] = [1];
-  if (state.prestigeCount >= 1) tiers.push(10);
-  if (state.prestigeCount >= 5) tiers.push(100);
-  if (state.prestigeCount >= 25) tiers.push('max');
-  return tiers;
-});
+// Bulk options are available from the start now. The "watch the cost tick
+// down and tap MAX at exactly the right moment" pattern is core gameplay,
+// not a late-game reward -- previously these were gated behind 1/5/25
+// prestiges, which buried MAX entirely. Templatable: any era inherits this.
+const visibleTiers = computed<Tier[]>(() => [1, 10, 100, 'max']);
 
 function select(t: Tier) {
   state.bulkBuyMultiplier = t;

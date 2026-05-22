@@ -569,20 +569,7 @@ if (typeof window !== 'undefined') {
       () => { lastUpgrades = new Set(); },
     );
 
-    // Trigger: Bulk-buy tier unlocks.
-    watch(
-      () => state.prestigeCount,
-      count => {
-        if (count >= 1) {
-          fireToast({ id: 'bulk-unlock:10', message: '×10 buy unlocked.', era_id: currentEra.value.id });
-        }
-        if (count >= 5) {
-          fireToast({ id: 'bulk-unlock:100', message: '×100 buy unlocked.', era_id: currentEra.value.id });
-        }
-        if (count >= 25) {
-          fireToast({ id: 'bulk-unlock:max', message: 'Max buy unlocked.', era_id: currentEra.value.id });
-        }
-      },
-    );
+    // Bulk-buy tiers are now all available from the start, so the old
+    // prestige-gated unlock toasts no longer apply. Intentionally removed.
   });
 }
