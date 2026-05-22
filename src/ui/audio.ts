@@ -160,3 +160,71 @@ export function playPrestige(): void {
   tone(220, 0.3, 'sawtooth', 0.06, 0.1);
   tone(880, 0.4, 'sine', 0.1, 0.4);
 }
+
+// ============================================================
+// Musical cues — short one-shot clips that temporarily duck/replace
+// the main background loop. Used for frenzy bursts and the prestige
+// transition. Falls back gracefully if the file is missing or audio
+// is muted.
+// ============================================================
+
+const cueEls: Record<string, HTMLAudioElement> = {};
+let activeCueKey: string | null = null;
+let cueRestoreTimer: number | null = null;
+
+/** Pre-load a one-shot musical cue. Keyed so it can be replayed without
+ *  re-fetching. Safe to call multiple times with the same key. */
+export function loadCue(key: string, url: string): void {
+  if (typeof Audio === 'undefined') return;
+  if (cueEls[key]?.src.endsWith(url)) return;
+  const el = new Audio(url);
+  el.preload = 'auto';
+  el.volume = musicVolume;
+  cueEls[key] = el;
+}
+
+/**
+ * Play a preloaded cue. While it plays the background loop is paused.
+ * When the cue ends (or `maxDurationMs` elapses, whichever first), the
+ * loop resumes from where it left off. A second call to playCue stops
+ * any in-flight cue and starts the new one cleanly.
+ */
+export function playCue(key: string, maxDurationMs = 11000): void {
+  if (musicMutedFlag) return;
+  const cue = cueEls[key];
+  if (!cue) return;
+
+  // Cancel any previously-running cue first.
+  if (activeCueKey) {
+    const prev = cueEls[activeCueKey];
+    if (prev) {
+      prev.pause();
+      prev.currentTime = 0;
+    }
+    if (cueRestoreTimer !== null) {
+      window.clearTimeout(cueRestoreTimer);
+      cueRestoreTimer = null;
+    }
+  }
+
+  activeCueKey = key;
+  cue.volume = musicVolume;
+  cue.currentTime = 0;
+  if (musicEl) musicEl.pause();
+  void cue.play().catch(() => {});
+
+  const restore = () => {
+    cueRestoreTimer = null;
+    activeCueKey = null;
+    if (!musicMutedFlag) startMusic();
+  };
+
+  cue.onended = () => {
+    if (cueRestoreTimer !== null) {
+      window.clearTimeout(cueRestoreTimer);
+      cueRestoreTimer = null;
+    }
+    restore();
+  };
+  cueRestoreTimer = window.setTimeout(restore, maxDurationMs);
+}

@@ -39,6 +39,8 @@ import {
   setMusicVolume,
   loadMusic,
   startMusic,
+  loadCue,
+  playCue,
 } from './audio';
 
 type EraId = 'antiquity' | 'printing-press' | 'penny-press' | 'propaganda-state';
@@ -101,6 +103,23 @@ watch(
   v => setMuted(v),
   { immediate: true },
 );
+
+// Frenzy music swap — fire the cue the moment an is_frenzy bonus goes active,
+// not on every state.activeBonus mutation (otherwise the watcher would also
+// trip on regular bonuses or on tick-time field updates). We compare the
+// source_event_id of frenzy bonuses so each new burst plays exactly once.
+let lastFrenzyEventId: string | null = null;
+watch(
+  () => (state.activeBonus?.is_frenzy ? state.activeBonus.source_event_id : null),
+  id => {
+    if (id && id !== lastFrenzyEventId) {
+      lastFrenzyEventId = id;
+      playCue('frenzy');
+    } else if (!id) {
+      lastFrenzyEventId = null;
+    }
+  },
+);
 watch(
   () => state.musicMuted,
   v => setMusicMuted(v),
@@ -118,6 +137,8 @@ watch(
 if (typeof window !== 'undefined') {
   const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '/');
   loadMusic(base + 'music/playbook-loop.mp3');
+  loadCue('frenzy', base + 'music/playbook-frenzy.mp3');
+  loadCue('prestige', base + 'music/playbook-prestige.mp3');
   // Browsers block autoplay until first user gesture — re-attempt on the
   // first interaction so playback starts as soon as the player taps.
   const kickstart = () => {
@@ -381,6 +402,8 @@ export const recommendedGenId = computed<string | null>(() => {
 export function performPrestige(): void {
   const newMI = projectedMI.value;
   playPrestige();
+  // Swap to the prestige cue. The loop returns automatically on cue end.
+  playCue('prestige');
   state.memeticInheritance += newMI;
   state.prestigeCount += 1;
   state.rumor = 0;
