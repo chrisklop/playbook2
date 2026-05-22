@@ -35,6 +35,7 @@ export interface SaveState {
     effect_type: 'rumor_mult';
     effect_value: number;
     effect_duration_s: number;
+    is_frenzy?: boolean;
   } | null;
   active_bonus?: {
     source_event_id: string;
@@ -42,6 +43,7 @@ export interface SaveState {
     value: number;
     duration_s: number;
     expires_at_ms: number;
+    is_frenzy?: boolean;
   } | null;
   next_event_spawn_at?: number;
   // v5 additions (Technique Mastery — persists across prestige)

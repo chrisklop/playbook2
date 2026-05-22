@@ -21,7 +21,7 @@ const bonusSecondsLeft = computed(() => {
 
 <template>
   <!-- Active claim offer: pulsing call-to-action with a draining timer bar -->
-  <div v-if="offer" class="event-claim">
+  <div v-if="offer" class="event-claim" :class="{ frenzy: offer.is_frenzy }">
     <div class="headline">{{ offer.headline }}</div>
     <button
       type="button"
@@ -34,8 +34,11 @@ const bonusSecondsLeft = computed(() => {
   </div>
 
   <!-- Active bonus (post-claim): small banner showing time remaining -->
-  <div v-else-if="bonus" class="event-bonus">
-    <span class="bonus-label">×{{ bonus.value }} ACTIVE</span>
+  <div v-else-if="bonus" class="event-bonus" :class="{ frenzy: bonus.is_frenzy }">
+    <span class="bonus-label">
+      <template v-if="bonus.is_frenzy">⚡ FRENZY ×{{ bonus.value }}</template>
+      <template v-else>×{{ bonus.value }} ACTIVE</template>
+    </span>
     <span class="bonus-time">{{ bonusSecondsLeft }}s</span>
     <div class="bonus-bar" :style="{ width: bonusFraction * 100 + '%' }"></div>
   </div>
@@ -113,4 +116,37 @@ const bonusSecondsLeft = computed(() => {
   background: #2a6b35;
   transition: width 200ms linear;
 }
+
+/* Frenzy treatment — louder, hotter, faster pulse so the player feels
+   the urgency of a high-magnitude burst. Era theme tokens still drive
+   the base palette; we override only the intensity. */
+.event-claim.frenzy {
+  background: linear-gradient(90deg, #ff3b00, #ffb800, #ff3b00);
+  background-size: 200% 100%;
+  color: #fff5d4;
+  animation: frenzy-claim-pulse 0.45s ease-in-out infinite,
+             frenzy-claim-shift 1.2s linear infinite;
+  box-shadow: 0 0 18px 2px rgba(255, 90, 0, 0.55);
+}
+.event-claim.frenzy .headline { color: #fff5d4; text-shadow: 0 1px 0 rgba(0,0,0,0.45); }
+.event-claim.frenzy .claim-btn {
+  background: #fff5d4;
+  color: #b3261e;
+  box-shadow: 4px 4px 0 0 #1a1410;
+}
+@keyframes frenzy-claim-pulse {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.18); }
+}
+@keyframes frenzy-claim-shift {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+.event-bonus.frenzy {
+  background: linear-gradient(90deg, rgba(255, 59, 0, 0.22), rgba(255, 184, 0, 0.22));
+  border-bottom-color: #b3261e;
+}
+.event-bonus.frenzy .bonus-label { color: #b3261e; }
+.event-bonus.frenzy .bonus-bar   { background: #b3261e; }
 </style>

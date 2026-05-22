@@ -90,6 +90,10 @@ export const EventDefinitionSchema = z.object({
   effect: EventEffectSchema,
   /** Relative spawn weight. Defaults to 1; rarer events get smaller values. */
   weight: z.number().positive().default(1),
+  /** Rare high-magnitude burst (10×+ for ~10s). Triggers louder UI and an
+   *  optional music swap. Distinct from normal ticker offers so the player
+   *  registers "this one matters." */
+  is_frenzy: z.boolean().default(false),
 });
 export type EventDefinition = z.infer<typeof EventDefinitionSchema>;
 export type EventEffect = z.infer<typeof EventEffectSchema>;

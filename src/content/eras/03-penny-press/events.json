@@ -38,5 +38,14 @@
     "claim_window_s": 15,
     "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
     "weight": 1
+  },
+  {
+    "id": "stop-press-rush",
+    "headline": "⚡ FRENZY: STOP-PRESS RUSH — NEWSBOYS SHOUTING ON EVERY CORNER",
+    "claim_verb": "RIDE THE WAVE",
+    "claim_window_s": 10,
+    "effect": { "type": "rumor_mult", "value": 10.0, "duration_s": 10 },
+    "weight": 1,
+    "is_frenzy": true
   }
 ]

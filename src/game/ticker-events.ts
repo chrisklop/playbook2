@@ -32,6 +32,7 @@ export interface ActiveOffer {
   effect_type: 'rumor_mult';
   effect_value: number;
   effect_duration_s: number;
+  is_frenzy: boolean;
 }
 
 export interface ActiveBonus {
@@ -40,6 +41,7 @@ export interface ActiveBonus {
   value: number;
   duration_s: number;
   expires_at_ms: number;
+  is_frenzy: boolean;
 }
 
 /** Weighted-random pick from the event pool. Returns null if pool is empty. */
@@ -75,6 +77,7 @@ export function spawnOffer(def: EventDefinition, nowMs: number): ActiveOffer {
     effect_type: def.effect.type,
     effect_value: def.effect.value,
     effect_duration_s: def.effect.duration_s,
+    is_frenzy: def.is_frenzy,
   };
 }
 
@@ -86,6 +89,7 @@ export function claimOffer(offer: ActiveOffer, nowMs: number): ActiveBonus {
     value: offer.effect_value,
     duration_s: offer.effect_duration_s,
     expires_at_ms: nowMs + offer.effect_duration_s * 1000,
+    is_frenzy: offer.is_frenzy,
   };
 }
 

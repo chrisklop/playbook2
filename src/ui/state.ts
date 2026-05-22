@@ -443,8 +443,12 @@ export function applyLoadedSave(save: SaveState): void {
   state.audioMuted = save.audio_muted ?? false;
   state.musicMuted = save.music_muted ?? false;
   state.musicVolume = save.music_volume ?? 0.20;
-  state.activeOffer = save.active_offer ?? null;
-  state.activeBonus = save.active_bonus ?? null;
+  state.activeOffer = save.active_offer
+    ? { ...save.active_offer, is_frenzy: save.active_offer.is_frenzy ?? false }
+    : null;
+  state.activeBonus = save.active_bonus
+    ? { ...save.active_bonus, is_frenzy: save.active_bonus.is_frenzy ?? false }
+    : null;
   state.nextEventSpawnAt = save.next_event_spawn_at ?? 0;
   state.nowMs = Date.now();
   state.techniqueMastery = { ...(save.technique_mastery ?? {}) };

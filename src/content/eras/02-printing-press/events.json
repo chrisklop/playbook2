@@ -38,5 +38,14 @@
     "claim_window_s": 15,
     "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
     "weight": 1
+  },
+  {
+    "id": "broadside-rush",
+    "headline": "⚡ FRENZY: BROADSIDE RUSH — EVERY PRESS IN THE CITY ROARING",
+    "claim_verb": "FLOOD THE STREETS",
+    "claim_window_s": 10,
+    "effect": { "type": "rumor_mult", "value": 10.0, "duration_s": 10 },
+    "weight": 1,
+    "is_frenzy": true
   }
 ]
