@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Button language mockups — Playbook 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Theme: Printing Press / Era 2 baseline */
+    --bg: #ece4d2;
+    --surface: #e3d8be;
+    --text: #1a1410;
+    --muted: #6b5a40;
+    --accent: #1a1410;
+    --border: #1a1410;
+    --green: #2a6b35;
+    --red: #b3261e;
+    --orange: #d2691e;
+    --paper: #f4ecd6;
+    --ink: #1a1410;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 24px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 8px;
+  }
+  .intro {
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+  .style {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 22px;
+    padding: 16px 18px;
+  }
+  .style h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin: 0 0 4px;
+    letter-spacing: 1px;
+  }
+  .style .num {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 2px 6px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .desc {
+    color: var(--muted);
+    font-style: italic;
+    margin: 0 0 14px;
+    font-size: 13px;
+  }
+  .demo-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+  }
+  .demo-row + .demo-row {
+    border-top: 1px dashed rgba(0,0,0,0.15);
+    margin-top: 4px;
+  }
+  .demo-label {
+    width: 100%;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    opacity: 0.5;
+    margin-bottom: 2px;
+  }
+  .footnote {
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ==========  Style 1: CURRENT  ========== */
+  .s1 .buy {
+    display: flex; flex-direction: column; padding: 6px 12px;
+    border: 1px solid var(--border); background: rgba(42, 34, 24, 0.06);
+    color: var(--text); font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 10px; letter-spacing: 1px;
+    text-transform: uppercase; cursor: pointer;
+  }
+  .s1 .buy .cost { font-size: 14px; font-weight: 900; }
+  .s1 .buy.disabled { opacity: 0.45; }
+  .s1 .hire {
+    padding: 4px 10px; border: 1px solid var(--border); background: transparent;
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .s1 .up { background: rgba(240, 160, 96, 0.32); }
+  .s1 .bulk { display: flex; border: 1px solid var(--border); }
+  .s1 .bulk button {
+    border: 0; border-right: 1px solid var(--border);
+    background: transparent; padding: 4px 10px;
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: 10px; letter-spacing: 1px;
+  }
+  .s1 .bulk button:last-child { border-right: 0; }
+  .s1 .bulk .on { background: var(--ink); color: var(--paper); }
+
+  /* ==========  Style 2: EDITORIAL FLAT  ========== */
+  .s2 .buy {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 16px; border: 2px solid var(--ink); background: var(--paper);
+    color: var(--ink); font-family: 'Playfair Display', serif;
+    font-weight: 900; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer;
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: transform 60ms, box-shadow 60ms;
+  }
+  .s2 .buy:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+  .s2 .buy:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); }
+  .s2 .buy .price { font-size: 16px; font-weight: 900; padding-left: 8px; border-left: 1px solid var(--ink); }
+  .s2 .buy.disabled { background: #d5cdb8; color: #888; box-shadow: 3px 3px 0 #888; cursor: not-allowed; }
+  .s2 .hire { font-size: 10px; padding: 6px 12px; box-shadow: 2px 2px 0 var(--ink); }
+  .s2 .up { background: var(--orange); color: var(--paper); }
+  .s2 .bulk { display: flex; gap: 0; border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+  .s2 .bulk button {
+    border: 0; border-right: 2px solid var(--ink);
+    background: var(--paper); padding: 6px 14px;
+    font-family: 'Playfair Display', serif; font-weight: 900;
+    font-size: 11px; letter-spacing: 1.5px; cursor: pointer;
+  }
+  .s2 .bulk button:last-child { border-right: 0; }
+  .s2 .bulk .on { background: var(--ink); color: var(--paper); }
+
+  /* ==========  Style 3: LETTERPRESS PAPER  ========== */
+  .s3 .buy {
+    padding: 9px 18px; border: 1px solid #c4b08a; background: var(--paper);
+    color: var(--ink); font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; cursor: pointer; border-radius: 2px;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.9),
+      inset 0 -1px 0 rgba(0,0,0,0.15),
+      0 1px 2px rgba(0,0,0,0.2);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+  }
+  .s3 .buy:active {
+    box-shadow:
+      inset 0 1px 3px rgba(0,0,0,0.25),
+      inset 0 -1px 0 rgba(255,255,255,0.5);
+  }
+  .s3 .buy.disabled { color: #999; box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); }
+  .s3 .hire { font-size: 10px; padding: 7px 14px; }
+  .s3 .up { background: linear-gradient(180deg, #f0a050, #d27020); color: var(--paper); border-color: #a04010; text-shadow: 0 -1px 0 rgba(0,0,0,0.3); }
+  .s3 .bulk { display: flex; gap: 4px; }
+  .s3 .bulk button {
+    border: 1px solid #c4b08a; background: var(--paper);
+    padding: 6px 12px; font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: 11px; letter-spacing: 1px; cursor: pointer; border-radius: 2px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+  .s3 .bulk .on {
+    background: linear-gradient(180deg, #6b5a40, #4a3e2b); color: var(--paper);
+    border-color: #2a2218; box-shadow: inset 0 1px 2px rgba(0,0,0,0.4);
+  }
+
+  /* ==========  Style 4: BRASS PLAQUE  ========== */
+  .s4 .buy {
+    padding: 8px 18px;
+    background: linear-gradient(180deg, #d4a850, #8a6b28);
+    color: #1a1410; font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer;
+    border: 1px solid #3a2810;
+    border-radius: 3px;
+    box-shadow:
+      inset 0 1px 0 rgba(255,235,170,0.6),
+      inset 0 -2px 0 rgba(60,40,20,0.5),
+      0 2px 0 #2a1810,
+      0 4px 6px rgba(0,0,0,0.3);
+    text-shadow: 0 1px 0 rgba(255,235,170,0.4);
+  }
+  .s4 .buy:active { transform: translateY(2px); box-shadow: inset 0 2px 4px rgba(60,40,20,0.6), 0 0 0 #2a1810; }
+  .s4 .buy.disabled { background: linear-gradient(180deg, #998860, #5a4a30); color: #4a3820; }
+  .s4 .hire { font-size: 10px; padding: 6px 14px; }
+  .s4 .up { background: linear-gradient(180deg, #c47030, #803810); color: #fff5e0; text-shadow: 0 1px 0 rgba(0,0,0,0.4); }
+  .s4 .bulk { display: flex; background: #3a2810; padding: 2px; border-radius: 3px; gap: 0; }
+  .s4 .bulk button {
+    border: 0; background: transparent; padding: 6px 14px;
+    font-family: 'IBM Plex Mono', monospace; font-weight: 700;
+    font-size: 11px; color: #d4a850; cursor: pointer;
+  }
+  .s4 .bulk .on {
+    background: linear-gradient(180deg, #d4a850, #8a6b28); color: #1a1410;
+    border-radius: 2px; box-shadow: inset 0 1px 0 rgba(255,235,170,0.5);
+  }
+
+  /* ==========  Style 5: TABLOID BOLD  ========== */
+  .s5 .buy {
+    padding: 10px 18px; background: var(--ink); color: var(--paper);
+    border: 0; font-family: 'Playfair Display', serif;
+    font-weight: 900; font-size: 13px; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer; border-radius: 0;
+  }
+  .s5 .buy.disabled { background: #999; color: #ccc; }
+  .s5 .hire {
+    background: transparent; color: var(--ink); border: 3px solid var(--ink);
+    font-size: 11px; padding: 7px 14px;
+  }
+  .s5 .up { background: var(--red); color: #fff; border-color: var(--red); }
+  .s5 .bulk { display: flex; gap: 0; background: var(--ink); padding: 3px; }
+  .s5 .bulk button {
+    border: 0; background: transparent; padding: 7px 16px;
+    font-family: 'Playfair Display', serif; font-weight: 900;
+    font-size: 12px; color: var(--paper); cursor: pointer; letter-spacing: 1.5px;
+  }
+  .s5 .bulk .on { background: var(--paper); color: var(--ink); }
+
+  /* ==========  Style 6: STAMPED POSTAGE  ========== */
+  .s6 .buy {
+    padding: 10px 20px; background: var(--paper);
+    color: var(--ink); font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer;
+    border: 2px dashed var(--ink);
+    /* Perforated edge feel via mask + offset shadow */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .s6 .buy.disabled { color: #aaa; border-color: #aaa; }
+  .s6 .hire { font-size: 10px; padding: 8px 14px; border-style: dotted; }
+  .s6 .up {
+    background: var(--orange); color: var(--paper);
+    border: 2px dashed #6a3008;
+  }
+  .s6 .bulk { display: flex; gap: 4px; }
+  .s6 .bulk button {
+    border: 2px dashed var(--ink); background: var(--paper);
+    padding: 6px 12px; font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 11px; cursor: pointer;
+  }
+  .s6 .bulk .on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* ==========  Style 7: PILL MODERN  ========== */
+  .s7 .buy {
+    padding: 10px 22px; background: var(--green); color: white;
+    border: 0; border-radius: 999px;
+    font-family: 'IBM Plex Mono', monospace; font-weight: 700;
+    font-size: 12px; letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(42,107,53,0.4);
+  }
+  .s7 .buy.disabled { background: #aaa; box-shadow: none; cursor: not-allowed; }
+  .s7 .hire { background: white; color: var(--ink); border: 1px solid var(--ink); padding: 8px 18px; box-shadow: none; font-size: 11px; }
+  .s7 .up { background: var(--orange); color: white; box-shadow: 0 2px 6px rgba(210,105,30,0.4); }
+  .s7 .bulk {
+    display: flex; gap: 0;
+    background: rgba(0,0,0,0.06); border-radius: 999px; padding: 3px;
+  }
+  .s7 .bulk button {
+    border: 0; background: transparent; padding: 6px 14px;
+    font-family: 'IBM Plex Mono', monospace; font-weight: 700;
+    font-size: 11px; color: var(--ink); cursor: pointer; border-radius: 999px;
+  }
+  .s7 .bulk .on { background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+
+  /* ==========  Style 8: ICONOGRAPHIC  ========== */
+  .s8 .buy {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 14px 8px 10px; background: var(--ink); color: var(--paper);
+    border: 0; border-radius: 4px;
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer;
+  }
+  .s8 .buy .glyph { font-size: 20px; line-height: 1; }
+  .s8 .buy.disabled { background: #aaa; }
+  .s8 .hire { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .s8 .up { background: var(--orange); color: var(--paper); }
+  .s8 .bulk { display: flex; gap: 4px; }
+  .s8 .bulk button {
+    border: 1px solid var(--ink); background: var(--paper);
+    padding: 6px 12px; font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 11px; cursor: pointer; border-radius: 4px;
+  }
+  .s8 .bulk .on { background: var(--ink); color: var(--paper); }
+
+  /* ==========  Style 9: OUTLINED GHOST  ========== */
+  .s9 .buy {
+    padding: 9px 18px; background: transparent; color: var(--ink);
+    border: 1px solid var(--ink); font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer; border-radius: 0;
+    transition: background 120ms, color 120ms;
+  }
+  .s9 .buy:hover { background: var(--ink); color: var(--paper); }
+  .s9 .buy.disabled { color: #bbb; border-color: #bbb; cursor: not-allowed; }
+  .s9 .hire { font-size: 10px; padding: 7px 14px; }
+  .s9 .up { color: var(--orange); border-color: var(--orange); }
+  .s9 .up:hover { background: var(--orange); color: var(--paper); }
+  .s9 .bulk { display: flex; gap: 0; border: 1px solid var(--ink); }
+  .s9 .bulk button {
+    border: 0; border-right: 1px solid var(--ink); background: transparent;
+    padding: 6px 14px; font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 11px; cursor: pointer;
+  }
+  .s9 .bulk button:last-child { border-right: 0; }
+  .s9 .bulk .on { background: var(--ink); color: var(--paper); }
+
+  /* ==========  Style 10: RISOGRAPH OFFSET  ========== */
+  .s10 .buy {
+    padding: 8px 18px; background: #f0a050; color: var(--ink);
+    border: 1.5px solid var(--ink); font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700; font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; cursor: pointer; border-radius: 0;
+    box-shadow: 4px 4px 0 0 #4a90b0;
+    position: relative;
+  }
+  .s10 .buy:active { transform: translate(4px, 4px); box-shadow: 0 0 0 0 #4a90b0; }
+  .s10 .buy.disabled { background: #d0c8b0; box-shadow: 4px 4px 0 0 #888; }
+  .s10 .hire { background: #c0d8a0; box-shadow: 4px 4px 0 0 #b06030; font-size: 10px; padding: 7px 14px; }
+  .s10 .up { background: #d04030; color: #fff; box-shadow: 4px 4px 0 0 #2a6b35; }
+  .s10 .bulk { display: flex; gap: 6px; }
+  .s10 .bulk button {
+    border: 1.5px solid var(--ink); background: #fff; padding: 6px 12px;
+    font-family: 'IBM Plex Mono', monospace; font-weight: 700;
+    font-size: 11px; cursor: pointer; border-radius: 0;
+    box-shadow: 3px 3px 0 0 var(--ink);
+  }
+  .s10 .bulk .on { background: #f0a050; box-shadow: 3px 3px 0 0 #4a90b0; }
+</style>
+</head>
+<body>
+
+<h1>Button Language Mockups</h1>
+<p class="intro">
+  Ten candidate button systems for Playbook 2. Each row shows the same set of actions
+  (BUY · BUY disabled · HIRE manager · UPGRADE · bulk-multiplier picker) so you can
+  compare them side-by-side. Pick the language that reads cleanest to you and I'll
+  apply it across the app — tile actions, prestige, settings, everything.
+  Theme palette here is Era 2 (Printing Press).
+</p>
+
+<!-- ============== STYLE 1 ============== -->
+<div class="style s1">
+  <h2><span class="num">01</span>Current (shipping)</h2>
+  <p class="desc">Baseline. Soft border, mild bevel. Information-dense but visually quiet.</p>
+  <div class="demo-row">
+    <span class="demo-label">Tile actions</span>
+    <button class="buy"><span>BUY ×10</span><span class="cost">$248</span></button>
+    <button class="buy disabled"><span>BUY ×10</span><span class="cost">$5.2K</span></button>
+    <button class="hire">HIRE COPY BOY $500</button>
+    <button class="hire up">★ ×3 $50K</button>
+  </div>
+  <div class="demo-row">
+    <span class="demo-label">Bulk picker</span>
+    <div class="bulk"><button class="on">×1</button><button>×10</button><button>×100</button><button>MAX</button></div>
+  </div>
+</div>
+
+<!-- ============== STYLE 2 ============== -->
+<div class="style s2">
+  <h2><span class="num">02</span>Editorial flat (with offset shadow)</h2>
+  <p class="desc">Hard-edged newspaper aesthetic. Bold double border + offset drop-shadow that compresses on click. Strong visual hierarchy: cost is the loudest element.</p>
+  <div class="demo-row">
+    <span class="demo-label">Tile actions</span>
+    <button class="buy"><span>BUY ×10</span><span class="price">$248</span></button>
+    <button class="buy disabled"><span>BUY ×10</span><span class="price">$5.2K</span></button>
+    <button class="buy hire">HIRE COPY BOY · $500</button>
+    <button class="buy hire up">★ ×3 UPGRADE · $50K</button>
+  </div>
+  <div class="demo-row">
+    <span class="demo-label">Bulk picker</span>
+    <div class="bulk"><button class="on">×1</button><button>×10</button><button>×100</button><button>MAX</button></div>
+  </div>
+</div>
+
+<!-- ============== STYLE 3 ============== -->
+<div class="style s3">
+  <h2><span class="num">03</span>Letterpress paper</h2>
+  <p class="desc">Subtle inset/outset shadows for tactility. Warm paper feel; upgrade button gets a hot-stamped orange treatment for emphasis.</p>
+  <div class="demo-row">
+    <span class="demo-label">Tile actions</span>
+    <button class="buy">BUY ×10 · $248</button>
+    <button class="buy disabled">BUY ×10 · $5.2K</button>
+    <button class="buy hire">HIRE COPY BOY · $500</button>
+    <button class="buy hire up">★ UPGRADE ×3 · $50K</button>
+  </div>
+  <div class="demo-row">
+    <span class="demo-label">Bulk picker</span>
+    <div class="bulk"><button class="on">×1</button><button>×10</button><button>×100</button><button>MAX</button></div>
+  </div>
+</div>
+
+<!-- ============== STYLE 4 ============== -->
+<div class="style s4">
+  <h2><span class="num">04</span>Brass plaque</h2>
+  <p class="desc">Industrial-era brass. Metallic gradient + heavy bevel. Reads as a physical control panel. Era-appropriate for Printing Press / Penny Press.</p>
+  <div class="demo-row">
+    <span class="demo-label">Tile actions</span>
+    <button class="buy">BUY ×10 · $248</button>
+    <button class="buy disabled">BUY ×10 · $5.2K</button>
+    <button class="buy hire">HIRE COPY BOY · $500</button>
+    <button class="buy hire up">★ UPGRADE ×3 · $50K</button>
+  </div>
+  <div class="demo-row">
+    <span class="demo-label">Bulk picker</span>
+    <div class="bulk"><button class="on">×1</button><button>×10</button><button>×100</button><button>MAX</button></div>
+  </div>
+</div>
+
+<!-- ============== STYLE 5 ============== -->
+<div class="style s5">
+  <h2><span class="num">05</span>Tabloid bold</h2>
+  <p class="desc">Maximum contrast. Primary actions are solid black blocks; secondary actions are heavy-outlined; upgrade is a red call-out. Cannot be missed.</p>
+  <div class="demo-row">
+    <span class="demo-label">Tile actions</span>
+    <button class="buy">BUY ×10 · $248</button>
+    <button class="buy disabled">BUY ×10 · $5.2K</button>
+    <button class="buy hire">HIRE COPY BOY · $500</button>
+    <button class="buy hire up">★ UPGRADE · $50K</button>
+  </div>
+  <div class="demo-row">
+    <span class="demo-label">Bulk picker</span>
+    <div class="bulk"><button class="on">×1</button><button>×10</button><button>×100</button><button>MAX</button></div>
+  </div>
+</div>
+
+<!-- ============== STYLE 6 ============== -->
+<div class="style s6">
+  <h2><span class="num">06</span>Stamped postage</h2>
+  <p class="desc">Dashed perforated edges, postage-stamp aesthetic. Lots of personality, era-flavored. Could feel kitschy if overused.</p>
+  <div class="demo-row">
+    <span class="demo-label">Tile actions</span>
+    <button class="buy">BUY ×10 · $248</button>
+    <button class="buy disabled">BUY ×10 · $5.2K</button>
+    <button class="buy hire">HIRE COPY BOY · $500</button>
+    <button class="buy hire up">★ UPGRADE ×3 · $50K</button>
+  </div>
+  <div class="demo-row">
+    <span class="demo-label">Bulk picker</span>
+    <div class="bulk"><button class="on">×1</button><button>×10</button><button>×100</button><button>MAX</button></div>
+  </div>
+</div>
+
+<!-- ============== STYLE 7 ============== -->
+<div class="style s7">
+  <h2><span class="num">07</span>Pill modern (app-style)</h2>
+  <p class="desc">Fully rounded, modern mobile-game aesthetic. Color carries meaning: green = buy, orange = upgrade. Loses the era period feel but very easy to scan.</p>
+  <div class="demo-row">
+    <span class="demo-label">Tile actions</span>
+    <button class="buy">BUY ×10 · $248</button>
+    <button class="buy disabled">BUY ×10 · $5.2K</button>
+    <button class="buy hire">HIRE COPY BOY · $500</button>
+    <button class="buy hire up">★ UPGRADE ×3 · $50K</button>
+  </div>
+  <div class="demo-row">
+    <span class="demo-label">Bulk picker</span>
+    <div class="bulk"><button class="on">×1</button><button>×10</button><button>×100</button><button>MAX</button></div>
+  </div>
+</div>
+
+<!-- ============== STYLE 8 ============== -->
+<div class="style s8">
+  <h2><span class="num">08</span>Iconographic</h2>
+  <p class="desc">Glyph-led. Each action gets a small icon prefix; label is supportive. Reads fast once learned, may be cryptic at first.</p>
+  <div class="demo-row">
+    <span class="demo-label">Tile actions</span>
+    <button class="buy"><span class="glyph">▶</span>BUY ×10 · $248</button>
+    <button class="buy disabled"><span class="glyph">▶</span>BUY ×10 · $5.2K</button>
+    <button class="buy hire"><span class="glyph">◉</span>HIRE COPY BOY · $500</button>
+    <button class="buy hire up"><span class="glyph">★</span>UPGRADE ×3 · $50K</button>
+  </div>
+  <div class="demo-row">
+    <span class="demo-label">Bulk picker</span>
+    <div class="bulk"><button class="on">×1</button><button>×10</button><button>×100</button><button>MAX</button></div>
+  </div>
+</div>
+
+<!-- ============== STYLE 9 ============== -->
+<div class="style s9">
+  <h2><span class="num">09</span>Outlined ghost</h2>
+  <p class="desc">Quiet borders, no fills until you hover. Visually restrained — lots of white space, fits a literary/editorial aesthetic. Disabled states blend in heavily.</p>
+  <div class="demo-row">
+    <span class="demo-label">Tile actions</span>
+    <button class="buy">BUY ×10 · $248</button>
+    <button class="buy disabled">BUY ×10 · $5.2K</button>
+    <button class="buy hire">HIRE COPY BOY · $500</button>
+    <button class="buy hire up">★ UPGRADE ×3 · $50K</button>
+  </div>
+  <div class="demo-row">
+    <span class="demo-label">Bulk picker</span>
+    <div class="bulk"><button class="on">×1</button><button>×10</button><button>×100</button><button>MAX</button></div>
+  </div>
+</div>
+
+<!-- ============== STYLE 10 ============== -->
+<div class="style s10">
+  <h2><span class="num">10</span>Risograph offset</h2>
+  <p class="desc">Vintage zine / printed-program look. Bright flat colors with a misaligned offset shadow in a contrast color. Lots of character — borderline retro-fun, may clash with serious era theming.</p>
+  <div class="demo-row">
+    <span class="demo-label">Tile actions</span>
+    <button class="buy">BUY ×10 · $248</button>
+    <button class="buy disabled">BUY ×10 · $5.2K</button>
+    <button class="buy hire">HIRE COPY BOY · $500</button>
+    <button class="buy hire up">★ UPGRADE ×3 · $50K</button>
+  </div>
+  <div class="demo-row">
+    <span class="demo-label">Bulk picker</span>
+    <div class="bulk"><button class="on">×1</button><button>×10</button><button>×100</button><button>MAX</button></div>
+  </div>
+</div>
+
+<p class="footnote">
+  Each style uses CSS-only effects (no images, no JS dependencies) so it'll port to any era theme by swapping the palette variables at the top. Tell me a number (or two) and I'll apply it to the live tile components.
+</p>
+
+</body>
+</html>

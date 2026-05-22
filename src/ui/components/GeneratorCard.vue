@@ -39,6 +39,7 @@ const buyCost = computed(() =>
   computeBulkCost(props.gen.base_cost, props.gen.cost_growth, owned.value, bulkN.value),
 );
 const canAffordBuy = computed(() => state.rumor >= buyCost.value);
+const shortfall = computed<number>(() => Math.max(0, buyCost.value - state.rumor));
 
 // Per-cycle income preview for this tile.
 // When owned > 0: real production (owned * base * milestones * globals * upgrades * cycle_seconds).
@@ -209,11 +210,16 @@ function tapBuyUpgrade(e: Event) {
             <span class="owned" v-if="owned > 0">×{{ owned }}</span>
           </div>
           <div class="cost-line">
-            <span class="cost-num">{{ formatCost(buyCost) }}</span>
+            <span class="cost-label">COST</span>
+            <span class="cost-num" :class="{ short: !canAffordBuy }">{{ formatCost(buyCost) }}</span>
             <span class="cost-mult" v-if="bulkN > 1">×{{ bulkN }}</span>
-            <span class="earn-sep-dot">·</span>
-            <span class="earn-num">+{{ formatResource(incomePerCycle) }}</span>
-            <span class="earn-time">/ {{ cycleSecondsLabel }}</span>
+            <span v-if="!canAffordBuy" class="cost-short">need +{{ formatCost(shortfall) }}</span>
+            <template v-else>
+              <span class="earn-sep-dot">·</span>
+              <span class="earn-label">EARN</span>
+              <span class="earn-num">+{{ formatResource(incomePerCycle) }}</span>
+              <span class="earn-time">/ {{ cycleSecondsLabel }}</span>
+            </template>
           </div>
         </div>
         <div class="icon-slot">
@@ -413,8 +419,17 @@ function tapBuyUpgrade(e: Event) {
 .cost-line {
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 5px;
   font-family: var(--theme-font-masthead, -apple-system, sans-serif);
+  flex-wrap: wrap;
+  row-gap: 0;
+}
+.cost-label, .earn-label {
+  font-size: 9px;
+  font-weight: 700;
+  opacity: 0.55;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 .cost-num {
   font-size: 16px;
@@ -422,12 +437,22 @@ function tapBuyUpgrade(e: Event) {
   color: var(--theme-accent, #2a2218);
   line-height: 1;
 }
+.cost-num.short {
+  color: #b3261e;
+}
 .cost-mult {
   font-size: 9px;
   font-weight: 700;
   opacity: 0.6;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+.cost-short {
+  font-size: 10px;
+  font-weight: 700;
+  color: #b3261e;
+  opacity: 0.85;
+  margin-left: 4px;
 }
 .earn-sep-dot {
   font-size: 12px;
