@@ -10,6 +10,7 @@ import {
 } from '../state';
 import { carryoverMultiplier } from '../../game/prestige';
 import { formatResource } from '../format';
+import { visibleEntries } from '../codex-state';
 
 const progress = computed(() => Math.min(1, projectedMI.value));
 const pct = computed(() => Math.round(progress.value * 100));
@@ -25,6 +26,13 @@ const lifetimeNeeded = computed(() =>
 );
 const remainingNeeded = computed(() =>
   Math.max(0, lifetimeNeeded.value - state.lifetimeRumor),
+);
+
+// Unmastered codex entries that are currently unlocked in this era.
+// These represent permanent mastery still on the table — the cleanest
+// reason to stay and play a bit longer before ascending.
+const unmasteredVisibleCount = computed(() =>
+  visibleEntries.value.filter(e => !state.codexMastered.has(e.frontmatter.id)).length,
 );
 
 function tryPrestige() {
@@ -83,6 +91,26 @@ function tryPrestige() {
       <div v-else class="progress-sub ready-sub">
         You can ascend now. The next era awaits.
       </div>
+    </section>
+
+    <!-- Honest recommendation block — only shown once ascension is unlocked.
+         Permanent value (codex mastery) > marginal value (more MI via sqrt). -->
+    <section v-if="canPrestige" class="recommendation">
+      <div class="rec-label">Recommended</div>
+      <p v-if="unmasteredVisibleCount > 0" class="rec-text">
+        Stay a little longer — {{ unmasteredVisibleCount }} unmastered codex
+        <template v-if="unmasteredVisibleCount === 1">entry is</template>
+        <template v-else>entries are</template>
+        unlocked right now. Reading them grants <strong>permanent</strong>
+        mastery that carries across every future run. Memetic Inheritance
+        from extra grinding scales with √lifetime — diminishing returns.
+      </p>
+      <p v-else class="rec-text">
+        Ascend now. You've mastered every codex entry currently within reach
+        in this era, and Memetic Inheritance scales with √lifetime — extra
+        grinding past this point earns sharply diminishing returns
+        (≈+41% MI per doubling of lifetime).
+      </p>
     </section>
 
     <button
@@ -282,6 +310,31 @@ h2 {
   letter-spacing: 2px;
   margin-bottom: 18px;
 }
+
+.recommendation {
+  margin: 0 0 14px;
+  padding: 10px 12px 12px;
+  background: var(--theme-surface, #ebe2c4);
+  border-left: 3px solid var(--theme-accent, #e88e38);
+  box-sizing: border-box;
+}
+.rec-label {
+  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+.rec-text {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  opacity: 0.9;
+}
+.rec-text strong { letter-spacing: 0.3px; }
 
 /* ===== Docs ===== */
 .docs {
