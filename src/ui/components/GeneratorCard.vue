@@ -170,20 +170,24 @@ watch(lastPayout, newPayout => {
 // via the inline BUY pill below — body tap never auto-buys an owned tile.
 //
 // Behavior matrix:
-//   owned == 0  : body tap buys one (only sensible gesture — you can't
-//                 kick a cycle on a tile you don't own yet).
-//   click-driven, owned >= 1: body tap = +1 rumor (the manual work).
+//   click-driven (any owned count): body tap = +1 Rumor (the manual work).
+//                 This includes owned == 0 -- click-driven Tier 1 is the
+//                 game's initial Rumor source; new-era players start with
+//                 zero of everything and need to tap to earn the first 4-10
+//                 Rumor to afford anything.
+//   non-click-driven, owned == 0: body tap buys one (the "I see it, I want
+//                 it" gesture; only sensible action when nothing's owned).
 //   non-click-driven, owned >= 1, no manager: body tap = kick cycle.
-//   non-click-driven, owned >= 1, manager hired: body tap is a no-op
-//                 (the cycle already auto-runs).
+//   non-click-driven, owned >= 1, manager hired: body tap = no-op
+//                 (cycle already auto-runs).
 function tapBody() {
+  if (props.gen.is_click_driven) {
+    click();
+    return;
+  }
   const ownedNow = state.ownedByGenerator[props.gen.id] ?? 0;
   if (ownedNow === 0) {
     if (canAffordBuy.value) buyGenerator(props.gen.id, state.bulkBuyMultiplier);
-    return;
-  }
-  if (props.gen.is_click_driven) {
-    click();
     return;
   }
   if (!managerHired.value) {
