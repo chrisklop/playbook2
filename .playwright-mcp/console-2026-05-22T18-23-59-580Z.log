@@ -1,8 +1,0 @@
-[     426ms] [ERROR] Project is not running on an accepted origin: https://chrisklop.github.io @ :0
-[     430ms] [LOG] %cMade in Profectus%c
-Learn more at www.moddingtree.com font-weight: bold; font-size: 24px; color: #A3BE8C; background: #2E3440; padding: 4px 8px; border-radius: 8px; padding: 4px; @ https://chrisklop.github.io/playbook2/assets/index-C0gg5Tp_.js:583
-[     432ms] [INFO] Loading save {id: playbook-disinfo-2026-0, name: Default Save, tabs: Array(1), time: 1779474240010, autosave: true} @ https://chrisklop.github.io/playbook2/assets/index-C0gg5Tp_.js:583
-[     436ms] [INFO] Adding layer main @ https://chrisklop.github.io/playbook2/assets/index-C0gg5Tp_.js:582
-[     438ms] [INFO] Adding layer p @ https://chrisklop.github.io/playbook2/assets/index-C0gg5Tp_.js:582
-[     868ms] [INFO] ServiceWorkerRegistration @ https://chrisklop.github.io/playbook2/assets/index-C0gg5Tp_.js:583
-[     906ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ https://chrisklop.github.io/playbook2/:0
