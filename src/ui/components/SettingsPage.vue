@@ -44,7 +44,11 @@ function hardReset() {
       <h3>Audio</h3>
       <label class="toggle-row">
         <input type="checkbox" :checked="state.audioMuted" @change="(e) => state.audioMuted = (e.target as HTMLInputElement).checked">
-        <span>Mute all sounds</span>
+        <span>Mute sound effects (clicks, chimes, milestones)</span>
+      </label>
+      <label class="toggle-row">
+        <input type="checkbox" :checked="state.musicMuted" @change="(e) => state.musicMuted = (e.target as HTMLInputElement).checked">
+        <span>Mute background music</span>
       </label>
     </section>
 

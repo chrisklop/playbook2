@@ -23,6 +23,7 @@ export interface SaveState {
   managers_hired: string[];
   upgrades_purchased: string[];
   audio_muted?: boolean; // optional — defaults false on missing
+  music_muted?: boolean; // optional — defaults false on missing
   // v4 additions (ticker events) — all optional, defaults supplied on load
   active_offer?: {
     event_id: string;

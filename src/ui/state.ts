@@ -35,6 +35,9 @@ import {
   playMilestone,
   playPrestige,
   setMuted,
+  setMusicMuted,
+  loadMusic,
+  startMusic,
 } from './audio';
 
 type EraId = 'antiquity' | 'printing-press' | 'penny-press' | 'propaganda-state';
@@ -60,6 +63,7 @@ export const state = reactive({
   managersHired: new Set<string>(),
   upgradesPurchased: new Set<string>(), // upgrade.id set
   audioMuted: false,
+  musicMuted: false,
   lastPayout: {} as Record<string, LastPayout>, // ephemeral, drives popper animations
   // v4 — ticker events
   activeOffer: null as ActiveOffer | null,
@@ -87,12 +91,34 @@ export function claimCodexMastery(codexId: string, techniqueTags: string[]): boo
   return true;
 }
 
-// Keep the audio module's local mute flag in sync with reactive state.
+// Keep the audio module's local mute flags in sync with reactive state.
 watch(
   () => state.audioMuted,
   v => setMuted(v),
   { immediate: true },
 );
+watch(
+  () => state.musicMuted,
+  v => setMusicMuted(v),
+  { immediate: true },
+);
+
+// Boot the background-music loop. URL resolves against Vite's BASE_URL so
+// it works both at the local dev origin and at the /playbook2/ GH Pages
+// path. The file lives in public/music/ (see README of that folder).
+if (typeof window !== 'undefined') {
+  const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '/');
+  loadMusic(base + 'music/playbook-loop.mp3');
+  // Browsers block autoplay until first user gesture — re-attempt on the
+  // first interaction so playback starts as soon as the player taps.
+  const kickstart = () => {
+    startMusic();
+    window.removeEventListener('pointerdown', kickstart);
+    window.removeEventListener('keydown', kickstart);
+  };
+  window.addEventListener('pointerdown', kickstart, { once: true });
+  window.addEventListener('keydown', kickstart, { once: true });
+}
 
 export const currentBundle = computed(() => getEra(state.currentEraId));
 export const currentEra = computed(() => currentBundle.value.era);
@@ -353,6 +379,7 @@ export function applyLoadedSave(save: SaveState): void {
   state.managersHired = new Set(save.managers_hired);
   state.upgradesPurchased = new Set(save.upgrades_purchased ?? []);
   state.audioMuted = save.audio_muted ?? false;
+  state.musicMuted = save.music_muted ?? false;
   state.activeOffer = save.active_offer ?? null;
   state.activeBonus = save.active_bonus ?? null;
   state.nextEventSpawnAt = save.next_event_spawn_at ?? 0;
@@ -397,6 +424,7 @@ export function snapshotSave(): SaveState {
     managers_hired: Array.from(state.managersHired),
     upgrades_purchased: Array.from(state.upgradesPurchased),
     audio_muted: state.audioMuted,
+    music_muted: state.musicMuted,
     active_offer: state.activeOffer,
     active_bonus: state.activeBonus,
     next_event_spawn_at: state.nextEventSpawnAt,

@@ -15,6 +15,7 @@ let lastClickAt = 0;
 const CLICK_THROTTLE_MS = 40;
 
 let mutedFlag = false;
+let musicMutedFlag = false;
 
 export function setMuted(v: boolean): void {
   mutedFlag = v;
@@ -22,6 +23,62 @@ export function setMuted(v: boolean): void {
 
 export function isMuted(): boolean {
   return mutedFlag;
+}
+
+// ============================================================
+// Looped background music
+// ============================================================
+//
+// One HTMLAudioElement, loop=true, paused/played by the music-muted flag.
+// We use HTMLAudioElement (not Web Audio decoded buffers) so the file can
+// be a regular MP3/OGG that streams from /public, no decoding overhead,
+// and the browser handles gapless looping natively.
+//
+// Browsers block autoplay until the user has interacted with the page,
+// so we lazily start playback on the first attempt and silently catch
+// the autoplay-block promise rejection. Once any click/tap occurs, the
+// next call to startMusic() succeeds.
+
+let musicEl: HTMLAudioElement | null = null;
+let musicVolume = 0.35; // background level — quieter than effects
+let musicLoaded = false;
+
+export function setMusicMuted(v: boolean): void {
+  musicMutedFlag = v;
+  if (!musicEl) return;
+  if (v) musicEl.pause();
+  else startMusic();
+}
+
+/**
+ * Load and configure the background music track. Idempotent — calling
+ * twice with the same URL is a no-op. Call once at app boot.
+ *
+ * @param url Public-folder URL (e.g. import.meta.env.BASE_URL + 'music/playbook-loop.mp3').
+ */
+export function loadMusic(url: string): void {
+  if (musicLoaded && musicEl?.src.endsWith(url)) return;
+  if (typeof Audio === 'undefined') return;
+  musicEl = new Audio(url);
+  musicEl.loop = true;
+  musicEl.volume = musicVolume;
+  musicEl.preload = 'auto';
+  musicLoaded = true;
+  // Don't auto-start — startMusic() will be called when the player
+  // interacts (and unmuted). Autoplay would be blocked anyway.
+  if (!musicMutedFlag) startMusic();
+}
+
+export function startMusic(): void {
+  if (!musicEl || musicMutedFlag) return;
+  // play() returns a promise that rejects when autoplay is blocked.
+  // Swallow it — first user gesture will succeed on the next call.
+  void musicEl.play().catch(() => {});
+}
+
+export function setMusicVolume(v: number): void {
+  musicVolume = Math.max(0, Math.min(1, v));
+  if (musicEl) musicEl.volume = musicVolume;
 }
 
 function getCtx(): AudioContext | null {
