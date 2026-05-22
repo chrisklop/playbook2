@@ -13,11 +13,14 @@ import { visibleGenerators } from '../state';
 
 <template>
   <div class="play">
-    <Masthead />
-    <Ticker />
-    <EraBanner />
-    <ResourceRow />
-    <BulkBuyBar />
+    <!-- Sticky top chrome — locked at the top of the scroll viewport -->
+    <div class="chrome">
+      <Masthead />
+      <Ticker />
+      <EraBanner />
+      <ResourceRow />
+      <BulkBuyBar />
+    </div>
     <div class="cards">
       <GeneratorCard v-for="gen in visibleGenerators" :key="gen.id" :gen="gen" />
       <RevealPlaceholder />
@@ -33,6 +36,14 @@ import { visibleGenerators } from '../state';
   padding: 0 0 80px 0;
   width: 100%;
   box-sizing: border-box;
+}
+.chrome {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--theme-background, #f2ecd9);
+  /* Subtle separator under the chrome so it visually peels from the cards below it */
+  box-shadow: 0 1px 0 var(--theme-border, #2a2218);
 }
 .cards {
   margin: 0;
