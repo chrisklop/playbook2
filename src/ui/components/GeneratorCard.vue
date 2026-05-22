@@ -9,8 +9,10 @@ import {
   isManagerHired,
   nextUpgradeFor,
   buyUpgrade,
+  upgradeMultFor,
 } from '../state';
-import { computeBulkCost, maxAffordableBulk } from '../../game/era-layer';
+import { computeBulkCost, maxAffordableBulk, payoutPerCycle } from '../../game/era-layer';
+import { carryoverMultiplier } from '../../game/prestige';
 import type { GeneratorTier } from '../../content/schema';
 import { formatCost, formatResource } from '../format';
 import { playMilestone } from '../audio';
@@ -37,6 +39,25 @@ const buyCost = computed(() =>
   computeBulkCost(props.gen.base_cost, props.gen.cost_growth, owned.value, bulkN.value),
 );
 const canAffordBuy = computed(() => state.rumor >= buyCost.value);
+
+// Per-cycle income preview for this tile.
+// When owned > 0: real production (owned * base * milestones * globals * upgrades * cycle_seconds).
+// When owned == 0: shows what ONE unit would produce on its own, so the player
+// can read the "starts at" rate before buying.
+const incomePerCycle = computed<number>(() => {
+  const globalMult = carryoverMultiplier(state.memeticInheritance);
+  const upgradeMult = upgradeMultFor(props.gen.id);
+  if (owned.value > 0) {
+    return payoutPerCycle(props.gen, owned.value, globalMult, upgradeMult);
+  }
+  return props.gen.base_production * props.gen.cycle_seconds * globalMult * upgradeMult;
+});
+const cycleSecondsLabel = computed<string>(() => {
+  const s = props.gen.cycle_seconds;
+  if (s >= 10) return s.toFixed(0) + 's';
+  if (s >= 1) return s.toFixed(1) + 's';
+  return (s * 1000).toFixed(0) + 'ms';
+});
 
 const managerHired = computed(() => isManagerHired(props.gen.id));
 const managerCost = computed(() => props.gen.manager_cost);
@@ -189,8 +210,12 @@ function tapBuyUpgrade(e: Event) {
           </div>
           <div class="cost-line">
             <span class="cost-num">{{ formatCost(buyCost) }}</span>
-            <span class="cost-mult" v-if="bulkN > 1">buys ×{{ bulkN }}</span>
-            <span class="cost-mult" v-else-if="gen.is_click_driven">+1 / buy</span>
+            <span class="cost-mult" v-if="bulkN > 1">×{{ bulkN }}</span>
+          </div>
+          <div class="earn-line">
+            <span class="earn-num">+{{ formatResource(incomePerCycle) }}</span>
+            <span class="earn-sep">/</span>
+            <span class="earn-time">{{ cycleSecondsLabel }}</span>
           </div>
         </div>
         <div class="icon-slot">
@@ -205,12 +230,6 @@ function tapBuyUpgrade(e: Event) {
       </div>
 
       <div class="row bottom" v-if="owned > 0 || managerCost > 0">
-        <!-- Milestone progress fills this row's background. -->
-        <div
-          v-if="nextMilestone !== null"
-          class="mile-bg"
-          :style="{ width: milestoneProgress * 100 + '%' }"
-        ></div>
         <div class="mile-hint">
           <template v-if="nextMilestone !== null">
             ×{{ currentMilestoneMult }} → ×{{ nextMilestoneMult }} at {{ nextMilestone }}
@@ -316,18 +335,27 @@ function tapBuyUpgrade(e: Event) {
   100% { background: var(--theme-surface, #ebe2c4); }
 }
 
+/* Cycle progress lives on the TOP edge of the tile as a thin glowing bar.
+   Previously this was a full-card sliding gray fill, but the dark wash
+   made any non-bold text underneath unreadable as it passed. Moving it
+   to a dedicated edge strip frees the content area to stay legible. */
 .cycle-bg {
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 0;
-  background: rgba(42, 34, 24, 0.18);
+  height: 4px;
+  background: linear-gradient(90deg,
+    rgba(120, 180, 230, 0.55) 0%,
+    rgba(80, 160, 220, 0.95) 70%,
+    rgba(180, 220, 250, 1) 100%);
+  box-shadow: 0 0 6px rgba(80, 160, 220, 0.55);
   transition: width 80ms linear;
-  z-index: 0;
+  z-index: 3;
   pointer-events: none;
 }
 .cycle-bg.idle {
-  background: rgba(42, 34, 24, 0.06);
+  background: rgba(80, 160, 220, 0.18);
+  box-shadow: none;
 }
 
 .content {
@@ -335,7 +363,7 @@ function tapBuyUpgrade(e: Event) {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  padding: 8px 12px 11px;
+  padding: 10px 12px 15px;
   gap: 4px;
   box-sizing: border-box;
 }
@@ -403,6 +431,24 @@ function tapBuyUpgrade(e: Event) {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+.earn-line {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
+  margin-top: 1px;
+}
+.earn-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: #2a6b35;
+  letter-spacing: 0.5px;
+}
+.earn-sep, .earn-time {
+  font-size: 10px;
+  font-weight: 600;
+  opacity: 0.65;
+}
 
 .icon-slot {
   position: relative;
@@ -428,23 +474,13 @@ function tapBuyUpgrade(e: Event) {
   letter-spacing: 0.5px;
   opacity: 0.9;
 }
-.mile-bg {
-  position: absolute;
-  top: -2px;
-  bottom: -2px;
-  left: -6px;
-  background: linear-gradient(90deg, rgba(240, 160, 96, 0.22) 0%, rgba(240, 160, 96, 0.42) 100%);
-  border-right: 2px solid rgba(214, 120, 48, 0.85);
-  transition: width 250ms ease-out;
-  z-index: 0;
-  pointer-events: none;
-}
 .mile-hint, .mgr { position: relative; z-index: 1; }
 .mile-hint {
   font-family: var(--theme-font-body, -apple-system, sans-serif);
-  font-size: 10px;
+  font-size: 11px;
   font-style: italic;
-  opacity: 0.75;
+  font-weight: 600;
+  opacity: 0.92;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -506,49 +542,58 @@ function tapBuyUpgrade(e: Event) {
 .mile-pop-leave-to, .payout-pop-leave-to { opacity: 0; }
 
 /* Segmented milestone "fuel gauge" along the bottom edge of the tile.
-   Sits above the cycle-bg/content layers so it's always visible. */
+   Sits above the content so it's always visible. Each notch is a
+   milestone; the player can read the whole ladder in one glance. */
 .ms-meter {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 5px;
+  height: 9px;
   display: flex;
-  background: rgba(42, 34, 24, 0.08);
-  z-index: 2;
+  background: rgba(42, 34, 24, 0.22);
+  z-index: 3;
   pointer-events: none;
-  border-top: 1px solid rgba(42, 34, 24, 0.15);
+  border-top: 1px solid rgba(42, 34, 24, 0.55);
 }
 .ms-seg {
   position: relative;
   height: 100%;
-  border-right: 1px solid rgba(42, 34, 24, 0.45);
+  border-right: 1px solid rgba(42, 34, 24, 0.7);
   box-sizing: border-box;
   overflow: hidden;
 }
 .ms-seg:last-child { border-right: 0; }
 .ms-seg.filled {
-  background: linear-gradient(180deg, rgba(214, 120, 48, 0.92), rgba(170, 80, 30, 0.95));
-  box-shadow: inset 0 1px 0 rgba(255, 220, 180, 0.5);
+  background: linear-gradient(180deg, rgba(232, 142, 56, 1), rgba(178, 78, 22, 1));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 180, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 .ms-fill {
   position: absolute;
   top: 0; bottom: 0; left: 0;
-  background: linear-gradient(180deg, rgba(240, 170, 90, 0.95), rgba(214, 120, 48, 0.95));
+  background: linear-gradient(180deg, rgba(250, 195, 110, 1), rgba(220, 130, 50, 1));
   transition: width 200ms ease-out;
-  box-shadow: inset 0 1px 0 rgba(255, 220, 180, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 235, 190, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18);
 }
-/* Pulse the current segment subtly so the eye finds the "next rung". */
+/* The current segment glows softly so the eye finds the "next rung". */
+.ms-seg.current {
+  background: rgba(120, 70, 30, 0.35);
+}
 .ms-seg.current::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(240, 170, 90, 0.18);
+  background: linear-gradient(180deg, rgba(255, 215, 140, 0.0), rgba(255, 195, 100, 0.3));
   animation: ms-pulse 1.6s ease-in-out infinite;
   pointer-events: none;
+  mix-blend-mode: screen;
 }
 @keyframes ms-pulse {
-  0%, 100% { opacity: 0; }
-  50%      { opacity: 1; }
+  0%, 100% { opacity: 0.2; }
+  50%      { opacity: 0.85; }
 }
 </style>
