@@ -36,6 +36,7 @@ import {
   playPrestige,
   setMuted,
   setMusicMuted,
+  setMusicVolume,
   loadMusic,
   startMusic,
 } from './audio';
@@ -64,6 +65,7 @@ export const state = reactive({
   upgradesPurchased: new Set<string>(), // upgrade.id set
   audioMuted: false,
   musicMuted: false,
+  musicVolume: 0.20, // 0..1 — default 20%, user-adjustable via Settings slider
   lastPayout: {} as Record<string, LastPayout>, // ephemeral, drives popper animations
   // v4 — ticker events
   activeOffer: null as ActiveOffer | null,
@@ -100,6 +102,11 @@ watch(
 watch(
   () => state.musicMuted,
   v => setMusicMuted(v),
+  { immediate: true },
+);
+watch(
+  () => state.musicVolume,
+  v => setMusicVolume(v),
   { immediate: true },
 );
 
@@ -400,6 +407,7 @@ export function applyLoadedSave(save: SaveState): void {
   state.upgradesPurchased = new Set(save.upgrades_purchased ?? []);
   state.audioMuted = save.audio_muted ?? false;
   state.musicMuted = save.music_muted ?? false;
+  state.musicVolume = save.music_volume ?? 0.20;
   state.activeOffer = save.active_offer ?? null;
   state.activeBonus = save.active_bonus ?? null;
   state.nextEventSpawnAt = save.next_event_spawn_at ?? 0;
@@ -445,6 +453,7 @@ export function snapshotSave(): SaveState {
     upgrades_purchased: Array.from(state.upgradesPurchased),
     audio_muted: state.audioMuted,
     music_muted: state.musicMuted,
+    music_volume: state.musicVolume,
     active_offer: state.activeOffer,
     active_bonus: state.activeBonus,
     next_event_spawn_at: state.nextEventSpawnAt,
@@ -532,8 +541,13 @@ if (typeof window !== 'undefined') {
   }, TICK_MS);
 
   // Autosave every 10 seconds and on visibility change.
+  // The hard-reset sentinel (set in SettingsPage.hardReset before reload)
+  // tells us to skip writing -- without this, the visibilitychange handler
+  // would re-save the in-memory state right after we cleared localStorage,
+  // and the reload would restore everything.
   const autosave = () => {
     try {
+      if (localStorage.getItem('playbook.hard-reset') === '1') return;
       writeLocalSave(snapshotSave());
     } catch (err) {
       console.error('Autosave failed:', err);
@@ -543,6 +557,13 @@ if (typeof window !== 'undefined') {
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') autosave();
   });
+}
+
+// Clear the hard-reset sentinel on app boot — we've already started fresh.
+if (typeof window !== 'undefined') {
+  if (localStorage.getItem('playbook.hard-reset') === '1') {
+    localStorage.removeItem('playbook.hard-reset');
+  }
 }
 
 // === Toast triggers ===

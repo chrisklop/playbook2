@@ -31,6 +31,10 @@ function doImport() {
 function hardReset() {
   if (!confirm('Permanently erase your save? This cannot be undone.')) return;
   if (!confirm('Are you absolutely sure? This will reset everything.')) return;
+  // Sentinel flag prevents the visibilitychange autosave from racing the
+  // reload and re-writing in-memory state back into localStorage. State.ts
+  // clears the sentinel on next boot.
+  localStorage.setItem('playbook.hard-reset', '1');
   localStorage.removeItem('playbook.save');
   location.reload();
 }
@@ -50,6 +54,20 @@ function hardReset() {
         <input type="checkbox" :checked="state.musicMuted" @change="(e) => state.musicMuted = (e.target as HTMLInputElement).checked">
         <span>Mute background music</span>
       </label>
+      <div class="slider-row" :class="{ disabled: state.musicMuted }">
+        <label for="music-volume">Music volume</label>
+        <input
+          id="music-volume"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          :value="Math.round(state.musicVolume * 100)"
+          :disabled="state.musicMuted"
+          @input="(e) => state.musicVolume = Number((e.target as HTMLInputElement).value) / 100"
+        >
+        <span class="slider-value">{{ Math.round(state.musicVolume * 100) }}%</span>
+      </div>
     </section>
 
     <section class="settings-section">
@@ -161,6 +179,54 @@ textarea {
   width: 18px;
   height: 18px;
   margin: 0;
+}
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-family: var(--theme-font-body, -apple-system, sans-serif);
+  font-size: 13px;
+}
+.slider-row label {
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+.slider-row input[type="range"] {
+  flex: 1;
+  margin: 0;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--theme-border, #1a1a1a);
+  outline: none;
+  cursor: pointer;
+}
+.slider-row input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 0;
+  background: var(--theme-accent, #d3211c);
+  border: 1.5px solid var(--theme-border, #1a1a1a);
+  cursor: pointer;
+}
+.slider-row input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 0;
+  background: var(--theme-accent, #d3211c);
+  border: 1.5px solid var(--theme-border, #1a1a1a);
+  cursor: pointer;
+}
+.slider-row.disabled { opacity: 0.4; }
+.slider-row .slider-value {
+  font-family: var(--riso-font, 'IBM Plex Mono', monospace);
+  font-weight: 700;
+  font-size: 12px;
+  min-width: 36px;
+  text-align: right;
 }
 .stats {
   display: grid;

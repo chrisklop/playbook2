@@ -24,6 +24,7 @@ export interface SaveState {
   upgrades_purchased: string[];
   audio_muted?: boolean; // optional — defaults false on missing
   music_muted?: boolean; // optional — defaults false on missing
+  music_volume?: number; // 0..1, optional — defaults 0.20 on missing
   // v4 additions (ticker events) — all optional, defaults supplied on load
   active_offer?: {
     event_id: string;
