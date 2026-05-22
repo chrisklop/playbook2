@@ -1,0 +1,663 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e9]:
+        - button "Toggle navigation" [ref=e11] [cursor=pointer]
+        - link "Homepage" [ref=e17] [cursor=pointer]:
+          - /url: /
+          - img [ref=e18]
+        - generic [ref=e20]:
+          - link "Sign in" [ref=e21] [cursor=pointer]:
+            - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fchrisklop%2Fplaybook2
+          - button "Appearance settings" [ref=e24] [cursor=pointer]:
+            - img
+  - main [ref=e28]:
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - generic [ref=e32]:
+          - img [ref=e33]
+          - link "chrisklop" [ref=e36] [cursor=pointer]:
+            - /url: /chrisklop
+          - generic [ref=e37]: /
+          - strong [ref=e38]:
+            - link "playbook2" [ref=e39] [cursor=pointer]:
+              - /url: /chrisklop/playbook2
+          - generic [ref=e40]: Public
+        - generic [ref=e41]:
+          - list:
+            - listitem [ref=e42]:
+              - link "You must be signed in to change notification settings" [ref=e43] [cursor=pointer]:
+                - /url: /login?return_to=%2Fchrisklop%2Fplaybook2
+                - img [ref=e44]
+                - text: Notifications
+            - listitem [ref=e46]:
+              - link "Fork 0" [ref=e47] [cursor=pointer]:
+                - /url: /login?return_to=%2Fchrisklop%2Fplaybook2
+                - img [ref=e48]
+                - text: Fork
+                - generic "0" [ref=e50]
+            - listitem [ref=e51]:
+              - link "You must be signed in to star a repository" [ref=e53] [cursor=pointer]:
+                - /url: /login?return_to=%2Fchrisklop%2Fplaybook2
+                - img [ref=e54]
+                - text: Star
+                - generic "0 users starred this repository" [ref=e56]: "0"
+      - navigation "Repository" [ref=e57]:
+        - list [ref=e58]:
+          - listitem [ref=e59]:
+            - link "Code" [ref=e60] [cursor=pointer]:
+              - /url: /chrisklop/playbook2
+              - img [ref=e61]
+              - generic [ref=e63]: Code
+          - listitem [ref=e64]:
+            - link "Issues" [ref=e65] [cursor=pointer]:
+              - /url: /chrisklop/playbook2/issues
+              - img [ref=e66]
+              - generic [ref=e69]: Issues
+          - listitem [ref=e70]:
+            - link "Pull requests" [ref=e71] [cursor=pointer]:
+              - /url: /chrisklop/playbook2/pulls
+              - img [ref=e72]
+              - generic [ref=e74]: Pull requests
+          - listitem [ref=e75]:
+            - link "Actions" [ref=e76] [cursor=pointer]:
+              - /url: /chrisklop/playbook2/actions
+              - img [ref=e77]
+              - generic [ref=e79]: Actions
+          - listitem [ref=e80]:
+            - link "Projects" [ref=e81] [cursor=pointer]:
+              - /url: /chrisklop/playbook2/projects
+              - img [ref=e82]
+              - generic [ref=e84]: Projects
+          - listitem [ref=e85]:
+            - link "Security and quality" [ref=e86] [cursor=pointer]:
+              - /url: /chrisklop/playbook2/security
+              - img [ref=e87]
+              - generic [ref=e89]: Security and quality
+          - listitem [ref=e90]:
+            - link "Insights" [ref=e91] [cursor=pointer]:
+              - /url: /chrisklop/playbook2/pulse
+              - img [ref=e92]
+              - generic [ref=e94]: Insights
+    - generic [ref=e107]:
+      - heading "chrisklop/playbook2" [level=1] [ref=e109]
+      - generic [ref=e110]:
+        - generic [ref=e113]:
+          - generic [ref=e114]:
+            - generic [ref=e115]:
+              - button "main branch" [ref=e117] [cursor=pointer]:
+                - generic [ref=e118]:
+                  - generic [ref=e120]:
+                    - img [ref=e122]
+                    - generic [ref=e125]: main
+                  - generic:
+                    - img
+              - generic [ref=e126]:
+                - link "Go to Branches page" [ref=e127] [cursor=pointer]:
+                  - /url: /chrisklop/playbook2/branches
+                  - img [ref=e128]
+                - link "Go to Tags page" [ref=e130] [cursor=pointer]:
+                  - /url: /chrisklop/playbook2/tags
+                  - img [ref=e131]
+            - generic [ref=e133]:
+              - button "Go to file" [ref=e136] [cursor=pointer]:
+                - generic [ref=e138]: Go to file
+              - button "Code" [ref=e139] [cursor=pointer]:
+                - generic [ref=e140]:
+                  - generic:
+                    - img
+                  - generic [ref=e141]: Code
+                  - generic:
+                    - img
+          - generic [ref=e142]:
+            - generic [ref=e143]:
+              - heading "Folders and files" [level=2] [ref=e144]
+              - table "Folders and files" [ref=e145]:
+                - rowgroup:
+                  - row "Name Last commit message Last commit date":
+                    - columnheader "Name"
+                    - columnheader "Last commit message":
+                      - generic "Last commit message"
+                    - columnheader "Last commit date":
+                      - generic "Last commit date"
+                - rowgroup [ref=e146]:
+                  - 'row "Latest commit chrisklop commits by chrisklop fix(bulk): NEXT mode -- seed purchase on owned=0, strict pulse on own… Open commit details success Commit d4ab1a0 · May 22, 20261 hour ago History View commit history for this file." [ref=e147]':
+                    - 'cell "Latest commit chrisklop commits by chrisklop fix(bulk): NEXT mode -- seed purchase on owned=0, strict pulse on own… Open commit details success Commit d4ab1a0 · May 22, 20261 hour ago History View commit history for this file." [ref=e148]':
+                      - generic [ref=e149]:
+                        - heading "Latest commit" [level=2] [ref=e150]
+                        - generic [ref=e151]:
+                          - generic [ref=e153]:
+                            - link "chrisklop" [ref=e154] [cursor=pointer]:
+                              - /url: /chrisklop
+                              - img "chrisklop" [ref=e155]
+                            - link "commits by chrisklop" [ref=e156] [cursor=pointer]:
+                              - /url: /chrisklop/playbook2/commits?author=chrisklop
+                              - text: chrisklop
+                          - generic [ref=e157]:
+                            - 'link "fix(bulk): NEXT mode -- seed purchase on owned=0, strict pulse on own…" [ref=e160] [cursor=pointer]':
+                              - /url: /chrisklop/playbook2/commit/d4ab1a0edc9958b479061e7480e579003620f4ff
+                            - button "Open commit details" [ref=e161] [cursor=pointer]:
+                              - img [ref=e162]
+                            - button "success" [ref=e164] [cursor=pointer]:
+                              - img [ref=e165]
+                        - generic [ref=e167]:
+                          - generic [ref=e169]:
+                            - link "Commit d4ab1a0" [ref=e170] [cursor=pointer]:
+                              - /url: /chrisklop/playbook2/commit/d4ab1a0edc9958b479061e7480e579003620f4ff
+                              - text: d4ab1a0
+                            - text: ·
+                            - generic "May 22, 2026, 12:20 PM CDT" [ref=e171]: May 22, 20261 hour ago
+                          - generic [ref=e172]:
+                            - heading "History" [level=2] [ref=e173]
+                            - link "View commit history for this file." [ref=e175] [cursor=pointer]:
+                              - /url: /chrisklop/playbook2/commits/main/
+                              - generic [ref=e176]:
+                                - generic:
+                                  - img
+                  - 'row ".github/workflows, (Directory) ci(deploy): GitHub Pages workflow May 21, 2026yesterday" [ref=e177]':
+                    - cell ".github/workflows, (Directory)" [ref=e178]:
+                      - generic [ref=e179]:
+                        - img [ref=e180]
+                        - link ".github/workflows, (Directory)" [ref=e185] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/tree/main/.github/workflows
+                          - text: .github/workflows
+                    - 'cell "ci(deploy): GitHub Pages workflow" [ref=e186]':
+                      - 'link "ci(deploy): GitHub Pages workflow" [ref=e189] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/2e1fe26a85a47cc6ea7a1eab8ab075edd42e4565
+                    - cell "May 21, 2026yesterday" [ref=e190]:
+                      - generic [ref=e191]: May 21, 2026yesterday
+                  - 'row "docs/superpowers, (Directory) docs(spec): v0.3 Phase 1 — cycles + managers + AdCap-style card layout May 21, 202617 hours ago" [ref=e192]':
+                    - cell "docs/superpowers, (Directory)" [ref=e193]:
+                      - generic [ref=e194]:
+                        - img [ref=e195]
+                        - link "docs/superpowers, (Directory)" [ref=e200] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/tree/main/docs/superpowers
+                          - text: docs/superpowers
+                    - 'cell "docs(spec): v0.3 Phase 1 — cycles + managers + AdCap-style card layout" [ref=e201]':
+                      - 'link "docs(spec): v0.3 Phase 1 — cycles + managers + AdCap-style card layout" [ref=e204] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/e738ca446e65a3a1678ef6758f0847de257779d3
+                    - cell "May 21, 202617 hours ago" [ref=e205]:
+                      - generic [ref=e206]: May 21, 202617 hours ago
+                  - 'row "public, (Directory) chore: compress music to 128 kbps, lower default to 20%, NEXT always … May 22, 20261 hour ago" [ref=e207]':
+                    - cell "public, (Directory)" [ref=e208]:
+                      - generic [ref=e209]:
+                        - img [ref=e210]
+                        - link "public, (Directory)" [ref=e215] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/tree/main/public
+                          - text: public
+                    - 'cell "chore: compress music to 128 kbps, lower default to 20%, NEXT always …" [ref=e216]':
+                      - 'link "chore: compress music to 128 kbps, lower default to 20%, NEXT always …" [ref=e219] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/7cba5ff8511d78efa78db44809def2ee12696a56
+                    - cell "May 22, 20261 hour ago" [ref=e220]:
+                      - generic [ref=e221]: May 22, 20261 hour ago
+                  - 'row "research, (Directory) Initial: research salvage + Phase 1 MVP design spec May 21, 20262 days ago" [ref=e222]':
+                    - cell "research, (Directory)" [ref=e223]:
+                      - generic [ref=e224]:
+                        - img [ref=e225]
+                        - link "research, (Directory)" [ref=e230] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/tree/main/research
+                          - text: research
+                    - 'cell "Initial: research salvage + Phase 1 MVP design spec" [ref=e231]':
+                      - 'link "Initial: research salvage + Phase 1 MVP design spec" [ref=e234] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/e60b7c59d25a35edd23b18925f2d9d22808a956f
+                    - cell "May 21, 20262 days ago" [ref=e235]:
+                      - generic [ref=e236]: May 21, 20262 days ago
+                  - 'row "saves, (Directory) feat(phase0): scaffold Profectus baseline May 21, 20262 days ago" [ref=e237]':
+                    - cell "saves, (Directory)" [ref=e238]:
+                      - generic [ref=e239]:
+                        - img [ref=e240]
+                        - link "saves, (Directory)" [ref=e245] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/tree/main/saves
+                          - text: saves
+                    - 'cell "feat(phase0): scaffold Profectus baseline" [ref=e246]':
+                      - 'link "feat(phase0): scaffold Profectus baseline" [ref=e249] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/10401106729378e85ebc4b35254f3101cf678f9c
+                    - cell "May 21, 20262 days ago" [ref=e250]:
+                      - generic [ref=e251]: May 21, 20262 days ago
+                  - 'row "screenshots/v0.1-phase4, (Directory) docs(screenshots): Phase 4 visual baseline (Antiquity theme, iPhone 1… May 21, 2026yesterday" [ref=e252]':
+                    - cell "screenshots/v0.1-phase4, (Directory)" [ref=e253]:
+                      - generic [ref=e254]:
+                        - img [ref=e255]
+                        - link "screenshots/v0.1-phase4, (Directory)" [ref=e260] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/tree/main/screenshots/v0.1-phase4
+                          - text: screenshots/v0.1-phase4
+                    - 'cell "docs(screenshots): Phase 4 visual baseline (Antiquity theme, iPhone 1…" [ref=e261]':
+                      - 'link "docs(screenshots): Phase 4 visual baseline (Antiquity theme, iPhone 1…" [ref=e264] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/7bb796d0dadeeb9bb3c2036c8e4026012e6572d3
+                    - cell "May 21, 2026yesterday" [ref=e265]:
+                      - generic [ref=e266]: May 21, 2026yesterday
+                  - 'row "scripts, (Directory) feat(economy): per-era prestige pivot, calibrated against simulator (… May 21, 2026yesterday" [ref=e267]':
+                    - cell "scripts, (Directory)" [ref=e268]:
+                      - generic [ref=e269]:
+                        - img [ref=e270]
+                        - link "scripts, (Directory)" [ref=e275] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/tree/main/scripts
+                          - text: scripts
+                    - 'cell "feat(economy): per-era prestige pivot, calibrated against simulator (…" [ref=e276]':
+                      - 'link "feat(economy): per-era prestige pivot, calibrated against simulator (…" [ref=e279] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/0772ce9ca94e02c03e883f46aca56e52914b976b
+                    - cell "May 21, 2026yesterday" [ref=e280]:
+                      - generic [ref=e281]: May 21, 2026yesterday
+                  - 'row "src, (Directory) fix(bulk): NEXT mode -- seed purchase on owned=0, strict pulse on own… May 22, 20261 hour ago" [ref=e282]':
+                    - cell "src, (Directory)" [ref=e283]:
+                      - generic [ref=e284]:
+                        - img [ref=e285]
+                        - link "src, (Directory)" [ref=e290] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/tree/main/src
+                          - text: src
+                    - 'cell "fix(bulk): NEXT mode -- seed purchase on owned=0, strict pulse on own…" [ref=e291]':
+                      - 'link "fix(bulk): NEXT mode -- seed purchase on owned=0, strict pulse on own…" [ref=e294] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/d4ab1a0edc9958b479061e7480e579003620f4ff
+                    - cell "May 22, 20261 hour ago" [ref=e295]:
+                      - generic [ref=e296]: May 22, 20261 hour ago
+                  - 'row "tests, (Directory) feat(mastery): Technique Mastery -- codex reading grants permanent pr… May 22, 20263 hours ago" [ref=e297]':
+                    - cell "tests, (Directory)" [ref=e298]:
+                      - generic [ref=e299]:
+                        - img [ref=e300]
+                        - link "tests, (Directory)" [ref=e305] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/tree/main/tests
+                          - text: tests
+                    - 'cell "feat(mastery): Technique Mastery -- codex reading grants permanent pr…" [ref=e306]':
+                      - 'link "feat(mastery): Technique Mastery -- codex reading grants permanent pr…" [ref=e309] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/408d582c563ba3b89cfa7c2f0fe7717f7b8eb975
+                    - cell "May 22, 20263 hours ago" [ref=e310]:
+                      - generic [ref=e311]: May 22, 20263 hours ago
+                  - 'row ".eslintignore, (File) feat(phase0): scaffold Profectus baseline May 21, 20262 days ago" [ref=e312]':
+                    - cell ".eslintignore, (File)" [ref=e313]:
+                      - generic [ref=e314]:
+                        - img [ref=e315]
+                        - link ".eslintignore, (File)" [ref=e320] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/.eslintignore
+                          - text: .eslintignore
+                    - 'cell "feat(phase0): scaffold Profectus baseline" [ref=e321]':
+                      - 'link "feat(phase0): scaffold Profectus baseline" [ref=e324] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/10401106729378e85ebc4b35254f3101cf678f9c
+                    - cell "May 21, 20262 days ago" [ref=e325]:
+                      - generic [ref=e326]: May 21, 20262 days ago
+                  - 'row ".eslintrc.cjs, (File) feat(phase0): scaffold Profectus baseline May 21, 20262 days ago" [ref=e327]':
+                    - cell ".eslintrc.cjs, (File)" [ref=e328]:
+                      - generic [ref=e329]:
+                        - img [ref=e330]
+                        - link ".eslintrc.cjs, (File)" [ref=e335] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/.eslintrc.cjs
+                          - text: .eslintrc.cjs
+                    - 'cell "feat(phase0): scaffold Profectus baseline" [ref=e336]':
+                      - 'link "feat(phase0): scaffold Profectus baseline" [ref=e339] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/10401106729378e85ebc4b35254f3101cf678f9c
+                    - cell "May 21, 20262 days ago" [ref=e340]:
+                      - generic [ref=e341]: May 21, 20262 days ago
+                  - 'row ".gitignore, (File) feat(phase0): scaffold Profectus baseline May 21, 20262 days ago" [ref=e342]':
+                    - cell ".gitignore, (File)" [ref=e343]:
+                      - generic [ref=e344]:
+                        - img [ref=e345]
+                        - link ".gitignore, (File)" [ref=e350] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/.gitignore
+                          - text: .gitignore
+                    - 'cell "feat(phase0): scaffold Profectus baseline" [ref=e351]':
+                      - 'link "feat(phase0): scaffold Profectus baseline" [ref=e354] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/10401106729378e85ebc4b35254f3101cf678f9c
+                    - cell "May 21, 20262 days ago" [ref=e355]:
+                      - generic [ref=e356]: May 21, 20262 days ago
+                  - 'row ".prettierrc.json, (File) feat(phase0): scaffold Profectus baseline May 21, 20262 days ago" [ref=e357]':
+                    - cell ".prettierrc.json, (File)" [ref=e358]:
+                      - generic [ref=e359]:
+                        - img [ref=e360]
+                        - link ".prettierrc.json, (File)" [ref=e365] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/.prettierrc.json
+                          - text: .prettierrc.json
+                    - 'cell "feat(phase0): scaffold Profectus baseline" [ref=e366]':
+                      - 'link "feat(phase0): scaffold Profectus baseline" [ref=e369] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/10401106729378e85ebc4b35254f3101cf678f9c
+                    - cell "May 21, 20262 days ago" [ref=e370]:
+                      - generic [ref=e371]: May 21, 20262 days ago
+                  - 'row "CHANGELOG.md, (File) feat(phase0): scaffold Profectus baseline May 21, 20262 days ago" [ref=e372]':
+                    - cell "CHANGELOG.md, (File)" [ref=e373]:
+                      - generic [ref=e374]:
+                        - img [ref=e375]
+                        - link "CHANGELOG.md, (File)" [ref=e380] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/CHANGELOG.md
+                          - text: CHANGELOG.md
+                    - 'cell "feat(phase0): scaffold Profectus baseline" [ref=e381]':
+                      - 'link "feat(phase0): scaffold Profectus baseline" [ref=e384] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/10401106729378e85ebc4b35254f3101cf678f9c
+                    - cell "May 21, 20262 days ago" [ref=e385]:
+                      - generic [ref=e386]: May 21, 20262 days ago
+                  - 'row "CONTRIBUTING.md, (File) feat(phase0): scaffold Profectus baseline May 21, 20262 days ago" [ref=e387]':
+                    - cell "CONTRIBUTING.md, (File)" [ref=e388]:
+                      - generic [ref=e389]:
+                        - img [ref=e390]
+                        - link "CONTRIBUTING.md, (File)" [ref=e395] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/CONTRIBUTING.md
+                          - text: CONTRIBUTING.md
+                    - 'cell "feat(phase0): scaffold Profectus baseline" [ref=e396]':
+                      - 'link "feat(phase0): scaffold Profectus baseline" [ref=e399] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/10401106729378e85ebc4b35254f3101cf678f9c
+                    - cell "May 21, 20262 days ago" [ref=e400]:
+                      - generic [ref=e401]: May 21, 20262 days ago
+                  - 'row "LICENSE, (File) feat(phase0): scaffold Profectus baseline May 21, 20262 days ago" [ref=e402]':
+                    - cell "LICENSE, (File)" [ref=e403]:
+                      - generic [ref=e404]:
+                        - img [ref=e405]
+                        - link "LICENSE, (File)" [ref=e410] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/LICENSE
+                          - text: LICENSE
+                    - 'cell "feat(phase0): scaffold Profectus baseline" [ref=e411]':
+                      - 'link "feat(phase0): scaffold Profectus baseline" [ref=e414] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/10401106729378e85ebc4b35254f3101cf678f9c
+                    - cell "May 21, 20262 days ago" [ref=e415]:
+                      - generic [ref=e416]: May 21, 20262 days ago
+                  - 'row "README.md, (File) feat(phase0): scaffold Profectus baseline May 21, 20262 days ago" [ref=e417]':
+                    - cell "README.md, (File)" [ref=e418]:
+                      - generic [ref=e419]:
+                        - img [ref=e420]
+                        - link "README.md, (File)" [ref=e425] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/README.md
+                          - text: README.md
+                    - 'cell "feat(phase0): scaffold Profectus baseline" [ref=e426]':
+                      - 'link "feat(phase0): scaffold Profectus baseline" [ref=e429] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/10401106729378e85ebc4b35254f3101cf678f9c
+                    - cell "May 21, 20262 days ago" [ref=e430]:
+                      - generic [ref=e431]: May 21, 20262 days ago
+                  - 'row "index.html, (File) chore(phase0): mobile-first head, safe-area CSS, project metadata May 21, 20262 days ago" [ref=e432]':
+                    - cell "index.html, (File)" [ref=e433]:
+                      - generic [ref=e434]:
+                        - img [ref=e435]
+                        - link "index.html, (File)" [ref=e440] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/index.html
+                          - text: index.html
+                    - 'cell "chore(phase0): mobile-first head, safe-area CSS, project metadata" [ref=e441]':
+                      - 'link "chore(phase0): mobile-first head, safe-area CSS, project metadata" [ref=e444] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/8c5bbff30071c2fb1af2bc3552c246045448e0fa
+                    - cell "May 21, 20262 days ago" [ref=e445]:
+                      - generic [ref=e446]: May 21, 20262 days ago
+                  - 'row "package.json, (File) feat(pwa): manifest, service worker, app icons, Google Fonts caching May 21, 2026yesterday" [ref=e447]':
+                    - cell "package.json, (File)" [ref=e448]:
+                      - generic [ref=e449]:
+                        - img [ref=e450]
+                        - link "package.json, (File)" [ref=e455] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/package.json
+                          - text: package.json
+                    - 'cell "feat(pwa): manifest, service worker, app icons, Google Fonts caching" [ref=e456]':
+                      - 'link "feat(pwa): manifest, service worker, app icons, Google Fonts caching" [ref=e459] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/6a39199beaad8e98e2148586e3b261fdce15f06b
+                    - cell "May 21, 2026yesterday" [ref=e460]:
+                      - generic [ref=e461]: May 21, 2026yesterday
+                  - 'row "pnpm-lock.yaml, (File) feat(pwa): manifest, service worker, app icons, Google Fonts caching May 21, 2026yesterday" [ref=e462]':
+                    - cell "pnpm-lock.yaml, (File)" [ref=e463]:
+                      - generic [ref=e464]:
+                        - img [ref=e465]
+                        - link "pnpm-lock.yaml, (File)" [ref=e470] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/pnpm-lock.yaml
+                          - text: pnpm-lock.yaml
+                    - 'cell "feat(pwa): manifest, service worker, app icons, Google Fonts caching" [ref=e471]':
+                      - 'link "feat(pwa): manifest, service worker, app icons, Google Fonts caching" [ref=e474] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/6a39199beaad8e98e2148586e3b261fdce15f06b
+                    - cell "May 21, 2026yesterday" [ref=e475]:
+                      - generic [ref=e476]: May 21, 2026yesterday
+                  - 'row "tsconfig.json, (File) feat(phase0): scaffold Profectus baseline May 21, 20262 days ago" [ref=e477]':
+                    - cell "tsconfig.json, (File)" [ref=e478]:
+                      - generic [ref=e479]:
+                        - img [ref=e480]
+                        - link "tsconfig.json, (File)" [ref=e485] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/tsconfig.json
+                          - text: tsconfig.json
+                    - 'cell "feat(phase0): scaffold Profectus baseline" [ref=e486]':
+                      - 'link "feat(phase0): scaffold Profectus baseline" [ref=e489] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/10401106729378e85ebc4b35254f3101cf678f9c
+                    - cell "May 21, 20262 days ago" [ref=e490]:
+                      - generic [ref=e491]: May 21, 20262 days ago
+                  - 'row "vite.config.ts, (File) feat(audio): drop in Behind The Velvet Curtain as the background loop May 22, 20261 hour ago" [ref=e492]':
+                    - cell "vite.config.ts, (File)" [ref=e493]:
+                      - generic [ref=e494]:
+                        - img [ref=e495]
+                        - link "vite.config.ts, (File)" [ref=e500] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/vite.config.ts
+                          - text: vite.config.ts
+                    - 'cell "feat(audio): drop in Behind The Velvet Curtain as the background loop" [ref=e501]':
+                      - 'link "feat(audio): drop in Behind The Velvet Curtain as the background loop" [ref=e504] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/5a2cea7c331d419aa35b2dad95cc02e7aa2a0cd9
+                    - cell "May 22, 20261 hour ago" [ref=e505]:
+                      - generic [ref=e506]: May 22, 20261 hour ago
+                  - 'row "vitest.config.ts, (File) feat(phase0): scaffold Profectus baseline May 21, 20262 days ago" [ref=e507]':
+                    - cell "vitest.config.ts, (File)" [ref=e508]:
+                      - generic [ref=e509]:
+                        - img [ref=e510]
+                        - link "vitest.config.ts, (File)" [ref=e515] [cursor=pointer]:
+                          - /url: /chrisklop/playbook2/blob/main/vitest.config.ts
+                          - text: vitest.config.ts
+                    - 'cell "feat(phase0): scaffold Profectus baseline" [ref=e516]':
+                      - 'link "feat(phase0): scaffold Profectus baseline" [ref=e519] [cursor=pointer]':
+                        - /url: /chrisklop/playbook2/commit/10401106729378e85ebc4b35254f3101cf678f9c
+                    - cell "May 21, 20262 days ago" [ref=e520]:
+                      - generic [ref=e521]: May 21, 20262 days ago
+            - generic [ref=e523]:
+              - generic [ref=e524]:
+                - heading "Repository files navigation" [level=2] [ref=e525]
+                - navigation "Repository files" [ref=e526]:
+                  - list [ref=e527]:
+                    - listitem [ref=e528]:
+                      - link "README" [ref=e529] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e531]
+                        - generic [ref=e533]: README
+                    - listitem [ref=e534]:
+                      - link "Contributing" [ref=e535] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e537]
+                        - generic [ref=e539]: Contributing
+                    - listitem [ref=e540]:
+                      - link "MIT license" [ref=e541] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e543]
+                        - generic [ref=e545]: MIT license
+                - button "Outline" [ref=e546] [cursor=pointer]:
+                  - img [ref=e547]
+              - article [ref=e550]:
+                - generic [ref=e551]:
+                  - heading "Profectus" [level=1] [ref=e552]
+                  - 'link "Permalink: Profectus" [ref=e553] [cursor=pointer]':
+                    - /url: "#profectus"
+                    - img [ref=e554]
+                - paragraph [ref=e556]: A game engine that grows with you
+                - paragraph [ref=e557]:
+                  - link "Run on Repl.it" [ref=e558] [cursor=pointer]:
+                    - /url: https://repl.it/github/profectus-engine/Profectus
+                    - img "Run on Repl.it" [ref=e559]
+                - paragraph [ref=e560]:
+                  - link "Read the docs" [ref=e561] [cursor=pointer]:
+                    - /url: https://moddingtree.com
+                - generic [ref=e562]:
+                  - heading "Project setup" [level=2] [ref=e563]
+                  - 'link "Permalink: Project setup" [ref=e564] [cursor=pointer]':
+                    - /url: "#project-setup"
+                    - img [ref=e565]
+                - generic [ref=e567]:
+                  - code [ref=e569]: npm install
+                  - button "Copy code to clipboard" [ref=e571] [cursor=pointer]:
+                    - img [ref=e572]
+                - generic [ref=e575]:
+                  - heading "Hosts dev server and hot-reloads modules as they're changed" [level=3] [ref=e576]
+                  - 'link "Permalink: Hosts dev server and hot-reloads modules as they''re changed" [ref=e577] [cursor=pointer]':
+                    - /url: "#hosts-dev-server-and-hot-reloads-modules-as-theyre-changed"
+                    - img [ref=e578]
+                - generic [ref=e580]:
+                  - code [ref=e582]: npm start
+                  - button "Copy code to clipboard" [ref=e584] [cursor=pointer]:
+                    - img [ref=e585]
+                - generic [ref=e588]:
+                  - heading "Compiles and minifies for production" [level=3] [ref=e589]
+                  - 'link "Permalink: Compiles and minifies for production" [ref=e590] [cursor=pointer]':
+                    - /url: "#compiles-and-minifies-for-production"
+                    - img [ref=e591]
+                - generic [ref=e593]:
+                  - code [ref=e595]: npm run build
+                  - button "Copy code to clipboard" [ref=e597] [cursor=pointer]:
+                    - img [ref=e598]
+                - generic [ref=e601]:
+                  - heading "Hosts the production build" [level=3] [ref=e602]
+                  - 'link "Permalink: Hosts the production build" [ref=e603] [cursor=pointer]':
+                    - /url: "#hosts-the-production-build"
+                    - img [ref=e604]
+                - generic [ref=e606]:
+                  - code [ref=e608]: npm run preview
+                  - button "Copy code to clipboard" [ref=e610] [cursor=pointer]:
+                    - img [ref=e611]
+                - generic [ref=e614]:
+                  - heading "Runs the tests using vite-jest" [level=3] [ref=e615]
+                  - 'link "Permalink: Runs the tests using vite-jest" [ref=e616] [cursor=pointer]':
+                    - /url: "#runs-the-tests-using-vite-jest"
+                    - img [ref=e617]
+                - generic [ref=e619]:
+                  - code [ref=e621]: npm run test
+                  - button "Copy code to clipboard" [ref=e623] [cursor=pointer]:
+                    - img [ref=e624]
+        - generic [ref=e630]:
+          - generic [ref=e633]:
+            - heading "About" [level=2] [ref=e634]
+            - paragraph [ref=e635]: An incremental game about the history of disinformation — v0.2 (Profectus / Vue 3 / Vite)
+            - heading "Resources" [level=3] [ref=e636]
+            - link "Readme" [ref=e638] [cursor=pointer]:
+              - /url: "#readme-ov-file"
+              - img [ref=e639]
+              - text: Readme
+            - heading "License" [level=3] [ref=e641]
+            - link "MIT license" [ref=e643] [cursor=pointer]:
+              - /url: "#MIT-1-ov-file"
+              - img [ref=e644]
+              - text: MIT license
+            - heading "Contributing" [level=3] [ref=e646]
+            - link "Contributing" [ref=e648] [cursor=pointer]:
+              - /url: "#contributing-ov-file"
+              - img [ref=e649]
+              - text: Contributing
+            - link "Activity" [ref=e652] [cursor=pointer]:
+              - /url: /chrisklop/playbook2/activity
+              - img [ref=e653]
+              - text: Activity
+            - heading "Stars" [level=3] [ref=e655]
+            - link "0 stars" [ref=e657] [cursor=pointer]:
+              - /url: /chrisklop/playbook2/stargazers
+              - img [ref=e658]
+              - strong [ref=e660]: "0"
+              - text: stars
+            - heading "Watchers" [level=3] [ref=e661]
+            - link "0 watching" [ref=e663] [cursor=pointer]:
+              - /url: /chrisklop/playbook2/watchers
+              - img [ref=e664]
+              - strong [ref=e666]: "0"
+              - text: watching
+            - heading "Forks" [level=3] [ref=e667]
+            - link "0 forks" [ref=e669] [cursor=pointer]:
+              - /url: /chrisklop/playbook2/forks
+              - img [ref=e670]
+              - strong [ref=e672]: "0"
+              - text: forks
+            - link "Report repository" [ref=e674] [cursor=pointer]:
+              - /url: /contact/report-content?content_url=https%3A%2F%2Fgithub.com%2Fchrisklop%2Fplaybook2&report=chrisklop+%28user%29
+          - generic [ref=e676]:
+            - heading "Releases" [level=2] [ref=e677]:
+              - link "Releases" [ref=e678] [cursor=pointer]:
+                - /url: /chrisklop/playbook2/releases
+            - link "2 tags" [ref=e679] [cursor=pointer]:
+              - /url: /chrisklop/playbook2/tags
+              - img [ref=e680]
+              - text: 2 tags
+          - generic [ref=e683]:
+            - heading "Packages" [level=2] [ref=e684]:
+              - link "Packages" [ref=e685] [cursor=pointer]:
+                - /url: /users/chrisklop/packages?repo_name=playbook2
+            - generic [ref=e686]: No packages published
+          - generic [ref=e688]:
+            - heading "Contributors 2" [level=2] [ref=e689]:
+              - link "Contributors 2" [ref=e690] [cursor=pointer]:
+                - /url: /chrisklop/playbook2/graphs/contributors
+                - text: Contributors
+                - generic "2" [ref=e691]
+            - list [ref=e692]:
+              - listitem [ref=e693]:
+                - link "@chrisklop" [ref=e694] [cursor=pointer]:
+                  - /url: https://github.com/chrisklop
+                  - img "@chrisklop" [ref=e695]
+                - link "chrisklop" [ref=e697] [cursor=pointer]:
+                  - /url: https://github.com/chrisklop
+                  - strong [ref=e698]: chrisklop
+              - listitem [ref=e699]:
+                - link "@claude" [ref=e700] [cursor=pointer]:
+                  - /url: https://github.com/claude
+                  - img "@claude" [ref=e701]
+                - link "claude Claude" [ref=e703] [cursor=pointer]:
+                  - /url: https://github.com/claude
+                  - strong [ref=e704]: claude
+                  - text: Claude
+          - generic [ref=e706]:
+            - heading "Languages" [level=2] [ref=e707]
+            - list [ref=e715]:
+              - listitem [ref=e716]:
+                - link "TypeScript 73.7%" [ref=e717] [cursor=pointer]:
+                  - /url: /chrisklop/playbook2/search?l=typescript
+                  - img [ref=e718]
+                  - generic [ref=e720]: TypeScript
+                  - generic [ref=e721]: 73.7%
+              - listitem [ref=e722]:
+                - link "Vue 22.2%" [ref=e723] [cursor=pointer]:
+                  - /url: /chrisklop/playbook2/search?l=vue
+                  - img [ref=e724]
+                  - generic [ref=e726]: Vue
+                  - generic [ref=e727]: 22.2%
+              - listitem [ref=e728]:
+                - link "HTML 2.4%" [ref=e729] [cursor=pointer]:
+                  - /url: /chrisklop/playbook2/search?l=html
+                  - img [ref=e730]
+                  - generic [ref=e732]: HTML
+                  - generic [ref=e733]: 2.4%
+              - listitem [ref=e734]:
+                - link "CSS 1.6%" [ref=e735] [cursor=pointer]:
+                  - /url: /chrisklop/playbook2/search?l=css
+                  - img [ref=e736]
+                  - generic [ref=e738]: CSS
+                  - generic [ref=e739]: 1.6%
+              - listitem [ref=e740]:
+                - link "JavaScript 0.1%" [ref=e741] [cursor=pointer]:
+                  - /url: /chrisklop/playbook2/search?l=javascript
+                  - img [ref=e742]
+                  - generic [ref=e744]: JavaScript
+                  - generic [ref=e745]: 0.1%
+  - contentinfo [ref=e747]:
+    - heading "Footer" [level=2] [ref=e748]
+    - generic [ref=e749]:
+      - generic [ref=e750]:
+        - link "GitHub Homepage" [ref=e751] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e752]
+        - generic [ref=e754]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e755]:
+        - heading "Footer navigation" [level=3] [ref=e756]
+        - list "Footer navigation" [ref=e757]:
+          - listitem [ref=e758]:
+            - link "Terms" [ref=e759] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e760]:
+            - link "Privacy" [ref=e761] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e762]:
+            - link "Security" [ref=e763] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e764]:
+            - link "Status" [ref=e765] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e766]:
+            - link "Community" [ref=e767] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e768]:
+            - link "Docs" [ref=e769] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e770]:
+            - link "Contact" [ref=e771] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e772]:
+            - button "Manage cookies" [ref=e774] [cursor=pointer]
+          - listitem [ref=e775]:
+            - button "Do not share my personal information" [ref=e777] [cursor=pointer]

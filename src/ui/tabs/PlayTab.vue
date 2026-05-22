@@ -7,6 +7,7 @@ import BulkBuyBar from '../components/BulkBuyBar.vue';
 import EventClaim from '../components/EventClaim.vue';
 import GeneratorCard from '../components/GeneratorCard.vue';
 import RevealPlaceholder from '../components/RevealPlaceholder.vue';
+import CoachBanner from '../components/CoachBanner.vue';
 import PrestigeStrip from '../components/PrestigeStrip.vue';
 import PrestigeTransition from '../components/PrestigeTransition.vue';
 import { visibleGenerators } from '../state';
@@ -23,6 +24,7 @@ import { visibleGenerators } from '../state';
       <EventClaim />
       <BulkBuyBar />
     </div>
+    <CoachBanner />
     <div class="cards">
       <GeneratorCard v-for="gen in visibleGenerators" :key="gen.id" :gen="gen" />
       <RevealPlaceholder />

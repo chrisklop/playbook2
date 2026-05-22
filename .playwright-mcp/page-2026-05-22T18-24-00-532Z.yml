@@ -1,0 +1,66 @@
+- generic [ref=e3]:
+  - group "Audio controls" [ref=e4]:
+    - button "Mute sound effects" [pressed] [ref=e5] [cursor=pointer]:
+      - generic [ref=e6]: 🔊
+    - button "Mute music" [pressed] [ref=e7] [cursor=pointer]:
+      - generic [ref=e8]: 🎵
+  - main [ref=e9]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - heading "THE PLAYBOOK" [level=1] [ref=e13]
+          - paragraph [ref=e14]: DE HISTORIA FALSITATIS
+        - generic [ref=e15]: Octavian read Antony's seized will aloud in 32 BCE.
+        - generic [ref=e16]:
+          - generic [ref=e17]: Antiquity
+          - generic [ref=e18]: ~3000 BCE – 500 CE
+        - generic [ref=e19]:
+          - generic [ref=e20]:
+            - generic [ref=e21]: "0"
+            - generic [ref=e22]: Rumor
+          - generic [ref=e23]:
+            - generic [ref=e24]: 0/s
+            - generic [ref=e25]: Rate
+        - radiogroup "Buy multiplier" [ref=e26]:
+          - button "×1" [pressed] [ref=e27] [cursor=pointer]
+          - button "×10" [ref=e28] [cursor=pointer]
+          - button "×100" [ref=e29] [cursor=pointer]
+          - button "MAX" [ref=e30] [cursor=pointer]
+          - button "NEXT" [ref=e31] [cursor=pointer]
+      - 'button "Spread Rumor Earns 1 Rumor / sec 🗣️ Buy 4 Rumor need 4 more Technique: impersonation milestone at 50 milestone at 100 milestone at 200 milestone at 300 milestone at 400" [ref=e33] [cursor=pointer]':
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - generic [ref=e36]:
+              - generic [ref=e38]: Spread Rumor
+              - generic [ref=e39]:
+                - generic [ref=e40]: Earns
+                - generic [ref=e41]: "1"
+                - generic [ref=e42]: Rumor / sec
+            - generic [ref=e44]: 🗣️
+          - generic [ref=e45]:
+            - button "Buy 4 Rumor" [disabled]:
+              - generic: Buy
+              - generic: 4 Rumor
+            - generic [ref=e46]: need 4 more
+          - emphasis [ref=e49]: "Technique: impersonation"
+        - generic:
+          - generic "milestone at 25"
+          - generic "milestone at 50"
+          - generic "milestone at 100"
+          - generic "milestone at 200"
+          - generic "milestone at 300"
+          - generic "milestone at 400"
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - generic [ref=e52]: Progress toward Ascend to the Press
+          - generic [ref=e53]: 0%
+        - generic [ref=e55]: "Memetic Inheritance projected: 0.00 (need 1.0+)"
+  - navigation [ref=e56]:
+    - button "Play" [ref=e57] [cursor=pointer]:
+      - generic [ref=e58]: Play
+    - button "Tree" [ref=e59] [cursor=pointer]:
+      - generic [ref=e60]: Tree
+    - button "Codex" [ref=e61] [cursor=pointer]:
+      - generic [ref=e62]: Codex
+    - button "More" [ref=e63] [cursor=pointer]:
+      - generic [ref=e64]: More

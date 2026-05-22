@@ -102,6 +102,17 @@ const canAffordUpgrade = computed(() => {
 const cycleProgress = computed(() => state.cycleProgress[props.gen.id] ?? 0);
 const cycleInFlight = computed(() => cycleProgress.value > 0 || managerHired.value);
 
+// "Needs your tap" indicator. True when the tile is owned but isn't
+// auto-producing — i.e. the player has to keep tapping to earn anything.
+// Click-driven tiles always need taps until a manager is hired; auto-cycle
+// tiles only need a tap when the cycle has lapsed to zero. owned == 0
+// tiles get the natural "Buy" affordance instead, no pulse needed.
+const needsTap = computed(() => {
+  if (managerHired.value) return false;
+  if (props.gen.is_click_driven) return owned.value > 0;
+  return owned.value > 0 && cycleProgress.value === 0;
+});
+
 const nextMilestone = computed<number | null>(() => {
   for (const m of props.gen.milestones) {
     if (owned.value < m) return m;
@@ -239,7 +250,7 @@ function tapBuyUpgrade(e: Event) {
   <button
     type="button"
     class="card"
-    :class="{ flashing, unaffordable: !canAffordBuy }"
+    :class="{ flashing, unaffordable: !canAffordBuy, 'needs-tap': needsTap }"
     @click="tapBody"
   >
     <!-- Cycle progress: background fill behind everything, left-to-right. -->
@@ -390,6 +401,28 @@ function tapBuyUpgrade(e: Event) {
 /* Note: the whole tile no longer grays when "unaffordable" -- the BUY pill
    carries its own disabled state. Body-tap = do work, which is always
    available; greying the whole card would misrepresent that. */
+/* Idle / needs-tap state — soft 1.6s breathing pulse on the border so the
+   player notices that a tile is waiting on them. Vanishes the moment a
+   cycle resumes or a manager is hired. Kept subtle to avoid distraction
+   when many tiles share the state late-game. */
+.card.needs-tap {
+  animation: tap-pulse 1.6s ease-in-out infinite;
+}
+@keyframes tap-pulse {
+  0%, 100% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.18),
+      0 0 0 0 rgba(232, 142, 56, 0);
+  }
+  50% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.18),
+      0 0 8px 1px rgba(232, 142, 56, 0.55);
+  }
+}
+
 .card.flashing { animation: mile-flash 400ms ease-out; }
 @keyframes mile-flash {
   0%   { background: var(--theme-surface, #ebe2c4); }
