@@ -23,8 +23,10 @@ const payoutPopText = ref<string | null>(null);
 
 const owned = computed(() => state.ownedByGenerator[props.gen.id] ?? 0);
 
+// Bulk multiplier applies uniformly to every generator (click-driven or not).
+// We let the bulk bar's visibility rules decide when bulk is available; if
+// the bar isn't on screen, state.bulkBuyMultiplier just stays at 1.
 const bulkN = computed<number>(() => {
-  if (props.gen.is_click_driven) return 1;
   const m = state.bulkBuyMultiplier;
   if (m === 'max') {
     return maxAffordableBulk(props.gen.base_cost, props.gen.cost_growth, owned.value, state.rumor) || 1;
@@ -32,12 +34,9 @@ const bulkN = computed<number>(() => {
   return m;
 });
 
-const buyCost = computed(() => {
-  if (props.gen.is_click_driven) {
-    return computeCost(props.gen.base_cost, props.gen.cost_growth, owned.value);
-  }
-  return computeBulkCost(props.gen.base_cost, props.gen.cost_growth, owned.value, bulkN.value);
-});
+const buyCost = computed(() =>
+  computeBulkCost(props.gen.base_cost, props.gen.cost_growth, owned.value, bulkN.value),
+);
 const canAffordBuy = computed(() => state.rumor >= buyCost.value);
 
 const managerHired = computed(() => isManagerHired(props.gen.id));
@@ -104,12 +103,25 @@ watch(lastPayout, newPayout => {
 function tapBody() {
   if (props.gen.is_click_driven) {
     click();
-    if (state.rumor >= buyCost.value) {
-      buyGenerator(props.gen.id, 1);
+    if (canAffordBuy.value) {
+      buyGenerator(props.gen.id, state.bulkBuyMultiplier);
     }
-  } else {
-    tapCycle(props.gen.id);
+    return;
   }
+  // Non-click-driven cards:
+  // - If you don't own one yet, a body tap should BUY one (the natural "I see
+  //   it, I want it" gesture). The dedicated Buy button still works too.
+  // - If you own at least one and the manager isn't hired, body tap kicks the
+  //   cycle (tapCycle is a no-op if a cycle is already in flight).
+  // - Once the manager is hired the card auto-cycles; body tap does nothing.
+  const ownedNow = state.ownedByGenerator[props.gen.id] ?? 0;
+  if (ownedNow <= 0) {
+    if (canAffordBuy.value) {
+      buyGenerator(props.gen.id, state.bulkBuyMultiplier);
+    }
+    return;
+  }
+  tapCycle(props.gen.id);
 }
 
 function tapBuy(e: Event) {
@@ -161,7 +173,7 @@ function tapBuyUpgrade(e: Event) {
             <span class="buy-cost">{{ formatCost(buyCost) }}</span>
           </button>
           <div v-else class="buy click-hint" :class="{ ready: canAffordBuy }">
-            <span class="buy-label">+1 / Buy</span>
+            <span class="buy-label">+1 / Buy<span v-if="bulkN > 1">×{{ bulkN }}</span></span>
             <span class="buy-cost">{{ formatCost(buyCost) }}</span>
           </div>
           <Transition name="mile-pop">
