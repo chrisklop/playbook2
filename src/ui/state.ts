@@ -139,6 +139,7 @@ if (typeof window !== 'undefined') {
   loadMusic(base + 'music/playbook-loop.mp3');
   loadCue('frenzy', base + 'music/playbook-frenzy.mp3');
   loadCue('prestige', base + 'music/playbook-prestige.mp3');
+  loadCue('bridge', base + 'music/playbook-bridge.mp3');
   // Browsers block autoplay until first user gesture — re-attempt on the
   // first interaction so playback starts as soon as the player taps.
   const kickstart = () => {

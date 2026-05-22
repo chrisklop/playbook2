@@ -1,12 +1,25 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { currentEra, currentCopy, projectedMI, performPrestige, canPrestige } from '../state';
+import { playCue, stopCue } from '../audio';
 
 const confirming = ref(false);
-function start() { confirming.value = true; }
-function cancel() { confirming.value = false; }
+function start() {
+  confirming.value = true;
+  // Bridge cue plays while the player reads the era's prestige_bridge_copy.
+  // 12s clip; the audio module's watchdog restores the loop if the player
+  // lingers past it. Cancelled below if they back out.
+  playCue('bridge', 12_500);
+}
+function cancel() {
+  confirming.value = false;
+  stopCue();
+}
 function confirm() {
   confirming.value = false;
+  // Don't stopCue() here — performPrestige fires the prestige cue, which
+  // cancels the bridge cue cleanly via playCue's own swap logic. Stopping
+  // here would briefly restore the loop in the gap between cues.
   performPrestige();
 }
 </script>

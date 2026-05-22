@@ -228,3 +228,21 @@ export function playCue(key: string, maxDurationMs = 11000): void {
   };
   cueRestoreTimer = window.setTimeout(restore, maxDurationMs);
 }
+
+/** Stop the currently-playing cue (if any) and restore the loop immediately.
+ *  Safe to call when nothing is playing — it's a no-op. */
+export function stopCue(): void {
+  if (!activeCueKey) return;
+  const cue = cueEls[activeCueKey];
+  if (cue) {
+    cue.pause();
+    cue.currentTime = 0;
+    cue.onended = null;
+  }
+  if (cueRestoreTimer !== null) {
+    window.clearTimeout(cueRestoreTimer);
+    cueRestoreTimer = null;
+  }
+  activeCueKey = null;
+  if (!musicMutedFlag) startMusic();
+}
