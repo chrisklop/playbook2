@@ -151,6 +151,7 @@ const RisoOverrides = z.object({
   upgrade_text: HexColor.optional(),
   bulk_on_bg: HexColor.optional(),
   bulk_on_shadow: HexColor.optional(),
+  bulk_on_text: HexColor.optional(),
 }).optional();
 
 export const ThemeSchema = z.object({

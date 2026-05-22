@@ -18,6 +18,7 @@ const RISO_VAR_MAP: Array<[string, keyof NonNullable<Theme['riso']>]> = [
   ['--riso-upgrade-text',   'upgrade_text'],
   ['--riso-bulk-on-bg',     'bulk_on_bg'],
   ['--riso-bulk-on-shadow', 'bulk_on_shadow'],
+  ['--riso-bulk-on-text',   'bulk_on_text'],
 ];
 
 export function applyTheme(theme: Theme): void {

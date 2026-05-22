@@ -146,4 +146,5 @@
 .bulk-riso .bulk-seg.on {
   background: var(--riso-bulk-on-bg);
   box-shadow: 3px 3px 0 0 var(--riso-bulk-on-shadow);
+  color: var(--riso-bulk-on-text, var(--riso-ink));
 }

@@ -25,7 +25,8 @@
     "upgrade_shadow": "#1e3a5f",
     "upgrade_text": "#f0e8d0",
     "bulk_on_bg": "#1e3a5f",
-    "bulk_on_shadow": "#b8a572"
+    "bulk_on_shadow": "#b8a572",
+    "bulk_on_text": "#f0e8d0"
   },
   "card_style": "flat-paper"
 }
