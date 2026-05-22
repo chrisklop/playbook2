@@ -1,0 +1,16 @@
+{
+  "quotes": [
+    { "id": "creel-volunteers",      "text": "75,000 Four-Minute Men gave 750,000 speeches in 5,200 American towns between 1917 and 1919.", "codex_link": "creel-committee" },
+    { "id": "wellington-secret",     "text": "Britain's first wartime propaganda bureau was hidden inside the National Insurance HQ for three years.", "codex_link": null },
+    { "id": "corpse-factory-origin", "text": "Brigadier-General John Charteris admitted inventing the German corpse-factory hoax in a 1925 New York speech.", "codex_link": null },
+    { "id": "bernays-torches",       "text": "Edward Bernays staged 'Torches of Freedom' on Fifth Avenue, Easter 1929, to sell women cigarettes.", "codex_link": null },
+    { "id": "lippmann-stereotype",   "text": "Walter Lippmann gave us the word 'stereotype' in 1922 — meaning the pictures in our heads.", "codex_link": null },
+    { "id": "volksempfanger",        "text": "By 1939 the cheap state-subsidized Volksempfänger sat in 70% of German households.", "codex_link": "big-lie-doctrine" },
+    { "id": "yezhov-airbrush",       "text": "Stalin's NKVD chief Nikolai Yezhov was airbrushed out of an official photo with the Boss in 1937.", "codex_link": null },
+    { "id": "delmer-aspidistra",     "text": "Sefton Delmer's 'Aspidistra' transmitter could pose as Hamburg from a barn in Sussex.", "codex_link": "delmer-black-radio" },
+    { "id": "capra-prelude",         "text": "Frank Capra's 'Prelude to War' (1942) won an Oscar after being recut from Riefenstahl's own footage.", "codex_link": null },
+    { "id": "tokyo-rose-name",       "text": "'Tokyo Rose' was an Allied catch-all — there were a dozen English-speaking women at Radio Tokyo.", "codex_link": null }
+  ],
+  "interval_ms": 8000,
+  "no_repeat_within": 3
+}

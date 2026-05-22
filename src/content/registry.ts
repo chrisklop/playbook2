@@ -27,6 +27,12 @@ import pennyPressTickerRaw from './eras/03-penny-press/ticker.json';
 import pennyPressCopyRaw from './eras/03-penny-press/copy.json';
 import pennyPressEventsRaw from './eras/03-penny-press/events.json';
 
+import propagandaStateEraRaw from './eras/04-propaganda-state/era.json';
+import propagandaStateThemeRaw from './eras/04-propaganda-state/theme.json';
+import propagandaStateTickerRaw from './eras/04-propaganda-state/ticker.json';
+import propagandaStateCopyRaw from './eras/04-propaganda-state/copy.json';
+import propagandaStateEventsRaw from './eras/04-propaganda-state/events.json';
+
 const TickerSchema = z.object({
   quotes: z.array(z.object({
     id: z.string().min(1),
@@ -112,6 +118,16 @@ const BUNDLES: Record<string, EraBundle> = {
       events: pennyPressEventsRaw,
     },
     'penny-press',
+  ),
+  'propaganda-state': loadBundle(
+    {
+      era: propagandaStateEraRaw,
+      theme: propagandaStateThemeRaw,
+      ticker: propagandaStateTickerRaw,
+      copy: propagandaStateCopyRaw,
+      events: propagandaStateEventsRaw,
+    },
+    'propaganda-state',
   ),
 };
 

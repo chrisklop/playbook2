@@ -1,0 +1,18 @@
+{
+  "id": "propaganda-state-poster",
+  "era_id": "propaganda-state",
+  "fonts": {
+    "masthead": "'Oswald', 'Bebas Neue', Impact, sans-serif",
+    "body": "'Lora', Georgia, 'Times New Roman', serif",
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+  },
+  "palette": {
+    "background": "#ddd3c2",
+    "surface": "#c8bca5",
+    "text": "#1a1a1a",
+    "muted": "#5a5040",
+    "accent": "#8b1a1a",
+    "border": "#1a1a1a"
+  },
+  "card_style": "poster"
+}

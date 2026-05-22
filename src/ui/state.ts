@@ -35,7 +35,7 @@ import {
   setMuted,
 } from './audio';
 
-type EraId = 'antiquity' | 'printing-press' | 'penny-press';
+type EraId = 'antiquity' | 'printing-press' | 'penny-press' | 'propaganda-state';
 
 export interface LastPayout {
   amount: number;

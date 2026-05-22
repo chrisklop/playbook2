@@ -1,0 +1,344 @@
+{
+  "id": "propaganda-state",
+  "ordinal": 4,
+  "date_range": "1914 – 1945",
+  "display_name": "Propaganda State",
+  "theme_id": "propaganda-state-poster",
+  "techniques_unlocked": [
+    "atrocity-calibration",
+    "manufactured-event",
+    "monumental-aesthetic",
+    "big-lie",
+    "black-propaganda",
+    "photographic-falsification"
+  ],
+  "generators": [
+    {
+      "id": "four-minute-speech",
+      "tier": 1,
+      "display_name": "Four-Minute Speech",
+      "description": "A volunteer orator rises between reels. Four minutes, every cinema, every town. Tap to gain 1 Rumor. At 10 owned, a Captain of Four-Minute Men takes over.",
+      "technique_tag": "manufactured-event",
+      "resource": "rumor",
+      "base_cost": 4,
+      "cost_growth": 1.07,
+      "base_production": 1,
+      "is_click_driven": true,
+      "auto_unlock_at": 10,
+      "auto_operative_name": "Captain of Four-Minute Men",
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
+      "codex_link": "creel-committee",
+      "reveal_at_lifetime": 0,
+      "cycle_seconds": 1,
+      "manager_cost": 200,
+      "manager_name": "Captain",
+      "icon": "🎤",
+      "upgrades": [
+        {
+          "id": "four-minute-speech-script-bank",
+          "name": "Standardized Script Bank",
+          "description": "Every speaker, every theater, the same five themes this week.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 12000
+        },
+        {
+          "id": "four-minute-speech-bond-rallies",
+          "name": "Bond-Drive Rallies",
+          "description": "Cinema speech becomes city-square rally. Crowds beget more crowds.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 300000
+        },
+        {
+          "id": "four-minute-speech-foreign-press",
+          "name": "Foreign-Language Branches",
+          "description": "German, Italian, Polish, Yiddish — same message, each immigrant tongue.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 6000000
+        }
+      ]
+    },
+    {
+      "id": "war-bonds-poster",
+      "tier": 2,
+      "display_name": "War-Bonds Poster",
+      "description": "Lord Kitchener points. Uncle Sam points. The poster IS the recruiter.",
+      "technique_tag": "emotion",
+      "resource": "rumor",
+      "base_cost": 5000,
+      "cost_growth": 1.07,
+      "base_production": 35,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Poster Bureau Designer",
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
+      "codex_link": null,
+      "reveal_at_lifetime": 250,
+      "cycle_seconds": 3,
+      "manager_cost": 8000,
+      "manager_name": "Designer",
+      "icon": "📜",
+      "upgrades": [
+        {
+          "id": "war-bonds-poster-lithography",
+          "name": "Stone Lithography at Scale",
+          "description": "Tens of thousands of impressions per design, sharper than wood.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 60000
+        },
+        {
+          "id": "war-bonds-poster-celebrity",
+          "name": "Celebrity Endorsement",
+          "description": "Mary Pickford on a bond rally. The face matters more than the bond.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 1500000
+        },
+        {
+          "id": "war-bonds-poster-streetcar-ads",
+          "name": "Streetcar Advertising",
+          "description": "Captive audience, six minutes a ride, twice a day.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 30000000
+        }
+      ]
+    },
+    {
+      "id": "atrocity-pamphlet",
+      "tier": 2,
+      "display_name": "Atrocity Pamphlet",
+      "description": "Real outrage, sensationalized. The Bryce Report sells the war.",
+      "technique_tag": "atrocity-calibration",
+      "resource": "rumor",
+      "base_cost": 25000,
+      "cost_growth": 1.1,
+      "base_production": 250,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Wellington House Author",
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
+      "codex_link": "bryce-report",
+      "reveal_at_lifetime": 1500,
+      "cycle_seconds": 5,
+      "manager_cost": 50000,
+      "manager_name": "Author",
+      "icon": "🩸",
+      "upgrades": [
+        {
+          "id": "atrocity-pamphlet-translator-pool",
+          "name": "Translator Pool",
+          "description": "Same atrocity, seventeen languages, neutral countries first.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 200000
+        },
+        {
+          "id": "atrocity-pamphlet-corpse-factory",
+          "name": "Corpse-Factory Embellishment",
+          "description": "Charteris invents the rendering plant. Newspapers print it for years.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 5000000
+        },
+        {
+          "id": "atrocity-pamphlet-eyewitness-files",
+          "name": "Anonymous Eyewitness Files",
+          "description": "Affidavits no one can verify, archived just out of reach of every fact-checker.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 100000000
+        }
+      ]
+    },
+    {
+      "id": "newsreel-cinema",
+      "tier": 3,
+      "display_name": "Newsreel Cinema",
+      "description": "Istituto Luce by decree. Capra by contract. The film is the front page.",
+      "technique_tag": "monumental-aesthetic",
+      "resource": "rumor",
+      "base_cost": 150000,
+      "cost_growth": 1.1,
+      "base_production": 2500,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Newsreel Director",
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
+      "codex_link": "riefenstahl-triumph",
+      "reveal_at_lifetime": 7500,
+      "cycle_seconds": 8,
+      "manager_cost": 500000,
+      "manager_name": "Director",
+      "icon": "🎬",
+      "upgrades": [
+        {
+          "id": "newsreel-cinema-sound-on-film",
+          "name": "Sound-On-Film",
+          "description": "Synchronized 35mm sound. The voice arrives with the image.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 1500000
+        },
+        {
+          "id": "newsreel-cinema-riefenstahl-grammar",
+          "name": "Riefenstahl's Visual Grammar",
+          "description": "Low-angle hero shots. Aerial sweep. Choral montage.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 40000000
+        },
+        {
+          "id": "newsreel-cinema-compulsory-screening",
+          "name": "Compulsory Pre-Feature Screening",
+          "description": "By law: no feature without the newsreel first.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 800000000
+        }
+      ]
+    },
+    {
+      "id": "big-lie-broadcast",
+      "tier": 3,
+      "display_name": "Big-Lie Broadcast",
+      "description": "Goebbels' Volksempfänger. One station, one voice, one country.",
+      "technique_tag": "big-lie",
+      "resource": "rumor",
+      "base_cost": 1000000,
+      "cost_growth": 1.1,
+      "base_production": 25000,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Reichssender Engineer",
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
+      "codex_link": "big-lie-doctrine",
+      "reveal_at_lifetime": 30000,
+      "cycle_seconds": 12,
+      "manager_cost": 3000000,
+      "manager_name": "Engineer",
+      "icon": "📻",
+      "upgrades": [
+        {
+          "id": "big-lie-broadcast-cheap-receiver",
+          "name": "State-Subsidized Receiver",
+          "description": "The Volksempfänger in every home. No tuning past the home station.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 12000000
+        },
+        {
+          "id": "big-lie-broadcast-jamming-array",
+          "name": "Jamming Array",
+          "description": "Silence the BBC; silence the Voice of America; silence the rest.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 300000000
+        },
+        {
+          "id": "big-lie-broadcast-doctrine-of-repetition",
+          "name": "Doctrine of Repetition",
+          "description": "The colossal falsehood, endlessly. Eventually no one remembers a before.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 6000000000
+        }
+      ]
+    },
+    {
+      "id": "black-flag-radio",
+      "tier": 4,
+      "display_name": "Black-Flag Radio",
+      "description": "Sefton Delmer's Gustav Siegfried Eins — a fake disgruntled-Nazi station, run from a house in Bedfordshire.",
+      "technique_tag": "black-propaganda",
+      "resource": "rumor",
+      "base_cost": 5000000,
+      "cost_growth": 1.12,
+      "base_production": 250000,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Sefton Delmer",
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
+      "codex_link": "delmer-black-radio",
+      "reveal_at_lifetime": 100000,
+      "cycle_seconds": 25,
+      "manager_cost": 30000000,
+      "manager_name": "Delmer",
+      "icon": "🛰️",
+      "upgrades": [
+        {
+          "id": "black-flag-radio-aspidistra-transmitter",
+          "name": "Aspidistra Transmitter",
+          "description": "600 kilowatts. We can pretend to be Hamburg from a barn in Sussex.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 60000000
+        },
+        {
+          "id": "black-flag-radio-manufactured-scandal",
+          "name": "Manufactured Scandal Desk",
+          "description": "We don't refute Nazi officers — we invent their sex lives.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 1500000000
+        },
+        {
+          "id": "black-flag-radio-frontline-defectors",
+          "name": "Frontline Defector Voices",
+          "description": "Real German POWs read our scripts. 40% of the Wehrmacht is listening.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 30000000000
+        }
+      ]
+    }
+  ],
+  "prestige_into": null,
+  "prestige_pivot": 2500000000000000,
+  "prestige_bridge_copy": "1945 — Berlin in ashes. The propaganda machines do not stop; they change targets. Two empires inherit the apparatus, and their broadcast towers face each other across a continent."
+}
