@@ -3,16 +3,29 @@
   "era_id": "propaganda-state",
   "fonts": {
     "masthead": "'Oswald', 'Bebas Neue', Impact, sans-serif",
-    "body": "'Lora', Georgia, 'Times New Roman', serif",
-    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+    "body": "'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif",
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Oswald:wght@500;700;900&family=Inter:wght@400;500;700&display=swap"
   },
   "palette": {
-    "background": "#ddd3c2",
-    "surface": "#c8bca5",
-    "text": "#1a1a1a",
-    "muted": "#5a5040",
-    "accent": "#8b1a1a",
-    "border": "#1a1a1a"
+    "background": "#f8f6f0",
+    "surface": "#ffffff",
+    "text": "#0a0a0a",
+    "muted": "#5a6470",
+    "accent": "#d3211c",
+    "border": "#0a0a0a"
+  },
+  "riso": {
+    "primary_bg": "#d3211c",
+    "primary_shadow": "#0a0a0a",
+    "primary_text": "#ffffff",
+    "secondary_bg": "#f4d000",
+    "secondary_shadow": "#0a0a0a",
+    "secondary_text": "#0a0a0a",
+    "upgrade_bg": "#0a0a0a",
+    "upgrade_shadow": "#d3211c",
+    "upgrade_text": "#ffffff",
+    "bulk_on_bg": "#d3211c",
+    "bulk_on_shadow": "#0a0a0a"
   },
   "card_style": "poster"
 }

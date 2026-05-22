@@ -1,5 +1,25 @@
 import type { Theme } from '../content/schema';
 
+/**
+ * Riso CSS variable names paired with the theme.json field that overrides
+ * each. When an era's theme provides a value, applyTheme writes it to :root;
+ * when it doesn't, the property is removed so the global default from
+ * buttons.css applies. This lets each era have its own button palette.
+ */
+const RISO_VAR_MAP: Array<[string, keyof NonNullable<Theme['riso']>]> = [
+  ['--riso-primary-bg',     'primary_bg'],
+  ['--riso-primary-shadow', 'primary_shadow'],
+  ['--riso-primary-text',   'primary_text'],
+  ['--riso-secondary-bg',     'secondary_bg'],
+  ['--riso-secondary-shadow', 'secondary_shadow'],
+  ['--riso-secondary-text',   'secondary_text'],
+  ['--riso-upgrade-bg',     'upgrade_bg'],
+  ['--riso-upgrade-shadow', 'upgrade_shadow'],
+  ['--riso-upgrade-text',   'upgrade_text'],
+  ['--riso-bulk-on-bg',     'bulk_on_bg'],
+  ['--riso-bulk-on-shadow', 'bulk_on_shadow'],
+];
+
 export function applyTheme(theme: Theme): void {
   const root = document.documentElement;
   root.style.setProperty('--theme-background', theme.palette.background);
@@ -10,6 +30,15 @@ export function applyTheme(theme: Theme): void {
   root.style.setProperty('--theme-border', theme.palette.border);
   root.style.setProperty('--theme-font-masthead', theme.fonts.masthead);
   root.style.setProperty('--theme-font-body', theme.fonts.body);
+
+  // Riso button overrides — set when provided, otherwise remove so the
+  // global default from src/ui/buttons.css applies.
+  const riso = theme.riso ?? {};
+  for (const [cssVar, key] of RISO_VAR_MAP) {
+    const value = riso[key];
+    if (value) root.style.setProperty(cssVar, value);
+    else root.style.removeProperty(cssVar);
+  }
 
   // Load (or replace) the Google Fonts stylesheet.
   if (theme.fonts.google_fonts_url) {

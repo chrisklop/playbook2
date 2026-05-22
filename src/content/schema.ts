@@ -131,6 +131,28 @@ export const CodexFrontmatterSchema = z.object({
 });
 export type CodexFrontmatter = z.infer<typeof CodexFrontmatterSchema>;
 
+const HexColor = z.string().regex(/^#[0-9a-f]{6}$/i);
+
+/**
+ * Optional per-era overrides for the riso button language. When provided in
+ * an era's theme.json, these values replace the global defaults from
+ * src/ui/buttons.css. Lets each era have its own distinctive button accents
+ * without touching engine code -- the templatization principle for buttons.
+ */
+const RisoOverrides = z.object({
+  primary_bg: HexColor.optional(),
+  primary_shadow: HexColor.optional(),
+  primary_text: HexColor.optional(),
+  secondary_bg: HexColor.optional(),
+  secondary_shadow: HexColor.optional(),
+  secondary_text: HexColor.optional(),
+  upgrade_bg: HexColor.optional(),
+  upgrade_shadow: HexColor.optional(),
+  upgrade_text: HexColor.optional(),
+  bulk_on_bg: HexColor.optional(),
+  bulk_on_shadow: HexColor.optional(),
+}).optional();
+
 export const ThemeSchema = z.object({
   id: z.string().min(1),
   era_id: z.string().min(1),
@@ -140,13 +162,14 @@ export const ThemeSchema = z.object({
     google_fonts_url: z.string().url().optional(),
   }),
   palette: z.object({
-    background: z.string().regex(/^#[0-9a-f]{6}$/i),
-    surface: z.string().regex(/^#[0-9a-f]{6}$/i),
-    text: z.string().regex(/^#[0-9a-f]{6}$/i),
-    muted: z.string().regex(/^#[0-9a-f]{6}$/i),
-    accent: z.string().regex(/^#[0-9a-f]{6}$/i),
-    border: z.string().regex(/^#[0-9a-f]{6}$/i),
+    background: HexColor,
+    surface: HexColor,
+    text: HexColor,
+    muted: HexColor,
+    accent: HexColor,
+    border: HexColor,
   }),
+  riso: RisoOverrides,
   card_style: z.enum(['flat-paper', 'broadsheet', 'poster', 'chat-bubble']).default('flat-paper'),
 });
 export type Theme = z.infer<typeof ThemeSchema>;
