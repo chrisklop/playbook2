@@ -16,6 +16,15 @@ import {
   type BulkBuyMultiplier,
 } from '../game/save';
 import { applyTheme } from './theme';
+import {
+  playClick,
+  playBuy,
+  playManagerHired,
+  playUpgrade,
+  playMilestone,
+  playPrestige,
+  setMuted,
+} from './audio';
 
 type EraId = 'antiquity' | 'printing-press' | 'penny-press';
 
@@ -39,8 +48,16 @@ export const state = reactive({
   cycleProgress: {} as Record<string, number>, // gen.id → 0..1
   managersHired: new Set<string>(),
   upgradesPurchased: new Set<string>(), // upgrade.id set
+  audioMuted: false,
   lastPayout: {} as Record<string, LastPayout>, // ephemeral, drives popper animations
 });
+
+// Keep the audio module's local mute flag in sync with reactive state.
+watch(
+  () => state.audioMuted,
+  v => setMuted(v),
+  { immediate: true },
+);
 
 export const currentBundle = computed(() => getEra(state.currentEraId));
 export const currentEra = computed(() => currentBundle.value.era);
@@ -96,6 +113,7 @@ export function buyUpgrade(upgradeId: string): boolean {
   if (state.rumor < up.cost) return false;
   state.rumor -= up.cost;
   state.upgradesPurchased.add(upgradeId);
+  playUpgrade();
   return true;
 }
 
@@ -103,6 +121,7 @@ export function buyUpgrade(upgradeId: string): boolean {
 export function click(): void {
   state.rumor += 1;
   state.lifetimeRumor += 1;
+  playClick();
   // Also kick the Tier 1 cycle if it isn't already in flight or manager-hired.
   const tier1 = currentEra.value.generators.find(g => g.is_click_driven);
   if (tier1) tapCycle(tier1.id);
@@ -147,6 +166,7 @@ export function buyGenerator(genId: string, n: number | 'max' = 1): number {
   const totalCost = computeBulkCost(gen.base_cost, gen.cost_growth, owned, buyN);
   state.rumor -= totalCost;
   state.ownedByGenerator[genId] = owned + buyN;
+  playBuy();
   return buyN;
 }
 
@@ -161,6 +181,7 @@ export function hireManager(genId: string): boolean {
   if (state.rumor < gen.manager_cost) return false;
   state.rumor -= gen.manager_cost;
   state.managersHired.add(genId);
+  playManagerHired();
   return true;
 }
 
@@ -228,6 +249,7 @@ export const recommendedGenId = computed<string | null>(() => {
 /** Prestige into the next era. Carryover MI persists; rumor/owned/cycles reset; managers reset. */
 export function performPrestige(): void {
   const newMI = projectedMI.value;
+  playPrestige();
   state.memeticInheritance += newMI;
   state.prestigeCount += 1;
   state.rumor = 0;
@@ -263,6 +285,7 @@ export function applyLoadedSave(save: SaveState): void {
   state.cycleProgress = { ...save.cycle_progress };
   state.managersHired = new Set(save.managers_hired);
   state.upgradesPurchased = new Set(save.upgrades_purchased ?? []);
+  state.audioMuted = save.audio_muted ?? false;
 
   // Backward compatibility: pre-v3 players who reached auto_unlock_at on a
   // click-driven generator deserve the manager free (we changed the mechanic).
@@ -300,6 +323,7 @@ export function snapshotSave(): SaveState {
     cycle_progress: { ...state.cycleProgress },
     managers_hired: Array.from(state.managersHired),
     upgrades_purchased: Array.from(state.upgradesPurchased),
+    audio_muted: state.audioMuted,
   };
 }
 

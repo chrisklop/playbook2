@@ -18,10 +18,11 @@ export interface SaveState {
   seen_toast_events: string[];
   bulk_buy_multiplier: BulkBuyMultiplier;
   show_best_buy_hint: boolean;
-  // v3 additions (cycles + managers + upgrades)
+  // v3 additions (cycles + managers + upgrades + audio)
   cycle_progress: Record<string, number>;
   managers_hired: string[];
   upgrades_purchased: string[];
+  audio_muted?: boolean; // optional — defaults false on missing
 }
 
 const V2_DEFAULTS = {

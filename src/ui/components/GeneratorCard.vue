@@ -13,6 +13,7 @@ import {
 import { computeCost, computeBulkCost, maxAffordableBulk } from '../../game/era-layer';
 import type { GeneratorTier } from '../../content/schema';
 import { formatCost, formatResource } from '../format';
+import { playMilestone } from '../audio';
 
 const props = defineProps<{ gen: GeneratorTier }>();
 
@@ -84,6 +85,7 @@ watch(owned, (newVal, oldVal) => {
     if (oldVal < m && newVal >= m) {
       flashing.value = true;
       milestonePopText.value = `+×${currentMilestoneMult.value}`;
+      playMilestone();
       setTimeout(() => { flashing.value = false; }, 400);
       setTimeout(() => { milestonePopText.value = null; }, 800);
       break;
@@ -172,6 +174,14 @@ function tapBuyUpgrade(e: Event) {
       </div>
 
       <div class="row bottom" v-if="owned > 0 || managerCost > 0">
+        <!-- Milestone progress fills this row's background left-to-right (independent of the
+             card-wide cycle fill above). Player sees both at once: cycle pulse + slow climb
+             toward the next ×N. -->
+        <div
+          v-if="nextMilestone !== null"
+          class="mile-bg"
+          :style="{ width: milestoneProgress * 100 + '%' }"
+        ></div>
         <div class="mile-hint">
           <template v-if="nextMilestone !== null">
             ×{{ currentMilestoneMult }} → ×{{ nextMilestoneMult }} at {{ nextMilestone }}
@@ -340,10 +350,23 @@ function tapBuyUpgrade(e: Event) {
 .click-hint.ready .buy-cost { text-decoration: underline; }
 
 .bottom {
+  position: relative;
   font-size: 9px;
   letter-spacing: 0.5px;
   opacity: 0.85;
 }
+.mile-bg {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  left: -6px;
+  background: linear-gradient(90deg, rgba(240, 160, 96, 0.05) 0%, rgba(240, 160, 96, 0.18) 100%);
+  border-right: 1px dashed rgba(42, 34, 24, 0.35);
+  transition: width 250ms ease-out;
+  z-index: 0;
+  pointer-events: none;
+}
+.mile-hint, .mgr { position: relative; z-index: 1; }
 .mile-hint {
   font-family: var(--theme-font-body, -apple-system, sans-serif);
   font-size: 10px;

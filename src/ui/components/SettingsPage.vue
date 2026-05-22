@@ -41,6 +41,14 @@ function hardReset() {
     <h2>Settings</h2>
 
     <section class="settings-section">
+      <h3>Audio</h3>
+      <label class="toggle-row">
+        <input type="checkbox" :checked="state.audioMuted" @change="(e) => state.audioMuted = (e.target as HTMLInputElement).checked">
+        <span>Mute all sounds</span>
+      </label>
+    </section>
+
+    <section class="settings-section">
       <h3>Hints</h3>
       <label class="toggle-row">
         <input type="checkbox" v-model="state.showBestBuyHint">
