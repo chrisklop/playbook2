@@ -73,6 +73,49 @@ export function maxAffordableBulk(
 }
 
 /**
+ * AdCap cycle-payout — what a single cycle of this generator pays out.
+ *
+ * payout_per_cycle = base_production × cycle_seconds × owned × milestoneMult × globalMult × upgradeMult
+ *
+ * Mathematical equivalence to v0.2's continuous rate:
+ *   rate_per_second = payout_per_cycle / cycle_seconds
+ *                   = base_production × owned × milestoneMult × globalMult × upgradeMult
+ * → identical to v0.2's generatorProduction (when upgradeMult defaults to 1).
+ *
+ * The cycle model just discretizes the same math for visual presentation.
+ */
+export function payoutPerCycle(
+  gen: GeneratorTier,
+  owned: number,
+  globalMultiplier: number,
+  upgradeMultiplier: number = 1,
+): number {
+  if (owned <= 0) return 0;
+  return (
+    gen.base_production *
+    gen.cycle_seconds *
+    owned *
+    milestoneMultiplier(owned, gen.milestones) *
+    globalMultiplier *
+    upgradeMultiplier
+  );
+}
+
+/**
+ * Steady-state rate-per-second under the cycle model — equals payoutPerCycle / cycle_seconds.
+ * Used by the simulator (which stays on continuous-tick) and any UI that displays a rate.
+ */
+export function cycleRatePerSecond(
+  gen: GeneratorTier,
+  owned: number,
+  globalMultiplier: number,
+  upgradeMultiplier: number = 1,
+): number {
+  if (owned <= 0 || gen.cycle_seconds <= 0) return 0;
+  return payoutPerCycle(gen, owned, globalMultiplier, upgradeMultiplier) / gen.cycle_seconds;
+}
+
+/**
  * Pecorella overtake heuristic — picks the generator with the lowest
  *   cost / nps + cost / (nps + delta_rate_from_buying_one)
  * score. Lower score = faster total-time to afford this purchase AND the next

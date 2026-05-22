@@ -43,6 +43,7 @@ describe('generatorProduction', () => {
     auto_operative_name: 'X', milestones: [25, 50, 100, 200, 300, 400],
     codex_link: null,
     reveal_at_lifetime: 0,
+    cycle_seconds: 1, manager_cost: 0, manager_name: 'M', icon: '●',
   };
   it('produces 0 when owned=0', () => {
     expect(generatorProduction(gen, 0, 1)).toBe(0);

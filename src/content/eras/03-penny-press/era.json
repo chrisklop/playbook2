@@ -4,7 +4,14 @@
   "date_range": "~1800 – 1914",
   "display_name": "Penny Press",
   "theme_id": "penny-press-victorian",
-  "techniques_unlocked": ["impersonation", "discrediting", "trolling", "polarization", "conspiracy", "emotion"],
+  "techniques_unlocked": [
+    "impersonation",
+    "discrediting",
+    "trolling",
+    "polarization",
+    "conspiracy",
+    "emotion"
+  ],
   "generators": [
     {
       "id": "set-headline",
@@ -19,9 +26,20 @@
       "is_click_driven": true,
       "auto_unlock_at": 10,
       "auto_operative_name": "Copy Boy",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": null,
-      "reveal_at_lifetime": 0
+      "reveal_at_lifetime": 0,
+      "cycle_seconds": 1,
+      "manager_cost": 200,
+      "manager_name": "Copy Boy",
+      "icon": "✏️"
     },
     {
       "id": "manufactured-scoop",
@@ -36,9 +54,20 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Stringer",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "great-moon-hoax",
-      "reveal_at_lifetime": 1250
+      "reveal_at_lifetime": 1250,
+      "cycle_seconds": 2,
+      "manager_cost": 50000,
+      "manager_name": "Stringer",
+      "icon": "📣"
     },
     {
       "id": "wire-service-plant",
@@ -48,14 +77,25 @@
       "technique_tag": "polarization",
       "resource": "rumor",
       "base_cost": 31250,
-      "cost_growth": 1.10,
+      "cost_growth": 1.1,
       "base_production": 1750,
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "AP Editor",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": null,
-      "reveal_at_lifetime": 7500
+      "reveal_at_lifetime": 7500,
+      "cycle_seconds": 5,
+      "manager_cost": 250000,
+      "manager_name": "AP Editor",
+      "icon": "📡"
     },
     {
       "id": "halftone-engraving",
@@ -65,14 +105,25 @@
       "technique_tag": "emotion",
       "resource": "rumor",
       "base_cost": 156250,
-      "cost_growth": 1.10,
+      "cost_growth": 1.1,
       "base_production": 17500,
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Engraver",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "hearst-pulitzer-maine",
-      "reveal_at_lifetime": 40000
+      "reveal_at_lifetime": 40000,
+      "cycle_seconds": 10,
+      "manager_cost": 2000000,
+      "manager_name": "Engraver",
+      "icon": "📷"
     },
     {
       "id": "patent-medicine-ad",
@@ -82,14 +133,25 @@
       "technique_tag": "impersonation",
       "resource": "rumor",
       "base_cost": 250000,
-      "cost_growth": 1.10,
+      "cost_growth": 1.1,
       "base_production": 25000,
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Pinkham Heir",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": null,
-      "reveal_at_lifetime": 70000
+      "reveal_at_lifetime": 70000,
+      "cycle_seconds": 12,
+      "manager_cost": 5000000,
+      "manager_name": "Pinkham Heir",
+      "icon": "💊"
     },
     {
       "id": "okhrana-forgery",
@@ -104,12 +166,23 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Rachkovsky",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "protocols-elders-of-zion",
-      "reveal_at_lifetime": 200000
+      "reveal_at_lifetime": 200000,
+      "cycle_seconds": 25,
+      "manager_cost": 200000000,
+      "manager_name": "Rachkovsky",
+      "icon": "🕵️"
     }
   ],
   "prestige_into": null,
-  "prestige_pivot": 2e15,
+  "prestige_pivot": 2000000000000000,
   "prestige_bridge_copy": "End of Phase 1. The 20th century — radio, film, total propaganda states — waits in Phase 2."
 }

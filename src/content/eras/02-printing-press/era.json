@@ -4,7 +4,13 @@
   "date_range": "~1450 – 1800",
   "display_name": "Printing Press",
   "theme_id": "printing-press-blackletter",
-  "techniques_unlocked": ["impersonation", "discrediting", "trolling", "polarization", "conspiracy"],
+  "techniques_unlocked": [
+    "impersonation",
+    "discrediting",
+    "trolling",
+    "polarization",
+    "conspiracy"
+  ],
   "generators": [
     {
       "id": "compose-broadside",
@@ -19,9 +25,20 @@
       "is_click_driven": true,
       "auto_unlock_at": 10,
       "auto_operative_name": "Apprentice Printer",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": null,
-      "reveal_at_lifetime": 0
+      "reveal_at_lifetime": 0,
+      "cycle_seconds": 1,
+      "manager_cost": 200,
+      "manager_name": "Apprentice Printer",
+      "icon": "📰"
     },
     {
       "id": "print-pamphlet",
@@ -36,9 +53,20 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Pamphleteer",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "luther-pamphlet-war",
-      "reveal_at_lifetime": 250
+      "reveal_at_lifetime": 250,
+      "cycle_seconds": 3,
+      "manager_cost": 10000,
+      "manager_name": "Pamphleteer",
+      "icon": "📑"
     },
     {
       "id": "commission-woodcut",
@@ -48,14 +76,25 @@
       "technique_tag": "impersonation",
       "resource": "rumor",
       "base_cost": 6250,
-      "cost_growth": 1.10,
+      "cost_growth": 1.1,
       "base_production": 350,
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Cranach Workshop",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": null,
-      "reveal_at_lifetime": 1500
+      "reveal_at_lifetime": 1500,
+      "cycle_seconds": 5,
+      "manager_cost": 50000,
+      "manager_name": "Cranach Workshop",
+      "icon": "🖼️"
     },
     {
       "id": "forge-decree",
@@ -65,14 +104,25 @@
       "technique_tag": "impersonation",
       "resource": "rumor",
       "base_cost": 31250,
-      "cost_growth": 1.10,
+      "cost_growth": 1.1,
       "base_production": 3500,
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Forger-in-Residence",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "donation-of-constantine",
-      "reveal_at_lifetime": 7500
+      "reveal_at_lifetime": 7500,
+      "cycle_seconds": 8,
+      "manager_cost": 500000,
+      "manager_name": "Forger",
+      "icon": "✍️"
     },
     {
       "id": "witch-pamphlet",
@@ -82,14 +132,25 @@
       "technique_tag": "conspiracy",
       "resource": "rumor",
       "base_cost": 50000,
-      "cost_growth": 1.10,
+      "cost_growth": 1.1,
       "base_production": 5000,
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Inquisitor",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "malleus-maleficarum",
-      "reveal_at_lifetime": 15000
+      "reveal_at_lifetime": 15000,
+      "cycle_seconds": 10,
+      "manager_cost": 800000,
+      "manager_name": "Inquisitor",
+      "icon": "🔥"
     },
     {
       "id": "newsbook-press",
@@ -104,12 +165,23 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Marchamont Nedham",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": null,
-      "reveal_at_lifetime": 75000
+      "reveal_at_lifetime": 75000,
+      "cycle_seconds": 20,
+      "manager_cost": 20000000,
+      "manager_name": "Marchamont Nedham",
+      "icon": "📖"
     }
   ],
   "prestige_into": "penny-press",
-  "prestige_pivot": 5e14,
+  "prestige_pivot": 500000000000000,
   "prestige_bridge_copy": "Steam arrives. Paper grows cheap. The pamphlet becomes the newspaper, and the newspaper becomes the front page."
 }

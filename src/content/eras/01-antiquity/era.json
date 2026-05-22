@@ -10,7 +10,7 @@
       "id": "spread-rumor",
       "tier": 1,
       "display_name": "Spread Rumor",
-      "description": "Whisper to a passerby. Click to gain 1 Rumor. At 10 owned, a Sycophant takes over.",
+      "description": "Whisper to a passerby. Tap to advance the cycle. Hire a Sycophant to auto-spread.",
       "technique_tag": "impersonation",
       "resource": "rumor",
       "base_cost": 4,
@@ -21,13 +21,17 @@
       "auto_operative_name": "Sycophant",
       "milestones": [25, 50, 100, 200, 300, 400],
       "codex_link": null,
-      "reveal_at_lifetime": 0
+      "reveal_at_lifetime": 0,
+      "cycle_seconds": 1.0,
+      "manager_cost": 100,
+      "manager_name": "Sycophant",
+      "icon": "🗣️"
     },
     {
       "id": "forge-naru-tablet",
       "tier": 2,
       "display_name": "Forge Naru Tablet",
-      "description": "Backdate your own legend in clay. Generates Rumor passively.",
+      "description": "Backdate your own legend in clay. Hire a Scribe to auto-forge.",
       "technique_tag": "impersonation",
       "resource": "rumor",
       "base_cost": 250,
@@ -38,13 +42,17 @@
       "auto_operative_name": "Scribe",
       "milestones": [25, 50, 100, 200, 300, 400],
       "codex_link": "sargon-naru-tradition",
-      "reveal_at_lifetime": 50
+      "reveal_at_lifetime": 50,
+      "cycle_seconds": 3.0,
+      "manager_cost": 5000,
+      "manager_name": "Scribe",
+      "icon": "📜"
     },
     {
       "id": "smear-rival",
       "tier": 3,
       "display_name": "Smear Rival",
-      "description": "Leak a damning will. Generates Rumor at scale.",
+      "description": "Leak a damning will. Hire a Pamphleteer for the relentless drumbeat.",
       "technique_tag": "discrediting",
       "resource": "rumor",
       "base_cost": 1250,
@@ -55,7 +63,11 @@
       "auto_operative_name": "Pamphleteer",
       "milestones": [25, 50, 100, 200, 300, 400],
       "codex_link": "octavian-vs-antony",
-      "reveal_at_lifetime": 500
+      "reveal_at_lifetime": 500,
+      "cycle_seconds": 6.0,
+      "manager_cost": 50000,
+      "manager_name": "Pamphleteer",
+      "icon": "⚔️"
     },
     {
       "id": "hire-sykophant",
@@ -72,7 +84,11 @@
       "auto_operative_name": "Sykophant",
       "milestones": [25, 50, 100, 200, 300, 400],
       "codex_link": "athenian-sykophants",
-      "reveal_at_lifetime": 750
+      "reveal_at_lifetime": 750,
+      "cycle_seconds": 8.0,
+      "manager_cost": 100000,
+      "manager_name": "Sykophant Boss",
+      "icon": "⚖️"
     },
     {
       "id": "bronze-coin-mint",
@@ -89,7 +105,11 @@
       "auto_operative_name": "Mint Master",
       "milestones": [25, 50, 100, 200, 300, 400],
       "codex_link": "augustan-coinage",
-      "reveal_at_lifetime": 5000
+      "reveal_at_lifetime": 5000,
+      "cycle_seconds": 15.0,
+      "manager_cost": 2000000,
+      "manager_name": "Mint Master",
+      "icon": "🪙"
     }
   ],
   "prestige_into": "printing-press",

@@ -1,6 +1,6 @@
 import LZString from 'lz-string';
 
-export const CURRENT_SAVE_VERSION = 2;
+export const CURRENT_SAVE_VERSION = 3;
 
 export type BulkBuyMultiplier = 1 | 10 | 100 | 'max';
 
@@ -18,6 +18,9 @@ export interface SaveState {
   seen_toast_events: string[];
   bulk_buy_multiplier: BulkBuyMultiplier;
   show_best_buy_hint: boolean;
+  // v3 additions (cycles + managers)
+  cycle_progress: Record<string, number>;
+  managers_hired: string[];
 }
 
 const V2_DEFAULTS = {
@@ -27,23 +30,41 @@ const V2_DEFAULTS = {
   show_best_buy_hint: true,
 };
 
+const V3_DEFAULTS = {
+  cycle_progress: {} as Record<string, number>,
+  managers_hired: [] as string[],
+};
+
 /**
  * Migrate a save object of any prior version to the current shape.
- * Idempotent — calling on an already-v2 save returns it structurally unchanged.
+ * Idempotent — calling on an already-current save returns it structurally unchanged.
  */
 export function migrateSave(raw: unknown): SaveState {
-  const s = { ...(raw as Record<string, unknown>) };
+  let s = { ...(raw as Record<string, unknown>) };
   const version = (s.version as number | undefined) ?? 1;
+
+  // v1 → v2: add prestige/toast/bulk-buy/hint defaults
   if (version < 2) {
-    return {
+    s = {
       ...s,
       prestige_count: (s.prestige_count as number | undefined) ?? V2_DEFAULTS.prestige_count,
       seen_toast_events: (s.seen_toast_events as string[] | undefined) ?? V2_DEFAULTS.seen_toast_events,
       bulk_buy_multiplier: (s.bulk_buy_multiplier as BulkBuyMultiplier | undefined) ?? V2_DEFAULTS.bulk_buy_multiplier,
       show_best_buy_hint: (s.show_best_buy_hint as boolean | undefined) ?? V2_DEFAULTS.show_best_buy_hint,
       version: 2,
-    } as SaveState;
+    };
   }
+
+  // v2 → v3: add cycle_progress + managers_hired defaults
+  if (((s.version as number | undefined) ?? 1) < 3) {
+    s = {
+      ...s,
+      cycle_progress: (s.cycle_progress as Record<string, number> | undefined) ?? V3_DEFAULTS.cycle_progress,
+      managers_hired: (s.managers_hired as string[] | undefined) ?? V3_DEFAULTS.managers_hired,
+      version: 3,
+    };
+  }
+
   return s as unknown as SaveState;
 }
 

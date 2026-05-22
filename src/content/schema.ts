@@ -31,6 +31,24 @@ export const GeneratorTierSchema = z.object({
    * rather than dumping all options on the player at start.
    */
   reveal_at_lifetime: z.number().nonnegative().default(0),
+  /**
+   * AdCap-style cycle time in seconds. Higher tiers get slower visible cycles
+   * with proportionally larger payouts. Math: payout_per_cycle = base_production
+   * × cycle_seconds × owned × milestones × multipliers, divided by cycle_seconds
+   * = same rate-per-second as the v0.2 continuous-tick model. Visually: bar
+   * fills over cycle_seconds, pops, resets.
+   */
+  cycle_seconds: z.number().positive().default(1.0),
+  /**
+   * One-time Rumor cost to hire the manager for this generator. Before hire,
+   * the cycle requires the player to tap the card. After hire, cycle auto-runs.
+   * Replaces v0.1's auto_unlock_at mechanic with an explicit purchase decision.
+   */
+  manager_cost: z.number().nonnegative().default(0),
+  /** Display name of the manager (shown on the Hire button + toast). */
+  manager_name: z.string().default('Manager'),
+  /** Emoji or single-character icon for the card's icon block. */
+  icon: z.string().default('●'),
 });
 export type GeneratorTier = z.infer<typeof GeneratorTierSchema>;
 

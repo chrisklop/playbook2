@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { serializeSave, deserializeSave, type SaveState } from '../../src/game/save';
 
 const SAMPLE: SaveState = {
-  version: 2,
+  version: 3,
   current_era: 'antiquity',
   rumor: 12345.678,
   lifetime_rumor: 999999.99,
@@ -14,6 +14,8 @@ const SAMPLE: SaveState = {
   seen_toast_events: [],
   bulk_buy_multiplier: 1,
   show_best_buy_hint: true,
+  cycle_progress: {},
+  managers_hired: [],
 };
 
 describe('save round-trip', () => {

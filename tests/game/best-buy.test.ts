@@ -18,6 +18,10 @@ const baseGen = (overrides: Partial<GeneratorTier>): GeneratorTier => ({
   milestones: [25, 50, 100, 200, 300, 400],
   codex_link: null,
   reveal_at_lifetime: 0,
+  cycle_seconds: 1,
+  manager_cost: 0,
+  manager_name: 'M',
+  icon: '●',
   ...overrides,
 });
 
