@@ -47,6 +47,9 @@ export interface SaveState {
   // v5 additions (Technique Mastery — persists across prestige)
   technique_mastery?: Record<string, number>;
   codex_mastered?: string[];
+  // v6 — historical loops completed (incremented each time prestige goes
+  // backward in era ordinal — i.e., Era 4 -> Era 1)
+  loops_completed?: number;
 }
 
 const V2_DEFAULTS = {

@@ -75,6 +75,8 @@ export const state = reactive({
   // v5 — Technique Mastery (persists across prestige)
   techniqueMastery: {} as Record<string, number>,
   codexMastered: new Set<string>(),
+  // v6 — Loops completed (each time prestige carries you back to an earlier era)
+  loopsCompleted: 0,
 });
 
 /**
@@ -385,9 +387,30 @@ export function performPrestige(): void {
   if (!registry.eraIds.includes(nextEraId)) {
     throw new Error(`Cannot prestige into unknown era: '${nextEraId}'`);
   }
+
+  // Detect a loop-back: when the next era's ordinal is lower than the era
+  // we're leaving, the player has completed a full historical lap (Era 4
+  // -> Era 1, or whatever the last-built era is at the time).
+  const fromOrdinal = currentEra.value.ordinal;
+  const toOrdinal = getEra(nextEraId).era.ordinal;
+  const isLoopBack = toOrdinal < fromOrdinal;
+  if (isLoopBack) state.loopsCompleted += 1;
+
   state.currentEraId = nextEraId as EraId;
   if (typeof document !== 'undefined') {
     applyTheme(currentTheme.value);
+  }
+
+  // Special celebratory toast when a loop completes. Fires after the era
+  // switch so currentEra reads as the destination (Antiquity).
+  if (isLoopBack && typeof window !== 'undefined') {
+    import('./toast-state').then(({ fireToast }) => {
+      fireToast({
+        id: `loop-completed:${state.loopsCompleted}`,
+        message: `Loop ${state.loopsCompleted} begins. Welcome back to ${currentEra.value.display_name}.`,
+        era_id: currentEra.value.id,
+      });
+    });
   }
 }
 
@@ -414,6 +437,7 @@ export function applyLoadedSave(save: SaveState): void {
   state.nowMs = Date.now();
   state.techniqueMastery = { ...(save.technique_mastery ?? {}) };
   state.codexMastered = new Set(save.codex_mastered ?? []);
+  state.loopsCompleted = save.loops_completed ?? 0;
 
   // Backward compatibility: pre-v3 players who reached auto_unlock_at on a
   // click-driven generator deserve the manager free (we changed the mechanic).
@@ -459,6 +483,7 @@ export function snapshotSave(): SaveState {
     next_event_spawn_at: state.nextEventSpawnAt,
     technique_mastery: { ...state.techniqueMastery },
     codex_mastered: Array.from(state.codexMastered),
+    loops_completed: state.loopsCompleted,
   };
 }
 
