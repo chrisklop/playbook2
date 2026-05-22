@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import { state, buyGenerator, click, recommendedGenId } from '../state';
+import { state, buyGenerator, click } from '../state';
 import { computeCost, computeBulkCost, maxAffordableBulk } from '../../game/era-layer';
 import type { GeneratorTier } from '../../content/schema';
 import { formatCost } from '../format';
@@ -68,8 +68,6 @@ const milestoneProgress = computed<number>(() => {
   return span > 0 ? Math.min(1, Math.max(0, into / span)) : 0;
 });
 
-const isRecommended = computed(() => recommendedGenId.value === props.gen.id);
-
 // Watch owned for milestone crossings — fire the inline flash + +×N label.
 watch(owned, (newVal, oldVal) => {
   for (const m of props.gen.milestones) {
@@ -101,10 +99,9 @@ function tap() {
 <template>
   <button
     class="card"
-    :class="{ disabled: !gen.is_click_driven && !canAfford, flashing, recommended: isRecommended }"
+    :class="{ disabled: !gen.is_click_driven && !canAfford, flashing }"
     @click="tap"
   >
-    <div v-if="isRecommended" class="recommend-pill">RECOMMENDED</div>
     <div class="head">
       <div class="title">{{ gen.display_name }}</div>
       <div class="cost" v-if="gen.is_click_driven">
@@ -154,23 +151,6 @@ function tap() {
 }
 .card:active { transform: scale(0.985); }
 .card.disabled { opacity: 0.45; cursor: not-allowed; }
-.card.recommended {
-  border-color: var(--theme-accent, #2a2218);
-  box-shadow: 0 0 0 1px var(--theme-accent, #2a2218);
-}
-.recommend-pill {
-  position: absolute;
-  top: -8px;
-  right: 10px;
-  background: var(--theme-accent, #2a2218);
-  color: var(--theme-background, #f2ecd9);
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
-  font-size: 7px;
-  font-weight: 900;
-  padding: 2px 6px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
 .card.flashing {
   animation: mile-flash 400ms ease-out;
 }
