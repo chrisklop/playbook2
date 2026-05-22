@@ -58,7 +58,11 @@ export default defineConfig({
                 ]
             },
             workbox: {
-                globPatterns: ["**/*.{js,css,html,svg,png,woff2,json,md}"],
+                globPatterns: ["**/*.{js,css,html,svg,png,woff2,json,md,mp3,ogg}"],
+                // Background music is ~2.8 MB; default precache size limit
+                // is 2 MB which would exclude it. Bump to 6 MB so the
+                // music caches for offline play too.
+                maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
                 runtimeCaching: [
                     {
                         urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
