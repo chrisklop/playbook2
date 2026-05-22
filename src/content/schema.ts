@@ -1,8 +1,12 @@
 import { z } from 'zod';
 
 export const TechniqueIdSchema = z.enum([
+  // Era 1-3 baseline
   'impersonation', 'emotion', 'polarization',
   'conspiracy', 'discrediting', 'trolling',
+  // Era 4+ additions
+  'big-lie', 'atrocity-calibration', 'monumental-aesthetic',
+  'black-propaganda', 'photographic-falsification', 'manufactured-event',
 ]);
 
 export const ResourceIdSchema = z.enum([

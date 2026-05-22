@@ -38,7 +38,33 @@
       "cycle_seconds": 1,
       "manager_cost": 200,
       "manager_name": "Apprentice Printer",
-      "icon": "📰"
+      "icon": "📰",
+      "upgrades": [
+        {
+          "id": "compose-broadside-iron-frame-press",
+          "name": "Iron-Frame Press",
+          "description": "A sturdier press body holds register on longer runs.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 10000
+        },
+        {
+          "id": "compose-broadside-italic-punch-cutter",
+          "name": "Italic Punch-Cutter",
+          "description": "Tighter typeface fits more rumor per sheet.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 250000
+        },
+        {
+          "id": "compose-broadside-antwerp-distribution",
+          "name": "Antwerp Distribution",
+          "description": "Low-Country trade routes carry broadsides across borders overnight.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 5000000
+        }
+      ]
     },
     {
       "id": "print-pamphlet",
@@ -66,7 +92,33 @@
       "cycle_seconds": 3,
       "manager_cost": 10000,
       "manager_name": "Pamphleteer",
-      "icon": "📑"
+      "icon": "📑",
+      "upgrades": [
+        {
+          "id": "print-pamphlet-vernacular-translator",
+          "name": "Vernacular Translator",
+          "description": "Latin becomes German becomes Dutch becomes ours.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 100000
+        },
+        {
+          "id": "print-pamphlet-colporteur-network",
+          "name": "Colporteur Network",
+          "description": "Itinerant booksellers spread pamphlets to villages no city press reaches.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 2500000
+        },
+        {
+          "id": "print-pamphlet-frankfurt-bookfair",
+          "name": "Frankfurt Book-Fair Booth",
+          "description": "Twice a year, every printer in Europe arrives. So does every rumor.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 50000000
+        }
+      ]
     },
     {
       "id": "commission-woodcut",
@@ -94,7 +146,33 @@
       "cycle_seconds": 5,
       "manager_cost": 50000,
       "manager_name": "Cranach Workshop",
-      "icon": "🖼️"
+      "icon": "🖼️",
+      "upgrades": [
+        {
+          "id": "commission-woodcut-cranach-apprentices",
+          "name": "Cranach Apprentices",
+          "description": "Three carvers per block; ten blocks a week.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 4000000
+        },
+        {
+          "id": "commission-woodcut-coloured-stencil",
+          "name": "Coloured Stencil Sheets",
+          "description": "Hand-painted rubrication; a devil in red sells twice.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 100000000
+        },
+        {
+          "id": "commission-woodcut-two-block-registration",
+          "name": "Two-Block Registration",
+          "description": "Image and text on one impression — the modern political cartoon.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 2000000000
+        }
+      ]
     },
     {
       "id": "forge-decree",
@@ -122,7 +200,33 @@
       "cycle_seconds": 8,
       "manager_cost": 500000,
       "manager_name": "Forger",
-      "icon": "✍️"
+      "icon": "✍️",
+      "upgrades": [
+        {
+          "id": "forge-decree-royal-waxseal",
+          "name": "Royal Wax-Seal Cast",
+          "description": "A passable copy of any monarch's privy seal, ready in an afternoon.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 25000000
+        },
+        {
+          "id": "forge-decree-chancery-tutors",
+          "name": "Chancery Hand Tutors",
+          "description": "Six former clerks now teach your forgers the official scripts.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 600000000
+        },
+        {
+          "id": "forge-decree-anti-authentication",
+          "name": "Lorenzo Valla's Despair",
+          "description": "Even the philologists can't tell the fakes from the originals.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 12000000000
+        }
+      ]
     },
     {
       "id": "witch-pamphlet",
@@ -150,7 +254,33 @@
       "cycle_seconds": 10,
       "manager_cost": 800000,
       "manager_name": "Inquisitor",
-      "icon": "🔥"
+      "icon": "🔥",
+      "upgrades": [
+        {
+          "id": "witch-pamphlet-bishops-imprimatur",
+          "name": "Bishop's Imprimatur",
+          "description": "An ecclesiastical license turns a libel into doctrine.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 40000000
+        },
+        {
+          "id": "witch-pamphlet-illustrated-confessions",
+          "name": "Illustrated Confessions",
+          "description": "Engraved torture scenes outsell sober text three to one.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 1000000000
+        },
+        {
+          "id": "witch-pamphlet-standing-commission",
+          "name": "Standing Inquisitorial Commission",
+          "description": "A permanent body to print, judge, and burn — at scale.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 20000000000
+        }
+      ]
     },
     {
       "id": "newsbook-press",
@@ -178,7 +308,33 @@
       "cycle_seconds": 20,
       "manager_cost": 20000000,
       "manager_name": "Marchamont Nedham",
-      "icon": "📖"
+      "icon": "📖",
+      "upgrades": [
+        {
+          "id": "newsbook-press-stereotype-plates",
+          "name": "Stereotype Plates",
+          "description": "Mould the type once, run it forever; no resetting between issues.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 150000000
+        },
+        {
+          "id": "newsbook-press-weekly-cadence",
+          "name": "Weekly Issue Cadence",
+          "description": "Readers expect us now. A standing audience is a multiplier.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 4000000000
+        },
+        {
+          "id": "newsbook-press-lloyds-distribution",
+          "name": "Lloyd's Coffee-House Distribution",
+          "description": "Every merchant in London reads it before noon.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 80000000000
+        }
+      ]
     }
   ],
   "prestige_into": "penny-press",

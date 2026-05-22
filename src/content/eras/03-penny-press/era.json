@@ -39,7 +39,33 @@
       "cycle_seconds": 1,
       "manager_cost": 200,
       "manager_name": "Copy Boy",
-      "icon": "✏️"
+      "icon": "✏️",
+      "upgrades": [
+        {
+          "id": "set-headline-two-cent-edition",
+          "name": "Two-Cent Edition",
+          "description": "Halve the price; quadruple the circulation.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 15000
+        },
+        {
+          "id": "set-headline-scare-banner",
+          "name": "60-Point Scare Banner",
+          "description": "If it bleeds, it leads. Top-of-fold every day.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 400000
+        },
+        {
+          "id": "set-headline-street-vendor-army",
+          "name": "Street-Vendor Army",
+          "description": "Every corner of every borough has a paperboy of yours.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 8000000
+        }
+      ]
     },
     {
       "id": "manufactured-scoop",
@@ -67,7 +93,33 @@
       "cycle_seconds": 2,
       "manager_cost": 50000,
       "manager_name": "Stringer",
-      "icon": "📣"
+      "icon": "📣",
+      "upgrades": [
+        {
+          "id": "manufactured-scoop-reporters-rolodex",
+          "name": "Reporter's Rolodex",
+          "description": "Every official in town owes us a comment by 3pm.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 500000
+        },
+        {
+          "id": "manufactured-scoop-composite-quote",
+          "name": "Composite Quote Department",
+          "description": "Two real anonymous sources are easier to combine into one juicy one.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 15000000
+        },
+        {
+          "id": "manufactured-scoop-plant-the-source",
+          "name": "Plant the Source",
+          "description": "We supply the leaker, the leak, AND the indignation.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 300000000
+        }
+      ]
     },
     {
       "id": "wire-service-plant",
@@ -95,7 +147,33 @@
       "cycle_seconds": 5,
       "manager_cost": 250000,
       "manager_name": "AP Editor",
-      "icon": "📡"
+      "icon": "📡",
+      "upgrades": [
+        {
+          "id": "wire-service-plant-ap-stringer-pool",
+          "name": "AP Stringer Pool",
+          "description": "One slanted dispatch reprinted in three hundred dailies by sundown.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 25000000
+        },
+        {
+          "id": "wire-service-plant-transatlantic-cable",
+          "name": "Transatlantic Cable Priority",
+          "description": "Bribe the cable office; our wires beat the truth across the ocean.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 800000000
+        },
+        {
+          "id": "wire-service-plant-synthetic-correspondent",
+          "name": "Synthetic Correspondent",
+          "description": "A foreign-bureau byline that has never existed; readers can't tell.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 16000000000
+        }
+      ]
     },
     {
       "id": "halftone-engraving",
@@ -123,7 +201,33 @@
       "cycle_seconds": 10,
       "manager_cost": 2000000,
       "manager_name": "Engraver",
-      "icon": "📷"
+      "icon": "📷",
+      "upgrades": [
+        {
+          "id": "halftone-engraving-rotary-flatbed",
+          "name": "Rotary-Flatbed Halftone",
+          "description": "Photos in every edition, not just the Sunday rotogravure.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 200000000
+        },
+        {
+          "id": "halftone-engraving-staged-tableau",
+          "name": "Staged Tableau Studio",
+          "description": "Re-enactments shot in a Brooklyn warehouse, passed as crime-scene.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 5000000000
+        },
+        {
+          "id": "halftone-engraving-composite-photograph",
+          "name": "Composite Photograph",
+          "description": "Cut, paste, retouch — the kaiser shakes hands with the pope.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 100000000000
+        }
+      ]
     },
     {
       "id": "patent-medicine-ad",
@@ -151,7 +255,33 @@
       "cycle_seconds": 12,
       "manager_cost": 5000000,
       "manager_name": "Pinkham Heir",
-      "icon": "💊"
+      "icon": "💊",
+      "upgrades": [
+        {
+          "id": "patent-medicine-ad-testimonial-stable",
+          "name": "Testimonial Stable",
+          "description": "Fifty grateful 'patients' on retainer, $5 a quote.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 350000000
+        },
+        {
+          "id": "patent-medicine-ad-editorial-camouflage",
+          "name": "Editorial Camouflage",
+          "description": "The advertorial — paid copy set in the same font as news.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 9000000000
+        },
+        {
+          "id": "patent-medicine-ad-syndicated-cure",
+          "name": "Syndicated Miracle Cure",
+          "description": "One bottle, three hundred papers, half a continent of buyers.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 180000000000
+        }
+      ]
     },
     {
       "id": "okhrana-forgery",
@@ -179,7 +309,33 @@
       "cycle_seconds": 25,
       "manager_cost": 200000000,
       "manager_name": "Rachkovsky",
-      "icon": "🕵️"
+      "icon": "🕵️",
+      "upgrades": [
+        {
+          "id": "okhrana-forgery-protocols-distribution",
+          "name": "Protocols Distribution",
+          "description": "A faked manifesto that outlives the regime that printed it.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 1500000000
+        },
+        {
+          "id": "okhrana-forgery-dual-language-edition",
+          "name": "Dual-Language Edition",
+          "description": "Russian for the home market, French for the salon, English for the Times.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 40000000000
+        },
+        {
+          "id": "okhrana-forgery-century-of-believers",
+          "name": "A Century of Believers",
+          "description": "Even when exposed, the original false document keeps spreading.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 800000000000
+        }
+      ]
     }
   ],
   "prestige_into": null,
