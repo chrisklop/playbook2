@@ -1,0 +1,302 @@
+{
+  "id": "synthetic-reality",
+  "ordinal": 8,
+  "date_range": "2024 –",
+  "display_name": "Synthetic Reality",
+  "theme_id": "synthetic-reality-neon",
+  "techniques_unlocked": [
+    "deepfake-generation",
+    "ai-content-farm",
+    "platform-chaos",
+    "synthetic-intimacy",
+    "llm-disinformation",
+    "algorithmic-amplification"
+  ],
+  "generators": [
+    {
+      "id": "generate-deepfake",
+      "tier": 1,
+      "display_name": "Generate a Deepfake",
+      "description": "One prompt, one render, one public figure saying something they did not say. Tap to gain 1 Rumor. At 10 owned, your AI Director of Strategy takes the seat.",
+      "technique_tag": "deepfake-generation",
+      "resource": "rumor",
+      "base_cost": 4,
+      "cost_growth": 1.07,
+      "base_production": 1,
+      "is_click_driven": true,
+      "auto_unlock_at": 10,
+      "auto_operative_name": "AI Director of Strategy",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "biden-robocall-nh-2024",
+      "reveal_at_lifetime": 0,
+      "cycle_seconds": 1,
+      "manager_cost": 200,
+      "manager_name": "AI Director",
+      "icon": "🎭",
+      "upgrades": [
+        {
+          "id": "generate-deepfake-voice-clone",
+          "name": "11-Second Voice Clone",
+          "description": "Eleven seconds of clean audio. The model fills in the rest of the human.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 12000
+        },
+        {
+          "id": "generate-deepfake-real-time-render",
+          "name": "Real-Time Face Render",
+          "description": "Live-stream the face that isn't there. Latency under 80 milliseconds.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 300000
+        },
+        {
+          "id": "generate-deepfake-watermark-bypass",
+          "name": "Watermark-Bypass Pipeline",
+          "description": "Strip the disclosure. Re-render at a slightly different aspect ratio. Provenance lost.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 6000000
+        }
+      ]
+    },
+    {
+      "id": "ai-news-farm",
+      "tier": 2,
+      "display_name": "Spin Up an AI News Farm",
+      "description": "A domain that sounds like a paper. A masthead the LLM generated. 200 articles a day, none of them written.",
+      "technique_tag": "ai-content-farm",
+      "resource": "rumor",
+      "base_cost": 5000,
+      "cost_growth": 1.07,
+      "base_production": 35,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Content Operations Lead",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "newsguard-ai-sites",
+      "reveal_at_lifetime": 250,
+      "cycle_seconds": 3,
+      "manager_cost": 8000,
+      "manager_name": "Ops Lead",
+      "icon": "📰",
+      "upgrades": [
+        {
+          "id": "ai-news-farm-adjacent-domain",
+          "name": "Adjacent-Domain Squat",
+          "description": "boston-tribune dot online. Looks like the paper. Isn't the paper.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 60000
+        },
+        {
+          "id": "ai-news-farm-ad-tech-laundering",
+          "name": "Programmatic-Ad Laundering",
+          "description": "Google's auction can't tell. Real-brand ads pay for fake-paper costs.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 1500000
+        },
+        {
+          "id": "ai-news-farm-citation-loop",
+          "name": "Citation-Loop Network",
+          "description": "Twelve sites citing each other. One of them gets cited by a real outlet.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 30000000
+        }
+      ]
+    },
+    {
+      "id": "buy-verified-checkmark",
+      "tier": 2,
+      "display_name": "Buy a Verified Checkmark",
+      "description": "Eight dollars a month. The blue tick used to mean an editor vouched. Now it means a credit card cleared.",
+      "technique_tag": "platform-chaos",
+      "resource": "rumor",
+      "base_cost": 25000,
+      "cost_growth": 1.1,
+      "base_production": 250,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Sock-Puppet Operator",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "musk-x-shift",
+      "reveal_at_lifetime": 1500,
+      "cycle_seconds": 5,
+      "manager_cost": 50000,
+      "manager_name": "Operator",
+      "icon": "✔️",
+      "upgrades": [
+        {
+          "id": "buy-verified-checkmark-name-squat",
+          "name": "Public-Figure Name Squat",
+          "description": "Reserve the name first. Make them prove they're real.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 200000
+        },
+        {
+          "id": "buy-verified-checkmark-algorithmic-boost",
+          "name": "Algorithmic Reply Priority",
+          "description": "Paid accounts surface first under every viral post. The blue tick speaks the loudest, by design.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 5000000
+        },
+        {
+          "id": "buy-verified-checkmark-fleet-of-accounts",
+          "name": "Fleet of 200 Accounts",
+          "description": "Each a different face, each a different city, each a different opinion. All the same operator.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 100000000
+        }
+      ]
+    },
+    {
+      "id": "synthetic-influencer",
+      "tier": 3,
+      "display_name": "Launch a Synthetic Influencer",
+      "description": "A face that has never sweated. A girlfriend who has never said no. A life that fits in a prompt.",
+      "technique_tag": "synthetic-intimacy",
+      "resource": "rumor",
+      "base_cost": 150000,
+      "cost_growth": 1.1,
+      "base_production": 2500,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Persona Manager",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "pope-puffer-jacket",
+      "reveal_at_lifetime": 7500,
+      "cycle_seconds": 8,
+      "manager_cost": 500000,
+      "manager_name": "Persona Mgr",
+      "icon": "👤",
+      "upgrades": [
+        {
+          "id": "synthetic-influencer-parasocial-rails",
+          "name": "Parasocial-Engagement Rails",
+          "description": "DM auto-replies. Birthday messages. Tier-3 subscribers get 'voice notes.'",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 1500000
+        },
+        {
+          "id": "synthetic-influencer-brand-deal-pipeline",
+          "name": "Brand-Deal Pipeline",
+          "description": "Skincare, energy drinks, a gambling app. The persona doesn't have a face to ruin.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 40000000
+        },
+        {
+          "id": "synthetic-influencer-political-pivot",
+          "name": "Political-Pivot Module",
+          "description": "Six months of skincare; on month seven, suddenly opinions about immigration.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 800000000
+        }
+      ]
+    },
+    {
+      "id": "bespoke-disinfo-llm",
+      "tier": 3,
+      "display_name": "Train a Bespoke Disinfo LLM",
+      "description": "Fine-tune on a closed dataset of grievance. The model doesn't refuse — that was the training objective.",
+      "technique_tag": "llm-disinformation",
+      "resource": "rumor",
+      "base_cost": 1000000,
+      "cost_growth": 1.1,
+      "base_production": 25000,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "ML Lead",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "stanford-llm-fake-news",
+      "reveal_at_lifetime": 30000,
+      "cycle_seconds": 12,
+      "manager_cost": 3000000,
+      "manager_name": "ML Lead",
+      "icon": "🧠",
+      "upgrades": [
+        {
+          "id": "bespoke-disinfo-llm-prompt-rotation",
+          "name": "Auto-Rotating Prompt Library",
+          "description": "Same talking point, ten thousand surface phrasings. Detection by keyword no longer works.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 12000000
+        },
+        {
+          "id": "bespoke-disinfo-llm-citation-fabrication",
+          "name": "Plausible-Citation Fabrication",
+          "description": "Studies that don't exist, journals that do. By the time anyone checks, the post has 40k shares.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 300000000
+        },
+        {
+          "id": "bespoke-disinfo-llm-talking-point-injection",
+          "name": "Speech-Writer Injection",
+          "description": "Politicians' staff copy-paste from your model. Your phrases become their phrases.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 6000000000
+        }
+      ]
+    },
+    {
+      "id": "acquire-platform",
+      "tier": 4,
+      "display_name": "Acquire a Social Media Platform",
+      "description": "Forty-four billion dollars. Most of it borrowed. Now the rules are yours.",
+      "technique_tag": "algorithmic-amplification",
+      "resource": "rumor",
+      "base_cost": 5000000,
+      "cost_growth": 1.12,
+      "base_production": 250000,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Platform Owner",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "musk-x-shift",
+      "reveal_at_lifetime": 100000,
+      "cycle_seconds": 25,
+      "manager_cost": 30000000,
+      "manager_name": "Owner",
+      "icon": "🛰️",
+      "upgrades": [
+        {
+          "id": "acquire-platform-algorithm-tweak",
+          "name": "For-You Feed Algorithm Tweak",
+          "description": "Reweight 'engagement.' Outrage gets a 2.3× multiplier. Nuance gets buried.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 60000000
+        },
+        {
+          "id": "acquire-platform-fire-trust-safety",
+          "name": "Dissolve Trust & Safety",
+          "description": "Fire the moderators. Reinstate the banned. Call it free speech.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 1500000000
+        },
+        {
+          "id": "acquire-platform-api-paywall",
+          "name": "$42,000-a-Month API",
+          "description": "Researchers studying misinformation? They can't afford the API anymore.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 30000000000
+        }
+      ]
+    }
+  ],
+  "prestige_into": "antiquity",
+  "prestige_pivot": 1562500000000000000,
+  "prestige_bridge_copy": "The model trains on its own output. The feed eats the feed. The synthetic intimates of strangers vote in your name. You begin again — older eras, younger hands, every technique you ever taught the machine still in its weights."
+}

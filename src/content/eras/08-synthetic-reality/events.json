@@ -1,0 +1,51 @@
+[
+  {
+    "id": "deepfake-debate-clip",
+    "headline": "🔥 'NEW DEBATE CLIP' HITS THE FEED — STAFFERS SCRAMBLE TO IDENTIFY THE SOURCE",
+    "claim_verb": "AMPLIFY IT",
+    "claim_window_s": 20,
+    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
+    "weight": 2
+  },
+  {
+    "id": "ai-site-scoops-cnn",
+    "headline": "🔥 AI-WRITTEN STORY GETS CITED BY CNN BEFORE THE EDITORS NOTICE",
+    "claim_verb": "RE-PUBLISH IT",
+    "claim_window_s": 18,
+    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
+    "weight": 2
+  },
+  {
+    "id": "checkmark-impersonation",
+    "headline": "🔥 PAID BLUE-CHECK ACCOUNT IMPERSONATES PHARMA CEO — STOCK DROPS 4%",
+    "claim_verb": "TRADE THE PANIC",
+    "claim_window_s": 20,
+    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
+    "weight": 3
+  },
+  {
+    "id": "llm-talking-points-leak",
+    "headline": "🔥 CHATBOT TALKING POINTS APPEAR VERBATIM IN STUMP SPEECH",
+    "claim_verb": "DISTRIBUTE IT",
+    "claim_window_s": 22,
+    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
+    "weight": 3
+  },
+  {
+    "id": "voice-clone-grandma-call",
+    "headline": "🔥 'GRANDPA, I'M IN JAIL' — CLONED-VOICE SCAM HITS A THOUSAND SENIORS BEFORE BREAKFAST",
+    "claim_verb": "RIDE THE WAVE",
+    "claim_window_s": 15,
+    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
+    "weight": 1
+  },
+  {
+    "id": "deepfake-frenzy",
+    "headline": "⚡ FRENZY: A DEEPFAKE HITS THE FEED BEFORE BREAKFAST — RETRACTIONS BY DINNER",
+    "claim_verb": "FLOOD THE FEED",
+    "claim_window_s": 10,
+    "effect": { "type": "rumor_mult", "value": 10.0, "duration_s": 10 },
+    "weight": 1,
+    "is_frenzy": true
+  }
+]

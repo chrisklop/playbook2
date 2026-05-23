@@ -38,6 +38,7 @@
   --riso-disabled-text:   #6a6055;
 
   --riso-bulk-off-bg:    #ffffff;
+  --riso-bulk-off-text:  #1a1410;
   --riso-bulk-on-bg:     #f0a050;
   --riso-bulk-on-shadow: #4a90b0;
 
@@ -125,7 +126,7 @@
   flex: 1;
   border: var(--riso-border);
   background: var(--riso-bulk-off-bg);
-  color: var(--riso-ink);
+  color: var(--riso-bulk-off-text, var(--riso-ink));
   font-family: var(--riso-font);
   font-weight: 700;
   font-size: 11px;

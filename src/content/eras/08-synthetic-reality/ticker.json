@@ -1,0 +1,15 @@
+{
+  "quotes": [
+    { "id": "biden-robocall",        "text": "Jan 21, 2024: a deepfake of Joe Biden told New Hampshire Democrats not to vote. Cost: ~$1 to generate.", "codex_link": "biden-robocall-nh-2024" },
+    { "id": "newsguard-count",       "text": "NewsGuard's UAINS tracker logged 1,254 AI-generated 'news' websites as of mid-2024 — up from 49 the year before.", "codex_link": "newsguard-ai-sites" },
+    { "id": "pope-puffer",           "text": "March 2023: the Pope in a Balenciaga puffer was the first viral synthetic image to fool the general internet.", "codex_link": "pope-puffer-jacket" },
+    { "id": "musk-x-day-one",        "text": "Oct 27, 2022: Elon Musk fires Twitter's CEO, CFO, and head of legal in the first 24 hours.", "codex_link": "musk-x-shift" },
+    { "id": "grok-fact-check-self",  "text": "X's own AI 'Grok' now appends real-time corrections to viral posts — sometimes contradicting the user who paid for verification.", "codex_link": "grok-fact-checks-itself" },
+    { "id": "stanford-undetectable", "text": "A 2023 Stanford study found participants could not reliably distinguish LLM-generated political content from human-written.", "codex_link": "stanford-llm-fake-news" },
+    { "id": "dominion-settlement",   "text": "Apr 18, 2023: Fox News pays Dominion Voting Systems $787.5M to settle a defamation suit. Largest media settlement in U.S. history.", "codex_link": "fox-dominion-settlement" },
+    { "id": "voice-clone-eleven",    "text": "Modern voice-clone models need ~11 seconds of clean source audio to produce convincing speech in the target's voice.", "codex_link": "biden-robocall-nh-2024" },
+    { "id": "drudge-still-here",     "text": "The Drudge Report still posts. Most of its 2024 traffic came from search engines, not direct visits.", "codex_link": null }
+  ],
+  "interval_ms": 8000,
+  "no_repeat_within": 3
+}

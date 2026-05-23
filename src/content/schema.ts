@@ -10,6 +10,9 @@ export const TechniqueIdSchema = z.enum([
   // Era 5 — Talk Radio & Cable 1987-1999
   'talk-radio-outrage', 'drudge-drop', 'false-balance',
   'evangelical-alliance', 'victim-grievance', 'cable-news-panel',
+  // Era 8 — Synthetic Reality 2024+
+  'deepfake-generation', 'ai-content-farm', 'platform-chaos',
+  'synthetic-intimacy', 'llm-disinformation', 'algorithmic-amplification',
 ]);
 
 export const ResourceIdSchema = z.enum([
@@ -159,6 +162,8 @@ const RisoOverrides = z.object({
   bulk_on_bg: HexColor.optional(),
   bulk_on_shadow: HexColor.optional(),
   bulk_on_text: HexColor.optional(),
+  bulk_off_bg: HexColor.optional(),
+  bulk_off_text: HexColor.optional(),
 }).optional();
 
 export const ThemeSchema = z.object({

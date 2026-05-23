@@ -23,7 +23,14 @@ export type TechniqueId =
   | 'false-balance'
   | 'evangelical-alliance'
   | 'victim-grievance'
-  | 'cable-news-panel';
+  | 'cable-news-panel'
+  // Era 8 — Synthetic Reality 2024+
+  | 'deepfake-generation'
+  | 'ai-content-farm'
+  | 'platform-chaos'
+  | 'synthetic-intimacy'
+  | 'llm-disinformation'
+  | 'algorithmic-amplification';
 
 export const ALL_TECHNIQUES: readonly TechniqueId[] = [
   'impersonation', 'emotion', 'polarization',
@@ -32,6 +39,8 @@ export const ALL_TECHNIQUES: readonly TechniqueId[] = [
   'black-propaganda', 'photographic-falsification', 'manufactured-event',
   'talk-radio-outrage', 'drudge-drop', 'false-balance',
   'evangelical-alliance', 'victim-grievance', 'cable-news-panel',
+  'deepfake-generation', 'ai-content-farm', 'platform-chaos',
+  'synthetic-intimacy', 'llm-disinformation', 'algorithmic-amplification',
 ] as const;
 
 export type ResourceId = 'rumor' | 'reach' | 'cred' | 'memetic_inheritance';
