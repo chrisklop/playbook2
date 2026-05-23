@@ -7,10 +7,10 @@
     "google_fonts_url": "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700&display=swap"
   },
   "palette": {
-    "background": "#fdfaf0",
+    "background": "#f8f4e0",
     "surface": "#ffffff",
     "text": "#0a0a0a",
-    "muted": "#7a7066",
+    "muted": "#7a6648",
     "accent": "#c8102e",
     "border": "#0a0a0a"
   },

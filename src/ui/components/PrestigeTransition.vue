@@ -32,7 +32,10 @@ function confirm() {
     <div v-else class="modal-backdrop" @click.self="cancel">
       <div class="modal">
         <h3>{{ currentCopy.prestige_confirm_title }}</h3>
-        <p>{{ currentEra.prestige_bridge_copy }}</p>
+        <!-- prestige_bridge_copy is intentionally NOT shown here. The full-screen
+             EraTransitionOverlay is the dedicated venue for the bridge quote;
+             showing it in the confirm modal AND the overlay produced a
+             visible double-take of the same text in two different fonts. -->
         <p class="emphasis">{{ currentCopy.prestige_confirm_body }}</p>
         <p class="gain">You will gain <strong>{{ Math.floor(projectedMI) }}</strong> Memetic Inheritance.</p>
         <div class="row">

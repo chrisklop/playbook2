@@ -7,10 +7,10 @@
     "google_fonts_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Old+Standard+TT:wght@400;700&family=Rye&display=swap"
   },
   "palette": {
-    "background": "#f0e7cf",
-    "surface": "#e8dec0",
+    "background": "#d8d2b4",
+    "surface": "#c4be9c",
     "text": "#1a1410",
-    "muted": "#6b5230",
+    "muted": "#5a5040",
     "accent": "#6b1a1a",
     "border": "#1a1410"
   },

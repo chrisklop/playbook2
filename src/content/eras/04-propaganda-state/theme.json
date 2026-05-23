@@ -7,10 +7,10 @@
     "google_fonts_url": "https://fonts.googleapis.com/css2?family=Oswald:wght@500;700;900&family=Inter:wght@400;500;700&display=swap"
   },
   "palette": {
-    "background": "#f8f6f0",
-    "surface": "#ffffff",
+    "background": "#f4e6a8",
+    "surface": "#fff0b0",
     "text": "#0a0a0a",
-    "muted": "#5a6470",
+    "muted": "#5a4a30",
     "accent": "#d3211c",
     "border": "#0a0a0a"
   },
