@@ -157,7 +157,7 @@ function tryPrestige() {
       <h4>The math, briefly</h4>
       <p>
         MI gained per ascension = <code>150 × √(lifetime ÷ era_pivot)</code>.
-        Each point of MI grants <strong>+2% to all production</strong>
+        Each point of MI grants <strong>+3% to all production</strong>
         in every era. The bonus stacks multiplicatively on top of milestones,
         upgrades, managers, ticker events, and mastery.
       </p>

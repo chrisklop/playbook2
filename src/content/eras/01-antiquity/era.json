@@ -29,7 +29,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": null,
       "reveal_at_lifetime": 0,
@@ -84,7 +90,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "sargon-naru-tradition",
       "reveal_at_lifetime": 50,
@@ -139,7 +151,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "octavian-vs-antony",
       "reveal_at_lifetime": 500,
@@ -194,7 +212,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "athenian-sykophants",
       "reveal_at_lifetime": 750,
@@ -249,7 +273,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "augustan-coinage",
       "reveal_at_lifetime": 5000,

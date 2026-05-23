@@ -32,7 +32,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "chain-email-pipeline",
       "reveal_at_lifetime": 0,
@@ -87,7 +93,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "yellowcake-niger",
       "reveal_at_lifetime": 250,
@@ -142,7 +154,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "swift-boat-veterans-2004",
       "reveal_at_lifetime": 1500,
@@ -197,7 +215,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "glenn-beck-overton",
       "reveal_at_lifetime": 7500,
@@ -252,7 +276,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "trump-birther-pivot-2011",
       "reveal_at_lifetime": 30000,
@@ -307,7 +337,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "drudge-as-agenda-setter",
       "reveal_at_lifetime": 100000,
@@ -345,6 +381,6 @@
     }
   ],
   "prestige_into": "maga-firehose",
-  "prestige_pivot": 62500000000000000,
+  "prestige_pivot": 20000000000000000,
   "prestige_bridge_copy": "2014 — the war goes on but the audience moves on. Birtherism does not die; it elects. The chain emails get a comment section, the comment section becomes a feed, the feed becomes a candidate. The escalator descends."
 }

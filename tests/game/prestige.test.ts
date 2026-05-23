@@ -29,6 +29,6 @@ describe('computeMemeticInheritance — AdCap sqrt formula with per-era pivot', 
 
 describe('carryoverMultiplier', () => {
   it('mi=0 → 1.0', () => expect(carryoverMultiplier(0)).toBe(1));
-  it('mi=50 → 2.0 (1 + 50 × 0.02)', () => expect(carryoverMultiplier(50)).toBeCloseTo(2.0, 4));
-  it('mi=150 → 4.0 (1 + 150 × 0.02)', () => expect(carryoverMultiplier(150)).toBeCloseTo(4.0, 4));
+  it('mi=50 → 2.5 (1 + 50 × 0.03)', () => expect(carryoverMultiplier(50)).toBeCloseTo(2.5, 4));
+  it('mi=150 → 5.5 (1 + 150 × 0.03)', () => expect(carryoverMultiplier(150)).toBeCloseTo(5.5, 4));
 });

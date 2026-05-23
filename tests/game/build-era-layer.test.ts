@@ -57,12 +57,12 @@ describe('buildEraLayer — Antiquity', () => {
   });
 
   it('carryover multiplier applies when mi > 0', () => {
-    const layer = buildEraLayer(antiquity, 50); // MI = 50 → globalMult = 1 + 50*0.02 = 2.0
-    expect(layer.globalMultiplier).toBeCloseTo(2.0, 4);
+    const layer = buildEraLayer(antiquity, 50); // MI = 50 → globalMult = 1 + 50*0.03 = 2.5
+    expect(layer.globalMultiplier).toBeCloseTo(2.5, 4);
     const s = freshState();
     s.ownedByGenerator['forge-naru-tablet'] = 1;
     layer.onTick(s, 1);
-    // With 2× global mult: 7 × 1 × milestone(1)=1 × 2.0 = 14
-    expect(s.rumor).toBeCloseTo(14, 4);
+    // With 2.5× global mult: 7 × 1 × milestone(1)=1 × 2.5 = 17.5
+    expect(s.rumor).toBeCloseTo(17.5, 4);
   });
 });

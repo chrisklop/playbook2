@@ -15,7 +15,11 @@ export function computeMemeticInheritance(lifetimeRumor: number, pivot: number =
   return COEFFICIENT * Math.sqrt(lifetimeRumor / pivot);
 }
 
-/** Carryover multiplier applied to next era's production: 1 + MI × 0.02. */
+/** Carryover multiplier applied to next era's production: 1 + MI × 0.03.
+ *  Previously 0.02 — bumped to make accumulated MI feel meaningfully more
+ *  potent on subsequent runs. With 50 MI, multiplier goes from 2× to 2.5×;
+ *  with 100 MI, from 3× to 4×. Helps mid-game pacing where the player has
+ *  prestiged a few times and expects the runs to be visibly faster. */
 export function carryoverMultiplier(mi: number): number {
-  return 1 + mi * 0.02;
+  return 1 + mi * 0.03;
 }

@@ -32,7 +32,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "alt-facts-kellyanne",
       "reveal_at_lifetime": 0,
@@ -87,7 +93,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "qanon-q-drops",
       "reveal_at_lifetime": 250,
@@ -142,7 +154,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "replacement-theory-mainstreaming",
       "reveal_at_lifetime": 1500,
@@ -197,7 +215,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "internet-research-agency",
       "reveal_at_lifetime": 7500,
@@ -252,7 +276,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "jan-6-pipeline",
       "reveal_at_lifetime": 30000,
@@ -307,7 +337,13 @@
         100,
         200,
         300,
-        400
+        400,
+        500,
+        700,
+        1000,
+        1500,
+        2000,
+        3000
       ],
       "codex_link": "white-evangelical-bloc",
       "reveal_at_lifetime": 100000,
@@ -345,6 +381,6 @@
     }
   ],
   "prestige_into": "synthetic-reality",
-  "prestige_pivot": 312500000000000000,
+  "prestige_pivot": 100000000000000000,
   "prestige_bridge_copy": "2023 — the rallies do not stop, the indictments arrive on schedule, the algorithm hums on. The next election has already been pre-doubted. The machines that wrote your scripts are about to start writing your face."
 }
