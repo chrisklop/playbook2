@@ -10,6 +10,9 @@ export const TechniqueIdSchema = z.enum([
   // Era 5 — Talk Radio & Cable 1987-1999
   'talk-radio-outrage', 'drudge-drop', 'false-balance',
   'evangelical-alliance', 'victim-grievance', 'cable-news-panel',
+  // Era 6 — Forever War & The Birther Years 2000-2014
+  'chain-email', 'wmd-packaging', 'swift-boating',
+  'chalkboard-conspiracy', 'birtherism', 'truther-seeding',
   // Era 8 — Synthetic Reality 2024+
   'deepfake-generation', 'ai-content-farm', 'platform-chaos',
   'synthetic-intimacy', 'llm-disinformation', 'algorithmic-amplification',

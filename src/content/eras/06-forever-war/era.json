@@ -1,0 +1,302 @@
+{
+  "id": "forever-war",
+  "ordinal": 6,
+  "date_range": "2000 – 2014",
+  "display_name": "Forever War & The Birther Years",
+  "theme_id": "forever-war-terror-alert",
+  "techniques_unlocked": [
+    "chain-email",
+    "wmd-packaging",
+    "swift-boating",
+    "chalkboard-conspiracy",
+    "birtherism",
+    "truther-seeding"
+  ],
+  "generators": [
+    {
+      "id": "forward-chain-email",
+      "tier": 1,
+      "display_name": "Forward a Chain Email",
+      "description": "FWD: FWD: FWD: TRUTH ABOUT… Tap to gain 1 Rumor. At 10 owned, your Aunt's AOL account takes over the forwards.",
+      "technique_tag": "chain-email",
+      "resource": "rumor",
+      "base_cost": 4,
+      "cost_growth": 1.07,
+      "base_production": 1,
+      "is_click_driven": true,
+      "auto_unlock_at": 10,
+      "auto_operative_name": "Your Aunt's AOL Account",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "chain-email-pipeline",
+      "reveal_at_lifetime": 0,
+      "cycle_seconds": 1,
+      "manager_cost": 200,
+      "manager_name": "Aunt's AOL",
+      "icon": "📧",
+      "upgrades": [
+        {
+          "id": "forward-chain-email-bcc-list",
+          "name": "BCC: All Contacts",
+          "description": "Every relative, every coworker, every church-group member at once.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 12000
+        },
+        {
+          "id": "forward-chain-email-snopes-paragraph",
+          "name": "Pre-emptive 'Snopes Says It's True' Paragraph",
+          "description": "Insert at the top. Nobody clicks through to check.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 300000
+        },
+        {
+          "id": "forward-chain-email-pastor-network",
+          "name": "Megachurch Email-List Cross-Post",
+          "description": "Sunday-bulletin distribution. The pastor adds a line.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 6000000
+        }
+      ]
+    },
+    {
+      "id": "plant-wmd-source",
+      "tier": 2,
+      "display_name": "Plant a WMD Source",
+      "description": "An exiled defector with a name we can't print and intel we can't verify. The NYT runs it on the front page.",
+      "technique_tag": "wmd-packaging",
+      "resource": "rumor",
+      "base_cost": 5000,
+      "cost_growth": 1.07,
+      "base_production": 35,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Office of Special Plans Analyst",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "yellowcake-niger",
+      "reveal_at_lifetime": 250,
+      "cycle_seconds": 3,
+      "manager_cost": 8000,
+      "manager_name": "OSP Analyst",
+      "icon": "🛢️",
+      "upgrades": [
+        {
+          "id": "plant-wmd-source-curveball",
+          "name": "Codename CURVEBALL",
+          "description": "One German-held informant. Six State of the Union mentions.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 60000
+        },
+        {
+          "id": "plant-wmd-source-mushroom-cloud",
+          "name": "'Mushroom Cloud' Talking Point",
+          "description": "Rice on a Sunday morning. The image does the work that the evidence cannot.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 1500000
+        },
+        {
+          "id": "plant-wmd-source-aluminum-tubes",
+          "name": "Aluminum-Tube Misclassification",
+          "description": "Standard rocket tubes mis-identified as centrifuge parts. Plame won't sit still about it; outing her takes care of that.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 30000000
+        }
+      ]
+    },
+    {
+      "id": "swift-boat-press-conf",
+      "tier": 2,
+      "display_name": "Stage a Swift-Boat Press Conference",
+      "description": "A Vietnam veteran with a grievance and a sponsor. The decorated record is now a debate topic.",
+      "technique_tag": "swift-boating",
+      "resource": "rumor",
+      "base_cost": 25000,
+      "cost_growth": 1.1,
+      "base_production": 250,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Veteran 'Spokesperson'",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "swift-boat-veterans-2004",
+      "reveal_at_lifetime": 1500,
+      "cycle_seconds": 5,
+      "manager_cost": 50000,
+      "manager_name": "Spokes",
+      "icon": "🚤",
+      "upgrades": [
+        {
+          "id": "swift-boat-press-conf-book-tour",
+          "name": "Coordinated Book Tour",
+          "description": "Regnery publishes. Hannity hosts. Drudge headlines. The author owns the news cycle for a month.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 200000
+        },
+        {
+          "id": "swift-boat-press-conf-tv-ad-buy",
+          "name": "TV-Ad Buy in Six Swing States",
+          "description": "Cheap-cycle local stations. The ad runs more times than the network coverage it generates.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 5000000
+        },
+        {
+          "id": "swift-boat-press-conf-counter-medal-doubt",
+          "name": "Counter-Medal 'Doubt' Memo",
+          "description": "Don't refute the medals; ask whether they were 'really' earned. Doubt outlives certainty.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 100000000
+        }
+      ]
+    },
+    {
+      "id": "glenn-beck-segment",
+      "tier": 3,
+      "display_name": "Run a Glenn Beck Segment",
+      "description": "Chalkboard, marker, slow zoom. Dots and strings between names the audience has never heard of. By the third commercial break it's a coup attempt.",
+      "technique_tag": "chalkboard-conspiracy",
+      "resource": "rumor",
+      "base_cost": 150000,
+      "cost_growth": 1.1,
+      "base_production": 2500,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Segment Producer",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "glenn-beck-overton",
+      "reveal_at_lifetime": 7500,
+      "cycle_seconds": 8,
+      "manager_cost": 500000,
+      "manager_name": "Producer",
+      "icon": "🖍️",
+      "upgrades": [
+        {
+          "id": "glenn-beck-segment-storyboard-research",
+          "name": "Storyboard 'Research' Pipeline",
+          "description": "Six interns, four obscure 1970s books, one chalkboard line that 'connects' them.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 1500000
+        },
+        {
+          "id": "glenn-beck-segment-rally-on-the-mall",
+          "name": "'Restoring Honor' Rally",
+          "description": "Aug 28, 2010. Lincoln Memorial. The chalkboard becomes a stage. 100,000–300,000 attendees, depending on the count.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 40000000
+        },
+        {
+          "id": "glenn-beck-segment-merch-pipeline",
+          "name": "Goldline + Books + Subscription Site",
+          "description": "Sell the gold while you broadcast the collapse. The audience pays twice.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 800000000
+        }
+      ]
+    },
+    {
+      "id": "birther-petition",
+      "tier": 3,
+      "display_name": "Spin Up a Birther Petition",
+      "description": "Demand the long-form. Question the seal. Question the seal of the seal. The 44th President opens a press conference to address a forgery claim.",
+      "technique_tag": "birtherism",
+      "resource": "rumor",
+      "base_cost": 1000000,
+      "cost_growth": 1.1,
+      "base_production": 25000,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Petition Coordinator",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "trump-birther-pivot-2011",
+      "reveal_at_lifetime": 30000,
+      "cycle_seconds": 12,
+      "manager_cost": 3000000,
+      "manager_name": "Coordinator",
+      "icon": "📄",
+      "upgrades": [
+        {
+          "id": "birther-petition-corsi-book",
+          "name": "Jerome Corsi Book Drop",
+          "description": "*Where's the Birth Certificate?* WND Books, May 2011. Bestseller list within a week.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 12000000
+        },
+        {
+          "id": "birther-petition-trump-amplification",
+          "name": "Celebrity-Businessman Amplification",
+          "description": "A reality-TV host with an Atlantic City casino and twelve million Twitter followers takes up the cause.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 300000000
+        },
+        {
+          "id": "birther-petition-grifter-economy",
+          "name": "Direct-Mail Donor List",
+          "description": "$5 contributions × 400,000 names. The list is the asset; the petition is the funnel.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 6000000000
+        }
+      ]
+    },
+    {
+      "id": "cable-pundit-bench",
+      "tier": 4,
+      "display_name": "Open a Cable Pundit Bench",
+      "description": "Twelve operatives in suits. Three cable networks, four panels each, four cycles a day. Same names, different topics, all pre-loaded with talking points by 5 AM.",
+      "technique_tag": "truther-seeding",
+      "resource": "rumor",
+      "base_cost": 5000000,
+      "cost_growth": 1.12,
+      "base_production": 250000,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Booking Director",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "drudge-as-agenda-setter",
+      "reveal_at_lifetime": 100000,
+      "cycle_seconds": 25,
+      "manager_cost": 30000000,
+      "manager_name": "Booker",
+      "icon": "💼",
+      "upgrades": [
+        {
+          "id": "cable-pundit-bench-talking-point-fax",
+          "name": "Daily Talking-Point Fax (then Email)",
+          "description": "5 AM blast to every panelist. Same nouns by sunset.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 60000000
+        },
+        {
+          "id": "cable-pundit-bench-loose-change-citation",
+          "name": "'Just Asking Questions' Loop",
+          "description": "Don't assert; insinuate. *Loose Change* did 2.2 billion YouTube views with this move.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 1500000000
+        },
+        {
+          "id": "cable-pundit-bench-think-tank-cover",
+          "name": "Think-Tank Affiliation Stack",
+          "description": "Three letters before each name on the chyron. The viewer reads 'expert.'",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 30000000000
+        }
+      ]
+    }
+  ],
+  "prestige_into": "maga-firehose",
+  "prestige_pivot": 62500000000000000,
+  "prestige_bridge_copy": "2014 — the war goes on but the audience moves on. Birtherism does not die; it elects. The chain emails get a comment section, the comment section becomes a feed, the feed becomes a candidate. The escalator descends."
+}

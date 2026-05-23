@@ -1,0 +1,51 @@
+[
+  {
+    "id": "anonymous-mole-quotes-paper",
+    "headline": "🔥 'SENIOR ADMINISTRATION OFFICIAL' QUOTED ON FRONT PAGE — IDENTITY UNKNOWN",
+    "claim_verb": "RUN IT WIDE",
+    "claim_window_s": 20,
+    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
+    "weight": 2
+  },
+  {
+    "id": "viral-chain-email-mom",
+    "headline": "🔥 VIRAL CHAIN EMAIL HITS YOUR MOM — FWD: FWD: FWD: TRUTH ABOUT…",
+    "claim_verb": "FORWARD IT",
+    "claim_window_s": 18,
+    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
+    "weight": 2
+  },
+  {
+    "id": "chalkboard-segment-trends",
+    "headline": "🔥 BECK'S CHALKBOARD MOMENT GOES VIRAL — 'WHO IS GEORGE SOROS?'",
+    "claim_verb": "BREAK IT DOWN",
+    "claim_window_s": 20,
+    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
+    "weight": 3
+  },
+  {
+    "id": "swift-boat-debate-prep",
+    "headline": "🔥 SWIFT BOAT 'VETERAN' BOOKED ON ALL THREE NETWORKS — CANDIDATE STAFF IN PANIC",
+    "claim_verb": "AMPLIFY THE DOUBT",
+    "claim_window_s": 22,
+    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
+    "weight": 3
+  },
+  {
+    "id": "drudge-link-flips-cycle",
+    "headline": "🔥 RED-LETTER DRUDGE HEADLINE AT 4 AM — CABLE NEWS LEADS WITH IT BY 7",
+    "claim_verb": "RIDE IT UP",
+    "claim_window_s": 15,
+    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
+    "weight": 1
+  },
+  {
+    "id": "forever-war-frenzy",
+    "headline": "⚡ FRENZY: COLOR-CODED TERROR ALERT RAISED MID-NEWS CYCLE — EVERY NETWORK GOES WALL-TO-WALL",
+    "claim_verb": "STOKE THE FEAR",
+    "claim_window_s": 10,
+    "effect": { "type": "rumor_mult", "value": 10.0, "duration_s": 10 },
+    "weight": 1,
+    "is_frenzy": true
+  }
+]

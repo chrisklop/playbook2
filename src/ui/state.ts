@@ -44,7 +44,7 @@ import {
   playCue,
 } from './audio';
 
-type EraId = 'antiquity' | 'printing-press' | 'penny-press' | 'propaganda-state' | 'talk-radio' | 'synthetic-reality';
+type EraId = 'antiquity' | 'printing-press' | 'penny-press' | 'propaganda-state' | 'talk-radio' | 'forever-war' | 'maga-firehose' | 'synthetic-reality';
 
 export interface LastPayout {
   amount: number;

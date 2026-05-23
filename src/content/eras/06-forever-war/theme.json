@@ -1,0 +1,32 @@
+{
+  "id": "forever-war-terror-alert",
+  "era_id": "forever-war",
+  "fonts": {
+    "masthead": "'Roboto Condensed', 'Oswald', Impact, sans-serif",
+    "body": "'Source Sans 3', 'Inter', 'Helvetica Neue', Arial, sans-serif",
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;700&family=Source+Sans+3:wght@400;500;600&display=swap"
+  },
+  "palette": {
+    "background": "#ece5d2",
+    "surface": "#dad2b9",
+    "text": "#1a1610",
+    "muted": "#5a5040",
+    "accent": "#cc5500",
+    "border": "#1a1610"
+  },
+  "riso": {
+    "primary_bg": "#cc5500",
+    "primary_shadow": "#1a1610",
+    "primary_text": "#fff5e0",
+    "secondary_bg": "#dad2b9",
+    "secondary_shadow": "#cc5500",
+    "secondary_text": "#1a1610",
+    "upgrade_bg": "#1a1610",
+    "upgrade_shadow": "#cc5500",
+    "upgrade_text": "#fff5e0",
+    "bulk_on_bg": "#cc5500",
+    "bulk_on_shadow": "#1a1610",
+    "bulk_on_text": "#fff5e0"
+  },
+  "card_style": "flat-paper"
+}

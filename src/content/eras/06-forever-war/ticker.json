@@ -1,0 +1,14 @@
+{
+  "quotes": [
+    { "id": "swift-boat-ad-buy",   "text": "The Swift Boat Veterans for Truth spent ~$22M in 2004 — modest by ad standards, but it dominated 60% of network news cycles for six weeks.", "codex_link": "swift-boat-veterans-2004" },
+    { "id": "yellowcake-state-union", "text": "The '16 words' on Iraqi yellowcake uranium appeared in Bush's January 2003 State of the Union. The CIA had warned the claim was unreliable.", "codex_link": "yellowcake-niger" },
+    { "id": "loose-change-views",  "text": "*Loose Change* (2005) racked up 2.2 billion estimated YouTube views before YouTube was tracking carefully.", "codex_link": "loose-change-2005" },
+    { "id": "beck-overton",        "text": "Glenn Beck went from CNN Headline News to Fox primetime in Jan 2009. By Apr 2011 his audience had outgrown the network's tolerance.", "codex_link": "glenn-beck-overton" },
+    { "id": "drudge-as-editor",    "text": "A 2007 Politico analysis tracked 67% of Drudge lead links being picked up by cable news within 24 hours.", "codex_link": "drudge-as-agenda-setter" },
+    { "id": "birther-trump-arc",   "text": "Trump first floated birtherism on *The View* in March 2011. By July 2011 his Fox News appearances were six times their pre-birther rate.", "codex_link": "trump-birther-pivot-2011" },
+    { "id": "obama-press-conf-2011", "text": "On April 27, 2011, President Obama held a press conference to release his long-form birth certificate. Trump took credit for the moment 90 minutes later.", "codex_link": "trump-birther-pivot-2011" },
+    { "id": "chain-email-mom",     "text": "By 2008 Pew estimated 32% of U.S. adults had received a political chain email; the average forward chain reached 6.2 recipients.", "codex_link": "chain-email-pipeline" }
+  ],
+  "interval_ms": 8000,
+  "no_repeat_within": 3
+}
