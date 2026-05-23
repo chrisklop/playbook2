@@ -18,7 +18,10 @@
     <p>Historical examples are drawn from peer-reviewed and reputable secondary sources; every codex entry carries its own citation.</p>
 
     <h3>Typography</h3>
-    <p>Cinzel, EB Garamond, UnifrakturMaguntia, Playfair Display, Old Standard TT, Rye, Bebas Neue, Oswald, Inter — all via <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a>.</p>
+    <p>Cinzel, EB Garamond, UnifrakturMaguntia, Playfair Display, Old Standard TT, Rye, Bebas Neue, Oswald, Inter, Anton, IBM Plex Sans — all via <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a>.</p>
+
+    <h3>Content as a template</h3>
+    <p>Each era is a drop-in bundle under <code>src/content/eras/</code> — five JSON files (era, theme, ticker, copy, events) plus markdown codex entries. The engine auto-discovers eras via <code>import.meta.glob</code>; adding a new historical sweep requires no edits to engine code, only to the content directory. This game can be forked into a completely different idle-clicker by swapping the content layer.</p>
 
     <p class="version">Version 0.1.0</p>
   </article>

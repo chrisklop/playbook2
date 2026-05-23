@@ -8,36 +8,26 @@ import {
 } from './schema';
 import { z } from 'zod';
 
-// Vite supports JSON imports natively
-import antiquityEraRaw from './eras/01-antiquity/era.json';
-import antiquityThemeRaw from './eras/01-antiquity/theme.json';
-import antiquityTickerRaw from './eras/01-antiquity/ticker.json';
-import antiquityCopyRaw from './eras/01-antiquity/copy.json';
-import antiquityEventsRaw from './eras/01-antiquity/events.json';
-
-import printingPressEraRaw from './eras/02-printing-press/era.json';
-import printingPressThemeRaw from './eras/02-printing-press/theme.json';
-import printingPressTickerRaw from './eras/02-printing-press/ticker.json';
-import printingPressCopyRaw from './eras/02-printing-press/copy.json';
-import printingPressEventsRaw from './eras/02-printing-press/events.json';
-
-import pennyPressEraRaw from './eras/03-penny-press/era.json';
-import pennyPressThemeRaw from './eras/03-penny-press/theme.json';
-import pennyPressTickerRaw from './eras/03-penny-press/ticker.json';
-import pennyPressCopyRaw from './eras/03-penny-press/copy.json';
-import pennyPressEventsRaw from './eras/03-penny-press/events.json';
-
-import propagandaStateEraRaw from './eras/04-propaganda-state/era.json';
-import propagandaStateThemeRaw from './eras/04-propaganda-state/theme.json';
-import propagandaStateTickerRaw from './eras/04-propaganda-state/ticker.json';
-import propagandaStateCopyRaw from './eras/04-propaganda-state/copy.json';
-import propagandaStateEventsRaw from './eras/04-propaganda-state/events.json';
-
-import talkRadioEraRaw from './eras/05-talk-radio/era.json';
-import talkRadioThemeRaw from './eras/05-talk-radio/theme.json';
-import talkRadioTickerRaw from './eras/05-talk-radio/ticker.json';
-import talkRadioCopyRaw from './eras/05-talk-radio/copy.json';
-import talkRadioEventsRaw from './eras/05-talk-radio/events.json';
+/**
+ * Era bundles are auto-discovered from src/content/eras/*\/.
+ *
+ * Each era ships five JSON files in a numbered directory (01-antiquity,
+ * 02-printing-press, etc.):
+ *
+ *   era.json    — generators, milestones, prestige chain, technique tags
+ *   theme.json  — palette + fonts + riso button overrides
+ *   ticker.json — scrolling-headline pool
+ *   copy.json   — masthead text, prestige labels, resource names
+ *   events.json — ticker-event definitions + frenzy bursts
+ *
+ * Adding a new era is a drop-in operation: create the directory, fill in
+ * the five files, register any new technique tags in src/content/types.ts
+ * and src/content/schema.ts, and update the previous era's prestige_into
+ * to point at it. No edits to this file are required.
+ *
+ * Vite's import.meta.glob ingests everything at build time, so the bundle
+ * map is statically known to the bundler — no runtime fetches.
+ */
 
 const TickerSchema = z.object({
   quotes: z.array(z.object({
@@ -94,61 +84,55 @@ function loadBundle(
   }
 }
 
-const BUNDLES: Record<string, EraBundle> = {
-  antiquity: loadBundle(
-    {
-      era: antiquityEraRaw,
-      theme: antiquityThemeRaw,
-      ticker: antiquityTickerRaw,
-      copy: antiquityCopyRaw,
-      events: antiquityEventsRaw,
-    },
-    'antiquity',
-  ),
-  'printing-press': loadBundle(
-    {
-      era: printingPressEraRaw,
-      theme: printingPressThemeRaw,
-      ticker: printingPressTickerRaw,
-      copy: printingPressCopyRaw,
-      events: printingPressEventsRaw,
-    },
-    'printing-press',
-  ),
-  'penny-press': loadBundle(
-    {
-      era: pennyPressEraRaw,
-      theme: pennyPressThemeRaw,
-      ticker: pennyPressTickerRaw,
-      copy: pennyPressCopyRaw,
-      events: pennyPressEventsRaw,
-    },
-    'penny-press',
-  ),
-  'propaganda-state': loadBundle(
-    {
-      era: propagandaStateEraRaw,
-      theme: propagandaStateThemeRaw,
-      ticker: propagandaStateTickerRaw,
-      copy: propagandaStateCopyRaw,
-      events: propagandaStateEventsRaw,
-    },
-    'propaganda-state',
-  ),
-  'talk-radio': loadBundle(
-    {
-      era: talkRadioEraRaw,
-      theme: talkRadioThemeRaw,
-      ticker: talkRadioTickerRaw,
-      copy: talkRadioCopyRaw,
-      events: talkRadioEventsRaw,
-    },
-    'talk-radio',
-  ),
-};
+// Five parallel globs, one per file type. Each returns a map of
+// "./eras/<dir>/<filename>.json" → parsed JSON. Eager so the values are
+// inlined at build time; { import: 'default' } unwraps the JSON-module
+// default export so we get the raw object instead of { default: ... }.
+const eraGlobs    = import.meta.glob('./eras/*/era.json',    { eager: true, import: 'default' });
+const themeGlobs  = import.meta.glob('./eras/*/theme.json',  { eager: true, import: 'default' });
+const tickerGlobs = import.meta.glob('./eras/*/ticker.json', { eager: true, import: 'default' });
+const copyGlobs   = import.meta.glob('./eras/*/copy.json',   { eager: true, import: 'default' });
+const eventsGlobs = import.meta.glob('./eras/*/events.json', { eager: true, import: 'default' });
+
+function dirFromPath(p: string): string {
+  // './eras/03-penny-press/era.json' → '03-penny-press'
+  const m = p.match(/\.\/eras\/([^/]+)\//);
+  if (!m) throw new Error(`Unrecognised era content path: ${p}`);
+  return m[1];
+}
+
+// Walk the era.json glob (sorted alphabetically so 01-, 02-, … come out in
+// ordinal order). For each era dir, pull the sibling files from the other
+// globs by path, parse the whole bundle, and stash it by the era's *id*
+// (which is what consumer code uses, not the directory name).
+const BUNDLES: Record<string, EraBundle> = {};
+const orderedEraIds: string[] = [];
+
+const sortedEraPaths = Object.keys(eraGlobs).sort();
+for (const eraPath of sortedEraPaths) {
+  const dir = dirFromPath(eraPath);
+  const eraRaw = eraGlobs[eraPath];
+  const themeRaw = themeGlobs[`./eras/${dir}/theme.json`];
+  const tickerRaw = tickerGlobs[`./eras/${dir}/ticker.json`];
+  const copyRaw = copyGlobs[`./eras/${dir}/copy.json`];
+  const eventsRaw = eventsGlobs[`./eras/${dir}/events.json`];
+
+  if (!themeRaw || !tickerRaw || !copyRaw || !eventsRaw) {
+    throw new Error(
+      `Era '${dir}' is missing one or more content files. Required: era.json, theme.json, ticker.json, copy.json, events.json.`,
+    );
+  }
+
+  const bundle = loadBundle(
+    { era: eraRaw, theme: themeRaw, ticker: tickerRaw, copy: copyRaw, events: eventsRaw },
+    dir,
+  );
+  BUNDLES[bundle.era.id] = bundle;
+  orderedEraIds.push(bundle.era.id);
+}
 
 export const registry = {
-  eraIds: Object.keys(BUNDLES),
+  eraIds: orderedEraIds,
 };
 
 export function getEra(id: string): EraBundle {
