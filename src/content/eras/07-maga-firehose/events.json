@@ -1,0 +1,51 @@
+[
+  {
+    "id": "rally-chant-becomes-policy",
+    "headline": "🔥 RALLY CHANT TESTED THIS WEEKEND BECOMES TUESDAY'S POLICY ANNOUNCEMENT",
+    "claim_verb": "AMPLIFY IT",
+    "claim_window_s": 20,
+    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
+    "weight": 2
+  },
+  {
+    "id": "q-drop-decoded",
+    "headline": "🔥 'Q' DROP DECODED BY 'BREAD BAKERS' OVERNIGHT — TRENDS ON MULTIPLE PLATFORMS",
+    "claim_verb": "PUSH IT WIDER",
+    "claim_window_s": 18,
+    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
+    "weight": 2
+  },
+  {
+    "id": "tucker-cropped-clip",
+    "headline": "🔥 CROPPED TUCKER CLIP HITS 22 MILLION VIEWS BEFORE NOON",
+    "claim_verb": "RE-CUT IT",
+    "claim_window_s": 20,
+    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
+    "weight": 3
+  },
+  {
+    "id": "ira-meme-trends",
+    "headline": "🔥 RUSSIAN-SPONSORED FACEBOOK GROUP ORGANIZES TWO REAL-WORLD RALLIES IN THE SAME CITY",
+    "claim_verb": "EXPLOIT IT",
+    "claim_window_s": 22,
+    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
+    "weight": 3
+  },
+  {
+    "id": "election-night-zero",
+    "headline": "🔥 ELECTION-NIGHT 'COUNT IT TONIGHT' HASHTAG TRENDS BEFORE ANY VOTES ARE COUNTED",
+    "claim_verb": "DROP THE FRAME",
+    "claim_window_s": 15,
+    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
+    "weight": 1
+  },
+  {
+    "id": "maga-firehose-frenzy",
+    "headline": "⚡ FRENZY: A RALLY CHANT BECOMES A POLICY POSITION OVERNIGHT — EVERY NETWORK CARRIES IT",
+    "claim_verb": "RIDE THE CYCLE",
+    "claim_window_s": 10,
+    "effect": { "type": "rumor_mult", "value": 10.0, "duration_s": 10 },
+    "weight": 1,
+    "is_frenzy": true
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "id": "maga-rally",
+  "era_id": "maga-firehose",
+  "fonts": {
+    "masthead": "'Bebas Neue', 'Anton', 'Impact', sans-serif",
+    "body": "'Inter', 'Helvetica Neue', Arial, sans-serif",
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700&display=swap"
+  },
+  "palette": {
+    "background": "#fdfaf0",
+    "surface": "#ffffff",
+    "text": "#0a0a0a",
+    "muted": "#7a7066",
+    "accent": "#c8102e",
+    "border": "#0a0a0a"
+  },
+  "riso": {
+    "primary_bg": "#c8102e",
+    "primary_shadow": "#0a0a0a",
+    "primary_text": "#ffffff",
+    "secondary_bg": "#ffffff",
+    "secondary_shadow": "#c8102e",
+    "secondary_text": "#0a0a0a",
+    "upgrade_bg": "#0a0a0a",
+    "upgrade_shadow": "#c8102e",
+    "upgrade_text": "#fed867",
+    "bulk_on_bg": "#c8102e",
+    "bulk_on_shadow": "#0a0a0a",
+    "bulk_on_text": "#ffffff"
+  },
+  "card_style": "poster"
+}

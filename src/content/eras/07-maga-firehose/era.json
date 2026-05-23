@@ -1,0 +1,302 @@
+{
+  "id": "maga-firehose",
+  "ordinal": 7,
+  "date_range": "2015 – 2023",
+  "display_name": "MAGA & The Firehose",
+  "theme_id": "maga-rally",
+  "techniques_unlocked": [
+    "alternative-facts",
+    "qanon-seeding",
+    "replacement-theory",
+    "troll-farm",
+    "election-denial",
+    "evangelical-partnership"
+  ],
+  "generators": [
+    {
+      "id": "post-truth-social-salvo",
+      "tier": 1,
+      "display_name": "Post a Truth Social Salvo",
+      "description": "ALL CAPS. Three exclamation points. Sent at 4:17 AM. Tap to gain 1 Rumor. At 10 owned, hire Stephen Miller to keep the salvos coming.",
+      "technique_tag": "alternative-facts",
+      "resource": "rumor",
+      "base_cost": 4,
+      "cost_growth": 1.07,
+      "base_production": 1,
+      "is_click_driven": true,
+      "auto_unlock_at": 10,
+      "auto_operative_name": "Stephen Miller",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "alt-facts-kellyanne",
+      "reveal_at_lifetime": 0,
+      "cycle_seconds": 1,
+      "manager_cost": 200,
+      "manager_name": "Stephen Miller",
+      "icon": "📣",
+      "upgrades": [
+        {
+          "id": "post-truth-social-salvo-cap-lock",
+          "name": "ALL-CAPS Tonal Range",
+          "description": "Lowercase is for losers. SAD!",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 12000
+        },
+        {
+          "id": "post-truth-social-salvo-cycle-locking",
+          "name": "4:17 AM Cycle-Lock",
+          "description": "Post before the staff wakes up. They wake up to the cleanup.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 300000
+        },
+        {
+          "id": "post-truth-social-salvo-rally-tested",
+          "name": "Rally-Tested Phrasings",
+          "description": "Every coinage gets stress-tested with 18,000 attendees before it goes to the feed.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 6000000
+        }
+      ]
+    },
+    {
+      "id": "drop-qanon-cryptic",
+      "tier": 2,
+      "display_name": "Drop a QAnon Cryptic",
+      "description": "A seventeen-word post on an obscure forum. Anonymous. Cryptic. The audience does the decoding. WWG1WGA.",
+      "technique_tag": "qanon-seeding",
+      "resource": "rumor",
+      "base_cost": 5000,
+      "cost_growth": 1.07,
+      "base_production": 35,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Anon-Drop Operator",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "qanon-q-drops",
+      "reveal_at_lifetime": 250,
+      "cycle_seconds": 3,
+      "manager_cost": 8000,
+      "manager_name": "Operator",
+      "icon": "❓",
+      "upgrades": [
+        {
+          "id": "drop-qanon-cryptic-bread-bakers",
+          "name": "'Bread Baker' Decoders",
+          "description": "A thousand volunteer interpreters. They do your editorial work in shifts, for free.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 60000
+        },
+        {
+          "id": "drop-qanon-cryptic-trust-the-plan",
+          "name": "'Trust the Plan' Liturgy",
+          "description": "Every failed prediction becomes proof of the deeper plan. Disconfirmation is structurally impossible.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 1500000
+        },
+        {
+          "id": "drop-qanon-cryptic-meme-pipeline",
+          "name": "Pepe-to-Facebook Meme Pipeline",
+          "description": "The young man's image board hands the meme up. By the time it lands in a boomer Facebook group, the irony has evaporated.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 30000000
+        }
+      ]
+    },
+    {
+      "id": "air-tucker-monologue",
+      "tier": 2,
+      "display_name": "Air a Tucker Carlson Monologue",
+      "description": "Eight minutes, direct to camera, raised eyebrow, just-asking-questions about demographic change. Repeat 400+ times.",
+      "technique_tag": "replacement-theory",
+      "resource": "rumor",
+      "base_cost": 25000,
+      "cost_growth": 1.1,
+      "base_production": 250,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Senior Booker",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "replacement-theory-mainstreaming",
+      "reveal_at_lifetime": 1500,
+      "cycle_seconds": 5,
+      "manager_cost": 50000,
+      "manager_name": "Booker",
+      "icon": "🎙️",
+      "upgrades": [
+        {
+          "id": "air-tucker-monologue-eyebrow-acting",
+          "name": "Eyebrow-Acting Coaching",
+          "description": "The phrasing is plausible-deniable. The face says it anyway.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 200000
+        },
+        {
+          "id": "air-tucker-monologue-cropped-clips",
+          "name": "Cropped-Clip Distribution",
+          "description": "Six 22-second cuts per monologue. Each lives on a separate platform. The longest reach is the shortest clip.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 5000000
+        },
+        {
+          "id": "air-tucker-monologue-orban-pivot",
+          "name": "Budapest Production-Hub",
+          "description": "Tape from Hungary. Compliments to Orbán. The American flag in the foreground.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 100000000
+        }
+      ]
+    },
+    {
+      "id": "deploy-troll-farm",
+      "tier": 3,
+      "display_name": "Deploy a Troll Farm Wave",
+      "description": "A hundred operatives in St. Petersburg or Macedonia or Plano, Texas. Forty thousand accounts. One playbook, six languages, three election cycles.",
+      "technique_tag": "troll-farm",
+      "resource": "rumor",
+      "base_cost": 150000,
+      "cost_growth": 1.1,
+      "base_production": 2500,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "IRA Project Manager",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "internet-research-agency",
+      "reveal_at_lifetime": 7500,
+      "cycle_seconds": 8,
+      "manager_cost": 500000,
+      "manager_name": "Project Mgr",
+      "icon": "🤖",
+      "upgrades": [
+        {
+          "id": "deploy-troll-farm-rouble-payroll",
+          "name": "Cheap-Labor Payroll Pipeline",
+          "description": "$700 a month per operative. The cost-per-impression beats every Western ad market.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 1500000
+        },
+        {
+          "id": "deploy-troll-farm-personae-files",
+          "name": "Cambridge-Analytica Persona Files",
+          "description": "Fifty million Facebook profiles, microtargeted. The same lie, tuned for forty thousand different temperaments.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 40000000
+        },
+        {
+          "id": "deploy-troll-farm-real-rally-organize",
+          "name": "Astroturfed Real-World Rallies",
+          "description": "Sponsor the Facebook event. The Americans show up. The host accounts have never set foot in the country.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 800000000
+        }
+      ]
+    },
+    {
+      "id": "boost-presidential-candidate",
+      "tier": 3,
+      "display_name": "Boost a Presidential Candidate",
+      "description": "Twenty-six hours a day on every cable network. The opposition gets the same coverage — described as a scandal. The frame is everything.",
+      "technique_tag": "election-denial",
+      "resource": "rumor",
+      "base_cost": 1000000,
+      "cost_growth": 1.1,
+      "base_production": 25000,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Campaign Chair",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "jan-6-pipeline",
+      "reveal_at_lifetime": 30000,
+      "cycle_seconds": 12,
+      "manager_cost": 3000000,
+      "manager_name": "Chair",
+      "icon": "🇺🇸",
+      "upgrades": [
+        {
+          "id": "boost-presidential-candidate-earned-media",
+          "name": "$2 Billion in Earned Media",
+          "description": "Mike Murphy: 'They covered him as a circus until he was the President.'",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 12000000
+        },
+        {
+          "id": "boost-presidential-candidate-election-doubt-machine",
+          "name": "Election-Doubt Pre-Loading",
+          "description": "Plant doubt before the votes are cast. If you lose, the doubt is the ground. If you win, the doubt fades.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 300000000
+        },
+        {
+          "id": "boost-presidential-candidate-fake-electors",
+          "name": "Fake-Elector Slate Coordination",
+          "description": "Seven states, sixty signatures. The paperwork looks real if you don't squint.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 6000000000
+        }
+      ]
+    },
+    {
+      "id": "stage-mega-rally",
+      "tier": 4,
+      "display_name": "Stage a Mega-Rally",
+      "description": "An airfield in Pennsylvania. A megachurch's parking lot in Texas. Eighteen thousand attendees. Three hours of one voice. The slogans get tested in the crowd, then in the feed.",
+      "technique_tag": "evangelical-partnership",
+      "resource": "rumor",
+      "base_cost": 5000000,
+      "cost_growth": 1.12,
+      "base_production": 250000,
+      "is_click_driven": false,
+      "auto_unlock_at": 0,
+      "auto_operative_name": "Advance Team Lead",
+      "milestones": [25, 50, 100, 200, 300, 400],
+      "codex_link": "white-evangelical-bloc",
+      "reveal_at_lifetime": 100000,
+      "cycle_seconds": 25,
+      "manager_cost": 30000000,
+      "manager_name": "Advance Lead",
+      "icon": "🏟️",
+      "upgrades": [
+        {
+          "id": "stage-mega-rally-pastor-endorsement",
+          "name": "Pastoral-Endorsement Rotation",
+          "description": "Robert Jeffress, Paula White, Franklin Graham. Six on stage; sixty in the back rows; six thousand watching the live-stream.",
+          "unlock_at_owned": 25,
+          "multiplier": 3.0,
+          "cost": 60000000
+        },
+        {
+          "id": "stage-mega-rally-call-and-response",
+          "name": "Call-and-Response Choreography",
+          "description": "'Build the Wall.' 'Lock Her Up.' 'Drain the Swamp.' The chant teaches the policy.",
+          "unlock_at_owned": 100,
+          "multiplier": 3.0,
+          "cost": 1500000000
+        },
+        {
+          "id": "stage-mega-rally-walkout-music",
+          "name": "Walk-Out Music Mythology",
+          "description": "'God Bless the U.S.A.' on full volume. Lee Greenwood is present. The image is the message.",
+          "unlock_at_owned": 200,
+          "multiplier": 5.0,
+          "cost": 30000000000
+        }
+      ]
+    }
+  ],
+  "prestige_into": "synthetic-reality",
+  "prestige_pivot": 312500000000000000,
+  "prestige_bridge_copy": "2023 — the rallies do not stop, the indictments arrive on schedule, the algorithm hums on. The next election has already been pre-doubted. The machines that wrote your scripts are about to start writing your face."
+}

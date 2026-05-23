@@ -13,6 +13,9 @@ export const TechniqueIdSchema = z.enum([
   // Era 6 — Forever War & The Birther Years 2000-2014
   'chain-email', 'wmd-packaging', 'swift-boating',
   'chalkboard-conspiracy', 'birtherism', 'truther-seeding',
+  // Era 7 — MAGA & The Firehose 2015-2023
+  'alternative-facts', 'qanon-seeding', 'replacement-theory',
+  'troll-farm', 'election-denial', 'evangelical-partnership',
   // Era 8 — Synthetic Reality 2024+
   'deepfake-generation', 'ai-content-farm', 'platform-chaos',
   'synthetic-intimacy', 'llm-disinformation', 'algorithmic-amplification',

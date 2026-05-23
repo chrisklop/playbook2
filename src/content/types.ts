@@ -31,6 +31,13 @@ export type TechniqueId =
   | 'chalkboard-conspiracy'
   | 'birtherism'
   | 'truther-seeding'
+  // Era 7 — MAGA & The Firehose 2015-2023
+  | 'alternative-facts'
+  | 'qanon-seeding'
+  | 'replacement-theory'
+  | 'troll-farm'
+  | 'election-denial'
+  | 'evangelical-partnership'
   // Era 8 — Synthetic Reality 2024+
   | 'deepfake-generation'
   | 'ai-content-farm'
@@ -48,6 +55,8 @@ export const ALL_TECHNIQUES: readonly TechniqueId[] = [
   'evangelical-alliance', 'victim-grievance', 'cable-news-panel',
   'chain-email', 'wmd-packaging', 'swift-boating',
   'chalkboard-conspiracy', 'birtherism', 'truther-seeding',
+  'alternative-facts', 'qanon-seeding', 'replacement-theory',
+  'troll-farm', 'election-denial', 'evangelical-partnership',
   'deepfake-generation', 'ai-content-farm', 'platform-chaos',
   'synthetic-intimacy', 'llm-disinformation', 'algorithmic-amplification',
 ] as const;

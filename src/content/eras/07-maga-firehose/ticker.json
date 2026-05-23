@@ -1,0 +1,15 @@
+{
+  "quotes": [
+    { "id": "kellyanne-alt-facts",    "text": "Jan 22, 2017: Kellyanne Conway, on *Meet the Press*, offers 'alternative facts' as a defense of the inauguration crowd-size claim.", "codex_link": "alt-facts-kellyanne" },
+    { "id": "ira-mueller-volume",     "text": "The Mueller Report Vol. I documented Internet Research Agency operations reaching ~126 million Americans on Facebook in 2016.", "codex_link": "internet-research-agency" },
+    { "id": "cambridge-87m",          "text": "Cambridge Analytica drew on personality profiles for ~87 million Facebook users — most without their knowledge — for microtargeted 2016 campaigning.", "codex_link": "cambridge-analytica-2018" },
+    { "id": "q-drops-count",          "text": "Between Oct 2017 and Dec 2020, 'Q' posted ~4,953 'drops' on 4chan and 8kun. Identity remains debated; Watkins family suspected.", "codex_link": "qanon-q-drops" },
+    { "id": "tucker-replacement-400", "text": "A 2022 NYT analysis catalogued 400+ Tucker Carlson segments invoking 'replacement' framings between 2018 and 2022.", "codex_link": "replacement-theory-mainstreaming" },
+    { "id": "jan-6-pipeline",         "text": "The Jan 6 Committee documented a coordinated pipeline from the 'Stop the Steal' organizers to the Capitol breach, including 11 White House calls in the preceding 72 hours.", "codex_link": "jan-6-pipeline" },
+    { "id": "evangelical-81",         "text": "White evangelicals delivered ~81% of their 2016 presidential vote to Trump, the highest evangelical bloc share for any candidate since exit polling began.", "codex_link": "white-evangelical-bloc" },
+    { "id": "trump-twitter-followers", "text": "At his Twitter peak (early 2021) Trump had ~88 million followers. Reach per tweet routinely exceeded the audience of every cable news show combined.", "codex_link": null },
+    { "id": "alex-jones-sandy-hook",   "text": "Alex Jones was ordered to pay $1.4B+ in defamation judgments to Sandy Hook families for years of false 'crisis actor' claims on Infowars.", "codex_link": null }
+  ],
+  "interval_ms": 8000,
+  "no_repeat_within": 3
+}
