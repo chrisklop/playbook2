@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import TabBar from './TabBar.vue';
 import PlayTab from './tabs/PlayTab.vue';
 import TreeTab from './tabs/TreeTab.vue';
@@ -8,8 +7,7 @@ import MoreTab from './tabs/MoreTab.vue';
 import ToastStack from './components/ToastStack.vue';
 import AudioControls from './components/AudioControls.vue';
 import EraTransitionOverlay from './components/EraTransitionOverlay.vue';
-
-const activeTab = ref<'play' | 'tree' | 'codex' | 'more'>('play');
+import { activeTab } from './nav-state';
 </script>
 
 <template>

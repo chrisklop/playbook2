@@ -26,7 +26,14 @@
       "is_click_driven": true,
       "auto_unlock_at": 10,
       "auto_operative_name": "Stephen Miller",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "alt-facts-kellyanne",
       "reveal_at_lifetime": 0,
       "cycle_seconds": 1,
@@ -39,7 +46,7 @@
           "name": "ALL-CAPS Tonal Range",
           "description": "Lowercase is for losers. SAD!",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 12000
         },
         {
@@ -47,7 +54,7 @@
           "name": "4:17 AM Cycle-Lock",
           "description": "Post before the staff wakes up. They wake up to the cleanup.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 300000
         },
         {
@@ -55,10 +62,11 @@
           "name": "Rally-Tested Phrasings",
           "description": "Every coinage gets stress-tested with 18,000 attendees before it goes to the feed.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 6000000
         }
-      ]
+      ],
+      "factoid": "The Washington Post Fact Checker documented ~30,500 false or misleading statements by President Trump across his first term — roughly 21 per day, ~5× the documented rate of the Obama administration's final year. The pattern began with the inauguration crowd-size claim two days into the term."
     },
     {
       "id": "drop-qanon-cryptic",
@@ -73,7 +81,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Anon-Drop Operator",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "qanon-q-drops",
       "reveal_at_lifetime": 250,
       "cycle_seconds": 3,
@@ -86,7 +101,7 @@
           "name": "'Bread Baker' Decoders",
           "description": "A thousand volunteer interpreters. They do your editorial work in shifts, for free.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 60000
         },
         {
@@ -94,7 +109,7 @@
           "name": "'Trust the Plan' Liturgy",
           "description": "Every failed prediction becomes proof of the deeper plan. Disconfirmation is structurally impossible.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000
         },
         {
@@ -102,10 +117,11 @@
           "name": "Pepe-to-Facebook Meme Pipeline",
           "description": "The young man's image board hands the meme up. By the time it lands in a boomer Facebook group, the irony has evaporated.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 30000000
         }
-      ]
+      ],
+      "factoid": "QAnon's anonymous 'Q' identity posted ~4,953 cryptic 'drops' on 4chan and 8kun between October 2017 and December 2020. Bellingcat's 2021 forensic linguistic analysis attributed the account to platform administrator Ron Watkins and his father Jim. Roughly 25 million U.S. adults held at least one core QAnon belief by 2021 PRRI polling."
     },
     {
       "id": "air-tucker-monologue",
@@ -120,7 +136,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Senior Booker",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "replacement-theory-mainstreaming",
       "reveal_at_lifetime": 1500,
       "cycle_seconds": 5,
@@ -133,7 +156,7 @@
           "name": "Eyebrow-Acting Coaching",
           "description": "The phrasing is plausible-deniable. The face says it anyway.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 200000
         },
         {
@@ -141,7 +164,7 @@
           "name": "Cropped-Clip Distribution",
           "description": "Six 22-second cuts per monologue. Each lives on a separate platform. The longest reach is the shortest clip.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 5000000
         },
         {
@@ -149,10 +172,11 @@
           "name": "Budapest Production-Hub",
           "description": "Tape from Hungary. Compliments to Orbán. The American flag in the foreground.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 100000000
         }
-      ]
+      ],
+      "factoid": "A 2022 NYT analysis catalogued 400+ Tucker Carlson Tonight segments invoking 'replacement theory' framings. The framings appeared near-directly in the manifestos of the 2019 El Paso and 2022 Buffalo mass shooters. Carlson's show was the highest-rated cable news program in U.S. history at the time of his April 2023 dismissal."
     },
     {
       "id": "deploy-troll-farm",
@@ -167,7 +191,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "IRA Project Manager",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "internet-research-agency",
       "reveal_at_lifetime": 7500,
       "cycle_seconds": 8,
@@ -180,7 +211,7 @@
           "name": "Cheap-Labor Payroll Pipeline",
           "description": "$700 a month per operative. The cost-per-impression beats every Western ad market.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000
         },
         {
@@ -188,7 +219,7 @@
           "name": "Cambridge-Analytica Persona Files",
           "description": "Fifty million Facebook profiles, microtargeted. The same lie, tuned for forty thousand different temperaments.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 40000000
         },
         {
@@ -196,10 +227,11 @@
           "name": "Astroturfed Real-World Rallies",
           "description": "Sponsor the Facebook event. The Americans show up. The host accounts have never set foot in the country.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 800000000
         }
-      ]
+      ],
+      "factoid": "The Mueller Report documented the Internet Research Agency's Facebook content reaching ~126 million U.S. users in 2016, coordinated from St. Petersburg by Yevgeny Prigozhin's operation. The IRA simultaneously ran competing Black Lives Matter and Blue Lives Matter accounts — the goal was U.S. internal friction, not pro-Russia content."
     },
     {
       "id": "boost-presidential-candidate",
@@ -214,7 +246,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Campaign Chair",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "jan-6-pipeline",
       "reveal_at_lifetime": 30000,
       "cycle_seconds": 12,
@@ -227,7 +266,7 @@
           "name": "$2 Billion in Earned Media",
           "description": "Mike Murphy: 'They covered him as a circus until he was the President.'",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 12000000
         },
         {
@@ -235,7 +274,7 @@
           "name": "Election-Doubt Pre-Loading",
           "description": "Plant doubt before the votes are cast. If you lose, the doubt is the ground. If you win, the doubt fades.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 300000000
         },
         {
@@ -243,10 +282,11 @@
           "name": "Fake-Elector Slate Coordination",
           "description": "Seven states, sixty signatures. The paperwork looks real if you don't squint.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 6000000000
         }
-      ]
+      ],
+      "factoid": "The January 6th Select Committee documented a coordinated multi-month pipeline from pre-loaded election doubt (Trump campaign internal polling showed mail-in skew toward Democrats by October 2020) through 60+ failed lawsuits, the fake-elector slates in 7 states, the Eastman memo arguing VP authority to reject votes, and the Ellipse rally directing the crowd at the Capitol."
     },
     {
       "id": "stage-mega-rally",
@@ -261,7 +301,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Advance Team Lead",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "white-evangelical-bloc",
       "reveal_at_lifetime": 100000,
       "cycle_seconds": 25,
@@ -274,7 +321,7 @@
           "name": "Pastoral-Endorsement Rotation",
           "description": "Robert Jeffress, Paula White, Franklin Graham. Six on stage; sixty in the back rows; six thousand watching the live-stream.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 60000000
         },
         {
@@ -282,7 +329,7 @@
           "name": "Call-and-Response Choreography",
           "description": "'Build the Wall.' 'Lock Her Up.' 'Drain the Swamp.' The chant teaches the policy.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000000
         },
         {
@@ -290,10 +337,11 @@
           "name": "Walk-Out Music Mythology",
           "description": "'God Bless the U.S.A.' on full volume. Lee Greenwood is present. The image is the message.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 30000000000
         }
-      ]
+      ],
+      "factoid": "White evangelical Protestants (~14% of U.S. adults) delivered ~81% of their presidential vote to Donald Trump in 2016 — the highest evangelical share for any candidate since exit polling began. The infrastructure was built by the Moral Majority (1979-89), the Christian Coalition (1989-97), and persisted after their dissolutions."
     }
   ],
   "prestige_into": "synthetic-reality",

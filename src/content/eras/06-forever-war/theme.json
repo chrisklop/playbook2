@@ -1,32 +1,32 @@
 {
-  "id": "forever-war-terror-alert",
+  "id": "forever-war-aol",
   "era_id": "forever-war",
   "fonts": {
-    "masthead": "'Roboto Condensed', 'Oswald', Impact, sans-serif",
-    "body": "'Source Sans 3', 'Inter', 'Helvetica Neue', Arial, sans-serif",
-    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;700&family=Source+Sans+3:wght@400;500;600&display=swap"
+    "masthead": "'PT Sans Narrow', 'Trebuchet MS', 'Arial Narrow', sans-serif",
+    "body": "'PT Sans', 'Tahoma', 'Verdana', sans-serif",
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&family=PT+Sans:wght@400;700&display=swap"
   },
   "palette": {
-    "background": "#bcb479",
-    "surface": "#a8a165",
-    "text": "#1a1610",
-    "muted": "#4a4530",
-    "accent": "#cc5500",
-    "border": "#1a1610"
+    "background": "#e9eff7",
+    "surface": "#ffffff",
+    "text": "#0a0a14",
+    "muted": "#5a6677",
+    "accent": "#ff8800",
+    "border": "#0066cc"
   },
   "riso": {
-    "primary_bg": "#cc5500",
-    "primary_shadow": "#1a1610",
-    "primary_text": "#fff5e0",
-    "secondary_bg": "#dad2b9",
-    "secondary_shadow": "#cc5500",
-    "secondary_text": "#1a1610",
-    "upgrade_bg": "#1a1610",
-    "upgrade_shadow": "#cc5500",
-    "upgrade_text": "#fff5e0",
-    "bulk_on_bg": "#cc5500",
-    "bulk_on_shadow": "#1a1610",
-    "bulk_on_text": "#fff5e0"
+    "primary_bg": "#0066cc",
+    "primary_shadow": "#003399",
+    "primary_text": "#ffffff",
+    "secondary_bg": "#ffffff",
+    "secondary_shadow": "#0066cc",
+    "secondary_text": "#0a0a14",
+    "upgrade_bg": "#ff8800",
+    "upgrade_shadow": "#003399",
+    "upgrade_text": "#0a0a14",
+    "bulk_on_bg": "#0066cc",
+    "bulk_on_shadow": "#003399",
+    "bulk_on_text": "#ffffff"
   },
   "card_style": "flat-paper"
 }

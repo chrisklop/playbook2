@@ -4,48 +4,78 @@
     "headline": "🔥 TENEMENT FIRE — 12 DEAD, BLAME UNCLEAR",
     "claim_verb": "PRINT IT",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 3,
+      "duration_s": 30
+    },
+    "weight": 2,
+    "factoid": "New York City had over 80,000 tenement buildings by 1900, with frequent deadly fires. The penny press routinely raced to assign blame — to immigrants, to slumlords, to political ward bosses — before fire marshals could investigate. Joseph Pulitzer's New York World built much of its early circulation on these stories."
   },
   {
     "id": "mayor-mistress",
     "headline": "🔥 MAYOR SEEN LEAVING ACTRESS'S BROWNSTONE",
     "claim_verb": "RUN THE STORY",
     "claim_window_s": 18,
-    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2.5,
+      "duration_s": 45
+    },
+    "weight": 2,
+    "factoid": "Public figures' private lives were standard penny-press fodder from the 1830s onward. James Gordon Bennett's New York Herald pioneered the practice; by the 1890s every major U.S. city had multiple competing dailies running political-figure scandal as front-page news."
   },
   {
     "id": "rival-paper-typo",
     "headline": "🔥 RIVAL PAPER MISSPELLS PRESIDENT'S NAME",
     "claim_verb": "MOCK IT",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2,
+      "duration_s": 60
+    },
+    "weight": 3,
+    "factoid": "Hearst's New York Journal and Pulitzer's New York World ran a years-long public feud (1895-1898), each headline a chance to mock the other's errors. The phrase 'yellow journalism' originated from a comic strip ('The Yellow Kid') that both papers ran in competing versions."
   },
   {
     "id": "ship-disaster",
     "headline": "🔥 STEAMER LOST OFF MONTAUK — NAMES INSIDE",
     "claim_verb": "PUBLISH NAMES",
     "claim_window_s": 22,
-    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 1.75,
+      "duration_s": 90
+    },
+    "weight": 3,
+    "factoid": "The USS Maine explosion in Havana Harbor (Feb 1898) was attributed by Hearst's Journal to Spanish sabotage within hours. A 1976 U.S. Navy investigation concluded the explosion was most likely caused by an internal coal-bunker fire. The Spanish-American War followed regardless."
   },
   {
     "id": "yellow-extra",
     "headline": "🔥 EXTRA! WAR DECLARED — DETAILS TO FOLLOW",
     "claim_verb": "PRINT EXTRA",
     "claim_window_s": 15,
-    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
-    "weight": 1
+    "effect": {
+      "type": "rumor_mult",
+      "value": 5,
+      "duration_s": 20
+    },
+    "weight": 1,
+    "factoid": "Hearst's directive to illustrator Frederic Remington in Havana (1897) — 'You furnish the pictures and I'll furnish the war' — is contested as apocryphal, but it accurately describes the editorial posture of the New York Journal's pre-war coverage."
   },
   {
     "id": "stop-press-rush",
     "headline": "⚡ FRENZY: STOP-PRESS RUSH — NEWSBOYS SHOUTING ON EVERY CORNER",
     "claim_verb": "RIDE THE WAVE",
     "claim_window_s": 10,
-    "effect": { "type": "rumor_mult", "value": 10.0, "duration_s": 10 },
+    "effect": {
+      "type": "rumor_mult",
+      "value": 10,
+      "duration_s": 10
+    },
     "weight": 1,
-    "is_frenzy": true
+    "is_frenzy": true,
+    "factoid": "By 1900 major U.S. newspapers were issuing 5-7 'Extra' editions per day during breaking news cycles. The phrase 'Extra! Extra! Read all about it!' described a real operational rhythm — newsboys would shout-sell each new edition on Manhattan street corners within 30 minutes of presses starting."
   }
 ]

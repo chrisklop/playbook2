@@ -26,7 +26,14 @@
       "is_click_driven": true,
       "auto_unlock_at": 10,
       "auto_operative_name": "Your Aunt's AOL Account",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "chain-email-pipeline",
       "reveal_at_lifetime": 0,
       "cycle_seconds": 1,
@@ -39,7 +46,7 @@
           "name": "BCC: All Contacts",
           "description": "Every relative, every coworker, every church-group member at once.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 12000
         },
         {
@@ -47,7 +54,7 @@
           "name": "Pre-emptive 'Snopes Says It's True' Paragraph",
           "description": "Insert at the top. Nobody clicks through to check.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 300000
         },
         {
@@ -55,10 +62,11 @@
           "name": "Megachurch Email-List Cross-Post",
           "description": "Sunday-bulletin distribution. The pastor adds a line.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 6000000
         }
-      ]
+      ],
+      "factoid": "Pew's 2008 election survey found 32% of U.S. adults received at least one political chain email in the cycle. The average forwarder sent to 6.2 recipients. A typical 2006 'Who is Barack Obama?' email was forwarded an estimated 11 million times before fact-checkers caught up."
     },
     {
       "id": "plant-wmd-source",
@@ -73,7 +81,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Office of Special Plans Analyst",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "yellowcake-niger",
       "reveal_at_lifetime": 250,
       "cycle_seconds": 3,
@@ -86,7 +101,7 @@
           "name": "Codename CURVEBALL",
           "description": "One German-held informant. Six State of the Union mentions.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 60000
         },
         {
@@ -94,7 +109,7 @@
           "name": "'Mushroom Cloud' Talking Point",
           "description": "Rice on a Sunday morning. The image does the work that the evidence cannot.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000
         },
         {
@@ -102,10 +117,11 @@
           "name": "Aluminum-Tube Misclassification",
           "description": "Standard rocket tubes mis-identified as centrifuge parts. Plame won't sit still about it; outing her takes care of that.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 30000000
         }
-      ]
+      ],
+      "factoid": "The U.S. case for the 2003 Iraq invasion rested on three intelligence pillars that have all been retracted: the Niger uranium forgeries, the CURVEBALL informant (a single Iraqi defector held by German intelligence), and the aluminum-tube centrifuge misclassification. The CIA had warned the White House about Niger before the State of the Union; the claim ran anyway."
     },
     {
       "id": "swift-boat-press-conf",
@@ -120,7 +136,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Veteran 'Spokesperson'",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "swift-boat-veterans-2004",
       "reveal_at_lifetime": 1500,
       "cycle_seconds": 5,
@@ -133,7 +156,7 @@
           "name": "Coordinated Book Tour",
           "description": "Regnery publishes. Hannity hosts. Drudge headlines. The author owns the news cycle for a month.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 200000
         },
         {
@@ -141,7 +164,7 @@
           "name": "TV-Ad Buy in Six Swing States",
           "description": "Cheap-cycle local stations. The ad runs more times than the network coverage it generates.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 5000000
         },
         {
@@ -149,10 +172,11 @@
           "name": "Counter-Medal 'Doubt' Memo",
           "description": "Don't refute the medals; ask whether they were 'really' earned. Doubt outlives certainty.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 100000000
         }
-      ]
+      ],
+      "factoid": "Swift Boat Veterans for Truth spent ~$22M attacking John Kerry's 1968-69 Navy service record in 2004. None of the veterans in the ads had served on Kerry's boats. The term 'swift-boating' entered the English language as a verb for attacking a documented credential by inventing a counter-narrative."
     },
     {
       "id": "glenn-beck-segment",
@@ -167,7 +191,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Segment Producer",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "glenn-beck-overton",
       "reveal_at_lifetime": 7500,
       "cycle_seconds": 8,
@@ -180,7 +211,7 @@
           "name": "Storyboard 'Research' Pipeline",
           "description": "Six interns, four obscure 1970s books, one chalkboard line that 'connects' them.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000
         },
         {
@@ -188,7 +219,7 @@
           "name": "'Restoring Honor' Rally",
           "description": "Aug 28, 2010. Lincoln Memorial. The chalkboard becomes a stage. 100,000–300,000 attendees, depending on the count.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 40000000
         },
         {
@@ -196,10 +227,11 @@
           "name": "Goldline + Books + Subscription Site",
           "description": "Sell the gold while you broadcast the collapse. The audience pays twice.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 800000000
         }
-      ]
+      ],
+      "factoid": "Glenn Beck's nightly Fox News program (Jan 2009 – June 2011) reached ~3 million viewers at peak — the largest cable news audience in his timeslot. His chalkboard segments diagramming political conspiracies institutionalised a visual grammar later inherited by QAnon decoders and election-fraud advocates."
     },
     {
       "id": "birther-petition",
@@ -214,7 +246,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Petition Coordinator",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "trump-birther-pivot-2011",
       "reveal_at_lifetime": 30000,
       "cycle_seconds": 12,
@@ -227,7 +266,7 @@
           "name": "Jerome Corsi Book Drop",
           "description": "*Where's the Birth Certificate?* WND Books, May 2011. Bestseller list within a week.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 12000000
         },
         {
@@ -235,7 +274,7 @@
           "name": "Celebrity-Businessman Amplification",
           "description": "A reality-TV host with an Atlantic City casino and twelve million Twitter followers takes up the cause.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 300000000
         },
         {
@@ -243,10 +282,11 @@
           "name": "Direct-Mail Donor List",
           "description": "$5 contributions × 400,000 names. The list is the asset; the petition is the funnel.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 6000000000
         }
-      ]
+      ],
+      "factoid": "Birther emails originated in 2008 Hillary Clinton primary-supporter circles before being adopted by far-right pundits. Trump's March 2011 endorsement on The View triggered a 6× increase in his Fox News appearances. He formally retracted in September 2016: 'President Barack Obama was born in the United States. Period.'"
     },
     {
       "id": "cable-pundit-bench",
@@ -261,7 +301,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Booking Director",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "drudge-as-agenda-setter",
       "reveal_at_lifetime": 100000,
       "cycle_seconds": 25,
@@ -274,7 +321,7 @@
           "name": "Daily Talking-Point Fax (then Email)",
           "description": "5 AM blast to every panelist. Same nouns by sunset.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 60000000
         },
         {
@@ -282,7 +329,7 @@
           "name": "'Just Asking Questions' Loop",
           "description": "Don't assert; insinuate. *Loose Change* did 2.2 billion YouTube views with this move.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000000
         },
         {
@@ -290,10 +337,11 @@
           "name": "Think-Tank Affiliation Stack",
           "description": "Three letters before each name on the chyron. The viewer reads 'expert.'",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 30000000000
         }
-      ]
+      ],
+      "factoid": "By the mid-2000s, talking-point coordination was a daily institutional practice. The Republican National Committee, Democratic equivalents, and aligned think tanks emailed coordinated message documents to friendly cable bookers between 5-7 AM Eastern. Panel guests would often appear on three or four different shows in the same morning repeating identical phrasings."
     }
   ],
   "prestige_into": "maga-firehose",

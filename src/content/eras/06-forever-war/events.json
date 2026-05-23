@@ -4,48 +4,78 @@
     "headline": "🔥 'SENIOR ADMINISTRATION OFFICIAL' QUOTED ON FRONT PAGE — IDENTITY UNKNOWN",
     "claim_verb": "RUN IT WIDE",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 3,
+      "duration_s": 30
+    },
+    "weight": 2,
+    "factoid": "Anonymous-source reporting was central to the 2003 Iraq war narrative. NYT reporter Judith Miller's pre-war WMD articles relied heavily on Iraqi National Congress sources later determined to be unreliable; the Times issued an editor's note in 2004 acknowledging the coverage's failures."
   },
   {
     "id": "viral-chain-email-mom",
     "headline": "🔥 VIRAL CHAIN EMAIL HITS YOUR MOM — FWD: FWD: FWD: TRUTH ABOUT…",
     "claim_verb": "FORWARD IT",
     "claim_window_s": 18,
-    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2.5,
+      "duration_s": 45
+    },
+    "weight": 2,
+    "factoid": "Anti-Obama chain emails circulating from late 2006 onward — 'Who is Barack Obama?' the most-forwarded — were forwarded an estimated 11+ million times by 2008 according to internal traffic estimates from major email providers. The author has never been identified."
   },
   {
     "id": "chalkboard-segment-trends",
     "headline": "🔥 BECK'S CHALKBOARD MOMENT GOES VIRAL — 'WHO IS GEORGE SOROS?'",
     "claim_verb": "BREAK IT DOWN",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2,
+      "duration_s": 60
+    },
+    "weight": 3,
+    "factoid": "Beck's chalkboard segments diagramming political conspiracies regularly trended on social media in 2009-2011. The format directly inspired similar visual treatments in later QAnon decoder content and 2020 election-fraud advocacy materials."
   },
   {
     "id": "swift-boat-debate-prep",
     "headline": "🔥 SWIFT BOAT 'VETERAN' BOOKED ON ALL THREE NETWORKS — CANDIDATE STAFF IN PANIC",
     "claim_verb": "AMPLIFY THE DOUBT",
     "claim_window_s": 22,
-    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 1.75,
+      "duration_s": 90
+    },
+    "weight": 3,
+    "factoid": "Swift Boat Veterans for Truth members were booked on all three U.S. broadcast networks during August-September 2004. Cable bookings totaled 70+ appearances in the same window. The Kerry campaign's internal post-mortem judged the attack the single most-damaging surface in the entire race."
   },
   {
     "id": "drudge-link-flips-cycle",
     "headline": "🔥 RED-LETTER DRUDGE HEADLINE AT 4 AM — CABLE NEWS LEADS WITH IT BY 7",
     "claim_verb": "RIDE IT UP",
     "claim_window_s": 15,
-    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
-    "weight": 1
+    "effect": {
+      "type": "rumor_mult",
+      "value": 5,
+      "duration_s": 20
+    },
+    "weight": 1,
+    "factoid": "A red-letter headline at the top of drudgereport.com could redirect that morning's cable news agenda. A 2007 Politico analysis tracked ~67% of Drudge's lead links migrating to cable news within 24 hours; the practice was a documented industry pattern through ~2012."
   },
   {
     "id": "forever-war-frenzy",
     "headline": "⚡ FRENZY: COLOR-CODED TERROR ALERT RAISED MID-NEWS CYCLE — EVERY NETWORK GOES WALL-TO-WALL",
     "claim_verb": "STOKE THE FEAR",
     "claim_window_s": 10,
-    "effect": { "type": "rumor_mult", "value": 10.0, "duration_s": 10 },
+    "effect": {
+      "type": "rumor_mult",
+      "value": 10,
+      "duration_s": 10
+    },
     "weight": 1,
-    "is_frenzy": true
+    "is_frenzy": true,
+    "factoid": "The Department of Homeland Security's color-coded terror alert system (March 2002 – April 2011) was raised six times to Orange. A 2011 review found no documented case where the elevations corresponded to specific actionable intelligence. The system was discontinued."
   }
 ]

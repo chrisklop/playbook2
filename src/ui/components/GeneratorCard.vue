@@ -17,6 +17,7 @@ import type { GeneratorTier } from '../../content/schema';
 import { formatCost, formatResource } from '../format';
 import { playMilestone } from '../audio';
 import { currentCopy } from '../state';
+import InfoButton from './InfoButton.vue';
 
 // Resource name pulled from the era's copy.json so labels stay era-appropriate
 // (Era 1 says "Rumor", Era 2 says "Rumour", Era 4 says "Rumor", etc.).
@@ -289,6 +290,12 @@ function tapBuyUpgrade(e: Event) {
           <div class="title-line">
             <span class="title">{{ gen.display_name }}</span>
             <span class="owned-pill" v-if="owned > 0">Owned: {{ owned }}</span>
+            <InfoButton
+              v-if="gen.factoid"
+              :factoid="gen.factoid"
+              :codex-link="gen.codex_link"
+              :context="gen.display_name"
+            />
           </div>
           <div class="rate-line">
             <span class="rate-verb">Earns</span>

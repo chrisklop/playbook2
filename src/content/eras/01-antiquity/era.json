@@ -62,7 +62,8 @@
           "multiplier": 5,
           "cost": 5000000
         }
-      ]
+      ],
+      "factoid": "Word-of-mouth rumor was the dominant information channel for most of human history. Plato's Phaedo and Xenophon both record political rumors moving through Athens within hours of events; the Roman writer Tacitus called rumor 'the unanimous voice of common ignorance.'"
     },
     {
       "id": "forge-naru-tablet",
@@ -116,7 +117,8 @@
           "multiplier": 5,
           "cost": 20000000
         }
-      ]
+      ],
+      "factoid": "The Mesopotamian 'naru' literary tradition fabricated royal inscriptions backdated by generations. Neo-Assyrian kings (722–612 BCE) commissioned naru texts in the name of Sargon of Akkad (~2334 BCE) to manufacture an ancestral political claim across 1,600 years of history."
     },
     {
       "id": "smear-rival",
@@ -170,7 +172,8 @@
           "multiplier": 5,
           "cost": 50000000
         }
-      ]
+      ],
+      "factoid": "Octavian's 33–31 BCE propaganda war against Mark Antony included a 'will of Antony' allegedly bequeathing Roman provinces to Cleopatra. Most modern historians believe the document was forged by Octavian's staff; the Senate believed it, and declared war on Cleopatra rather than Antony."
     },
     {
       "id": "hire-sykophant",
@@ -224,7 +227,8 @@
           "multiplier": 5,
           "cost": 60000000
         }
-      ]
+      ],
+      "factoid": "Athenian sykophants were professional accusers who profited from successful prosecutions, creating direct financial incentives to fabricate charges. The system became so corrupt that 5th-century BCE laws penalised sykophants whose cases fell below a 20% conviction rate."
     },
     {
       "id": "bronze-coin-mint",
@@ -278,7 +282,8 @@
           "multiplier": 5,
           "cost": 2000000000
         }
-      ]
+      ],
+      "factoid": "Augustus' systematic image-control over Roman coinage put his face into every household in the empire — the first mass-distributed political portrait in history. Successor emperors continued the practice; coins of disgraced rulers were melted and reissued under damnatio memoriae."
     }
   ],
   "prestige_into": "printing-press",

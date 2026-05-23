@@ -26,7 +26,14 @@
       "is_click_driven": true,
       "auto_unlock_at": 10,
       "auto_operative_name": "Caller Screener",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "limbaugh-debut",
       "reveal_at_lifetime": 0,
       "cycle_seconds": 1,
@@ -39,7 +46,7 @@
           "name": "Dittohead Roll-Call",
           "description": "The opener identifies the chorus. The chorus identifies itself.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 12000
         },
         {
@@ -47,7 +54,7 @@
           "name": "Three-Hour Format Block",
           "description": "Same time, every day. Never breaks character. Never apologizes.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 300000
         },
         {
@@ -55,10 +62,11 @@
           "name": "EIB Affiliate Network",
           "description": "650 stations. One signal. From Sacramento to Bangor.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 6000000
         }
-      ]
+      ],
+      "factoid": "Rush Limbaugh's national syndication launched August 1, 1988 — twelve months after the FCC's 4-0 repeal of the Fairness Doctrine. By 1993 the show was carried on 650+ AM stations with a weekly audience of ~20 million listeners."
     },
     {
       "id": "run-drudge-splash",
@@ -73,7 +81,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Tip Editor",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "drudge-blue-dress",
       "reveal_at_lifetime": 250,
       "cycle_seconds": 3,
@@ -86,7 +101,7 @@
           "name": "Flashing Police-Light GIF",
           "description": "The visual code for emergency. The story does not need to be one.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 60000
         },
         {
@@ -94,7 +109,7 @@
           "name": "Cable-News Handoff Pipeline",
           "description": "Drudge by 7 AM, Hannity's producer by 8, cable chyrons by noon.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000
         },
         {
@@ -102,10 +117,11 @@
           "name": "Killed-Story Salvage Desk",
           "description": "Newsweek shelves a piece. Drudge runs it before the editor gets home.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 30000000
         }
-      ]
+      ],
+      "factoid": "Matt Drudge's January 17, 1998 post breaking the Lewinsky story (at 11:32 PM ET, after Newsweek had killed Michael Isikoff's article) demonstrated that a one-person website could function as upstream news editor for the entire cable industry. A 2007 Politico analysis tracked ~67% of Drudge lead links migrating to cable news within 24 hours."
     },
     {
       "id": "book-sunday-panel",
@@ -120,7 +136,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Network Booker",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": null,
       "reveal_at_lifetime": 1500,
       "cycle_seconds": 5,
@@ -133,7 +156,7 @@
           "name": "Strict 'Both-Sides' Doctrine",
           "description": "The split-screen format itself does the framing. Nobody has to argue the lie.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 200000
         },
         {
@@ -141,7 +164,7 @@
           "name": "Pundit Rolodex",
           "description": "Twelve operatives, fifty-two Sundays, four networks. Always available.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 5000000
         },
         {
@@ -149,10 +172,11 @@
           "name": "Beltway Villager Circuit",
           "description": "Same Georgetown dinner parties. Same off-record briefings. Same conventional wisdom by Monday.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 100000000
         }
-      ]
+      ],
+      "factoid": "The cable-news Sunday-panel format institutionalised 'false balance' — booking one credentialed expert opposite one paid advocate as if their views carried equal weight. The format remains structural across Meet the Press, This Week, Face the Nation, and State of the Union despite documented critiques from journalism schools since the 1990s."
     },
     {
       "id": "convene-christian-coalition",
@@ -167,7 +191,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Field Director",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "christian-coalition-1989",
       "reveal_at_lifetime": 7500,
       "cycle_seconds": 8,
@@ -180,7 +211,7 @@
           "name": "Tax-Exempt Voter Guides",
           "description": "Not endorsements. Just side-by-side comparisons that always print the same way.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000
         },
         {
@@ -188,7 +219,7 @@
           "name": "National Pastor Rolodex",
           "description": "60,000 churches. One Tuesday morning, every congregation hears the same call.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 40000000
         },
         {
@@ -196,10 +227,11 @@
           "name": "Televangelist Circuit",
           "description": "Falwell, Robertson, Bakker. The pulpit becomes the studio.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 800000000
         }
-      ]
+      ],
+      "factoid": "The Christian Coalition, founded by Pat Robertson and run by 28-year-old Ralph Reed from 1989, distributed 33 million voter guides in church bulletins on the Sunday before the 1992 election and 45 million for 1996. The model wired religious civic identity into Republican-vote mobilisation at unprecedented scale."
     },
     {
       "id": "boost-senate-hopeful",
@@ -214,7 +246,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Campaign Strategist",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "gopac-memo",
       "reveal_at_lifetime": 30000,
       "cycle_seconds": 12,
@@ -227,7 +266,7 @@
           "name": "Language: A Key Mechanism of Control",
           "description": "Use these words about your opponent: decay, sick, pathetic, traitor. Use these about us: family, courage, dream.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 12000000
         },
         {
@@ -235,7 +274,7 @@
           "name": "Attack-Ad Shop",
           "description": "Twenty-second spots. Slow-motion mugshot. The opponent looks guilty even when standing still.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 300000000
         },
         {
@@ -243,10 +282,11 @@
           "name": "Pre-Booked Talk-Radio Hits",
           "description": "Three friendly shows on launch week. The candidate's lines become the audience's lines.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 6000000000
         }
-      ]
+      ],
+      "factoid": "Newt Gingrich's 1990 GOPAC memo 'Language: A Key Mechanism of Control' instructed Republican candidates to use 64 specific words about opponents (sick, pathetic, traitor, decay) and 64 about themselves (family, freedom, dream, hope). The memo is a documented turning point in U.S. partisan vocabulary engineering."
     },
     {
       "id": "launch-cable-channel",
@@ -261,7 +301,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Network Founder",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "fox-news-launch",
       "reveal_at_lifetime": 100000,
       "cycle_seconds": 25,
@@ -274,7 +321,7 @@
           "name": "24-Hour Chyron Desk",
           "description": "The lower-third writes the story the anchor isn't saying.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 60000000
         },
         {
@@ -282,7 +329,7 @@
           "name": "Talent Stable",
           "description": "O'Reilly. Hannity. Six former campaign operatives in anchor chairs.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000000
         },
         {
@@ -290,10 +337,11 @@
           "name": "Carriage-Fee Lock-In",
           "description": "Every cable subscriber pays you whether they tune in or not.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 30000000000
         }
-      ]
+      ],
+      "factoid": "Fox News Channel launched October 7, 1996, in 17 million U.S. cable households. Roger Ailes had drafted a memo to Nixon in 1970 proposing 'a plan for putting the GOP on TV news'; the cable rollout finally made the original plan economically viable 26 years later."
     }
   ],
   "prestige_into": "forever-war",

@@ -4,48 +4,78 @@
     "headline": "🔥 INDULGENCE PAMPHLET SELLS OUT AT THE FAIR",
     "claim_verb": "REPRINT IT",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 3,
+      "duration_s": 30
+    },
+    "weight": 2,
+    "factoid": "The Catholic Church's sale of indulgences (papal documents promising reduced time in purgatory) generated millions of guilders in revenue and was the direct provocation for Luther's 95 Theses. Tetzel's 1517 indulgence sermons in Saxony were promoted with printed pamphlets at a scale Catholic authorities later regretted."
   },
   {
     "id": "cologne-riot",
     "headline": "🔥 PRESS RIOT IN COLOGNE — RIVAL SHOP TORCHED",
     "claim_verb": "REPORT IT",
     "claim_window_s": 18,
-    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2.5,
+      "duration_s": 45
+    },
+    "weight": 2,
+    "factoid": "Sixteenth-century printers' riots were common across German cities. Rival presses targeted each other's shops, type cases, and apprentices; Cologne, Strasbourg, and Augsburg all saw documented riot incidents tied to competing pamphlet operations."
   },
   {
     "id": "bishop-letter",
     "headline": "🔥 BISHOP'S LETTER LEAKED TO RIVAL PRINTER",
     "claim_verb": "PUBLISH IT",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2,
+      "duration_s": 60
+    },
+    "weight": 3,
+    "factoid": "Renaissance political and religious officials wrote in the knowledge that letters could be intercepted, copied, and printed. The publication of intercepted correspondence — sometimes real, sometimes fabricated — was a standard 16th-17th century political weapon."
   },
   {
     "id": "blood-libel",
     "headline": "🔥 PHYSICIAN ACCUSED OF POISONING THE WELLS",
     "claim_verb": "PRINT IT",
     "claim_window_s": 22,
-    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 1.75,
+      "duration_s": 90
+    },
+    "weight": 3,
+    "factoid": "Anti-Semitic 'blood libel' accusations — claims that Jewish communities ritually murdered Christian children for blood — circulated in German broadsides from the 13th century onward. The printing press industrialised the libel; the Trent blood libel of 1475 generated dozens of pamphlets across Europe."
   },
   {
     "id": "papal-bull-forgery",
     "headline": "🔥 PAPAL BULL EXPOSED AS FORGERY",
     "claim_verb": "BROADCAST IT",
     "claim_window_s": 15,
-    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
-    "weight": 1
+    "effect": {
+      "type": "rumor_mult",
+      "value": 5,
+      "duration_s": 20
+    },
+    "weight": 1,
+    "factoid": "Forged papal bulls were common during the 14th-16th centuries when papal documents were political currency. Lorenzo Valla's 1440 textual analysis of the 'Donation of Constantine' (a 700-year-old forgery) effectively invented the modern discipline of philological criticism."
   },
   {
     "id": "broadside-rush",
     "headline": "⚡ FRENZY: BROADSIDE RUSH — EVERY PRESS IN THE CITY ROARING",
     "claim_verb": "FLOOD THE STREETS",
     "claim_window_s": 10,
-    "effect": { "type": "rumor_mult", "value": 10.0, "duration_s": 10 },
+    "effect": {
+      "type": "rumor_mult",
+      "value": 10,
+      "duration_s": 10
+    },
     "weight": 1,
-    "is_frenzy": true
+    "is_frenzy": true,
+    "factoid": "England's Civil War years (1641-1651) saw an unprecedented broadside printing boom. London's print output went from 22 titles in 1640 to over 2,000 in 1642 once the Star Chamber's pre-publication censorship was abolished — the first known modern news-volume explosion."
   }
 ]

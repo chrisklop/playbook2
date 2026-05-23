@@ -4,55 +4,89 @@
     "headline": "🔥 'GERMANS BAYONET BELGIAN BABIES' — BRYCE REPORT REPRINTED",
     "claim_verb": "DISTRIBUTE IT",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 3,
+      "duration_s": 30
+    },
+    "weight": 2,
+    "factoid": "The 1915 Bryce Report's most-cited atrocity claim — that German soldiers had 'bayoneted' Belgian babies — was based largely on unverifiable affidavits taken from Belgian refugees in Britain. Subsequent investigation found no contemporaneous evidence; the claim nevertheless dominated Allied pro-war messaging through 1918."
   },
   {
     "id": "torches-of-freedom",
     "headline": "🔥 DEBUTANTES LIGHT 'TORCHES OF FREEDOM' ON FIFTH AVENUE",
     "claim_verb": "STAGE IT",
     "claim_window_s": 18,
-    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2.5,
+      "duration_s": 45
+    },
+    "weight": 2,
+    "factoid": "Edward Bernays' 'Torches of Freedom' campaign (Easter 1929) staged debutantes lighting Lucky Strike cigarettes on Fifth Avenue during the parade. Bernays orchestrated the event for the American Tobacco Company specifically to break the taboo against women smoking in public. Modern PR was effectively invented here."
   },
   {
     "id": "ypres-gas",
     "headline": "🔥 GAS USED AT YPRES — DETAILS BLURRED, OUTRAGE SHARPENED",
     "claim_verb": "AMPLIFY",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2,
+      "duration_s": 60
+    },
+    "weight": 3,
+    "factoid": "The first large-scale chlorine gas attack at Ypres (April 22, 1915) was real. The framing and exaggeration of subsequent gas-attack reporting in British papers was deliberate — used to harden domestic resolve and shape U.S. opinion before America entered the war in 1917."
   },
   {
     "id": "lysenko-pravda",
     "headline": "🔥 LYSENKO DECLARES MENDEL HERETIC IN PRAVDA",
     "claim_verb": "PRINT IT",
     "claim_window_s": 22,
-    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 1.75,
+      "duration_s": 90
+    },
+    "weight": 3,
+    "factoid": "Trofim Lysenko's Lamarckian biology displaced Mendelian genetics in Soviet science from 1948 to 1965, enforced through party newspapers including Pravda. Soviet biologists who continued to teach genetics were imprisoned or executed; Soviet agriculture suffered for decades."
   },
   {
     "id": "delmer-fake-scandal",
     "headline": "🔥 'NAZI ADMIRAL'S ORGY' — BBC BLACK RADIO BREAKS THE RUMOR",
     "claim_verb": "BROADCAST IT",
     "claim_window_s": 15,
-    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
-    "weight": 1
+    "effect": {
+      "type": "rumor_mult",
+      "value": 5,
+      "duration_s": 20
+    },
+    "weight": 1,
+    "factoid": "Sefton Delmer's BBC black-radio operation manufactured detailed fictional sexual and corruption scandals about specific named Nazi officials — broadcast under the cover of a fake 'disgruntled Nazi underground' station from 1941-1945. The technique was operationally distinct from earlier propaganda — it targeted morale, not policy."
   },
   {
     "id": "riefenstahl-premiere",
     "headline": "🔥 'TRIUMPH DES WILLENS' PREMIERES — CRITICS REPORT AWE",
     "claim_verb": "PROJECT IT",
     "claim_window_s": 18,
-    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 40 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2.5,
+      "duration_s": 40
+    },
+    "weight": 2,
+    "factoid": "'Triumph des Willens' premiered March 28, 1935 in Berlin. Critics described it as 'awesome' and 'overwhelming'; Leni Riefenstahl was awarded the German National Film Prize. The film won Best Documentary at the 1935 Venice Film Festival."
   },
   {
     "id": "total-radio-blitz",
     "headline": "⚡ FRENZY: TOTAL RADIO BLITZ — EVERY FREQUENCY YOUR FREQUENCY",
     "claim_verb": "SEIZE THE AIRWAVES",
     "claim_window_s": 10,
-    "effect": { "type": "rumor_mult", "value": 10.0, "duration_s": 10 },
+    "effect": {
+      "type": "rumor_mult",
+      "value": 10,
+      "duration_s": 10
+    },
     "weight": 1,
     "is_frenzy": true
   }

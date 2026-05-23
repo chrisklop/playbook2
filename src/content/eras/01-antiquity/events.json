@@ -4,48 +4,78 @@
     "headline": "🔥 PLAGUE-RUMOR CATCHES FIRE IN THE FORUM",
     "claim_verb": "SPREAD IT",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 3,
+      "duration_s": 30
+    },
+    "weight": 2,
+    "factoid": "Procopius records that during the 542 CE Plague of Justinian, Constantinople was flooded with rumors blaming imperial taxation, foreign agents, and minority communities for the outbreak. Rumor as a tool for redirecting collective panic predates written history."
   },
   {
     "id": "senators-mistress",
     "headline": "🔥 SENATOR'S MISTRESS NAMED IN ANONYMOUS SCROLL",
     "claim_verb": "WHISPER IT",
     "claim_window_s": 18,
-    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2.5,
+      "duration_s": 45
+    },
+    "weight": 2,
+    "factoid": "Pompeii's preserved election graffiti includes coordinated attacks on candidates' fictional indiscretions — 'all the late drinkers ask for Marcus,' 'all the rascals support Vatia.' Roman political smear via graffiti was a documented organised practice."
   },
   {
     "id": "rival-omen",
     "headline": "🔥 AUGUR REPORTS DARK OMEN OVER RIVAL'S HOUSE",
     "claim_verb": "AMPLIFY",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2,
+      "duration_s": 60
+    },
+    "weight": 3,
+    "factoid": "Roman augury (interpretation of bird flight, lightning, and animal entrails) was officially required before major state decisions. Senators routinely paid favorable augurs to delay or void political opponents' acts — Cicero's writings discuss the practice openly."
   },
   {
     "id": "tax-revolt",
     "headline": "🔥 GRAIN MERCHANTS WHISPER OF NEW TAX",
     "claim_verb": "CARRY THE WORD",
     "claim_window_s": 22,
-    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 1.75,
+      "duration_s": 90
+    },
+    "weight": 3,
+    "factoid": "Salt taxes in late Roman Egypt provoked the 'Bucolic Revolt' of 172 CE; contemporary accounts describe grain merchants spreading rumors of upcoming additional taxes to drive panic-buying. The Roman tax system was a perpetual rumor mill from the early empire onward."
   },
   {
     "id": "lightning-strike",
     "headline": "🔥 LIGHTNING STRUCK THE TEMPLE — GODS DISPLEASED?",
     "claim_verb": "INVOKE IT",
     "claim_window_s": 15,
-    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
-    "weight": 1
+    "effect": {
+      "type": "rumor_mult",
+      "value": 5,
+      "duration_s": 20
+    },
+    "weight": 1,
+    "factoid": "Roman augurs could halt public business by declaring a lightning strike a bad omen. In 59 BCE, Caesar's co-consul Bibulus tried to use this technique to obstruct Caesar's legislation; Caesar simply ignored him and the laws passed."
   },
   {
     "id": "agora-frenzy",
     "headline": "⚡ FRENZY: AGORA IN UPROAR — EVERY VOICE CARRIES A LIE",
     "claim_verb": "STOKE THE CROWD",
     "claim_window_s": 10,
-    "effect": { "type": "rumor_mult", "value": 10.0, "duration_s": 10 },
+    "effect": {
+      "type": "rumor_mult",
+      "value": 10,
+      "duration_s": 10
+    },
     "weight": 1,
-    "is_frenzy": true
+    "is_frenzy": true,
+    "factoid": "Aristophanes' The Acharnians (425 BCE) opens with the agora consumed by competing rumor-mongers shouting over each other for the audience's attention. Crowd-driven rumor cascades in ancient agoras are the documented ancestor of every news rush since."
   }
 ]

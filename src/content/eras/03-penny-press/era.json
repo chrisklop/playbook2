@@ -46,7 +46,7 @@
           "name": "Two-Cent Edition",
           "description": "Halve the price; quadruple the circulation.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 15000
         },
         {
@@ -54,7 +54,7 @@
           "name": "60-Point Scare Banner",
           "description": "If it bleeds, it leads. Top-of-fold every day.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 400000
         },
         {
@@ -62,10 +62,11 @@
           "name": "Street-Vendor Army",
           "description": "Every corner of every borough has a paperboy of yours.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 8000000
         }
-      ]
+      ],
+      "factoid": "The New York Sun, launched in 1833 at 1¢ per copy, invented the modern sensational headline. Other 'penny papers' followed within a decade; by 1840 New York had four daily mass-circulation papers competing largely on the lurid prominence of their front-page headlines."
     },
     {
       "id": "manufactured-scoop",
@@ -100,7 +101,7 @@
           "name": "Reporter's Rolodex",
           "description": "Every official in town owes us a comment by 3pm.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 500000
         },
         {
@@ -108,7 +109,7 @@
           "name": "Composite Quote Department",
           "description": "Two real anonymous sources are easier to combine into one juicy one.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 15000000
         },
         {
@@ -116,10 +117,11 @@
           "name": "Plant the Source",
           "description": "We supply the leaker, the leak, AND the indignation.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 300000000
         }
-      ]
+      ],
+      "factoid": "The New York Sun's 'Great Moon Hoax' (Aug 1835) ran six installments claiming the astronomer John Herschel had observed bat-winged humanoids on the moon. Circulation jumped from 8,000 to 19,000 copies daily. The Sun never formally retracted."
     },
     {
       "id": "wire-service-plant",
@@ -154,7 +156,7 @@
           "name": "AP Stringer Pool",
           "description": "One slanted dispatch reprinted in three hundred dailies by sundown.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 25000000
         },
         {
@@ -162,7 +164,7 @@
           "name": "Transatlantic Cable Priority",
           "description": "Bribe the cable office; our wires beat the truth across the ocean.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 800000000
         },
         {
@@ -170,10 +172,11 @@
           "name": "Synthetic Correspondent",
           "description": "A foreign-bureau byline that has never existed; readers can't tell.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 16000000000
         }
-      ]
+      ],
+      "factoid": "The Associated Press, founded 1846, made news a wholesale commodity. By the 1880s a single planted item picked up by AP could reach 1,000+ regional papers within 24 hours — the first national-scale distribution layer for unverified claims."
     },
     {
       "id": "halftone-engraving",
@@ -208,7 +211,7 @@
           "name": "Rotary-Flatbed Halftone",
           "description": "Photos in every edition, not just the Sunday rotogravure.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 200000000
         },
         {
@@ -216,7 +219,7 @@
           "name": "Staged Tableau Studio",
           "description": "Re-enactments shot in a Brooklyn warehouse, passed as crime-scene.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 5000000000
         },
         {
@@ -224,10 +227,11 @@
           "name": "Composite Photograph",
           "description": "Cut, paste, retouch — the kaiser shakes hands with the pope.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 100000000000
         }
-      ]
+      ],
+      "factoid": "William Randolph Hearst's New York Journal and Joseph Pulitzer's New York World ran sensationalised, often-fabricated illustrations during the lead-up to the Spanish-American War (1898). The phrase 'yellow journalism' was coined to describe their treatment of the Maine explosion."
     },
     {
       "id": "patent-medicine-ad",
@@ -262,7 +266,7 @@
           "name": "Testimonial Stable",
           "description": "Fifty grateful 'patients' on retainer, $5 a quote.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 350000000
         },
         {
@@ -270,7 +274,7 @@
           "name": "Editorial Camouflage",
           "description": "The advertorial — paid copy set in the same font as news.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 9000000000
         },
         {
@@ -278,10 +282,11 @@
           "name": "Syndicated Miracle Cure",
           "description": "One bottle, three hundred papers, half a continent of buyers.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 180000000000
         }
-      ]
+      ],
+      "factoid": "By 1900, U.S. newspapers derived ~30% of revenue from patent-medicine ads — products which were typically alcohol, opiates, or both. Editorial coverage rarely investigated advertisers; the 1906 Pure Food and Drug Act was the first federal response to the model."
     },
     {
       "id": "okhrana-forgery",
@@ -316,7 +321,7 @@
           "name": "Protocols Distribution",
           "description": "A faked manifesto that outlives the regime that printed it.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000000
         },
         {
@@ -324,7 +329,7 @@
           "name": "Dual-Language Edition",
           "description": "Russian for the home market, French for the salon, English for the Times.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 40000000000
         },
         {
@@ -332,10 +337,11 @@
           "name": "A Century of Believers",
           "description": "Even when exposed, the original false document keeps spreading.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 800000000000
         }
-      ]
+      ],
+      "factoid": "The 'Protocols of the Elders of Zion' was fabricated by the Russian Okhrana (secret police) ~1903, plagiarising an 1864 French anti-Napoleon III pamphlet. It has been repeatedly debunked since 1921 yet remains in circulation; Henry Ford serialised 500,000 copies in his Dearborn Independent."
     }
   ],
   "prestige_into": "propaganda-state",

@@ -41,6 +41,14 @@ export const GeneratorTierSchema = z.object({
   milestones: z.array(z.number().int().positive()).default([25, 50, 100, 200, 300, 400]),
   codex_link: z.string().nullable().default(null),
   /**
+   * Short 1–3 sentence historical factoid surfaced via the ⓘ button on the
+   * tile. Must be documented fact — the game's framing is satirical but
+   * every factoid is grounded in real disinformation history. Optional;
+   * if absent, the ⓘ button is hidden. Codex_link, when set, provides a
+   * "Read more →" jump from the popover into the full codex entry.
+   */
+  factoid: z.string().optional(),
+  /**
    * Progressive reveal: the generator's card is hidden until lifetime resource of
    * the matching `resource` type reaches this value. 0 = always visible (Tier 1).
    * AdVenture Capitalist pattern — keeps the next tier as a "discoverable" carrot
@@ -106,6 +114,11 @@ export const EventDefinitionSchema = z.object({
    *  optional music swap. Distinct from normal ticker offers so the player
    *  registers "this one matters." */
   is_frenzy: z.boolean().default(false),
+  /** Documented factoid surfaced via the ⓘ button on the event banner.
+   *  Same contract as the generator factoid — must be sourced fact. */
+  factoid: z.string().optional(),
+  /** Optional codex_link for the event's "Read more →" jump. */
+  codex_link: z.string().nullable().default(null),
 });
 export type EventDefinition = z.infer<typeof EventDefinitionSchema>;
 export type EventEffect = z.infer<typeof EventEffectSchema>;

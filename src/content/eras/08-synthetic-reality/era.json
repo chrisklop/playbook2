@@ -26,7 +26,14 @@
       "is_click_driven": true,
       "auto_unlock_at": 10,
       "auto_operative_name": "AI Director of Strategy",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "biden-robocall-nh-2024",
       "reveal_at_lifetime": 0,
       "cycle_seconds": 1,
@@ -39,7 +46,7 @@
           "name": "11-Second Voice Clone",
           "description": "Eleven seconds of clean audio. The model fills in the rest of the human.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 12000
         },
         {
@@ -47,7 +54,7 @@
           "name": "Real-Time Face Render",
           "description": "Live-stream the face that isn't there. Latency under 80 milliseconds.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 300000
         },
         {
@@ -55,10 +62,11 @@
           "name": "Watermark-Bypass Pipeline",
           "description": "Strip the disclosure. Re-render at a slightly different aspect ratio. Provenance lost.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 6000000
         }
-      ]
+      ],
+      "factoid": "The January 21, 2024 Biden robocall in New Hampshire was the first U.S. presidential primary deepfake. The voice-clone generation step cost less than $1; an estimated 5,000-25,000 households received the call. The FCC declared AI-generated robocalls illegal 16 days later — a fast response that still trailed the cycle."
     },
     {
       "id": "ai-news-farm",
@@ -73,7 +81,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Content Operations Lead",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "newsguard-ai-sites",
       "reveal_at_lifetime": 250,
       "cycle_seconds": 3,
@@ -86,7 +101,7 @@
           "name": "Adjacent-Domain Squat",
           "description": "boston-tribune dot online. Looks like the paper. Isn't the paper.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 60000
         },
         {
@@ -94,7 +109,7 @@
           "name": "Programmatic-Ad Laundering",
           "description": "Google's auction can't tell. Real-brand ads pay for fake-paper costs.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000
         },
         {
@@ -102,10 +117,11 @@
           "name": "Citation-Loop Network",
           "description": "Twelve sites citing each other. One of them gets cited by a real outlet.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 30000000
         }
-      ]
+      ],
+      "factoid": "NewsGuard's Unreliable AI-Generated News Sites tracker logged 49 such sites in May 2023 and surpassed 1,200 by mid-2024. Many monetise through programmatic advertising — Google's AdSense network has placed major-brand ads on UAINS-tracked sites that no human editor at the brand has ever reviewed."
     },
     {
       "id": "buy-verified-checkmark",
@@ -120,7 +136,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Sock-Puppet Operator",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "musk-x-shift",
       "reveal_at_lifetime": 1500,
       "cycle_seconds": 5,
@@ -133,7 +156,7 @@
           "name": "Public-Figure Name Squat",
           "description": "Reserve the name first. Make them prove they're real.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 200000
         },
         {
@@ -141,7 +164,7 @@
           "name": "Algorithmic Reply Priority",
           "description": "Paid accounts surface first under every viral post. The blue tick speaks the loudest, by design.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 5000000
         },
         {
@@ -149,10 +172,11 @@
           "name": "Fleet of 200 Accounts",
           "description": "Each a different face, each a different city, each a different opinion. All the same operator.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 100000000
         }
-      ]
+      ],
+      "factoid": "On October 27, 2022, Elon Musk closed the $44B Twitter acquisition. Within weeks, blue verification became a paid feature ($8/month). Within a month, paid-checkmark accounts impersonating Eli Lilly, Lockheed Martin, and major financial figures caused real stock movements. The verification signal that had taken 13 years to build collapsed in 30 days."
     },
     {
       "id": "synthetic-influencer",
@@ -167,7 +191,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Persona Manager",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "pope-puffer-jacket",
       "reveal_at_lifetime": 7500,
       "cycle_seconds": 8,
@@ -180,7 +211,7 @@
           "name": "Parasocial-Engagement Rails",
           "description": "DM auto-replies. Birthday messages. Tier-3 subscribers get 'voice notes.'",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000
         },
         {
@@ -188,7 +219,7 @@
           "name": "Brand-Deal Pipeline",
           "description": "Skincare, energy drinks, a gambling app. The persona doesn't have a face to ruin.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 40000000
         },
         {
@@ -196,10 +227,11 @@
           "name": "Political-Pivot Module",
           "description": "Six months of skincare; on month seven, suddenly opinions about immigration.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 800000000
         }
-      ]
+      ],
+      "factoid": "The March 24, 2023 'Pope in a Balenciaga puffer' images (Midjourney v5, posted to Reddit) reached an estimated 20+ million impressions before major outlets identified the synthetic source. The images cost approximately 20¢ and 45 seconds to generate."
     },
     {
       "id": "bespoke-disinfo-llm",
@@ -214,7 +246,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "ML Lead",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "stanford-llm-fake-news",
       "reveal_at_lifetime": 30000,
       "cycle_seconds": 12,
@@ -227,7 +266,7 @@
           "name": "Auto-Rotating Prompt Library",
           "description": "Same talking point, ten thousand surface phrasings. Detection by keyword no longer works.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 12000000
         },
         {
@@ -235,7 +274,7 @@
           "name": "Plausible-Citation Fabrication",
           "description": "Studies that don't exist, journals that do. By the time anyone checks, the post has 40k shares.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 300000000
         },
         {
@@ -243,10 +282,11 @@
           "name": "Speech-Writer Injection",
           "description": "Politicians' staff copy-paste from your model. Your phrases become their phrases.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 6000000000
         }
-      ]
+      ],
+      "factoid": "A 2023 Science Advances study (Spitale, Biller-Andorno, Germani) found that participants could not reliably distinguish LLM-generated political claims from human-written ones — and that LLM-generated false claims were rated MORE credible than human-written false claims. Detection-by-style approaches no longer scale."
     },
     {
       "id": "acquire-platform",
@@ -261,7 +301,14 @@
       "is_click_driven": false,
       "auto_unlock_at": 0,
       "auto_operative_name": "Platform Owner",
-      "milestones": [25, 50, 100, 200, 300, 400],
+      "milestones": [
+        25,
+        50,
+        100,
+        200,
+        300,
+        400
+      ],
       "codex_link": "musk-x-shift",
       "reveal_at_lifetime": 100000,
       "cycle_seconds": 25,
@@ -274,7 +321,7 @@
           "name": "For-You Feed Algorithm Tweak",
           "description": "Reweight 'engagement.' Outrage gets a 2.3× multiplier. Nuance gets buried.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 60000000
         },
         {
@@ -282,7 +329,7 @@
           "name": "Dissolve Trust & Safety",
           "description": "Fire the moderators. Reinstate the banned. Call it free speech.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000000
         },
         {
@@ -290,10 +337,11 @@
           "name": "$42,000-a-Month API",
           "description": "Researchers studying misinformation? They can't afford the API anymore.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 30000000000
         }
-      ]
+      ],
+      "factoid": "Musk's first year as Twitter/X owner: ~50% of staff laid off, Trust & Safety council disbanded, the API priced at ~$42,000/month (effectively ending external academic research on platform-level disinformation), and ad revenue down ~50%. Single-individual platform control with no inherited institutional resistance is the new structural condition."
     }
   ],
   "prestige_into": "antiquity",

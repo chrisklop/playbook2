@@ -4,48 +4,78 @@
     "headline": "🔥 'NEW DEBATE CLIP' HITS THE FEED — STAFFERS SCRAMBLE TO IDENTIFY THE SOURCE",
     "claim_verb": "AMPLIFY IT",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 3,
+      "duration_s": 30
+    },
+    "weight": 2,
+    "factoid": "Fabricated political debate clips circulated widely on X, Telegram, and Truth Social during the 2024 election cycle. Most were ElevenLabs voice clones over real video footage. The Stanford Internet Observatory documented at least 12 such clips reaching 1M+ views before being publicly identified as synthetic."
   },
   {
     "id": "ai-site-scoops-cnn",
     "headline": "🔥 AI-WRITTEN STORY GETS CITED BY CNN BEFORE THE EDITORS NOTICE",
     "claim_verb": "RE-PUBLISH IT",
     "claim_window_s": 18,
-    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2.5,
+      "duration_s": 45
+    },
+    "weight": 2,
+    "factoid": "NewsGuard has documented multiple cases of AI-generated content from UAINS-tracked sites being cited by mainstream outlets (CBS News, MSN, MSN News Network) before the underlying source was identified as a content farm. Citation-laundering through aggregator networks is a documented current vector."
   },
   {
     "id": "checkmark-impersonation",
     "headline": "🔥 PAID BLUE-CHECK ACCOUNT IMPERSONATES PHARMA CEO — STOCK DROPS 4%",
     "claim_verb": "TRADE THE PANIC",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2,
+      "duration_s": 60
+    },
+    "weight": 3,
+    "factoid": "In November 2022, paid blue-check accounts impersonating Eli Lilly tweeted that insulin would be free; Eli Lilly's stock dropped ~4% in two days, costing billions in market cap. Similar impersonations targeting Lockheed Martin, Nestlé, and the Pope occurred in the same two-week window."
   },
   {
     "id": "llm-talking-points-leak",
     "headline": "🔥 CHATBOT TALKING POINTS APPEAR VERBATIM IN STUMP SPEECH",
     "claim_verb": "DISTRIBUTE IT",
     "claim_window_s": 22,
-    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 1.75,
+      "duration_s": 90
+    },
+    "weight": 3,
+    "factoid": "Stanford researchers in 2023 demonstrated that LLM-generated political talking points were rated more persuasive than human-written equivalents — and that participants could not reliably identify which was which, even when actively trying. The detection-by-style era has ended."
   },
   {
     "id": "voice-clone-grandma-call",
     "headline": "🔥 'GRANDPA, I'M IN JAIL' — CLONED-VOICE SCAM HITS A THOUSAND SENIORS BEFORE BREAKFAST",
     "claim_verb": "RIDE THE WAVE",
     "claim_window_s": 15,
-    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
-    "weight": 1
+    "effect": {
+      "type": "rumor_mult",
+      "value": 5,
+      "duration_s": 20
+    },
+    "weight": 1,
+    "factoid": "The FTC documented a 25% increase in 'grandparent scam' reports in 2023, with multiple cases featuring AI voice clones of family members. Modern voice-clone models need only ~11 seconds of source audio (e.g., from a public social-media video) to produce convincing speech in the target's voice."
   },
   {
     "id": "deepfake-frenzy",
     "headline": "⚡ FRENZY: A DEEPFAKE HITS THE FEED BEFORE BREAKFAST — RETRACTIONS BY DINNER",
     "claim_verb": "FLOOD THE FEED",
     "claim_window_s": 10,
-    "effect": { "type": "rumor_mult", "value": 10.0, "duration_s": 10 },
+    "effect": {
+      "type": "rumor_mult",
+      "value": 10,
+      "duration_s": 10
+    },
     "weight": 1,
-    "is_frenzy": true
+    "is_frenzy": true,
+    "factoid": "Major election-cycle deepfake incidents now reach 10+ million views within hours of release. Major platforms' content-moderation response times average 6-24 hours — long enough for the original content to set the news cycle, with corrections rarely catching its reach."
   }
 ]

@@ -45,7 +45,7 @@
           "name": "Iron-Frame Press",
           "description": "A sturdier press body holds register on longer runs.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 10000
         },
         {
@@ -53,7 +53,7 @@
           "name": "Italic Punch-Cutter",
           "description": "Tighter typeface fits more rumor per sheet.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 250000
         },
         {
@@ -61,10 +61,11 @@
           "name": "Antwerp Distribution",
           "description": "Low-Country trade routes carry broadsides across borders overnight.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 5000000
         }
-      ]
+      ],
+      "factoid": "Broadsides — single-sheet illustrated news prints — were the dominant cheap-print form from the 1500s. England's 1641 abolition of the Star Chamber removed pre-publication censorship and triggered a printing explosion: 22 titles in 1640, more than 2,000 by 1642."
     },
     {
       "id": "print-pamphlet",
@@ -99,7 +100,7 @@
           "name": "Vernacular Translator",
           "description": "Latin becomes German becomes Dutch becomes ours.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 100000
         },
         {
@@ -107,7 +108,7 @@
           "name": "Colporteur Network",
           "description": "Itinerant booksellers spread pamphlets to villages no city press reaches.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 2500000
         },
         {
@@ -115,10 +116,11 @@
           "name": "Frankfurt Book-Fair Booth",
           "description": "Twice a year, every printer in Europe arrives. So does every rumor.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 50000000
         }
-      ]
+      ],
+      "factoid": "Martin Luther's 95 Theses (1517) became Europe's first viral pamphlet. Within two months, copies were circulating across the continent; in his lifetime over 4,000 pamphlets attributed to Luther or in his style were printed in German alone — more than from any other Reformation figure."
     },
     {
       "id": "commission-woodcut",
@@ -153,7 +155,7 @@
           "name": "Cranach Apprentices",
           "description": "Three carvers per block; ten blocks a week.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 4000000
         },
         {
@@ -161,7 +163,7 @@
           "name": "Coloured Stencil Sheets",
           "description": "Hand-painted rubrication; a devil in red sells twice.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 100000000
         },
         {
@@ -169,10 +171,11 @@
           "name": "Two-Block Registration",
           "description": "Image and text on one impression — the modern political cartoon.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 2000000000
         }
-      ]
+      ],
+      "factoid": "Reformation-era woodcuts let polemicists distribute political messaging to the 90% of Europeans who could not read. Cranach the Elder's 'Passional Christi und Antichristi' (1521) paired images of Jesus with images of the Pope to drive its anti-Catholic argument visually — print's first systematic visual propaganda program."
     },
     {
       "id": "forge-decree",
@@ -207,7 +210,7 @@
           "name": "Royal Wax-Seal Cast",
           "description": "A passable copy of any monarch's privy seal, ready in an afternoon.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 25000000
         },
         {
@@ -215,7 +218,7 @@
           "name": "Chancery Hand Tutors",
           "description": "Six former clerks now teach your forgers the official scripts.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 600000000
         },
         {
@@ -223,10 +226,11 @@
           "name": "Lorenzo Valla's Despair",
           "description": "Even the philologists can't tell the fakes from the originals.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 12000000000
         }
-      ]
+      ],
+      "factoid": "The 'Donation of Constantine' purported to be Emperor Constantine's 4th-century gift of Roman imperial authority to the Pope. The document was used to justify papal political claims for 700 years before Lorenzo Valla proved it a forgery in 1440 through textual linguistic analysis."
     },
     {
       "id": "witch-pamphlet",
@@ -261,7 +265,7 @@
           "name": "Bishop's Imprimatur",
           "description": "An ecclesiastical license turns a libel into doctrine.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 40000000
         },
         {
@@ -269,7 +273,7 @@
           "name": "Illustrated Confessions",
           "description": "Engraved torture scenes outsell sober text three to one.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1000000000
         },
         {
@@ -277,10 +281,11 @@
           "name": "Standing Inquisitorial Commission",
           "description": "A permanent body to print, judge, and burn — at scale.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 20000000000
         }
-      ]
+      ],
+      "factoid": "The 'Malleus Maleficarum' (1486) — a how-to manual for identifying and prosecuting witches — became one of the most-printed books of the 15th-16th centuries thanks to Gutenberg's press. Roughly 35,000 alleged witches were executed in Europe between 1500 and 1700; the manual's printed reach was central to the panic."
     },
     {
       "id": "newsbook-press",
@@ -315,7 +320,7 @@
           "name": "Stereotype Plates",
           "description": "Mould the type once, run it forever; no resetting between issues.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 150000000
         },
         {
@@ -323,7 +328,7 @@
           "name": "Weekly Issue Cadence",
           "description": "Readers expect us now. A standing audience is a multiplier.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 4000000000
         },
         {
@@ -331,10 +336,11 @@
           "name": "Lloyd's Coffee-House Distribution",
           "description": "Every merchant in London reads it before noon.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 80000000000
         }
-      ]
+      ],
+      "factoid": "Periodical 'newsbooks' (single-event news booklets) appeared in German cities by 1502 and in English by the 1620s. They were the bridge form between pamphlets and modern newspapers — sold daily or weekly, partisan by design, with no obligation to fact-check sources."
     }
   ],
   "prestige_into": "penny-press",

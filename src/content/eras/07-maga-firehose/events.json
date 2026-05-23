@@ -4,48 +4,78 @@
     "headline": "🔥 RALLY CHANT TESTED THIS WEEKEND BECOMES TUESDAY'S POLICY ANNOUNCEMENT",
     "claim_verb": "AMPLIFY IT",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 3,
+      "duration_s": 30
+    },
+    "weight": 2,
+    "factoid": "Trump campaign rally chants — 'Build the Wall' (2015), 'Lock Her Up' (2016), 'Send Her Back' (2019) — were used by speech writers and pollsters to test phrases live with crowds before formalising as policy or talking-point positions. The rally was, in effect, a focus-group testing layer."
   },
   {
     "id": "q-drop-decoded",
     "headline": "🔥 'Q' DROP DECODED BY 'BREAD BAKERS' OVERNIGHT — TRENDS ON MULTIPLE PLATFORMS",
     "claim_verb": "PUSH IT WIDER",
     "claim_window_s": 18,
-    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2.5,
+      "duration_s": 45
+    },
+    "weight": 2,
+    "factoid": "QAnon 'bread bakers' (volunteer decoders) produced thousands of pages of analysis, video walkthroughs, and YouTube live-streams interpreting each new 'Q drop.' The community structure made the audience the primary content producer — a pattern later imitated by every distributed-narrative attack."
   },
   {
     "id": "tucker-cropped-clip",
     "headline": "🔥 CROPPED TUCKER CLIP HITS 22 MILLION VIEWS BEFORE NOON",
     "claim_verb": "RE-CUT IT",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2,
+      "duration_s": 60
+    },
+    "weight": 3,
+    "factoid": "Cropped 22-second cuts of Tucker Carlson monologues regularly outperformed the full segments on social media. The Fox News in-house clips operation produced multiple cuts per evening for distribution across Twitter, YouTube, Rumble, and Truth Social — each platform's algorithm optimised for a different cut length."
   },
   {
     "id": "ira-meme-trends",
     "headline": "🔥 RUSSIAN-SPONSORED FACEBOOK GROUP ORGANIZES TWO REAL-WORLD RALLIES IN THE SAME CITY",
     "claim_verb": "EXPLOIT IT",
     "claim_window_s": 22,
-    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 1.75,
+      "duration_s": 90
+    },
+    "weight": 3,
+    "factoid": "The Internet Research Agency was documented organising at least two coordinated real-world rallies via Facebook event pages — including one notable case in Houston where IRA-funded competing pro-Trump and anti-Trump rallies took place at the same location on the same day."
   },
   {
     "id": "election-night-zero",
     "headline": "🔥 ELECTION-NIGHT 'COUNT IT TONIGHT' HASHTAG TRENDS BEFORE ANY VOTES ARE COUNTED",
     "claim_verb": "DROP THE FRAME",
     "claim_window_s": 15,
-    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
-    "weight": 1
+    "effect": {
+      "type": "rumor_mult",
+      "value": 5,
+      "duration_s": 20
+    },
+    "weight": 1,
+    "factoid": "The 2020 'count it tonight' framing was pre-planned by Trump campaign advisors who knew their internal polling showed mail-in ballots (counted later) skewed Democratic — a known and pre-broadcast pattern called the 'Red Mirage.' The framing exploited the known statistical structure of vote-counting."
   },
   {
     "id": "maga-firehose-frenzy",
     "headline": "⚡ FRENZY: A RALLY CHANT BECOMES A POLICY POSITION OVERNIGHT — EVERY NETWORK CARRIES IT",
     "claim_verb": "RIDE THE CYCLE",
     "claim_window_s": 10,
-    "effect": { "type": "rumor_mult", "value": 10.0, "duration_s": 10 },
+    "effect": {
+      "type": "rumor_mult",
+      "value": 10,
+      "duration_s": 10
+    },
     "weight": 1,
-    "is_frenzy": true
+    "is_frenzy": true,
+    "factoid": "Mass-rally chant cycles operated as documented A/B testing for political messaging during 2015-2024. A phrase introduced at a Pennsylvania rally could be repeated at three subsequent rallies that week, then formalised as a press-release position the following Monday if crowd response was strong enough."
   }
 ]

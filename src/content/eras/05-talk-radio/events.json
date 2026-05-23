@@ -4,48 +4,78 @@
     "headline": "🔥 PHONE LINES JAMMED — DITTOHEADS DROWNING OUT THE RIVAL HOST",
     "claim_verb": "TAKE THE CALLS",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 3.0, "duration_s": 30 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 3,
+      "duration_s": 30
+    },
+    "weight": 2,
+    "factoid": "Limbaugh's audience famously coordinated rapid call-in waves to influence other programs and consumer-feedback lines. The 1992 'Operation Chaos' (a Limbaugh-organised effort to influence the Democratic primary) was one of the earliest deliberate uses of an aligned audience as a strategic political weapon."
   },
   {
     "id": "drudge-runs-the-leak",
     "headline": "🔥 KILLED STORY RESURFACES — DRUDGE POSTS WHAT NEWSWEEK SHELVED",
     "claim_verb": "AMPLIFY IT",
     "claim_window_s": 18,
-    "effect": { "type": "rumor_mult", "value": 2.5, "duration_s": 45 },
-    "weight": 2
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2.5,
+      "duration_s": 45
+    },
+    "weight": 2,
+    "factoid": "Drudge's January 1998 Lewinsky scoop (after Newsweek shelved Michael Isikoff's article) was the proof-of-concept moment for the 'aggregator as upstream editor' pattern. By 2007, Politico's analysis tracked roughly two-thirds of Drudge lead links migrating to cable news within 24 hours."
   },
   {
     "id": "voter-guide-sunday",
     "headline": "🔥 33 MILLION VOTER GUIDES IN CHURCH PEWS BY SUNDAY MORNING",
     "claim_verb": "PRINT MORE",
     "claim_window_s": 20,
-    "effect": { "type": "rumor_mult", "value": 2.0, "duration_s": 60 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 2,
+      "duration_s": 60
+    },
+    "weight": 3,
+    "factoid": "The Christian Coalition distributed 33 million voter guides in churches on the Sunday before the 1992 election and 45 million for 1996. The IRS revoked the organization's 501(c)(3) tax-exempt status in 1999, ruling the guides insufficiently nonpartisan — but the model had already institutionalised across thousands of churches."
   },
   {
     "id": "chyron-cycle",
     "headline": "🔥 CABLE CHYRON STAYS UP 14 HOURS — STORY OUTLIVES ITS RETRACTION",
     "claim_verb": "RUN IT AGAIN",
     "claim_window_s": 22,
-    "effect": { "type": "rumor_mult", "value": 1.75, "duration_s": 90 },
-    "weight": 3
+    "effect": {
+      "type": "rumor_mult",
+      "value": 1.75,
+      "duration_s": 90
+    },
+    "weight": 3,
+    "factoid": "Cable-news lower-third chyrons (the on-screen text strip) became a distinct editorial channel during the 2000s — often advancing narratives the anchor's spoken script did not. Network producers operate the chyron with no fact-check obligation tied to the anchor's spoken content."
   },
   {
     "id": "gingrich-memo-leak",
     "headline": "🔥 GINGRICH'S WORD LIST CIRCULATES — EVERY GOP CANDIDATE SAYS 'PATHETIC'",
     "claim_verb": "DISTRIBUTE IT",
     "claim_window_s": 15,
-    "effect": { "type": "rumor_mult", "value": 5.0, "duration_s": 20 },
-    "weight": 1
+    "effect": {
+      "type": "rumor_mult",
+      "value": 5,
+      "duration_s": 20
+    },
+    "weight": 1,
+    "factoid": "Newt Gingrich's 1990 GOPAC training memo 'Language: A Key Mechanism of Control' instructed Republican candidates to use 64 specific words about opponents and 64 about themselves. The leaked memo became one of the most-cited documents in U.S. partisan vocabulary engineering."
   },
   {
     "id": "talk-radio-frenzy",
     "headline": "⚡ FRENZY: DITTOHEADS FLOOD THE LINES — EVERY HOST RUNNING YOUR SCRIPT",
     "claim_verb": "RIDE THE WAVE",
     "claim_window_s": 10,
-    "effect": { "type": "rumor_mult", "value": 10.0, "duration_s": 10 },
+    "effect": {
+      "type": "rumor_mult",
+      "value": 10,
+      "duration_s": 10
+    },
     "weight": 1,
-    "is_frenzy": true
+    "is_frenzy": true,
+    "factoid": "By 1993, talk radio reached ~50% of U.S. adults weekly. AM stations could coordinate audience response within hours — listener call-in waves, congressional-office phone-line floods, and letter-writing campaigns were a documented organising layer years before the internet enabled the same dynamics digitally."
   }
 ]

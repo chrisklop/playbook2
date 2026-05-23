@@ -46,7 +46,7 @@
           "name": "Standardized Script Bank",
           "description": "Every speaker, every theater, the same five themes this week.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 12000
         },
         {
@@ -54,7 +54,7 @@
           "name": "Bond-Drive Rallies",
           "description": "Cinema speech becomes city-square rally. Crowds beget more crowds.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 300000
         },
         {
@@ -62,10 +62,11 @@
           "name": "Foreign-Language Branches",
           "description": "German, Italian, Polish, Yiddish — same message, each immigrant tongue.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 6000000
         }
-      ]
+      ],
+      "factoid": "The Committee on Public Information's Four-Minute Men (1917–1919) delivered roughly 750,000 speeches in 5,200 American towns — each speech timed to the four minutes needed to change a movie reel. Speakers received daily-updated talking-point bulletins by mail."
     },
     {
       "id": "war-bonds-poster",
@@ -100,7 +101,7 @@
           "name": "Stone Lithography at Scale",
           "description": "Tens of thousands of impressions per design, sharper than wood.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 60000
         },
         {
@@ -108,7 +109,7 @@
           "name": "Celebrity Endorsement",
           "description": "Mary Pickford on a bond rally. The face matters more than the bond.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000
         },
         {
@@ -116,10 +117,11 @@
           "name": "Streetcar Advertising",
           "description": "Captive audience, six minutes a ride, twice a day.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 30000000
         }
-      ]
+      ],
+      "factoid": "James Montgomery Flagg's 'I Want YOU for U.S. Army' poster (1917) was printed 4 million times — adapting Alfred Leete's 1914 Lord Kitchener original. The U.S. Government Printing Office produced an estimated 1 billion war-bond and recruitment posters across both world wars."
     },
     {
       "id": "atrocity-pamphlet",
@@ -154,7 +156,7 @@
           "name": "Translator Pool",
           "description": "Same atrocity, seventeen languages, neutral countries first.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 200000
         },
         {
@@ -162,7 +164,7 @@
           "name": "Corpse-Factory Embellishment",
           "description": "Charteris invents the rendering plant. Newspapers print it for years.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 5000000
         },
         {
@@ -170,10 +172,11 @@
           "name": "Anonymous Eyewitness Files",
           "description": "Affidavits no one can verify, archived just out of reach of every fact-checker.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 100000000
         }
-      ]
+      ],
+      "factoid": "The Bryce Report (May 1915), commissioned by Britain to document German atrocities in Belgium, contained substantial fabrications — including a long-debunked claim that German soldiers 'rendered' Belgian corpses for fat. Brigadier-General John Charteris later acknowledged inventing the corpse-factory claim in a 1925 New York speech."
     },
     {
       "id": "newsreel-cinema",
@@ -208,7 +211,7 @@
           "name": "Sound-On-Film",
           "description": "Synchronized 35mm sound. The voice arrives with the image.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000
         },
         {
@@ -216,7 +219,7 @@
           "name": "Riefenstahl's Visual Grammar",
           "description": "Low-angle hero shots. Aerial sweep. Choral montage.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 40000000
         },
         {
@@ -224,10 +227,11 @@
           "name": "Compulsory Pre-Feature Screening",
           "description": "By law: no feature without the newsreel first.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 800000000
         }
-      ]
+      ],
+      "factoid": "Leni Riefenstahl's 'Triumph des Willens' (1935) shot the 1934 Nuremberg Rally using 30+ cameras, choreographed crowd shots, and aerial photography unprecedented in cinema. The film's editing innovations (cross-cutting, low-angle hero shots) became standard cinematic grammar — Frank Capra studied it before making his Why We Fight series."
     },
     {
       "id": "big-lie-broadcast",
@@ -262,7 +266,7 @@
           "name": "State-Subsidized Receiver",
           "description": "The Volksempfänger in every home. No tuning past the home station.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 12000000
         },
         {
@@ -270,7 +274,7 @@
           "name": "Jamming Array",
           "description": "Silence the BBC; silence the Voice of America; silence the rest.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 300000000
         },
         {
@@ -278,10 +282,11 @@
           "name": "Doctrine of Repetition",
           "description": "The colossal falsehood, endlessly. Eventually no one remembers a before.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 6000000000
         }
-      ]
+      ],
+      "factoid": "Goebbels' Volksempfänger ('people's receiver') was a state-subsidised radio set introduced August 1933 at the deliberately accessible price of 76 Reichsmarks. By 1939 it was in ~70% of German households; the tuning range was deliberately limited to favour domestic Nazi broadcasts."
     },
     {
       "id": "black-flag-radio",
@@ -316,7 +321,7 @@
           "name": "Aspidistra Transmitter",
           "description": "600 kilowatts. We can pretend to be Hamburg from a barn in Sussex.",
           "unlock_at_owned": 25,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 60000000
         },
         {
@@ -324,7 +329,7 @@
           "name": "Manufactured Scandal Desk",
           "description": "We don't refute Nazi officers — we invent their sex lives.",
           "unlock_at_owned": 100,
-          "multiplier": 3.0,
+          "multiplier": 3,
           "cost": 1500000000
         },
         {
@@ -332,10 +337,11 @@
           "name": "Frontline Defector Voices",
           "description": "Real German POWs read our scripts. 40% of the Wehrmacht is listening.",
           "unlock_at_owned": 200,
-          "multiplier": 5.0,
+          "multiplier": 5,
           "cost": 30000000000
         }
-      ]
+      ],
+      "factoid": "Sefton Delmer's 'Gustav Siegfried Eins' broadcast (1941–1945) posed as a disgruntled-Nazi underground station, transmitted from a manor house in Bedfordshire. Roughly 40% of the Wehrmacht reportedly listened. Delmer's 'Aspidistra' transmitter at 600 kW could imitate Hamburg's signal from a barn in Sussex."
     }
   ],
   "prestige_into": "talk-radio",

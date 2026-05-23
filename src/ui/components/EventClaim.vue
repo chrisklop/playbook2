@@ -1,10 +1,22 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { state, claimActiveOffer } from '../state';
+import { state, claimActiveOffer, currentBundle } from '../state';
 import { offerFractionRemaining, bonusFractionRemaining } from '../../game/ticker-events';
+import InfoButton from './InfoButton.vue';
 
 const offer = computed(() => state.activeOffer);
 const bonus = computed(() => state.activeBonus);
+
+// Look up the source event definition for the current offer/bonus so we
+// can surface its factoid + codex_link via the ⓘ button. Pulls from the
+// active era's event pool. Returns null when no definition matches (the
+// banner just hides the ⓘ).
+const sourceEventId = computed(() => offer.value?.event_id ?? bonus.value?.source_event_id ?? null);
+const sourceEventDef = computed(() => {
+  const id = sourceEventId.value;
+  if (!id) return null;
+  return currentBundle.value.events.find(e => e.id === id) ?? null;
+});
 
 const offerFraction = computed(() =>
   offer.value ? offerFractionRemaining(offer.value, state.nowMs) : 0,
@@ -23,6 +35,13 @@ const bonusSecondsLeft = computed(() => {
   <!-- Active claim offer: pulsing call-to-action with a draining timer bar -->
   <div v-if="offer" class="event-claim" :class="{ frenzy: offer.is_frenzy }">
     <div class="headline">{{ offer.headline }}</div>
+    <InfoButton
+      v-if="sourceEventDef?.factoid"
+      class="event-info"
+      :factoid="sourceEventDef.factoid"
+      :codex-link="sourceEventDef.codex_link"
+      context="Event"
+    />
     <button
       type="button"
       class="btn-riso claim-btn"
@@ -40,11 +59,26 @@ const bonusSecondsLeft = computed(() => {
       <template v-else>×{{ bonus.value }} ACTIVE</template>
     </span>
     <span class="bonus-time">{{ bonusSecondsLeft }}s</span>
+    <InfoButton
+      v-if="sourceEventDef?.factoid"
+      class="event-info"
+      :factoid="sourceEventDef.factoid"
+      :codex-link="sourceEventDef.codex_link"
+      context="Event (active)"
+    />
     <div class="bonus-bar" :style="{ width: bonusFraction * 100 + '%' }"></div>
   </div>
 </template>
 
 <style scoped>
+/* ⓘ button perched at the top-right of the event banner. */
+.event-info {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  z-index: 4;
+}
+
 .event-claim {
   position: relative;
   margin: 0;
