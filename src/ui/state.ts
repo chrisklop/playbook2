@@ -131,21 +131,9 @@ watch(
   { immediate: true },
 );
 
-// Live page title. The OS task switcher / browser tab shows this whenever
-// Playbook isn't focused — letting the count peek at the player keeps the
-// game on their mental radar without being intrusive. Cookie-Clicker move.
-if (typeof document !== 'undefined') {
-  watch(
-    () => ({ rumor: state.rumor, era: currentEra.value.display_name }),
-    ({ rumor, era }) => {
-      const fmt = formatResource(rumor);
-      document.title = rumor > 0
-        ? `${fmt} Rumor · Playbook · ${era}`
-        : `Playbook · ${era}`;
-    },
-    { immediate: true },
-  );
-}
+// Live page title moved below currentEra declaration — see comment there.
+// (Was placed here originally, which TDZ'd because the immediate-true watcher
+// fired before currentEra was initialised.)
 
 // Frenzy music swap — fire the cue the moment an is_frenzy bonus goes active,
 // not on every state.activeBonus mutation (otherwise the watcher would also
@@ -216,6 +204,25 @@ export const currentEra = computed(() => currentBundle.value.era);
 export const currentTheme = computed(() => currentBundle.value.theme);
 export const currentTicker = computed(() => currentBundle.value.ticker);
 export const currentCopy = computed(() => currentBundle.value.copy);
+
+// Live page title. The OS task switcher / browser tab shows this whenever
+// Playbook isn't focused — letting the count peek at the player keeps the
+// game on their mental radar. MUST be declared after currentEra; the
+// { immediate: true } watcher fires at module-init time, so referencing
+// currentEra.value above its own declaration would TDZ on production builds
+// (where Rollup hoisting is more aggressive than dev mode).
+if (typeof document !== 'undefined') {
+  watch(
+    () => ({ rumor: state.rumor, era: currentEra.value.display_name }),
+    ({ rumor, era }) => {
+      const fmt = formatResource(rumor);
+      document.title = rumor > 0
+        ? `${fmt} Rumor · Playbook · ${era}`
+        : `Playbook · ${era}`;
+    },
+    { immediate: true },
+  );
+}
 
 /** Convenience: is the player's manager hired for this generator? */
 export function isManagerHired(genId: string): boolean {

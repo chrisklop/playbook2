@@ -12,12 +12,24 @@ type Tier = 1 | 10 | 100 | 'max' | 'next';
 //   ×100 once any generator has reached 10 owned (or prestigeCount > 0)
 //   MAX  + NEXT  after the first prestige
 // Derived from existing state so no save-format migration is needed.
+// Progressive bulk-buy unlocks. Each tier requires the previous one's
+// trigger to have happened, so the player sees the bar grow in
+// natural order — ×1, then ×10, then ×100, then MAX + NEXT.
+//   ×10:  any generator reaches 10 owned (you've experienced bulk-1-by-1
+//         enough to benefit from a wider gesture)
+//   ×100: x10 already unlocked AND any generator reaches 100 owned
+//   MAX/NEXT: prestigeCount > 0 (returning runs keep the full toolbox)
+// Prior version gated ×10 on managersHired which let ×100 unlock first
+// (because owned ≥ 10 happens before you hire a manager). That bug
+// produced bars showing ×1, ×100 with no ×10 in between.
+const anyOwnedAtLeast = (n: number) =>
+  Object.values(state.ownedByGenerator).some(v => v >= n);
+
 const x10Unlocked = computed(() =>
-  state.prestigeCount > 0 || state.managersHired.size > 0,
+  state.prestigeCount > 0 || anyOwnedAtLeast(10),
 );
 const x100Unlocked = computed(() =>
-  state.prestigeCount > 0 ||
-  Object.values(state.ownedByGenerator).some(v => v >= 10),
+  state.prestigeCount > 0 || (x10Unlocked.value && anyOwnedAtLeast(100)),
 );
 const maxUnlocked = computed(() => state.prestigeCount > 0);
 const nextUnlocked = computed(() => state.prestigeCount > 0);
