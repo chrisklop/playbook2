@@ -19,6 +19,15 @@ import { playMilestone } from '../audio';
 import { currentCopy } from '../state';
 import InfoButton from './InfoButton.vue';
 import { GENERATOR_ICONS } from '../generator-icons';
+import {
+  openBoostMinigame,
+  tileBoostReady,
+  tileBoostCooldownFraction,
+  tileBoostMultiplier,
+  tileBoostSecondsLeft,
+} from '../state';
+import { currentEra as currentEraRef } from '../state';
+import { Zap } from '@lucide/vue';
 
 // Resource name pulled from the era's copy.json so labels stay era-appropriate
 // (Era 1 says "Rumor", Era 2 says "Rumour", Era 4 says "Rumor", etc.).
@@ -29,6 +38,23 @@ const props = defineProps<{ gen: GeneratorTier }>();
 // Lucide SVG component for this generator, if mapped. Falls back to the
 // content-defined emoji icon when no Lucide mapping exists.
 const lucideIcon = computed(() => GENERATOR_ICONS[props.gen.id] ?? null);
+
+// Era-7 boost-mechanic state. The button only renders for the MAGA era
+// AND only after the tile's manager is hired. POC scope — promote to
+// other eras once the design is validated.
+const isMagaFirehose = computed(() => currentEraRef.value.id === 'maga-firehose');
+const boostReady = computed(() => tileBoostReady(props.gen.id));
+const boostCooldownProgress = computed(() => tileBoostCooldownFraction(props.gen.id));
+const activeBoostMult = computed(() => tileBoostMultiplier(props.gen.id));
+const activeBoostSecs = computed(() => tileBoostSecondsLeft(props.gen.id));
+const showBoostButton = computed(() =>
+  isMagaFirehose.value && isManagerHired(props.gen.id),
+);
+function tapBoost(e: Event) {
+  e.stopPropagation();
+  if (!boostReady.value) return;
+  openBoostMinigame(props.gen.id);
+}
 
 const flashing = ref(false);
 const milestonePopText = ref<string | null>(null);
@@ -386,6 +412,42 @@ function tapBuyUpgrade(e: Event) {
           <span v-else-if="managerHired" class="mgr-on">✓ {{ gen.manager_name }} running</span>
         </div>
       </div>
+
+      <!-- Era-7 boost button (POC): tile-corner FAB visible only when
+           the manager is hired. Shows cooldown ring while charging,
+           an active-boost pulse when the multiplier is live, and a
+           clickable accent state when ready. -->
+      <button
+        v-if="showBoostButton"
+        type="button"
+        class="boost-fab"
+        :class="{
+          ready: boostReady,
+          'cooling': !boostReady,
+          'active-boost': activeBoostMult > 1,
+        }"
+        :disabled="!boostReady"
+        :title="boostReady ? 'Boost — timing minigame' : 'Boost cooling down'"
+        @click="tapBoost"
+      >
+        <Zap class="boost-icon" :stroke-width="2.5" />
+        <span v-if="activeBoostMult > 1" class="boost-active-label">
+          ×{{ activeBoostMult }} · {{ activeBoostSecs }}s
+        </span>
+        <svg v-else-if="!boostReady" class="boost-ring" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="2" opacity="0.18" />
+          <circle
+            cx="16" cy="16" r="14"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            :stroke-dasharray="2 * Math.PI * 14"
+            :stroke-dashoffset="(1 - boostCooldownProgress) * 2 * Math.PI * 14"
+            transform="rotate(-90 16 16)"
+          />
+        </svg>
+      </button>
 
       <!-- Boost-ladder hint row — only meaningful once you own at least one. -->
       <div class="row hint" v-if="owned > 0">
@@ -859,5 +921,83 @@ function tapBuyUpgrade(e: Event) {
 @keyframes ms-pulse {
   0%, 100% { opacity: 0.2; }
   50%      { opacity: 0.85; }
+}
+
+/* Era-7 boost FAB — small circular button in the tile's bottom-right
+   corner. Ready: accent solid + soft glow. Cooling: dim with a circular
+   progress ring overlay. Active boost: pulses with a small ×N label. */
+.boost-fab {
+  position: absolute;
+  right: 10px;
+  bottom: 14px;
+  z-index: 4;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  border: 0;
+  background: var(--accent-solid);
+  color: var(--accent-contrast);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.35),
+    0 6px 16px color-mix(in srgb, var(--accent-solid) 45%, transparent);
+  transition: transform 120ms cubic-bezier(0.2, 0.8, 0.3, 1), box-shadow 120ms ease;
+}
+.boost-fab.ready { animation: boost-ready-pulse 1.6s ease-in-out infinite; }
+.boost-fab.ready:hover { transform: scale(1.08); }
+.boost-fab.ready:active { transform: scale(0.94); }
+.boost-fab.cooling {
+  background: var(--surface-3);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  animation: none;
+}
+.boost-fab.active-boost {
+  background: var(--accent-solid);
+  color: var(--accent-contrast);
+  width: auto;
+  height: 32px;
+  padding: 0 12px 0 10px;
+  border-radius: 999px;
+  animation: boost-active-pulse 0.8s ease-in-out infinite;
+}
+.boost-fab .boost-icon { width: 18px; height: 18px; flex-shrink: 0; }
+.boost-fab .boost-active-label {
+  font-family: 'JetBrains Mono', 'Menlo', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 6px;
+  letter-spacing: 0.5px;
+}
+.boost-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+@keyframes boost-ready-pulse {
+  0%, 100% {
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.35),
+      0 0 0 0 color-mix(in srgb, var(--accent-solid) 0%, transparent),
+      0 6px 16px color-mix(in srgb, var(--accent-solid) 45%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.35),
+      0 0 0 8px color-mix(in srgb, var(--accent-solid) 22%, transparent),
+      0 8px 22px color-mix(in srgb, var(--accent-solid) 60%, transparent);
+  }
+}
+@keyframes boost-active-pulse {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.18); }
 }
 </style>

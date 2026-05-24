@@ -9,6 +9,7 @@ import AudioControls from './components/AudioControls.vue';
 import EraTransitionOverlay from './components/EraTransitionOverlay.vue';
 import PowerUpDock from './components/PowerUpDock.vue';
 import TimeWarpOverlay from './components/TimeWarpOverlay.vue';
+import BoostMinigame from './components/BoostMinigame.vue';
 import { activeTab } from './nav-state';
 </script>
 
@@ -30,6 +31,10 @@ import { activeTab } from './nav-state';
          are available. Triggers TimeWarpOverlay on USE. -->
     <PowerUpDock />
     <TimeWarpOverlay />
+    <!-- Era-7 boost timing minigame (proof of concept). Only renders
+         markup when state.activeMinigame is set, so it's inert outside
+         the minigame moment regardless of which era you're in. -->
+    <BoostMinigame />
   </div>
 </template>
 

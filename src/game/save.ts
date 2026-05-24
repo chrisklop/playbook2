@@ -55,6 +55,13 @@ export interface SaveState {
   // v8 — Time Warp power-ups available. Each one grants 1 hour of current
   // production rate when used. Awarded +1 per prestige; new saves start at 3.
   time_warps_available?: number;
+  // v9 — Per-tile boost state (Era 7 POC). Saved so an in-flight boost
+  // survives reload + so the cooldown clock isn't refreshed for free.
+  tile_boosts?: Record<string, {
+    multiplier: number;
+    expires_at_ms: number;
+    cooldown_ready_at_ms: number;
+  }>;
 }
 
 const V2_DEFAULTS = {

@@ -91,6 +91,24 @@ export const state = reactive({
     hours: number;
     rumorGained: number;
   },
+  // v9 — Per-tile boost (Era 7 proof-of-concept). Each entry: multiplier
+  // active on this generator's production while now < expiresAtMs;
+  // boost button is gated by cooldownReadyAtMs. Persisted so an in-flight
+  // boost doesn't reset when the player reloads.
+  tileBoosts: {} as Record<string, {
+    multiplier: number;
+    expiresAtMs: number;
+    cooldownReadyAtMs: number;
+  }>,
+  // Ephemeral timing-minigame state. Non-null only while the minigame
+  // overlay is on screen. The Vue component manages cursor animation
+  // and target-zone width locally; this slice tracks which tile is
+  // being boosted and the running streak.
+  activeMinigame: null as null | {
+    genId: string;
+    round: number;             // 1..5
+    currentMultiplier: number; // 1 → 2 → 4 → 8 → 16 → 32
+  },
   // v7 — Cinematic era transition state. Non-null only while the prestige
   // overlay is on screen; ephemeral (not saved). Drives EraTransitionOverlay.
   //   phase 'leaving'  → showing outgoing era's bridge copy
@@ -370,11 +388,6 @@ export const productionPerSecond = computed(() => {
   for (const gen of currentEra.value.generators) {
     const owned = state.ownedByGenerator[gen.id] ?? 0;
     if (owned <= 0) continue;
-    // Only count generators that are actually producing right now: manager
-    // hired (continuous), or a cycle currently in flight (will complete and
-    // pay out). Idle owned-but-untapped generators contribute 0 — the rate
-    // display is "what you're earning passively," not "what these tiles
-    // could earn if you kept tapping them."
     const willProduce =
       state.managersHired.has(gen.id) || (state.cycleProgress[gen.id] ?? 0) > 0;
     if (!willProduce) continue;
@@ -383,10 +396,123 @@ export const productionPerSecond = computed(() => {
       state.techniqueMastery,
       gen.technique_tag as TechniqueId,
     );
-    total += generatorProduction(gen, owned, globalMult) * upgradeMult * eventMult * masteryMult;
+    const boostMult = tileBoostMultiplier(gen.id);
+    total += generatorProduction(gen, owned, globalMult) * upgradeMult * eventMult * masteryMult * boostMult;
   }
   return total;
 });
+
+/**
+ * Tile boost multiplier (Era 7 POC). Returns the active per-tile boost
+ * multiplier if one is in flight; 1 otherwise. Boosts auto-expire by
+ * timestamp — no cleanup tick needed, just a "is it still alive?" check.
+ */
+export function tileBoostMultiplier(genId: string): number {
+  const b = state.tileBoosts[genId];
+  if (!b) return 1;
+  if (state.nowMs >= b.expiresAtMs) return 1;
+  return b.multiplier;
+}
+
+/** True if a tile's boost button is off cooldown and ready to use. */
+export function tileBoostReady(genId: string): boolean {
+  const b = state.tileBoosts[genId];
+  if (!b) return true;
+  return state.nowMs >= b.cooldownReadyAtMs;
+}
+
+/** Cooldown progress 0..1 for the tile boost UI ring. 1 = ready. */
+export function tileBoostCooldownFraction(genId: string): number {
+  const b = state.tileBoosts[genId];
+  if (!b) return 1;
+  const remaining = b.cooldownReadyAtMs - state.nowMs;
+  if (remaining <= 0) return 1;
+  return Math.max(0, 1 - remaining / BOOST_COOLDOWN_MS);
+}
+
+/** Seconds remaining on the currently-active boost (0 if none / expired). */
+export function tileBoostSecondsLeft(genId: string): number {
+  const b = state.tileBoosts[genId];
+  if (!b) return 0;
+  const ms = b.expiresAtMs - state.nowMs;
+  return ms > 0 ? Math.ceil(ms / 1000) : 0;
+}
+
+export const BOOST_DURATION_MS = 30_000;   // 30s active boost
+export const BOOST_COOLDOWN_MS = 5 * 60_000; // 5min cooldown
+
+/**
+ * Target-zone width (as a fraction of the timing bar) for each round.
+ * Narrows aggressively — round 1 is forgiving, round 5 is a real timing test.
+ * Risk/reward: stop at a safe round or push for the 32× max.
+ */
+export const BOOST_TARGET_WIDTH: readonly number[] = [0.30, 0.22, 0.14, 0.09, 0.05];
+
+/**
+ * Open the timing minigame for a tile. Pre-requisites: manager hired
+ * (UI gates this), cooldown ready, no other minigame in flight. Resets
+ * the running multiplier to 1× and round to 1.
+ */
+export function openBoostMinigame(genId: string): boolean {
+  if (state.activeMinigame) return false;
+  if (!tileBoostReady(genId)) return false;
+  if (!state.managersHired.has(genId)) return false;
+  state.activeMinigame = { genId, round: 1, currentMultiplier: 1 };
+  return true;
+}
+
+/**
+ * Advance the minigame on a successful tap (cursor inside target zone).
+ * Doubles the running multiplier; advances to the next round. If the
+ * player has completed round 5 (32×), commits the boost.
+ */
+export function minigameSuccess(): void {
+  const m = state.activeMinigame;
+  if (!m) return;
+  m.currentMultiplier *= 2;
+  if (m.round >= 5) {
+    commitBoost(m.genId, m.currentMultiplier);
+    return;
+  }
+  m.round += 1;
+}
+
+/**
+ * On a missed tap, commit the boost at the current multiplier (the
+ * streak ends but the player keeps the gains so far). If they hadn't
+ * landed any successes yet, the multiplier stays 1× → effectively a
+ * no-op boost (no penalty beyond cooldown).
+ */
+export function minigameMiss(): void {
+  const m = state.activeMinigame;
+  if (!m) return;
+  commitBoost(m.genId, m.currentMultiplier);
+}
+
+/** Player cancels the minigame (back button etc.) — same as miss. */
+export function minigameCancel(): void {
+  minigameMiss();
+}
+
+function commitBoost(genId: string, multiplier: number): void {
+  const now = Date.now();
+  if (multiplier > 1) {
+    state.tileBoosts[genId] = {
+      multiplier,
+      expiresAtMs: now + BOOST_DURATION_MS,
+      cooldownReadyAtMs: now + BOOST_COOLDOWN_MS,
+    };
+  } else {
+    // Whiffed round 1 — no boost, just start the cooldown so the player
+    // can't spam the minigame for free retries.
+    state.tileBoosts[genId] = {
+      multiplier: 1,
+      expiresAtMs: now,
+      cooldownReadyAtMs: now + BOOST_COOLDOWN_MS,
+    };
+  }
+  state.activeMinigame = null;
+}
 
 /**
  * "Potential" production rate — what every owned generator *would* earn if
@@ -666,6 +792,24 @@ export function applyLoadedSave(save: SaveState): void {
   // whatever they have, including 0 — they earn warps via prestige from now on.
   state.timeWarpsAvailable = save.time_warps_available ?? 3;
 
+  // Restore per-tile boosts, dropping anything whose cooldown is also
+  // expired (no longer relevant). An in-flight boost (now < expires_at)
+  // keeps ticking; a finished boost still locks the cooldown until
+  // cooldown_ready_at.
+  state.tileBoosts = {};
+  if (save.tile_boosts) {
+    const now = Date.now();
+    for (const [id, b] of Object.entries(save.tile_boosts)) {
+      if (now < b.cooldown_ready_at_ms) {
+        state.tileBoosts[id] = {
+          multiplier: b.multiplier,
+          expiresAtMs: b.expires_at_ms,
+          cooldownReadyAtMs: b.cooldown_ready_at_ms,
+        };
+      }
+    }
+  }
+
   // Backward compatibility: pre-v3 players who reached auto_unlock_at on a
   // click-driven generator deserve the manager free (we changed the mechanic).
   // Inspect the current era's generators and auto-hire eligible managers.
@@ -712,6 +856,16 @@ export function snapshotSave(): SaveState {
     codex_mastered: Array.from(state.codexMastered),
     loops_completed: state.loopsCompleted,
     time_warps_available: state.timeWarpsAvailable,
+    tile_boosts: Object.fromEntries(
+      Object.entries(state.tileBoosts).map(([id, b]) => [
+        id,
+        {
+          multiplier: b.multiplier,
+          expires_at_ms: b.expiresAtMs,
+          cooldown_ready_at_ms: b.cooldownReadyAtMs,
+        },
+      ]),
+    ),
   };
 }
 
@@ -779,7 +933,8 @@ if (typeof window !== 'undefined') {
           state.techniqueMastery,
           gen.technique_tag as TechniqueId,
         );
-        const payout = payoutPerCycle(gen, owned, globalMult, upgradeMult) * eventMult * masteryMult;
+        const boostMult = tileBoostMultiplier(gen.id);
+        const payout = payoutPerCycle(gen, owned, globalMult, upgradeMult) * eventMult * masteryMult * boostMult;
         state.rumor += payout;
         state.lifetimeRumor += payout;
         state.lastPayout[gen.id] = { amount: payout, ts: now };
