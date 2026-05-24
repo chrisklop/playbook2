@@ -381,3 +381,58 @@
   border-top: 1px solid var(--border) !important;
   color: var(--text-strong);
 }
+
+/* Era 7 button hierarchy — primary actions wear ruby (already set on
+   .buy-pill and .btn-riso-upgrade above). SECONDARY actions like Hire
+   Manager need a distinct treatment — outlined ruby against the
+   neutral surface — so they read as "actionable when affordable"
+   rather than "grayed out." Disabled state stays neutral-faded. */
+[data-era="maga-firehose"] .btn-riso.btn-riso-secondary:not(:disabled):not(.disabled) {
+  background: transparent !important;
+  color: var(--accent-text) !important;
+  border: 1px solid var(--accent-solid) !important;
+  box-shadow: 0 0 0 0 transparent !important;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease !important;
+}
+[data-era="maga-firehose"] .btn-riso.btn-riso-secondary:not(:disabled):not(.disabled):hover {
+  background: color-mix(in srgb, var(--accent-solid) 14%, transparent) !important;
+  color: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+}
+[data-era="maga-firehose"] .btn-riso.btn-riso-secondary:disabled,
+[data-era="maga-firehose"] .btn-riso.btn-riso-secondary.disabled {
+  background: var(--surface-2) !important;
+  color: var(--text-faint) !important;
+  border-color: var(--border) !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+}
+
+/* Same rule for the Boost ★ upgrade pill when it's the secondary on
+   a tile — keep it ruby-outlined to match the Hire treatment. The
+   primary .btn-riso-upgrade override above gives it solid ruby; only
+   the ★ Boost variant inside .mgr needs the outlined look. We use the
+   ★ marker (it lives inside .mgr) to scope. */
+[data-era="maga-firehose"] .mgr .btn-riso.btn-riso-upgrade:not(:disabled):not(.disabled) {
+  background: transparent !important;
+  color: var(--accent-text) !important;
+  border: 1px solid var(--accent-solid) !important;
+}
+[data-era="maga-firehose"] .mgr .btn-riso.btn-riso-upgrade:not(:disabled):not(.disabled):hover {
+  background: color-mix(in srgb, var(--accent-solid) 14%, transparent) !important;
+  color: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+}
+
+/* Confirm-modal action row — give "Stay" and "Cross the Threshold" the
+   same primary/secondary contrast as the tile buttons. */
+[data-era="maga-firehose"] .modal .row .btn-riso.btn-riso-secondary:not(:disabled) {
+  background: transparent !important;
+  color: var(--text-muted) !important;
+  border: 1px solid var(--border-2) !important;
+}
+[data-era="maga-firehose"] .modal .row .btn-riso.btn-riso-secondary:not(:disabled):hover {
+  color: var(--text-strong) !important;
+  border-color: var(--border-3) !important;
+  background: var(--surface-2) !important;
+}
