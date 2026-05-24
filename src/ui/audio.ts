@@ -170,6 +170,34 @@ export function playPrestige(): void {
   tone(880, 0.4, 'sine', 0.1, 0.4);
 }
 
+/**
+ * Time Warp — rising whoosh into a satisfying resolve. Three stacked
+ * sweeps with frequency-sweep oscillators give it the "speeding up,
+ * then arriving" feel without needing an external sample.
+ */
+export function playTimeWarp(): void {
+  const c = getCtx();
+  if (!c) return;
+  const t0 = c.currentTime;
+  // Rising sweep — frequency ramps from 220 → 1320 over 1.4s.
+  const osc = c.createOscillator();
+  const gain = c.createGain();
+  osc.type = 'sawtooth';
+  osc.frequency.setValueAtTime(220, t0);
+  osc.frequency.exponentialRampToValueAtTime(1320, t0 + 1.4);
+  gain.gain.setValueAtTime(0.0001, t0);
+  gain.gain.exponentialRampToValueAtTime(0.05, t0 + 0.15);
+  gain.gain.exponentialRampToValueAtTime(0.08, t0 + 1.2);
+  gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.7);
+  osc.connect(gain);
+  gain.connect(c.destination);
+  osc.start(t0);
+  osc.stop(t0 + 1.75);
+  // High shimmer on the resolve.
+  tone(1760, 0.5, 'sine', 0.06, 1.35);
+  tone(2349, 0.4, 'sine', 0.04, 1.45);
+}
+
 // ============================================================
 // Musical cues — short one-shot clips that temporarily duck/replace
 // the main background loop. Used for frenzy bursts and the prestige

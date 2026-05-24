@@ -52,6 +52,9 @@ export interface SaveState {
   // v6 — historical loops completed (incremented each time prestige goes
   // backward in era ordinal — i.e., Era 4 -> Era 1)
   loops_completed?: number;
+  // v8 — Time Warp power-ups available. Each one grants 1 hour of current
+  // production rate when used. Awarded +1 per prestige; new saves start at 3.
+  time_warps_available?: number;
 }
 
 const V2_DEFAULTS = {

@@ -35,6 +35,7 @@ import {
   playUpgrade,
   playMilestone,
   playPrestige,
+  playTimeWarp,
   setMuted,
   setMusicMuted,
   setMusicVolume,
@@ -80,6 +81,16 @@ export const state = reactive({
   codexMastered: new Set<string>(),
   // v6 — Loops completed (each time prestige carries you back to an earlier era)
   loopsCompleted: 0,
+  // v8 — Power-ups. Time Warps: each one grants 1 hour of current
+  // production rate when used. Awarded +1 per prestige; fresh saves
+  // start with 3 to introduce the mechanic.
+  timeWarpsAvailable: 3,
+  // Ephemeral animation state for the fast-forward overlay. Non-null
+  // only while the animation is on screen; not saved.
+  timeWarpAnimation: null as null | {
+    hours: number;
+    rumorGained: number;
+  },
   // v7 — Cinematic era transition state. Non-null only while the prestige
   // overlay is on screen; ephemeral (not saved). Drives EraTransitionOverlay.
   //   phase 'leaving'  → showing outgoing era's bridge copy
@@ -365,6 +376,59 @@ export const productionPerSecond = computed(() => {
   return total;
 });
 
+/**
+ * "Potential" production rate — what every owned generator *would* earn if
+ * fully active, ignoring the willProduce gate that productionPerSecond uses.
+ * This is the rate used by Time Warp payouts so early-game players (who
+ * haven't hired managers yet) get a meaningful boost from a Warp rather than
+ * zero — the Warp represents an hour of *focused* play, not an hour of idle.
+ */
+export const productionPotentialPerSecond = computed(() => {
+  const globalMult = carryoverMultiplier(state.memeticInheritance);
+  const eventMult = bonusMultiplier(state.activeBonus, state.nowMs);
+  let total = 0;
+  for (const gen of currentEra.value.generators) {
+    const owned = state.ownedByGenerator[gen.id] ?? 0;
+    if (owned <= 0) continue;
+    const upgradeMult = upgradeMultFor(gen.id);
+    const masteryMult = multiplierForTechnique(
+      state.techniqueMastery,
+      gen.technique_tag as TechniqueId,
+    );
+    total += generatorProduction(gen, owned, globalMult) * upgradeMult * eventMult * masteryMult;
+  }
+  return total;
+});
+
+/**
+ * Time Warp: spend one power-up to receive `hours` of current production
+ * instantly. Triggers the fast-forward overlay animation by setting
+ * state.timeWarpAnimation, which the overlay component watches.
+ *
+ * Math: rumorGained = productionPotentialPerSecond × hours × 3600
+ * Uses the "potential" rate (not productionPerSecond) so a Warp granted
+ * to an early-game player without managers still produces meaningful
+ * rumor — the Warp simulates focused play, not passive idle.
+ *
+ * No-op if no warps available. Returns the rumor amount granted (0 on no-op).
+ */
+export function useTimeWarp(hours: number = 1): number {
+  if (state.timeWarpsAvailable <= 0) return 0;
+  if (state.timeWarpAnimation) return 0; // animation already in flight
+  const rate = productionPotentialPerSecond.value;
+  const rumorGained = rate * hours * 3600;
+  state.timeWarpsAvailable -= 1;
+  state.rumor += rumorGained;
+  state.lifetimeRumor += rumorGained;
+  state.timeWarpAnimation = { hours, rumorGained };
+  playTimeWarp();
+  // Animation runs ~2s; clear afterward so the overlay tears down.
+  window.setTimeout(() => {
+    state.timeWarpAnimation = null;
+  }, 2200);
+  return rumorGained;
+}
+
 /** Mastery multiplier for one generator — used by tile UIs that need to
  *  preview the bonus alongside upgrades/milestones. */
 export function masteryMultFor(genId: string): number {
@@ -512,6 +576,9 @@ export function performPrestige(): void {
   playCue('prestige');
   state.memeticInheritance += newMI;
   state.prestigeCount += 1;
+  // Each prestige awards one Time Warp power-up — a documented reason to
+  // ascend even when the player isn't milestone-hunting. Stacks across runs.
+  state.timeWarpsAvailable += 1;
   state.rumor = 0;
   state.lifetimeRumor = 0;
   state.ownedByGenerator = {};
@@ -583,6 +650,9 @@ export function applyLoadedSave(save: SaveState): void {
   state.techniqueMastery = { ...(save.technique_mastery ?? {}) };
   state.codexMastered = new Set(save.codex_mastered ?? []);
   state.loopsCompleted = save.loops_completed ?? 0;
+  // Default 3 only on a fresh save (no saved value). Existing players keep
+  // whatever they have, including 0 — they earn warps via prestige from now on.
+  state.timeWarpsAvailable = save.time_warps_available ?? 3;
 
   // Backward compatibility: pre-v3 players who reached auto_unlock_at on a
   // click-driven generator deserve the manager free (we changed the mechanic).
@@ -629,6 +699,7 @@ export function snapshotSave(): SaveState {
     technique_mastery: { ...state.techniqueMastery },
     codex_mastered: Array.from(state.codexMastered),
     loops_completed: state.loopsCompleted,
+    time_warps_available: state.timeWarpsAvailable,
   };
 }
 

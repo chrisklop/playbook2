@@ -7,6 +7,8 @@ import MoreTab from './tabs/MoreTab.vue';
 import ToastStack from './components/ToastStack.vue';
 import AudioControls from './components/AudioControls.vue';
 import EraTransitionOverlay from './components/EraTransitionOverlay.vue';
+import PowerUpDock from './components/PowerUpDock.vue';
+import TimeWarpOverlay from './components/TimeWarpOverlay.vue';
 import { activeTab } from './nav-state';
 </script>
 
@@ -24,6 +26,10 @@ import { activeTab } from './nav-state';
     <!-- Cinematic prestige overlay — fixed-position above everything,
          driven by state.eraTransition. Inert when no transition is active. -->
     <EraTransitionOverlay />
+    <!-- Power-up FAB + panel. Floats above tab bar; only shown when warps
+         are available. Triggers TimeWarpOverlay on USE. -->
+    <PowerUpDock />
+    <TimeWarpOverlay />
   </div>
 </template>
 
