@@ -63,6 +63,11 @@ export function applyTheme(theme: Theme): void {
   document.body.style.background = theme.palette.background;
   document.body.style.color = theme.palette.text;
 
+  // Era marker on the root — lets CSS scope per-era visual experiments.
+  // [data-era="maga-firehose"] overrides live in chrome.css and only
+  // apply when this era is active.
+  document.documentElement.setAttribute('data-era', theme.era_id);
+
   // Chrome accent — pulls the era's chosen Radix palette into the
   // --accent-* tokens that chrome.css surfaces consume. When absent,
   // the chrome default (iris) stays in place.

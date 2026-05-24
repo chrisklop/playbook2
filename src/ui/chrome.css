@@ -146,3 +146,238 @@
   background: var(--accent-hover);
   border-color: var(--accent-hover);
 }
+
+/* =====================================================================
+   Era 7 (MAGA & The Firehose) — modernization experiment
+   ---------------------------------------------------------------------
+   Scoped overrides that apply only when documentElement[data-era=
+   "maga-firehose"] is set. Every rule here re-skins game-play surfaces
+   to a modern dark-web aesthetic, keeping MAGA red strictly as accent
+   colour on milestone gauges, primary actions, and the active bulk pill.
+   If this lands well, we promote to other eras.
+   ===================================================================== */
+
+[data-era="maga-firehose"] body,
+[data-era="maga-firehose"] .app-shell {
+  background: var(--bg) !important;
+  color: var(--text-strong);
+}
+
+/* Chrome on the play tab. The era's red bleed-everywhere becomes
+   neutral mauve-dark; red survives as accent only. */
+[data-era="maga-firehose"] .play .chrome {
+  background: var(--bg);
+  box-shadow: none;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Card refresh — soft, modern, generous spacing. */
+[data-era="maga-firehose"] .card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text-strong);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 6px 24px rgba(0, 0, 0, 0.28);
+  transition:
+    transform 160ms cubic-bezier(0.2, 0.8, 0.3, 1),
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+[data-era="maga-firehose"] .card:hover {
+  transform: translateY(-1px);
+  border-color: var(--border-2);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 14px 36px rgba(0, 0, 0, 0.36);
+}
+[data-era="maga-firehose"] .card .content {
+  padding: 14px 18px 16px;
+}
+
+/* Typography — mixed case, modern weight, no all-caps shouting. */
+[data-era="maga-firehose"] .card .title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.005em !important;
+  text-transform: none !important;
+  color: var(--text-strong);
+}
+[data-era="maga-firehose"] .card .owned-pill {
+  background: var(--surface-3);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  font-family: 'JetBrains Mono', 'Menlo', monospace;
+  border-radius: 4px;
+}
+[data-era="maga-firehose"] .card .rate-verb,
+[data-era="maga-firehose"] .card .rate-unit {
+  color: var(--text-muted);
+  text-transform: none;
+  letter-spacing: 0;
+}
+[data-era="maga-firehose"] .card .rate-num {
+  color: var(--accent-text);
+  font-family: 'JetBrains Mono', 'Menlo', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+[data-era="maga-firehose"] .card .hint-text {
+  color: var(--text-muted);
+  font-style: normal;
+  font-size: 11px;
+}
+[data-era="maga-firehose"] .card .icon-svg {
+  color: var(--accent-text);
+}
+
+/* Modern button styles — replace .btn-riso offset shadows with
+   solid surface + soft shadow. Era 7 only. */
+[data-era="maga-firehose"] .btn-riso {
+  background: var(--surface-2) !important;
+  color: var(--text-strong) !important;
+  border: 1px solid var(--border-2) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  transition: background 120ms ease, transform 100ms ease, box-shadow 120ms ease !important;
+}
+[data-era="maga-firehose"] .btn-riso:hover {
+  background: var(--surface-3) !important;
+}
+[data-era="maga-firehose"] .btn-riso:active {
+  transform: translateY(1px) !important;
+}
+
+/* Primary actions wear the era accent. */
+[data-era="maga-firehose"] .btn-riso.btn-riso-upgrade,
+[data-era="maga-firehose"] .ascend-btn {
+  background: var(--accent-solid) !important;
+  color: var(--accent-contrast) !important;
+  border-color: var(--accent-solid) !important;
+}
+[data-era="maga-firehose"] .btn-riso.btn-riso-upgrade:hover,
+[data-era="maga-firehose"] .ascend-btn:hover {
+  background: var(--accent-hover) !important;
+}
+
+/* Buy pill — primary action on each tile. */
+[data-era="maga-firehose"] .card .buy-pill {
+  background: var(--accent-solid) !important;
+  color: var(--accent-contrast) !important;
+  border-color: var(--accent-solid) !important;
+}
+[data-era="maga-firehose"] .card .buy-pill:hover { background: var(--accent-hover) !important; }
+[data-era="maga-firehose"] .card .buy-pill.disabled {
+  background: var(--surface-2) !important;
+  color: var(--text-faint) !important;
+  border-color: var(--border) !important;
+}
+[data-era="maga-firehose"] .card .buy-cost,
+[data-era="maga-firehose"] .card .hire-cost {
+  opacity: 0.85;
+  font-family: 'JetBrains Mono', 'Menlo', monospace;
+  font-size: 10px;
+}
+
+/* Bulk-buy bar — surface neutral, selected pill wears the red. */
+[data-era="maga-firehose"] .bulk-bar {
+  background: var(--bg) !important;
+  border-bottom: 1px solid var(--border) !important;
+  padding: 10px 14px 12px;
+}
+[data-era="maga-firehose"] .bulk-riso .bulk-seg {
+  background: var(--surface) !important;
+  color: var(--text-muted) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  font-family: 'JetBrains Mono', 'Menlo', monospace !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+[data-era="maga-firehose"] .bulk-riso .bulk-seg.on {
+  background: var(--accent-solid) !important;
+  color: var(--accent-contrast) !important;
+  border-color: var(--accent-solid) !important;
+}
+
+/* Masthead — keep era identity, but on neutral chrome ground. */
+[data-era="maga-firehose"] .masthead {
+  background: var(--bg) !important;
+  color: var(--text-strong) !important;
+  border-bottom: 1px solid var(--border);
+  padding: 18px 18px 14px !important;
+}
+
+/* Resource row — big numbers in mono, accent on the rate. */
+[data-era="maga-firehose"] .res-row {
+  background: var(--bg) !important;
+  color: var(--text-strong) !important;
+  border-bottom: 1px solid var(--border);
+}
+[data-era="maga-firehose"] .res-row .cell { color: var(--text-strong); }
+[data-era="maga-firehose"] .res-row .val {
+  color: var(--accent-text);
+  font-family: 'JetBrains Mono', 'Menlo', monospace !important;
+  font-weight: 700;
+}
+[data-era="maga-firehose"] .res-row .label {
+  color: var(--text-muted);
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+/* Ticker — subtle. */
+[data-era="maga-firehose"] .ticker {
+  background: var(--surface) !important;
+  color: var(--text-muted) !important;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Coach banner — modern info card. */
+[data-era="maga-firehose"] .coach {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-left: 3px solid var(--accent-solid) !important;
+  border-radius: 10px;
+  color: var(--text-strong);
+  margin: 10px 14px;
+}
+
+/* Era banner pill at the top of cards section — neutralise. */
+[data-era="maga-firehose"] .era-banner {
+  background: var(--surface) !important;
+  color: var(--text-muted) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Tab bar bottom — modern neutral. */
+[data-era="maga-firehose"] .tabbar {
+  background: var(--bg) !important;
+  border-top: 1px solid var(--border) !important;
+  color: var(--text-muted);
+}
+[data-era="maga-firehose"] .tabbar .tab {
+  color: var(--text-muted) !important;
+  font-family: 'Inter', sans-serif !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+[data-era="maga-firehose"] .tabbar .tab.active {
+  color: var(--accent-text) !important;
+}
+
+/* Progress bar to next prestige. */
+[data-era="maga-firehose"] .strip,
+[data-era="maga-firehose"] .prestige-strip {
+  background: var(--surface) !important;
+  border-top: 1px solid var(--border) !important;
+  color: var(--text-strong);
+}
