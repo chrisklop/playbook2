@@ -178,13 +178,18 @@ onBeforeUnmount(() => {
   /* position/top/left/width come from inline :style */
   z-index: 9999;
   padding: 12px 14px 14px;
-  background: var(--theme-surface, #ebe2c4);
+  /* Glass-morphism surface: translucent era-surface tint + backdrop blur
+     so the popover reads as a frosted overlay over whatever's behind it. */
+  background: color-mix(in srgb, var(--theme-surface, #ebe2c4) 82%, transparent 18%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
   color: var(--theme-text, #2a2218);
-  border: 1px solid var(--theme-border, #2a2218);
+  border: 1px solid color-mix(in srgb, var(--theme-border, #2a2218) 50%, transparent 50%);
+  border-radius: 8px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    4px 4px 0 0 var(--theme-border, #2a2218),
-    0 10px 30px rgba(0, 0, 0, 0.25);
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    0 16px 40px rgba(0, 0, 0, 0.18);
   text-align: left;
   font-family: var(--theme-font-body, -apple-system, sans-serif);
   box-sizing: border-box;

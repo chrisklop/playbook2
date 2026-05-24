@@ -20,8 +20,11 @@ import type { EventDefinition } from '../content/schema';
  * supplied by the caller (currentEra.events from the registry).
  */
 
-export const SPAWN_MIN_S = 60;   // shortest wait between events
-export const SPAWN_MAX_S = 180;  // longest wait between events
+export const SPAWN_MIN_S = 35;   // shortest wait between events
+export const SPAWN_MAX_S = 95;   // longest wait between events
+// Bumped from 60/180 (~2× density) — playtest feedback was that idle
+// stretches between events were too long, especially in late-era runs
+// where the player is already capped on milestone purchases.
 
 export interface ActiveOffer {
   event_id: string;

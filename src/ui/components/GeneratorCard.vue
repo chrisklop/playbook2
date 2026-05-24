@@ -18,12 +18,17 @@ import { formatCost, formatResource } from '../format';
 import { playMilestone } from '../audio';
 import { currentCopy } from '../state';
 import InfoButton from './InfoButton.vue';
+import { GENERATOR_ICONS } from '../generator-icons';
 
 // Resource name pulled from the era's copy.json so labels stay era-appropriate
 // (Era 1 says "Rumor", Era 2 says "Rumour", Era 4 says "Rumor", etc.).
 const resourceName = computed(() => currentCopy.value.resource_labels.rumor ?? 'Rumor');
 
 const props = defineProps<{ gen: GeneratorTier }>();
+
+// Lucide SVG component for this generator, if mapped. Falls back to the
+// content-defined emoji icon when no Lucide mapping exists.
+const lucideIcon = computed(() => GENERATOR_ICONS[props.gen.id] ?? null);
 
 const flashing = ref(false);
 const milestonePopText = ref<string | null>(null);
@@ -304,7 +309,14 @@ function tapBuyUpgrade(e: Event) {
           </div>
         </div>
         <div class="icon-slot">
-          <span class="icon-big">{{ gen.icon }}</span>
+          <component
+            v-if="lucideIcon"
+            :is="lucideIcon"
+            class="icon-svg"
+            :stroke-width="1.6"
+            aria-hidden="true"
+          />
+          <span v-else class="icon-big">{{ gen.icon }}</span>
           <Transition name="mile-pop">
             <span v-if="milestonePopText" :key="milestonePopText" class="pop-mile">{{ milestonePopText }}</span>
           </Transition>
@@ -418,10 +430,19 @@ function tapBuyUpgrade(e: Event) {
   position: relative;
   display: block;
   width: 100%;
-  margin: 0 0 4px 0;
+  margin: 0 0 8px 0;
   padding: 0;
-  background: var(--theme-surface, #ebe2c4);
+  /* Subtle two-stop vertical gradient on the era's surface colour — gives
+     the card a sense of depth and ambient lighting instead of reading as
+     a flat rectangle. The gradient is small (~6%) so per-era themes still
+     dominate the visual identity. */
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--theme-surface, #ebe2c4) 100%, white 6%) 0%,
+    var(--theme-surface, #ebe2c4) 100%
+  );
   border: 1px solid var(--theme-border, #2a2218);
+  border-radius: 6px;
   font-family: inherit;
   color: var(--theme-text, #2a2218);
   cursor: pointer;
@@ -429,44 +450,54 @@ function tapBuyUpgrade(e: Event) {
   overflow: hidden;
   min-height: 56px;
   text-align: left;
-  /* Soft beveled look — a touch of depth without being skeuomorphic. */
+  /* Multi-layer soft shadow — Linear/Vercel-style depth without the hard
+     riso offset. Outer halo + close blur reads as "object lifted slightly
+     above surface" rather than "object pasted to wall." */
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.35),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.18),
-    0 1px 0 rgba(0, 0, 0, 0.18);
-  transition: transform 60ms ease-out, box-shadow 60ms ease-out, filter 120ms;
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 4px 14px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transition:
+    transform 140ms cubic-bezier(0.2, 0.8, 0.3, 1),
+    box-shadow 140ms ease,
+    filter 120ms ease;
 }
 .card:hover {
-  filter: brightness(1.04);
+  transform: translateY(-1px);
+  filter: brightness(1.02);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    0 8px 24px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 .card:active {
   transform: translateY(1px);
   box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.22),
-    0 0 0 rgba(0, 0, 0, 0);
+    0 1px 2px rgba(0, 0, 0, 0.10),
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 1px 4px rgba(0, 0, 0, 0.10);
 }
-/* Note: the whole tile no longer grays when "unaffordable" -- the BUY pill
-   carries its own disabled state. Body-tap = do work, which is always
-   available; greying the whole card would misrepresent that. */
-/* Idle / needs-tap state — soft 1.6s breathing pulse on the border so the
-   player notices that a tile is waiting on them. Vanishes the moment a
-   cycle resumes or a manager is hired. Kept subtle to avoid distraction
-   when many tiles share the state late-game. */
+/* Idle / needs-tap state — soft breathing accent-glow when a tile is
+   waiting for the player's tap. Uses the era's accent colour, so each
+   era's idle pulse matches its visual identity (terracotta in Antiquity,
+   AOL orange in Forever War, MAGA red in Era 7, cyan in Era 8). */
 .card.needs-tap {
-  animation: tap-pulse 1.6s ease-in-out infinite;
+  animation: tap-pulse 1.8s ease-in-out infinite;
 }
 @keyframes tap-pulse {
   0%, 100% {
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.35),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.18),
-      0 0 0 0 rgba(232, 142, 56, 0);
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      0 4px 14px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      0 0 0 0 color-mix(in srgb, var(--theme-accent, #e88e38) 0%, transparent 100%);
   }
   50% {
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.35),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.18),
-      0 0 8px 1px rgba(232, 142, 56, 0.55);
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      0 4px 14px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      0 0 16px 2px color-mix(in srgb, var(--theme-accent, #e88e38) 55%, transparent 45%);
   }
 }
 
@@ -676,7 +707,19 @@ function tapBuyUpgrade(e: Event) {
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
   transition: transform 80ms ease-out;
 }
-.card:active .icon-big { transform: scale(0.92); }
+.icon-svg {
+  /* Lucide SVG glyph for the generator. Sized to match the emoji slot,
+     stroked rather than filled so it picks up the era's accent colour
+     cleanly. */
+  width: 38px;
+  height: 38px;
+  color: var(--theme-accent, #2a2218);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.18));
+  transition: transform 120ms cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+.card:hover .icon-svg { transform: scale(1.05); }
+.card:active .icon-big,
+.card:active .icon-svg { transform: scale(0.92); }
 
 /* margin-left: auto pins the Hire/Boost slot to the right edge even when
    the actions row wraps to a second line — without it, a wrapped .mgr
@@ -769,29 +812,46 @@ function tapBuyUpgrade(e: Event) {
 }
 .ms-seg:last-child { border-right: 0; }
 .ms-seg.filled {
-  background: linear-gradient(180deg, rgba(232, 142, 56, 1), rgba(178, 78, 22, 1));
+  /* Crossed milestone — fills with the era's accent colour, slightly
+     lifted at the top edge for a candy-shell highlight. Was hardcoded
+     orange→burgundy; now matches whichever era you're in. */
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--theme-accent, #e88e38) 100%, white 12%) 0%,
+    var(--theme-accent, #e88e38) 100%
+  );
   box-shadow:
-    inset 0 1px 0 rgba(255, 230, 180, 0.7),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18);
 }
 .ms-fill {
   position: absolute;
   top: 0; bottom: 0; left: 0;
-  background: linear-gradient(180deg, rgba(250, 195, 110, 1), rgba(220, 130, 50, 1));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--theme-accent, #e88e38) 100%, white 20%) 0%,
+    color-mix(in srgb, var(--theme-accent, #e88e38) 100%, black 8%) 100%
+  );
   transition: width 200ms ease-out;
   box-shadow:
     inset 0 1px 0 rgba(255, 235, 190, 0.7),
     inset 0 -1px 0 rgba(0, 0, 0, 0.18);
 }
-/* The current segment glows softly so the eye finds the "next rung". */
+/* The current segment glows softly so the eye finds the "next rung".
+   Now keyed to the era's accent colour so the glow matches whichever
+   era is in play, instead of always being warm-orange. */
 .ms-seg.current {
-  background: rgba(120, 70, 30, 0.35);
+  background: color-mix(in srgb, var(--theme-accent, #e88e38) 30%, transparent 70%);
 }
 .ms-seg.current::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255, 215, 140, 0.0), rgba(255, 195, 100, 0.3));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--theme-accent, #e88e38) 0%, transparent 100%) 0%,
+    color-mix(in srgb, var(--theme-accent, #e88e38) 40%, transparent 60%) 100%
+  );
   animation: ms-pulse 1.6s ease-in-out infinite;
   pointer-events: none;
   mix-blend-mode: screen;

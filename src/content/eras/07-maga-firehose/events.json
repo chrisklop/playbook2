@@ -74,8 +74,22 @@
       "value": 10,
       "duration_s": 10
     },
-    "weight": 1,
+    "weight": 3,
     "is_frenzy": true,
     "factoid": "Mass-rally chant cycles operated as documented A/B testing for political messaging during 2015-2024. A phrase introduced at a Pennsylvania rally could be repeated at three subsequent rallies that week, then formalised as a press-release position the following Monday if crowd response was strong enough."
+  },
+  {
+    "id": "maga-firehose-frenzy-2",
+    "headline": "⚡ FRENZY: TRUTH SOCIAL POST AT 4:17 AM CRASHES THE CYCLE — STAFF ON DAMAGE CONTROL BY 7",
+    "claim_verb": "POST THROUGH IT",
+    "claim_window_s": 10,
+    "effect": {
+      "type": "rumor_mult",
+      "value": 10,
+      "duration_s": 10
+    },
+    "weight": 3,
+    "is_frenzy": true,
+    "factoid": "Trump's Twitter/Truth Social activity peaked at 130+ posts per day in late 2020. Pre-dawn posts were a documented pattern — staff routinely woke to find that a 4 AM post had upended the day's planned messaging. The pattern repeats across the 2024 campaign on Truth Social."
   }
 ]

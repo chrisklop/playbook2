@@ -70,7 +70,12 @@ function confirm() {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  /* Translucent dark wash + backdrop blur — the game world goes
+     out-of-focus behind the prestige decision, which reads as a
+     real attention shift instead of a hard cut. */
+  background: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(8px) saturate(110%);
+  backdrop-filter: blur(8px) saturate(110%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,9 +88,16 @@ function confirm() {
   padding: 24px;
   width: 100%;
   max-width: 380px;
-  background: var(--theme-surface, #ebe2c4);
+  /* Glass surface: era-surface translucent, with a soft drop shadow. */
+  background: color-mix(in srgb, var(--theme-surface, #ebe2c4) 88%, transparent 12%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  backdrop-filter: blur(20px) saturate(140%);
   color: var(--theme-text, #2a2218);
   font-family: var(--theme-font-body, -apple-system, sans-serif);
+  border-radius: 10px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 24px 60px rgba(0, 0, 0, 0.35);
   box-sizing: border-box;
 }
 .modal h3 {
