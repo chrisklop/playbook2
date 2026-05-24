@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onBeforeUnmount, watch } from 'vue';
+import { ref, onBeforeUnmount, watch, nextTick } from 'vue';
 import { openCodexEntry } from '../nav-state';
 
 const props = defineProps<{
@@ -11,10 +11,46 @@ const props = defineProps<{
 
 const open = ref(false);
 const root = ref<HTMLElement | null>(null);
+const popover = ref<HTMLElement | null>(null);
+// Computed style for the teleported popover. Calculated from the trigger
+// button's getBoundingClientRect on open, so the popover is anchored to the
+// button visually but lives at the body level — escaping any parent's
+// overflow:hidden / stacking context.
+const popStyle = ref<Record<string, string>>({});
+
+const POPOVER_GAP_PX = 6;
+const POPOVER_MIN_WIDTH = 240;
+const VIEWPORT_MARGIN = 8;
+
+function recomputePosition() {
+  if (!root.value) return;
+  const btnRect = root.value.getBoundingClientRect();
+  // The popover sits below the button by default, right-aligned to it. We
+  // clamp the right edge to the viewport so the popover never goes off-screen.
+  // Width is min(320px, 86vw) — same as before.
+  const desiredWidth = Math.min(320, window.innerWidth * 0.86);
+  const right = Math.max(
+    VIEWPORT_MARGIN,
+    window.innerWidth - btnRect.right,
+  );
+  const left = Math.max(VIEWPORT_MARGIN, window.innerWidth - right - desiredWidth);
+
+  popStyle.value = {
+    position: 'fixed',
+    top: `${btnRect.bottom + POPOVER_GAP_PX}px`,
+    left: `${left}px`,
+    width: `${desiredWidth}px`,
+    minWidth: `${POPOVER_MIN_WIDTH}px`,
+    maxWidth: `${desiredWidth}px`,
+  };
+}
 
 function toggle(e: Event) {
   e.stopPropagation();
   open.value = !open.value;
+  if (open.value) {
+    nextTick(recomputePosition);
+  }
 }
 
 function close() {
@@ -28,21 +64,38 @@ function readMore(e: Event) {
   openCodexEntry(props.codexLink);
 }
 
-// Outside-click closes the popover. Only registered while open to avoid
-// global listener noise. Pointerdown beats click for mobile responsiveness.
+// Outside-click closes the popover. Must check both the root (trigger) and
+// the teleported popover element — otherwise clicking inside the popover
+// (e.g. the "Read more" button) would close it before the handler fires.
 function onDocPointerDown(e: PointerEvent) {
-  if (!root.value) return;
-  if (!root.value.contains(e.target as Node)) close();
+  const target = e.target as Node;
+  if (root.value?.contains(target)) return;
+  if (popover.value?.contains(target)) return;
+  close();
 }
+
+// Reposition on scroll/resize while open so the popover follows the button
+// if the layout reflows around it.
+function onReflow() {
+  if (open.value) recomputePosition();
+}
+
 watch(open, isOpen => {
   if (isOpen) {
     document.addEventListener('pointerdown', onDocPointerDown);
+    window.addEventListener('scroll', onReflow, true);
+    window.addEventListener('resize', onReflow);
   } else {
     document.removeEventListener('pointerdown', onDocPointerDown);
+    window.removeEventListener('scroll', onReflow, true);
+    window.removeEventListener('resize', onReflow);
   }
 });
+
 onBeforeUnmount(() => {
   document.removeEventListener('pointerdown', onDocPointerDown);
+  window.removeEventListener('scroll', onReflow, true);
+  window.removeEventListener('resize', onReflow);
 });
 </script>
 
@@ -57,18 +110,27 @@ onBeforeUnmount(() => {
       @click="toggle"
     >ⓘ</button>
 
-    <Transition name="info-pop">
-      <div v-if="open" class="info-pop" role="dialog">
-        <div v-if="context" class="info-context">{{ context }}</div>
-        <p class="info-text">{{ factoid }}</p>
-        <button
-          v-if="codexLink"
-          type="button"
-          class="info-more"
-          @click="readMore"
-        >Read full codex entry →</button>
-      </div>
-    </Transition>
+    <Teleport to="body">
+      <Transition name="info-pop">
+        <div
+          v-if="open"
+          ref="popover"
+          class="info-pop"
+          role="dialog"
+          :style="popStyle"
+          @click.stop
+        >
+          <div v-if="context" class="info-context">{{ context }}</div>
+          <p class="info-text">{{ factoid }}</p>
+          <button
+            v-if="codexLink"
+            type="button"
+            class="info-more"
+            @click="readMore"
+          >Read full codex entry →</button>
+        </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
@@ -100,43 +162,32 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: center;
   user-select: none;
-  /* margin-left auto isn't applied — caller positions the button. */
 }
 .info-btn:hover,
 .info-btn.active {
   opacity: 1;
   background: var(--theme-surface, rgba(0, 0, 0, 0.08));
 }
+</style>
 
+<!-- The teleported popover lives at the document body, so its styles must
+     be unscoped (Vue scoped styles add a data attribute that wouldn't match
+     teleported markup). Place these in a non-scoped block. -->
+<style>
 .info-pop {
-  position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  min-width: 240px;
-  max-width: min(320px, 86vw);
-  z-index: 50;
-  padding: 10px 12px 12px;
+  /* position/top/left/width come from inline :style */
+  z-index: 9999;
+  padding: 12px 14px 14px;
   background: var(--theme-surface, #ebe2c4);
   color: var(--theme-text, #2a2218);
   border: 1px solid var(--theme-border, #2a2218);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    4px 4px 0 0 var(--theme-border, #2a2218);
+    4px 4px 0 0 var(--theme-border, #2a2218),
+    0 10px 30px rgba(0, 0, 0, 0.25);
   text-align: left;
   font-family: var(--theme-font-body, -apple-system, sans-serif);
-  /* arrow indicator */
-}
-.info-pop::before {
-  content: '';
-  position: absolute;
-  top: -6px;
-  right: 8px;
-  width: 10px;
-  height: 10px;
-  background: var(--theme-surface, #ebe2c4);
-  border-top: 1px solid var(--theme-border, #2a2218);
-  border-left: 1px solid var(--theme-border, #2a2218);
-  transform: rotate(45deg);
+  box-sizing: border-box;
 }
 
 .info-context {
