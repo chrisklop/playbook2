@@ -70,14 +70,17 @@ function master() {
   font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
 }
 .back {
-  display: inline-flex;
-  align-items: center;
+  /* Profectus' global * { margin: auto } horizontally centres any block
+     element. Explicit margin-right: auto + display: block left-pins the
+     back arrow regardless of that cascade. */
+  display: block;
   background: transparent;
   border: 0;
-  margin: 0 0 12px;
+  margin: 0 auto 12px 0;
   padding: 6px 0;
   color: var(--text-muted);
   font-size: 13px;
+  text-align: left;
   cursor: pointer;
   font-family: inherit;
   transition: color 120ms ease;
