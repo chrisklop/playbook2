@@ -27,7 +27,7 @@ import {
   // Era 6 — Forever War
   Mail, Wrench, Ship, Brush, FileSignature, Briefcase,
   // Era 7 — MAGA Firehose
-  HelpCircle, Bot, Crown, Users,
+  Tag, HelpCircle, Bot, Crown, Users,
   // Era 8 — Synthetic Reality
   VenetianMask, BadgeCheck, UserSquare2, Brain, Globe,
   type LucideIcon,
@@ -82,7 +82,7 @@ export const GENERATOR_ICONS: Record<string, LucideIcon> = {
   'cable-pundit-bench': Briefcase,
 
   // Era 7 — MAGA & The Firehose
-  'post-truth-social-salvo': Megaphone,
+  'pin-a-nickname': Tag,
   'drop-qanon-cryptic': HelpCircle,
   'air-tucker-monologue': Mic2,
   'deploy-troll-farm': Bot,

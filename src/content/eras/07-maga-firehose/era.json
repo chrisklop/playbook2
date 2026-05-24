@@ -14,10 +14,10 @@
   ],
   "generators": [
     {
-      "id": "post-truth-social-salvo",
+      "id": "pin-a-nickname",
       "tier": 1,
-      "display_name": "Post a Truth Social Salvo",
-      "description": "ALL CAPS. Three exclamation points. Sent at 4:17 AM. Tap to gain 1 Rumor. At 10 owned, hire Stephen Miller to keep the salvos coming.",
+      "display_name": "Pin a Nickname",
+      "description": "Two words on Twitter that the opposing candidate never lives down. 'Low-Energy.' 'Lyin'.' 'Little.' 'Crooked.' Tap to gain 1 Rumor. At 10 owned, hire Stephen Miller to keep the nicknames coming.",
       "technique_tag": "alternative-facts",
       "resource": "rumor",
       "base_cost": 4,
@@ -45,34 +45,34 @@
       "cycle_seconds": 1,
       "manager_cost": 200,
       "manager_name": "Stephen Miller",
-      "icon": "📣",
+      "icon": "🏷️",
       "upgrades": [
         {
-          "id": "post-truth-social-salvo-cap-lock",
-          "name": "ALL-CAPS Tonal Range",
-          "description": "Lowercase is for losers. SAD!",
+          "id": "pin-a-nickname-mock-debate-prep",
+          "name": "Mock-Debate Prep Sessions",
+          "description": "Test the nickname against a stand-in. Whichever syllable lands hardest, lock that.",
           "unlock_at_owned": 25,
           "multiplier": 3,
           "cost": 12000
         },
         {
-          "id": "post-truth-social-salvo-cycle-locking",
-          "name": "4:17 AM Cycle-Lock",
-          "description": "Post before the staff wakes up. They wake up to the cleanup.",
+          "id": "pin-a-nickname-rally-tested",
+          "name": "Rally-Tested Phrasings",
+          "description": "Try the nickname on 18,000 attendees in Iowa. If they chant it back, it ships.",
           "unlock_at_owned": 100,
           "multiplier": 3,
           "cost": 300000
         },
         {
-          "id": "post-truth-social-salvo-rally-tested",
-          "name": "Rally-Tested Phrasings",
-          "description": "Every coinage gets stress-tested with 18,000 attendees before it goes to the feed.",
+          "id": "pin-a-nickname-network-pickup",
+          "name": "Network-Anchor Pick-Up",
+          "description": "By the third Sunday show, the anchor uses the nickname on-air, unironically.",
           "unlock_at_owned": 200,
           "multiplier": 5,
           "cost": 6000000
         }
       ],
-      "factoid": "The Washington Post Fact Checker documented ~30,500 false or misleading statements by President Trump across his first term — roughly 21 per day, ~5× the documented rate of the Obama administration's final year. The pattern began with the inauguration crowd-size claim two days into the term."
+      "factoid": "Trump's 2015–2016 primary campaign weaponised nicknames at a documented industrial scale: 'Low-Energy Jeb' (Bush), 'Lyin' Ted' (Cruz), 'Little Marco' (Rubio), 'Crooked Hillary' (Clinton). Internal Bush campaign post-mortems judged 'Low-Energy' to have done lasting damage to a $100M+ operation in a single primary cycle. The pattern continued into the 2024 cycle with 'Sleepy Joe,' 'Comrade Kamala,' and 'Ron DeSanctimonious.'"
     },
     {
       "id": "drop-qanon-cryptic",
