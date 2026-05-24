@@ -1,0 +1,132 @@
+/*
+ * Chrome design system — the *fixed*, never-overridden visual baseline
+ * that every read-heavy and menu-style surface uses (codex, More tab,
+ * modals, popovers, PowerUpDock, prestige page). Era themes only touch
+ * the --accent-* tokens here; the neutral chrome stays consistent so
+ * the game feels visually coherent across eras.
+ *
+ * Architecture:
+ *   - Radix Colors provides the underlying palette (12-step graduated
+ *     scales, light + dark variants, pre-validated WCAG contrast).
+ *   - We use "mauve" as the chrome neutral (warm gray; slightly more
+ *     human than "slate" or "gray"), in dark-mode form.
+ *   - shadcn-vue-style semantic tokens (--background, --foreground,
+ *     --card, --border, --primary, --muted-foreground, etc.) map onto
+ *     specific Radix steps with documented roles.
+ *
+ * Radix step convention:
+ *   1-2: page background
+ *   3-5: component surfaces (cards, panels)
+ *   6-8: borders, dividers
+ *   9-10: solid colors (buttons, accents)
+ *   11-12: foreground text
+ */
+
+@import "tailwindcss";
+@import "@radix-ui/colors/mauve-dark.css";
+@import "@radix-ui/colors/mauve-dark-alpha.css";
+@import "@radix-ui/colors/iris-dark.css";
+
+:root {
+  /* ----- Chrome neutrals (mauve dark) ----- */
+  --bg:          var(--mauve-1);   /* app background */
+  --bg-2:        var(--mauve-2);   /* slight elevation */
+  --surface:     var(--mauve-3);   /* card / panel surface */
+  --surface-2:   var(--mauve-4);   /* hover surface */
+  --surface-3:   var(--mauve-5);   /* selected / pressed surface */
+  --border:      var(--mauve-6);   /* subtle border */
+  --border-2:    var(--mauve-7);   /* hover border */
+  --border-3:    var(--mauve-8);   /* focused border */
+
+  --text-faint:  var(--mauve-9);   /* lowest-emphasis text */
+  --text-muted:  var(--mauve-11);  /* secondary text */
+  --text-strong: var(--mauve-12);  /* primary text */
+
+  /* ----- Accent (iris by default; era themes override) ----- */
+  --accent-bg:      var(--iris-3);
+  --accent-surface: var(--iris-5);
+  --accent-border:  var(--iris-8);
+  --accent-solid:   var(--iris-9);
+  --accent-hover:   var(--iris-10);
+  --accent-text:    var(--iris-11);
+  --accent-contrast: white;
+
+  /* ----- Power-up purple (always purple; not era-themed) ----- */
+  --powerup-solid:  var(--iris-9);
+  --powerup-hover:  var(--iris-10);
+}
+
+/* Chrome surfaces — these classes are how components opt into the
+   chrome look. Apply directly via class="chrome-card" rather than
+   referencing --theme-surface etc. Era themes do NOT affect these. */
+.chrome-page {
+  background: var(--bg);
+  color: var(--text-strong);
+}
+.chrome-card {
+  background: var(--surface);
+  color: var(--text-strong);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.chrome-card-elevated {
+  background: var(--surface);
+  color: var(--text-strong);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.18),
+    0 12px 32px rgba(0, 0, 0, 0.32);
+}
+.chrome-glass {
+  /* Translucent surface + backdrop blur for popovers, modals, sheets. */
+  background: color-mix(in srgb, var(--surface) 86%, transparent 14%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  backdrop-filter: blur(20px) saturate(140%);
+  color: var(--text-strong);
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, white 8%, transparent),
+    0 24px 60px rgba(0, 0, 0, 0.42);
+}
+.chrome-text-muted { color: var(--text-muted); }
+.chrome-text-faint { color: var(--text-faint); }
+.chrome-divider { border-top: 1px solid var(--border); }
+
+/* Buttons inherit the chrome design language by default. */
+.chrome-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: var(--surface-2);
+  color: var(--text-strong);
+  border: 1px solid var(--border-2);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease, transform 100ms ease;
+}
+.chrome-btn:hover {
+  background: var(--surface-3);
+  border-color: var(--border-3);
+}
+.chrome-btn:active { transform: translateY(1px); }
+.chrome-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chrome-btn-primary {
+  background: var(--accent-solid);
+  color: var(--accent-contrast);
+  border-color: var(--accent-solid);
+}
+.chrome-btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
