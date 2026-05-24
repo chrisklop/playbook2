@@ -357,7 +357,7 @@ function tapBuyUpgrade(e: Event) {
 
         <div class="mgr">
           <button
-            v-if="owned >= gen.auto_unlock_at && !managerHired"
+            v-if="owned >= Math.max(1, gen.auto_unlock_at) && !managerHired"
             type="button"
             class="btn-riso btn-riso-sm btn-riso-secondary"
             :class="{ disabled: !canAffordManager }"
@@ -368,7 +368,7 @@ function tapBuyUpgrade(e: Event) {
             <span class="hire-cost">{{ formatCost(managerCost) }} {{ resourceName }}</span>
           </button>
           <span
-            v-else-if="owned > 0 && !managerHired"
+            v-else-if="owned > 0 && owned < gen.auto_unlock_at && !managerHired"
             class="mgr-pending"
           >Hire available at {{ gen.auto_unlock_at }} owned</span>
           <button

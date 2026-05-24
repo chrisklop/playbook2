@@ -343,6 +343,11 @@ export function hireManager(genId: string): boolean {
   const gen = currentEra.value.generators.find(g => g.id === genId);
   if (!gen) return false;
   if (state.managersHired.has(genId)) return false; // already hired
+  // Can't manage what you don't own. Defense in depth — the UI also gates
+  // the Hire button on ownership, but make the engine refuse too in case
+  // anything bypasses the UI.
+  const owned = state.ownedByGenerator[genId] ?? 0;
+  if (owned <= 0) return false;
   if (state.rumor < gen.manager_cost) return false;
   state.rumor -= gen.manager_cost;
   state.managersHired.add(genId);
