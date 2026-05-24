@@ -18,18 +18,19 @@ import { codexState } from '../codex-state';
   padding: 0 0 80px 0;
   width: 100%;
   box-sizing: border-box;
+  background: var(--bg);
+  min-height: 100%;
 }
 .header {
   margin: 0;
-  padding: 14px 16px;
+  padding: 18px 18px;
   width: 100%;
   box-sizing: border-box;
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
-  font-size: 16px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  border-bottom: 1px solid var(--theme-border, #2a2218);
-  color: var(--theme-text, #2a2218);
-  background: var(--theme-background, #f2ecd9);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-strong);
+  background: var(--bg);
 }
 </style>

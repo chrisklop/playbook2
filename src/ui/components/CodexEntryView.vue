@@ -58,47 +58,57 @@ function master() {
 </template>
 
 <style scoped>
+/* Codex is a read-heavy surface — opts fully into chrome neutrals so
+   the per-era loud palettes never make the text unreadable. */
 .entry {
   margin: 0;
-  padding: 10px 14px;
+  padding: 18px 18px 28px;
   width: 100%;
   box-sizing: border-box;
-  color: var(--theme-text, #2a2218);
-  font-family: var(--theme-font-body, -apple-system, sans-serif);
+  background: var(--bg);
+  color: var(--text-strong);
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
 }
 .back {
-  background: none;
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
   border: 0;
-  margin: 0 0 4px;
+  margin: 0 0 12px;
   padding: 6px 0;
-  color: var(--theme-muted, #6b5a3d);
-  font-size: 12px;
+  color: var(--text-muted);
+  font-size: 13px;
   cursor: pointer;
   font-family: inherit;
+  transition: color 120ms ease;
 }
+.back:hover { color: var(--text-strong); }
 h2 {
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
-  font-size: 16px;
-  margin: 4px 0 8px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 4px 0 14px;
   padding: 0;
   line-height: 1.25;
+  color: var(--text-strong);
 }
 .body {
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.65;
   margin: 0;
+  color: var(--text-strong);
 }
-.body :deep(p) { margin: 0 0 8px; padding: 0; }
-.body :deep(em) { font-style: italic; }
-.body :deep(strong) { font-weight: 700; }
+.body :deep(p) { margin: 0 0 14px; padding: 0; }
+.body :deep(em) { font-style: italic; color: var(--text-muted); }
+.body :deep(strong) { font-weight: 700; color: var(--text-strong); }
 h3 {
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin: 14px 0 6px;
+  margin: 22px 0 10px;
   padding: 0;
-  opacity: 0.65;
+  color: var(--text-muted);
 }
 .sources {
   list-style: none;
@@ -106,37 +116,57 @@ h3 {
   padding: 0;
 }
 .sources li {
-  margin: 0 0 4px 0;
+  margin: 0 0 6px 0;
   padding: 0;
-  font-size: 11px;
-  line-height: 1.4;
+  font-size: 13px;
+  line-height: 1.45;
 }
 .sources a {
-  color: var(--theme-accent, #2a2218);
-  text-decoration: underline;
+  color: var(--accent-text);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-text) 40%, transparent);
+  transition: border-color 120ms ease, color 120ms ease;
+}
+.sources a:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
 }
 .mastery-block {
-  margin-top: 12px;
-  padding: 10px 0 4px;
-  border-top: 1px solid rgba(0,0,0,0.18);
+  margin-top: 18px;
+  padding: 14px 14px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
 .mastery-explain {
-  font-size: 12px;
-  line-height: 1.45;
-  margin: 0 0 8px;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0 0 12px;
   padding: 0;
-  font-style: italic;
-  opacity: 0.85;
+  color: var(--text-muted);
 }
 .mastery-explain strong {
-  font-style: normal;
   font-weight: 700;
-  color: #2a6b35;
+  color: var(--text-strong);
 }
 .master-btn {
   width: 100%;
-  padding: 9px 14px;
+  padding: 11px 14px;
   font-size: 12px;
-  letter-spacing: 1.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: var(--accent-solid);
+  color: var(--accent-contrast);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 120ms ease, transform 100ms ease;
+}
+.master-btn:hover:not(:disabled) { background: var(--accent-hover); }
+.master-btn:active { transform: translateY(1px); }
+.master-btn:disabled {
+  background: var(--surface-2);
+  color: var(--text-faint);
+  cursor: default;
 }
 </style>

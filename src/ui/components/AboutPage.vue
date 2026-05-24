@@ -30,39 +30,59 @@
 <style scoped>
 .page {
   margin: 0;
-  padding: 16px;
+  padding: 22px 22px 80px;
   width: 100%;
+  min-height: 100%;
   box-sizing: border-box;
-  color: var(--theme-text, #2a2218);
-  font-family: var(--theme-font-body, -apple-system, sans-serif);
-  font-size: 13px;
-  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text-strong);
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
 }
 .page h2 {
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
-  font-size: 18px;
-  margin: 8px 0 16px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 4px 0 20px;
   padding: 0;
+  color: var(--text-strong);
 }
 .page h3 {
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
   font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin: 16px 0 4px;
+  margin: 22px 0 6px;
   padding: 0;
-  opacity: 0.7;
+  color: var(--text-muted);
 }
 .page p {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   padding: 0;
+  color: var(--text-strong);
 }
 .page a {
-  color: var(--theme-accent, #2a2218);
+  color: var(--accent-text);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-text) 40%, transparent);
+  transition: color 120ms ease, border-color 120ms ease;
+}
+.page a:hover {
+  color: var(--accent-hover);
+  border-bottom-color: var(--accent-hover);
+}
+.page code {
+  font-family: 'JetBrains Mono', 'Menlo', monospace;
+  font-size: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
 }
 .version {
-  opacity: 0.5;
-  margin-top: 24px;
+  color: var(--text-faint);
+  margin-top: 28px;
   font-size: 11px;
 }
 </style>

@@ -185,6 +185,12 @@ const RisoOverrides = z.object({
   bulk_off_text: HexColor.optional(),
 }).optional();
 
+/** Radix Colors palette names available as per-era accents. */
+export const RadixPaletteName = z.enum([
+  'bronze', 'amber', 'tomato', 'red', 'crimson', 'ruby',
+  'blue', 'iris', 'cyan', 'indigo',
+]);
+
 export const ThemeSchema = z.object({
   id: z.string().min(1),
   era_id: z.string().min(1),
@@ -201,6 +207,13 @@ export const ThemeSchema = z.object({
     accent: HexColor,
     border: HexColor,
   }),
+  /**
+   * Optional Radix Colors palette name for chrome-layer accents (codex
+   * page, modal buttons, popover badges, etc). Era themes provide a
+   * name; theme.ts maps it to the --accent-* CSS variables. When absent,
+   * the chrome falls back to its default iris accent.
+   */
+  radix_accent: RadixPaletteName.optional(),
   riso: RisoOverrides,
   card_style: z.enum(['flat-paper', 'broadsheet', 'poster', 'chat-bubble']).default('flat-paper'),
 });

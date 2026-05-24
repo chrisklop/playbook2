@@ -175,57 +175,59 @@ onBeforeUnmount(() => {
      teleported markup). Place these in a non-scoped block. -->
 <style>
 .info-pop {
-  /* position/top/left/width come from inline :style */
+  /* position/top/left/width come from inline :style.
+     Chrome-glass surface: neutral mauve-dark with translucency + backdrop
+     blur, so the popover reads as a frosted overlay regardless of era. */
   z-index: 9999;
-  padding: 12px 14px 14px;
-  /* Glass-morphism surface: translucent era-surface tint + backdrop blur
-     so the popover reads as a frosted overlay over whatever's behind it. */
-  background: color-mix(in srgb, var(--theme-surface, #ebe2c4) 82%, transparent 18%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  backdrop-filter: blur(14px) saturate(140%);
-  color: var(--theme-text, #2a2218);
-  border: 1px solid color-mix(in srgb, var(--theme-border, #2a2218) 50%, transparent 50%);
-  border-radius: 8px;
+  padding: 14px 16px 14px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent 12%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  color: var(--text-strong);
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  border-radius: 12px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 2px 6px rgba(0, 0, 0, 0.08),
-    0 16px 40px rgba(0, 0, 0, 0.18);
+    inset 0 1px 0 color-mix(in srgb, white 10%, transparent),
+    0 2px 6px rgba(0, 0, 0, 0.16),
+    0 20px 48px rgba(0, 0, 0, 0.36);
   text-align: left;
-  font-family: var(--theme-font-body, -apple-system, sans-serif);
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
   box-sizing: border-box;
 }
 
 .info-context {
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
-  font-size: 9px;
+  font-size: 10px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  opacity: 0.65;
-  margin-bottom: 4px;
+  color: var(--accent-text);
+  margin-bottom: 6px;
 }
 .info-text {
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.55;
   margin: 0;
   padding: 0;
+  color: var(--text-strong);
 }
 .info-more {
   display: block;
-  margin-top: 8px;
-  padding: 4px 0 0;
+  margin-top: 12px;
+  padding: 10px 0 0;
   width: 100%;
   text-align: left;
   background: none;
   border: 0;
-  border-top: 1px dashed var(--theme-border, rgba(0,0,0,0.4));
+  border-top: 1px solid var(--border);
   font-family: inherit;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--theme-accent, #2a2218);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-text);
   cursor: pointer;
-  letter-spacing: 0.3px;
+  letter-spacing: 0;
+  transition: color 120ms ease;
 }
-.info-more:hover { text-decoration: underline; }
+.info-more:hover { color: var(--accent-hover); }
 
 .info-pop-enter-active, .info-pop-leave-active {
   transition: opacity 160ms ease, transform 160ms ease;

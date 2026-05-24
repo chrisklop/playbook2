@@ -14,5 +14,6 @@
     "accent": "#8b3a1f",
     "border": "#2a1810"
   },
-  "card_style": "flat-paper"
+  "card_style": "flat-paper",
+  "radix_accent": "bronze"
 }

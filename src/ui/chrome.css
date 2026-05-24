@@ -23,9 +23,25 @@
  */
 
 @import "tailwindcss";
+
+/* Chrome neutral — never changes per era. */
 @import "@radix-ui/colors/mauve-dark.css";
 @import "@radix-ui/colors/mauve-dark-alpha.css";
+
+/* Per-era accent palettes. Each era's theme.json names one of these;
+   theme.ts swaps the --accent-* tokens to point at the chosen palette's
+   Radix step variables. All palettes load up front so swapping is just
+   variable reassignment — no CSS file fetches at runtime. */
+@import "@radix-ui/colors/bronze-dark.css";
+@import "@radix-ui/colors/amber-dark.css";
+@import "@radix-ui/colors/tomato-dark.css";
+@import "@radix-ui/colors/red-dark.css";
+@import "@radix-ui/colors/crimson-dark.css";
+@import "@radix-ui/colors/ruby-dark.css";
+@import "@radix-ui/colors/blue-dark.css";
 @import "@radix-ui/colors/iris-dark.css";
+@import "@radix-ui/colors/cyan-dark.css";
+@import "@radix-ui/colors/indigo-dark.css";
 
 :root {
   /* ----- Chrome neutrals (mauve dark) ----- */

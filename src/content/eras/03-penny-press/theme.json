@@ -28,5 +28,6 @@
     "bulk_on_shadow": "#c8a050",
     "bulk_on_text": "#f0e7cf"
   },
-  "card_style": "broadsheet"
+  "card_style": "broadsheet",
+  "radix_accent": "tomato"
 }

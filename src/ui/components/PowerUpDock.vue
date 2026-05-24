@@ -157,9 +157,9 @@ function fireWarp() {
   position: fixed;
   inset: 0;
   z-index: 95;
-  background: rgba(0, 0, 0, 0.5);
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
-  backdrop-filter: blur(8px) saturate(120%);
+  background: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  backdrop-filter: blur(10px) saturate(120%);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -170,17 +170,17 @@ function fireWarp() {
   width: 100%;
   max-width: 480px;
   margin-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
-  padding: 18px 18px 16px;
-  background: color-mix(in srgb, var(--theme-surface, #ebe2c4) 92%, transparent 8%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-  backdrop-filter: blur(20px) saturate(140%);
-  color: var(--theme-text, #2a2218);
-  border: 1px solid color-mix(in srgb, var(--theme-border, #2a2218) 50%, transparent);
-  border-radius: 12px;
+  padding: 22px 22px 20px;
+  background: color-mix(in srgb, var(--surface) 92%, transparent 8%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  backdrop-filter: blur(24px) saturate(140%);
+  color: var(--text-strong);
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  border-radius: 16px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 24px 60px rgba(0, 0, 0, 0.35);
-  font-family: var(--theme-font-body, -apple-system, sans-serif);
+    inset 0 1px 0 color-mix(in srgb, white 8%, transparent),
+    0 32px 80px rgba(0, 0, 0, 0.45);
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
   box-sizing: border-box;
 }
 
@@ -188,71 +188,78 @@ function fireWarp() {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 .dock-head h3 {
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
-  font-size: 13px;
-  letter-spacing: 3px;
-  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 700;
   margin: 0;
   padding: 0;
+  color: var(--text-muted);
+  text-transform: uppercase;
 }
 .dock-close {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border: 0;
   padding: 0;
   background: transparent;
-  color: var(--theme-text, #2a2218);
-  opacity: 0.7;
+  color: var(--text-muted);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border-radius: 8px;
+  transition: background 120ms ease, color 120ms ease;
 }
-.dock-close:hover { opacity: 1; }
+.dock-close:hover {
+  background: var(--surface-2);
+  color: var(--text-strong);
+}
 .dock-close svg { width: 18px; height: 18px; }
 
 .dock-item {
-  padding: 14px 14px 16px;
-  background: color-mix(in srgb, var(--theme-background, #f2ecd9) 70%, transparent);
-  border: 1px solid color-mix(in srgb, var(--theme-border, #2a2218) 30%, transparent);
-  border-radius: 8px;
+  padding: 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
 }
 .dock-item-head {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .dock-item-icon {
-  width: 28px;
-  height: 28px;
-  color: #9b5cf6;
+  width: 32px;
+  height: 32px;
+  color: #a78bfa;
   flex-shrink: 0;
 }
 .dock-item-meta { display: flex; flex-direction: column; }
 .dock-item-name {
-  font-family: var(--theme-font-masthead, sans-serif);
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--text-strong);
 }
 .dock-item-count {
-  font-size: 11px;
-  opacity: 0.7;
+  font-size: 12px;
+  color: var(--text-muted);
   margin-top: 2px;
 }
 .dock-item-desc {
-  font-size: 12px;
-  line-height: 1.5;
-  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0 0 14px;
   padding: 0;
-  opacity: 0.9;
+  color: var(--text-muted);
 }
-.dock-item-desc strong { font-weight: 700; }
+.dock-item-desc strong {
+  font-weight: 600;
+  color: var(--text-strong);
+}
 
 .dock-use {
   width: 100%;
@@ -281,11 +288,10 @@ function fireWarp() {
 }
 
 .dock-footnote {
-  margin: 12px 0 0;
+  margin: 14px 0 0;
   padding: 0;
   font-size: 11px;
-  opacity: 0.6;
-  font-style: italic;
+  color: var(--text-faint);
   text-align: center;
 }
 

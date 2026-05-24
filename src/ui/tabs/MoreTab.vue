@@ -36,52 +36,63 @@ const ITEMS = computed(() => [
 <style scoped>
 .more {
   margin: 0;
-  padding: 0 0 80px 0;
+  padding: 12px 0 80px 0;
   width: 100%;
+  min-height: 100%;
   box-sizing: border-box;
-  background: var(--theme-background, #f2ecd9);
-  color: var(--theme-text, #2a2218);
+  background: var(--bg);
+  color: var(--text-strong);
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
 }
 .back {
-  background: none;
+  background: transparent;
   border: 0;
   margin: 0;
-  padding: 12px 16px;
+  padding: 12px 18px;
   width: 100%;
   text-align: left;
   box-sizing: border-box;
-  color: var(--theme-muted, #6b5a3d);
+  color: var(--text-muted);
   font-size: 13px;
   cursor: pointer;
   font-family: inherit;
+  transition: color 120ms ease;
 }
+.back:hover { color: var(--text-strong); }
 .menu {
   list-style: none;
-  margin: 0;
+  margin: 6px 12px;
   padding: 0;
-  width: 100%;
+  width: calc(100% - 24px);
   box-sizing: border-box;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
 }
 .menu-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0;
-  padding: 16px;
+  padding: 16px 18px;
   width: 100%;
   box-sizing: border-box;
-  border-bottom: 1px solid var(--theme-border, #2a2218);
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
-  font-family: var(--theme-font-body, -apple-system, sans-serif);
-  color: var(--theme-text, #2a2218);
+  color: var(--text-strong);
+  background: transparent;
+  transition: background 120ms ease;
 }
+.menu-item + .menu-item { border-top: 1px solid var(--border); }
+.menu-item:hover { background: var(--surface-2); }
+.menu-item:active { background: var(--surface-3); }
 .chev {
-  opacity: 0.4;
+  color: var(--text-faint);
   font-size: 18px;
 }
 .menu-item.ready {
-  background: linear-gradient(180deg, rgba(232, 142, 56, 0.25), rgba(214, 120, 48, 0.4));
+  background: color-mix(in srgb, var(--accent-solid) 18%, transparent);
   animation: ready-pulse 1.6s ease-in-out infinite;
 }
 @keyframes ready-pulse {

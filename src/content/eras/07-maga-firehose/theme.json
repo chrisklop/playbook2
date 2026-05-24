@@ -30,5 +30,6 @@
     "bulk_off_bg": "#ffffff",
     "bulk_off_text": "#0a0a0a"
   },
-  "card_style": "poster"
+  "card_style": "poster",
+  "radix_accent": "ruby"
 }

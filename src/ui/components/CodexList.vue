@@ -25,45 +25,68 @@ import { visibleEntries, codexState } from '../codex-state';
 .codex-list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 12px;
   width: 100%;
   box-sizing: border-box;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 .entry-link {
   margin: 0;
   padding: 14px 16px;
   width: 100%;
   box-sizing: border-box;
-  border-bottom: 1px solid var(--theme-border, #2a2218);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
   cursor: pointer;
-  color: var(--theme-text, #2a2218);
-  background: var(--theme-background, #f2ecd9);
+  color: var(--text-strong);
+  transition: background 120ms ease, border-color 120ms ease, transform 100ms ease;
 }
-.entry-link:active { background: var(--theme-surface, #ebe2c4); }
+.entry-link:hover {
+  background: var(--surface-2);
+  border-color: var(--border-2);
+}
+.entry-link:active {
+  background: var(--surface-3);
+  transform: translateY(1px);
+}
 .title {
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  color: var(--text-strong);
 }
 .tags {
   display: flex;
   gap: 6px;
-  margin-top: 4px;
+  margin-top: 6px;
+  flex-wrap: wrap;
 }
 .tag {
-  font-size: 9px;
+  font-size: 10px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  opacity: 0.6;
+  letter-spacing: 0.5px;
+  color: var(--accent-text);
+  background: var(--accent-bg);
+  border: 1px solid color-mix(in srgb, var(--accent-border) 40%, transparent);
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 .empty {
-  margin: 0;
+  margin: 12px;
   padding: 24px 16px;
-  width: 100%;
+  width: calc(100% - 24px);
   box-sizing: border-box;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
   font-style: italic;
-  opacity: 0.6;
   font-size: 13px;
-  color: var(--theme-muted, #6b5a3d);
+  color: var(--text-muted);
+  text-align: center;
 }
 </style>

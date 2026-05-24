@@ -85,35 +85,47 @@ function confirm() {
 }
 .modal {
   margin: 0;
-  padding: 24px;
+  padding: 28px;
   width: 100%;
-  max-width: 380px;
-  /* Glass surface: era-surface translucent, with a soft drop shadow. */
-  background: color-mix(in srgb, var(--theme-surface, #ebe2c4) 88%, transparent 12%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-  backdrop-filter: blur(20px) saturate(140%);
-  color: var(--theme-text, #2a2218);
-  font-family: var(--theme-font-body, -apple-system, sans-serif);
-  border-radius: 10px;
+  max-width: 420px;
+  /* Chrome-glass surface: neutral mauve-dark translucent + backdrop blur.
+     Era doesn't bleed into the decision moment. */
+  background: color-mix(in srgb, var(--surface) 92%, transparent 8%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  backdrop-filter: blur(24px) saturate(140%);
+  color: var(--text-strong);
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  border-radius: 16px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 24px 60px rgba(0, 0, 0, 0.35);
+    inset 0 1px 0 color-mix(in srgb, white 8%, transparent),
+    0 32px 80px rgba(0, 0, 0, 0.45);
   box-sizing: border-box;
 }
 .modal h3 {
-  font-family: var(--theme-font-masthead, -apple-system, sans-serif);
-  font-size: 18px;
-  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
   padding: 0;
+  color: var(--text-strong);
 }
 .modal p {
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.55;
   margin: 0 0 12px;
   padding: 0;
+  color: var(--text-muted);
 }
-.emphasis { font-style: italic; }
-.gain { font-size: 16px; }
+.emphasis {
+  font-style: italic;
+  color: var(--text-strong);
+}
+.gain {
+  font-size: 15px;
+  color: var(--text-strong);
+}
+.gain strong { color: var(--accent-text); font-weight: 700; }
 .row {
   display: flex;
   gap: 12px;

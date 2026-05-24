@@ -62,4 +62,32 @@ export function applyTheme(theme: Theme): void {
   // Sync body bg/color so safe-area insets pad to the theme background.
   document.body.style.background = theme.palette.background;
   document.body.style.color = theme.palette.text;
+
+  // Chrome accent — pulls the era's chosen Radix palette into the
+  // --accent-* tokens that chrome.css surfaces consume. When absent,
+  // the chrome default (iris) stays in place.
+  applyRadixAccent(theme.radix_accent ?? 'iris');
+}
+
+/**
+ * Re-binds the chrome's --accent-* CSS variables to the named Radix
+ * palette's steps. Every palette is already loaded in chrome.css, so
+ * this is variable reassignment — no fetch, no flicker.
+ */
+function applyRadixAccent(paletteName: string): void {
+  const root = document.documentElement;
+  root.style.setProperty('--accent-bg',      `var(--${paletteName}-3)`);
+  root.style.setProperty('--accent-surface', `var(--${paletteName}-5)`);
+  root.style.setProperty('--accent-border',  `var(--${paletteName}-8)`);
+  root.style.setProperty('--accent-solid',   `var(--${paletteName}-9)`);
+  root.style.setProperty('--accent-hover',   `var(--${paletteName}-10)`);
+  root.style.setProperty('--accent-text',    `var(--${paletteName}-11)`);
+  // Contrast: most Radix dark-9 backgrounds want white text; the bronze/
+  // amber/gold-style scales want near-black. Pre-compute here so chrome
+  // components don't have to.
+  const lightFgPalettes = ['bronze', 'amber'];
+  root.style.setProperty(
+    '--accent-contrast',
+    lightFgPalettes.includes(paletteName) ? '#0a0a0a' : '#ffffff',
+  );
 }
